@@ -10,13 +10,13 @@ import java.nio.file.FileSystems;
 public class OutboundTextToSpeech {
     public static void main(String[] args) throws Exception {
         String APPLICATION_ID = envVar("APPLICATION_ID");
-        String PRIVATE_KEY_PATH = envVar("PRIVATE_KEY_PATH");
+        String PRIVATE_KEY = envVar("PRIVATE_KEY");
         String FROM_NUMBER = envVar("FROM_NUMBER");
         String TO_NUMBER = envVar("TO_NUMBER");
 
         AuthMethod auth = new JWTAuthMethod(
                 APPLICATION_ID,
-                FileSystems.getDefault().getPath(PRIVATE_KEY_PATH)
+                FileSystems.getDefault().getPath(PRIVATE_KEY)
         );
         NexmoClient client = new NexmoClient(auth);
         client.getVoiceClient().createCall(new Call(
