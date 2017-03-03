@@ -9,11 +9,6 @@
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 
-apply plugin: 'eclipse'
-
-// Apply the application plugin to add support for building an application
-apply plugin: 'application'
-
 // In this section you declare where to find the dependencies of your project
 repositories {
     // Use jcenter for resolving your dependencies.
@@ -34,6 +29,9 @@ dependencies {
     compile 'com.nexmo:client:2.0.0-SNAPSHOT'
 }
 
-// Define the main class for the application
-mainClassName = 'com.nexmo.quickstart.voice.OutboundTextToSpeech'
-
+task fatJar(type: Jar, dependsOn:configurations.runtime) {
+    baseName = project.name + '-with-dependencies'
+    from { configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+assemble.dependsOn fatJar
