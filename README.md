@@ -24,9 +24,6 @@ gradle assemble
 
 This will build the following file: `build/libs/nexmo-java-quickstart-with-dependencies.jar`
 
-
-
-
 ## Running The Examples
 
 Copy `.env-example` to `.env` and edit the values. You'll need to load those
@@ -42,7 +39,6 @@ So to run the OutboundTextToSpeechExample class, you would run the following:
 ```sh
 foreman run java -cp build/libs/nexmo-java-quickstart-with-dependencies.jar com.nexmo.quickstart.voice.OutboundTextToSpeech
 ```
-
 
 ## Request an Example
 
