@@ -6,11 +6,9 @@ making a Text to Speech call.
 
 ## Setup
 
-To use this sample you will first need a [Nexmo account][sign-up]. Then rename
-the `.env-example` file to `.env` and set the values as required.
+To use this sample you will first need a [Nexmo account][sign-up].
 
 For some of the examples you will need to [buy a number][buy-number].
-
 
 ## Building The Library
 
@@ -46,7 +44,7 @@ Please [raise an issue](https://github.com/nexmo-community/nexmo-java-quickstart
 
 ## License
 
-This code is licensed under the [MIT](LICENSE) license.
+This code is licensed under the [MIT](LICENSE.txt) license.
 
 [gradle]: https://gradle.org/
 [foreman]: https://github.com/ddollar/foreman
