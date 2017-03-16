@@ -38,6 +38,9 @@ So to run the OutboundTextToSpeechExample class, you would run the following:
 foreman run java -cp build/libs/nexmo-java-quickstart-with-dependencies.jar com.nexmo.quickstart.voice.OutboundTextToSpeech
 ```
 
+If you set the environment variable `QUICKSTART_DEBUG` to any value, extra information
+will be output to the console from the Nexmo Client library.
+
 ## Request an Example
 
 Please [raise an issue](https://github.com/nexmo-community/nexmo-java-quickstart/issues) to request an example that isn't present within the quickstart. Pull requests will be gratefully received.

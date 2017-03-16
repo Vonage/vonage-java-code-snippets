@@ -7,8 +7,12 @@ import com.nexmo.client.voice.Call;
 
 import java.nio.file.FileSystems;
 
+import static com.nexmo.quickstart.Util.*;
+
 public class OutboundTextToSpeech {
     public static void main(String[] args) throws Exception {
+        configureLogging();
+
         String APPLICATION_ID = envVar("APPLICATION_ID");
         String PRIVATE_KEY = envVar("PRIVATE_KEY");
         String FROM_NUMBER = envVar("FROM_NUMBER");
@@ -24,13 +28,5 @@ public class OutboundTextToSpeech {
                 FROM_NUMBER,
                 "https://nexmo-community.github.io/ncco-examples/first_call_talk.json"
         ));
-    }
-
-    private static String envVar(String key) {
-        String value = System.getenv(key);
-        if (value == null) {
-            throw new IllegalArgumentException("You must provide the " + key + " environment variable!");
-        }
-        return value;
     }
 }
