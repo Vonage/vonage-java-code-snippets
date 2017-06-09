@@ -16,6 +16,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     
     compile 'com.nexmo:client:2.1.0'
+    compile "com.sparkjava:spark-core:2.6.0"
 }
 
 task fatJar(type: Jar, dependsOn:configurations.runtime) {
