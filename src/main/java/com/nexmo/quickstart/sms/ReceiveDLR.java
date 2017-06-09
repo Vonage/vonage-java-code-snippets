@@ -13,7 +13,7 @@ public class ReceiveDLR {
 
         get("/receipt", (req, res) -> {
             for (String param : req.queryParams()) {
-                System.out.printf("%s: %s", param, req.queryParams(param));
+                System.out.printf("%s: %s\n", param, req.queryParams(param));
             }
             return "OK";
         });
