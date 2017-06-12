@@ -10,15 +10,16 @@ public class ReceiveSMS {
 
         port(8080);
 
-        get("/inbound", (req, res) -> {
+        get("/incoming-sms", (req, res) -> {
             for (String param : req.queryParams()) {
                 System.out.printf("%s: %s\n", param, req.queryParams(param));
             }
             return "OK";
         });
 
-        post("/inbound", (req, res) -> {
-            // The body will be JSON - use the JSON parser of your choice to extract values:
+        post("/incoming-sms", (req, res) -> {
+            // The body will be a String containing JSON
+            // use the JSON parser of your choice to extract values:
             System.out.println(req.body());
             return "OK";
         });
