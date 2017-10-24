@@ -24,26 +24,21 @@ package com.nexmo.quickstart.verify;
 import com.nexmo.client.NexmoClient;
 import com.nexmo.client.auth.AuthMethod;
 import com.nexmo.client.auth.TokenAuthMethod;
-import com.nexmo.client.verify.VerifyResult;
 
-import static com.nexmo.quickstart.Util.*;
+import static com.nexmo.quickstart.Util.configureLogging;
 
-public class StartVerification {
+public class CancelVerification {
     public static void main(String[] args) throws Exception {
         configureLogging();
 
         String API_KEY = envVar("API_KEY");
         String API_SECRET = envVar("API_SECRET");
-        String TO_NUMBER = envVar("TO_NUMBER");
+        String REQUEST_ID = envVar("REQUEST_ID");
 
         AuthMethod auth = new TokenAuthMethod(API_KEY, API_SECRET);
         NexmoClient client = new NexmoClient(auth);
-        VerifyResult result = client.getVerifyClient().verify(TO_NUMBER, "NEXMO");
-        if (result.getStatus() == 0) {
-            System.out.printf("RequestID: %s", result.getRequestId());
-        } else {
-            System.out.printf("ERROR! %s: %s", result.getStatus(), result.getErrorText());
-        }
+        client.getVerifyClient().cancelVerification(REQUEST_ID);
+        System.out.println("Verification cancelled.");
     }
 
     private static String envVar(String key) {
