@@ -7,6 +7,9 @@ import com.nexmo.client.auth.TokenAuthMethod;
 import static com.nexmo.quickstart.Util.envVar;
 
 
+/**
+ * Example of configuring a NexmoClient with an API secret.
+ */
 public class BasicAuth {
     public static void main(String[] argv) throws Exception {
         String NEXMO_API_KEY = envVar("API_KEY");
