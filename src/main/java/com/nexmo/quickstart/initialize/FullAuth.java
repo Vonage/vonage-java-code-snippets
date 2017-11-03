@@ -19,12 +19,12 @@ public class FullAuth {
         String NEXMO_API_KEY = envVar("API_KEY");
         String NEXMO_API_SECRET = envVar("API_SECRET");
         String NEXMO_APPLICATION_ID = envVar("APPLICATION_ID");
-        String NEXMO_APPLICATION_PRIVATE_KEY = envVar("PRIVATE_KEY");
+        String NEXMO_APPLICATION_PRIVATE_KEY_PATH = envVar("PRIVATE_KEY");
 
         AuthMethod tokenAuth = new TokenAuthMethod(NEXMO_API_KEY, NEXMO_API_SECRET);
         AuthMethod applicationAuth = new JWTAuthMethod(
                 NEXMO_APPLICATION_ID,
-                FileSystems.getDefault().getPath(NEXMO_APPLICATION_PRIVATE_KEY)
+                FileSystems.getDefault().getPath(NEXMO_APPLICATION_PRIVATE_KEY_PATH)
         );
         NexmoClient client = new NexmoClient(tokenAuth, applicationAuth);
     }

@@ -15,11 +15,11 @@ public class ApplicationAuth {
     public static void main(String[] argv) throws Exception {
 
         String NEXMO_APPLICATION_ID = envVar("APPLICATION_ID");
-        String NEXMO_APPLICATION_PRIVATE_KEY = envVar("PRIVATE_KEY");
+        String NEXMO_APPLICATION_PRIVATE_KEY_PATH = envVar("PRIVATE_KEY");
 
         AuthMethod auth = new JWTAuthMethod(
                 NEXMO_APPLICATION_ID,
-                FileSystems.getDefault().getPath(NEXMO_APPLICATION_PRIVATE_KEY)
+                FileSystems.getDefault().getPath(NEXMO_APPLICATION_PRIVATE_KEY_PATH)
         );
         NexmoClient client = new NexmoClient(auth);
     }
