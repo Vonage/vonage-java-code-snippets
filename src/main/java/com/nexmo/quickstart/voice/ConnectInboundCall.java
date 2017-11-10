@@ -26,14 +26,11 @@ import com.nexmo.client.voice.ncco.ConnectNcco;
 import com.nexmo.client.voice.ncco.Ncco;
 import spark.Route;
 
-import static com.nexmo.quickstart.Util.configureLogging;
 import static com.nexmo.quickstart.Util.envVar;
 import static spark.Spark.*;
 
 public class ConnectInboundCall {
     public static void main(String[] args) throws Exception {
-        configureLogging();
-
         ObjectMapper nccoMapper = new ObjectMapper();
 
         String YOUR_SECOND_NUMBER = envVar("YOUR_SECOND_NUMBER");

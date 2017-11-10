@@ -27,13 +27,10 @@ import com.nexmo.client.voice.ncco.Ncco;
 import com.nexmo.client.voice.ncco.TalkNcco;
 import spark.Route;
 
-import static com.nexmo.quickstart.Util.configureLogging;
 import static spark.Spark.*;
 
 public class ConferenceCall {
     public static void main(String[] args) throws Exception {
-        configureLogging();
-
         ObjectMapper nccoMapper = new ObjectMapper();
 
         /*

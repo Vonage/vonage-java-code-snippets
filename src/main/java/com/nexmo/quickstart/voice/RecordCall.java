@@ -30,13 +30,10 @@ import spark.Route;
 
 import java.io.IOException;
 
-import static com.nexmo.quickstart.Util.configureLogging;
 import static spark.Spark.*;
 
 public class RecordCall {
     public static void main(String[] args) throws Exception {
-        configureLogging();
-
         ObjectMapper nccoMapper = new ObjectMapper();
 
         /*
