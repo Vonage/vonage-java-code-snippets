@@ -21,6 +21,7 @@
  */
 package com.nexmo.quickstart;
 
+import java.util.UUID;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
@@ -83,5 +84,10 @@ public class Util {
             throw new IllegalArgumentException(
                     String.format("The value \"%s\" could not be converted to a boolean value", stringValue));
         }
+    }
+
+    public static String shortRandomString() {
+        UUID uuid = UUID.randomUUID();
+        return uuid.toString().substring(0, 8);
     }
 }

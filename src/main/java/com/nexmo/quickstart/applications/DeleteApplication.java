@@ -24,7 +24,6 @@ package com.nexmo.quickstart.applications;
 import com.nexmo.client.NexmoClient;
 import com.nexmo.client.applications.ApplicationClient;
 import com.nexmo.client.auth.AuthMethod;
-import com.nexmo.client.auth.SignatureAuthMethod;
 import com.nexmo.client.auth.TokenAuthMethod;
 
 import static com.nexmo.quickstart.Util.configureLogging;
@@ -35,20 +34,11 @@ public class DeleteApplication {
         configureLogging();
 
         String NEXMO_API_KEY = envVar("API_KEY");
-        String NEXMO_API_SECRET = envVar("API_SECRET", null);
-        String NEXMO_SIGNATURE_SECRET = envVar("SIGNATURE_SECRET", null);
+        String NEXMO_API_SECRET = envVar("API_SECRET");
 
         String APPLICATION_TO_DELETE = envVar("APPLICATION_TO_DELETE");
 
-        AuthMethod auth;
-        if (NEXMO_SIGNATURE_SECRET != null) {
-            auth = new SignatureAuthMethod(NEXMO_API_KEY, NEXMO_SIGNATURE_SECRET);
-        } else if (NEXMO_API_SECRET != null) {
-            auth = new TokenAuthMethod(NEXMO_API_KEY, NEXMO_API_SECRET);
-        } else {
-            throw new IllegalArgumentException(
-                    "You must provide the API_SECRET or SIGNATURE_SECRET environment variable!");
-        }
+        AuthMethod auth = new TokenAuthMethod(NEXMO_API_KEY, NEXMO_API_SECRET);
 
         ApplicationClient client = new NexmoClient(auth).getApplicationClient();
         client.deleteApplication(APPLICATION_TO_DELETE);

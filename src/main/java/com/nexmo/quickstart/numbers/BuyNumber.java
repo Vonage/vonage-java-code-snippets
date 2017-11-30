@@ -23,7 +23,6 @@ package com.nexmo.quickstart.numbers;
 
 import com.nexmo.client.NexmoClient;
 import com.nexmo.client.auth.AuthMethod;
-import com.nexmo.client.auth.SignatureAuthMethod;
 import com.nexmo.client.auth.TokenAuthMethod;
 
 import static com.nexmo.quickstart.Util.configureLogging;
@@ -34,22 +33,13 @@ public class BuyNumber {
         configureLogging();
 
         String NEXMO_API_KEY = envVar("API_KEY");
-        String NEXMO_API_SECRET = envVar("API_SECRET", null);
-        String NEXMO_SIGNATURE_SECRET = envVar("SIGNATURE_SECRET", null);
+        String NEXMO_API_SECRET = envVar("API_SECRET");
+
 
         String COUNTRY = envVar("COUNTRY");
         String NUMBER = envVar("NUMBER_TO_BUY");
 
-        AuthMethod auth;
-        if (NEXMO_SIGNATURE_SECRET != null) {
-            auth = new SignatureAuthMethod(NEXMO_API_KEY, NEXMO_SIGNATURE_SECRET);
-        } else if (NEXMO_API_SECRET != null) {
-            auth = new TokenAuthMethod(NEXMO_API_KEY, NEXMO_API_SECRET);
-        } else {
-            throw new IllegalArgumentException(
-                    "You must provide the API_SECRET or SIGNATURE_SECRET environment variable!");
-        }
-
+        AuthMethod auth = new TokenAuthMethod(NEXMO_API_KEY, NEXMO_API_SECRET);
         NexmoClient client = new NexmoClient(auth);
         client.getNumbersClient().buyNumber(COUNTRY, NUMBER);
     }

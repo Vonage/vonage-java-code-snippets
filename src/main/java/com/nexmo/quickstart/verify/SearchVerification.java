@@ -23,7 +23,6 @@ package com.nexmo.quickstart.verify;
 
 import com.nexmo.client.NexmoClient;
 import com.nexmo.client.auth.AuthMethod;
-import com.nexmo.client.auth.SignatureAuthMethod;
 import com.nexmo.client.auth.TokenAuthMethod;
 import com.nexmo.client.verify.SearchResult;
 
@@ -35,21 +34,11 @@ public class SearchVerification {
         configureLogging();
 
         String NEXMO_API_KEY = envVar("API_KEY");
-        String NEXMO_API_SECRET = envVar("API_SECRET", null);
-        String NEXMO_SIGNATURE_SECRET = envVar("SIGNATURE_SECRET", null);
+        String NEXMO_API_SECRET = envVar("API_SECRET");
 
         String ID = envVar("ID");
 
-        AuthMethod auth;
-        if (NEXMO_SIGNATURE_SECRET != null) {
-            auth = new SignatureAuthMethod(NEXMO_API_KEY, NEXMO_SIGNATURE_SECRET);
-        } else if (NEXMO_API_SECRET != null) {
-            auth = new TokenAuthMethod(NEXMO_API_KEY, NEXMO_API_SECRET);
-        } else {
-            throw new IllegalArgumentException(
-                    "You must provide the API_SECRET or SIGNATURE_SECRET environment variable!");
-        }
-
+        AuthMethod auth = new TokenAuthMethod(NEXMO_API_KEY, NEXMO_API_SECRET);
         NexmoClient client = new NexmoClient(auth);
         SearchResult result = client.getVerifyClient().search(ID);
         if (result.getStatus() == 0) {
