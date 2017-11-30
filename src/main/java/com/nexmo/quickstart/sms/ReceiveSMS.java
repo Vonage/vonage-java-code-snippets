@@ -27,23 +27,18 @@ public class ReceiveSMS {
         post("/webhooks/inbound-sms", (req, res) -> {
             logger.info("POST request received, with type: " + req.contentType());
 
-            try {
-                // The body will be form-encoded or a JSON object:
-                if (req.contentType().startsWith("application/x-www-form-urlencoded")) {
-                    for (String param : req.queryParams()) {
-                        System.out.printf("%s: %s\n", param, req.queryParams(param));
-                    }
-                } else {
-                    IncomingSmsPayload jsonPayload = IncomingSmsPayload.fromJson(req.bodyAsBytes());
-                    System.out.println(jsonPayload);
+            // The body will be form-encoded or a JSON object:
+            if (req.contentType().startsWith("application/x-www-form-urlencoded")) {
+                for (String param : req.queryParams()) {
+                    System.out.printf("%s: %s\n", param, req.queryParams(param));
                 }
-            } catch (Exception e) {
-                logger.warning("Error!");
-                e.printStackTrace();
+            } else {
+                IncomingSmsPayload jsonPayload = IncomingSmsPayload.fromJson(req.bodyAsBytes());
+                System.out.println(jsonPayload);
             }
 
-                res.status(204);
-                return "";
+            res.status(204);
+            return "";
         });
     }
 }
