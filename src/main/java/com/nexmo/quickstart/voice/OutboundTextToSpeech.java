@@ -15,7 +15,7 @@ public class OutboundTextToSpeech {
 
         String NEXMO_APPLICATION_ID = envVar("APPLICATION_ID");
         String NEXMO_APPLICATION_PRIVATE_KEY = envVar("PRIVATE_KEY");
-        String NEXMO_NUMBER = envVar("FROM_NUMBER");
+        String NEXMO_NUMBER = envVar("NEXMO_NUMBER");
         String TO_NUMBER = envVar("TO_NUMBER");
 
         AuthMethod auth = new JWTAuthMethod(
