@@ -33,13 +33,13 @@ public class ConnectInboundCall {
     public static void main(String[] args) {
         ObjectMapper nccoMapper = new ObjectMapper();
 
-        String YOUR_SECOND_NUMBER = envVar("YOUR_SECOND_NUMBER");
+        String RECIPIENT_NUMBER = envVar("RECIPIENT_NUMBER");
 
         /*
          * Route to answer incoming calls with an NCCO response.
          */
         Route answerRoute = (req, res) -> {
-            ConnectNcco connect = new ConnectNcco(YOUR_SECOND_NUMBER);
+            ConnectNcco connect = new ConnectNcco(RECIPIENT_NUMBER);
             Ncco[] nccos = new Ncco[]{connect};
 
             res.type("application/json");
