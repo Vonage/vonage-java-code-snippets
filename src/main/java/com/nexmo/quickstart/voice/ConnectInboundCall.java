@@ -31,16 +31,19 @@ import static spark.Spark.*;
 
 public class ConnectInboundCall {
     public static void main(String[] args) {
-        ObjectMapper nccoMapper = new ObjectMapper();
+        final ObjectMapper nccoMapper = new ObjectMapper();
 
-        String RECIPIENT_NUMBER = envVar("RECIPIENT_NUMBER");
+        final String RECIPIENT_NUMBER = envVar("RECIPIENT_NUMBER");
+        final String NEXMO_NUMBER = envVar("NEXMO_NUMBER");
 
         /*
          * Route to answer incoming calls with an NCCO response.
          */
         Route answerRoute = (req, res) -> {
-            ConnectNcco connect = new ConnectNcco(RECIPIENT_NUMBER);
-            Ncco[] nccos = new Ncco[]{connect};
+            final ConnectNcco connect = new ConnectNcco(RECIPIENT_NUMBER);
+            connect.setFrom(NEXMO_NUMBER);
+
+            final Ncco[] nccos = new Ncco[]{connect};
 
             res.type("application/json");
             return nccoMapper.writer().writeValueAsString(nccos);
