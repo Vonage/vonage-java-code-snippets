@@ -30,7 +30,7 @@ import static com.nexmo.quickstart.Util.envVar;
 import static spark.Spark.*;
 
 public class ConnectInboundCall {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         ObjectMapper nccoMapper = new ObjectMapper();
 
         String YOUR_SECOND_NUMBER = envVar("YOUR_SECOND_NUMBER");
