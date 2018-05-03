@@ -25,9 +25,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nexmo.client.voice.ncco.ConnectNcco;
 import com.nexmo.client.voice.ncco.Ncco;
 import spark.Route;
+import spark.Spark;
 
 import static com.nexmo.quickstart.Util.envVar;
-import static spark.Spark.*;
 
 public class ConnectInboundCall {
     public static void main(String[] args) {
@@ -49,9 +49,9 @@ public class ConnectInboundCall {
             return nccoMapper.writer().writeValueAsString(nccos);
         };
 
-        port(3000);
+        Spark.port(3000);
 
-        get("/webhooks/answer", answerRoute);
-        post("/webhooks/answer", answerRoute);
+        Spark.get("/webhooks/answer", answerRoute);
+        Spark.post("/webhooks/answer", answerRoute);
     }
 }
