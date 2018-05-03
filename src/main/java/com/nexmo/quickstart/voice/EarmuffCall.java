@@ -17,13 +17,13 @@ public class EarmuffCall {
 
         String APPLICATION_ID = envVar("APPLICATION_ID");
         String PRIVATE_KEY = envVar("PRIVATE_KEY");
-        String NEXMO_NUMBER = envVar("NEXMO_NUMBER");
-        String TO_NUMBER = envVar("TO_NUMBER");
 
         NexmoClient nexmo = new NexmoClient(
                 new JWTAuthMethod(APPLICATION_ID, FileSystems.getDefault().getPath(PRIVATE_KEY))
         );
 
+        String NEXMO_NUMBER = envVar("NEXMO_NUMBER");
+        String TO_NUMBER = envVar("TO_NUMBER");
         /*
         Establish a call for testing purposes.
          */
