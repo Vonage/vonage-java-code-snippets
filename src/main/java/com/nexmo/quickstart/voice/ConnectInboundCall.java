@@ -31,7 +31,6 @@ import static com.nexmo.quickstart.Util.envVar;
 
 public class ConnectInboundCall {
     public static void main(String[] args) {
-        final ObjectMapper nccoMapper = new ObjectMapper();
 
         final String RECIPIENT_NUMBER = envVar("RECIPIENT_NUMBER");
         final String NEXMO_NUMBER = envVar("NEXMO_NUMBER");
@@ -46,7 +45,8 @@ public class ConnectInboundCall {
             final Ncco[] nccos = new Ncco[]{connect};
 
             res.type("application/json");
-            return nccoMapper.writer().writeValueAsString(nccos);
+
+            return new ObjectMapper().writer().writeValueAsString(nccos);
         };
 
         Spark.port(3000);
