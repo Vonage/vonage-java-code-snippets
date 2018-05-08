@@ -1,10 +1,10 @@
 package com.nexmo.quickstart.voice;
 
 import com.nexmo.client.NexmoClient;
-import com.nexmo.client.auth.AuthMethod;
 import com.nexmo.client.auth.JWTAuthMethod;
 import com.nexmo.client.voice.Call;
 import com.nexmo.client.voice.CallEvent;
+import com.nexmo.client.voice.VoiceName;
 
 import java.nio.file.FileSystems;
 
@@ -17,14 +17,15 @@ public class SendTalkToCall {
 
         String APPLICATION_ID = envVar("APPLICATION_ID");
         String PRIVATE_KEY = envVar("PRIVATE_KEY");
+        NexmoClient client = new NexmoClient(
+                new JWTAuthMethod(
+                        APPLICATION_ID,
+                        FileSystems.getDefault().getPath(PRIVATE_KEY)
+                )
+        );
+
         String NEXMO_NUMBER = envVar("NEXMO_NUMBER");
         String TO_NUMBER = envVar("TO_NUMBER");
-
-        AuthMethod auth = new JWTAuthMethod(
-                APPLICATION_ID,
-                FileSystems.getDefault().getPath(PRIVATE_KEY)
-        );
-        NexmoClient client = new NexmoClient(auth);
         CallEvent call = client.getVoiceClient().createCall(new Call(
                 TO_NUMBER,
                 NEXMO_NUMBER,
@@ -33,8 +34,11 @@ public class SendTalkToCall {
 
         Thread.sleep(20000);
 
-        client.getVoiceClient().startTalk(call.getUuid(), "Hello World! Would you like to know more? I bet you would", 0);
+        String UUID = call.getUuid();
+        String TEXT = "Hello World! Would you like to know more? I bet you would";
+        client.getVoiceClient().startTalk(UUID, TEXT, VoiceName.KIMBERLY, 0);
+
         Thread.sleep(5000);
-        client.getVoiceClient().stopTalk(call.getUuid());
+        client.getVoiceClient().stopTalk(UUID);
     }
 }
