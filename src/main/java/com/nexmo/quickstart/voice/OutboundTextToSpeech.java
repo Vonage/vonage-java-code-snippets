@@ -16,15 +16,18 @@ public class OutboundTextToSpeech {
 
         String NEXMO_APPLICATION_ID = envVar("APPLICATION_ID");
         String NEXMO_APPLICATION_PRIVATE_KEY = envVar("PRIVATE_KEY");
+
+        NexmoClient client = new NexmoClient(
+                new JWTAuthMethod(
+                        NEXMO_APPLICATION_ID,
+                        FileSystems.getDefault().getPath(NEXMO_APPLICATION_PRIVATE_KEY)
+                )
+        );
+
         String NEXMO_NUMBER = envVar("NEXMO_NUMBER");
         String TO_NUMBER = envVar("TO_NUMBER");
         String ANSWER_URL = "https://developer.nexmo.com/ncco/tts.json";
 
-        AuthMethod auth = new JWTAuthMethod(
-                NEXMO_APPLICATION_ID,
-                FileSystems.getDefault().getPath(NEXMO_APPLICATION_PRIVATE_KEY)
-        );
-        NexmoClient client = new NexmoClient(auth);
         client.getVoiceClient().createCall(
                 new Call(TO_NUMBER, NEXMO_NUMBER, ANSWER_URL)
         );
