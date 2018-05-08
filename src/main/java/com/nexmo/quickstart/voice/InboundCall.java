@@ -38,7 +38,7 @@ public class InboundCall {
         /*
          * Route to answer incoming calls with an NCCO response.
          */
-        Route answerRoute = (req, res) -> {
+        get("/webhooks/answer", (req, res) -> {
             String from = req.queryParams("from");
             String explodedFrom = String.join(" ", from.split(""));
 
@@ -47,11 +47,8 @@ public class InboundCall {
 
             res.type("application/json");
             return nccoMapper.writer().writeValueAsString(nccos);
-        };
+        });
 
         port(3000);
-
-        get("/webhooks/answer", answerRoute);
-        post("/webhooks/answer", answerRoute);
     }
 }
