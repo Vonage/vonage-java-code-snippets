@@ -31,7 +31,6 @@ import static spark.Spark.*;
 
 public class ConferenceCall {
     public static void main(String[] args) {
-
         String CONF_NAME = "my-conference";
         /*
          * Route to answer incoming calls with an NCCO response.
