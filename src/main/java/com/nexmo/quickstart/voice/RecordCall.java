@@ -33,7 +33,6 @@ import static spark.Spark.*;
 
 public class RecordCall {
     public static void main(String[] args) {
-
         /*
          * Route to answer and connect incoming calls with recording.
          */
