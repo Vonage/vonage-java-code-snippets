@@ -37,7 +37,7 @@ public class RetrieveCallInfo {
          */
         Thread.sleep(10000);
 
-        String UUID = call.getUuid();
-        System.out.println(nexmo.getVoiceClient().getCallDetails(UUID));
+        String NEXMO_CALL_UUID = call.getUuid();
+        System.out.println(nexmo.getVoiceClient().getCallDetails(NEXMO_CALL_UUID));
     }
 }
