@@ -37,7 +37,7 @@ public class RecordCall {
          * Route to answer and connect incoming calls with recording.
          */
         Route answerRoute = (req, res) -> {
-            String recordingUrl = String.format("%s://%s/webhooks/recordings", req.scheme(), req.host());
+            String recordingUrl = String.format("%s://%s/webhook/recordings", req.scheme(), req.host());
 
             RecordNcco record = new RecordNcco();
             record.setEventUrl(recordingUrl);
@@ -64,7 +64,7 @@ public class RecordCall {
         };
 
         port(3000);
-        get("/webhooks/answer", answerRoute);
-        post("/webhooks/recordings", recordingWebhookRoute);
+        get("/webhook/answer", answerRoute);
+        post("/webhook/recordings", recordingWebhookRoute);
     }
 }

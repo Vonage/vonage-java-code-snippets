@@ -45,7 +45,7 @@ public class ConferenceCall {
         };
 
         port(3000);
-        get("/webhooks/answer", answerRoute);
-        post("/webhooks/answer", answerRoute);
+        get("/webhook/answer", answerRoute);
+        post("/webhook/answer", answerRoute);
     }
 }

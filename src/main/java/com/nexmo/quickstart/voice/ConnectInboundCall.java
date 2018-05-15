@@ -51,7 +51,7 @@ public class ConnectInboundCall {
 
         Spark.port(3000);
 
-        Spark.get("/webhooks/answer", answerRoute);
-        Spark.post("/webhooks/answer", answerRoute);
+        Spark.get("/webhook/answer", answerRoute);
+        Spark.post("/webhook/answer", answerRoute);
     }
 }

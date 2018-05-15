@@ -38,7 +38,7 @@ public class InboundCall {
         /*
          * Route to answer incoming calls with an NCCO response.
          */
-        get("/webhooks/answer", (req, res) -> {
+        get("/webhook/answer", (req, res) -> {
             String from = req.queryParams("from");
             String explodedFrom = String.join(" ", from.split(""));
 

@@ -38,7 +38,7 @@ public class DtmfInput {
         Route incomingCall = (req, res) -> {
             TalkNcco intro = new TalkNcco("Hello please press any key to continue");
 
-            String eventUrl = String.format("%s://%s/webhooks/dtmf", req.scheme(), req.host());
+            String eventUrl = String.format("%s://%s/webhook/dtmf", req.scheme(), req.host());
             InputNcco input = new InputNcco();
             input.setEventUrl(eventUrl);
 
@@ -62,7 +62,7 @@ public class DtmfInput {
         };
 
         port(3000);
-        get("/webhooks/answer", incomingCall);
-        post("/webhooks/dtmf", answerRoute);
+        get("/webhook/answer", incomingCall);
+        post("/webhook/dtmf", answerRoute);
     }
 }
