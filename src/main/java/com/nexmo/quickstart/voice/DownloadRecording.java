@@ -36,10 +36,10 @@ public class DownloadRecording {
     public static void main(String[] args) throws Exception {
         configureLogging();
 
-        final String APPLICATION_ID = envVar("APPLICATION_ID");
-        final String PRIVATE_KEY = envVar("PRIVATE_KEY");
+        final String NEXMO_APPLICATION_ID = envVar("APPLICATION_ID");
+        final String NEXMO_PRIVATE_KEY = envVar("PRIVATE_KEY");
 
-        AuthMethod auth = new JWTAuthMethod(APPLICATION_ID, FileSystems.getDefault().getPath(PRIVATE_KEY));
+        AuthMethod auth = new JWTAuthMethod(NEXMO_APPLICATION_ID, FileSystems.getDefault().getPath(NEXMO_PRIVATE_KEY));
         NexmoClient nexmo = new NexmoClient(auth);
 
         /*

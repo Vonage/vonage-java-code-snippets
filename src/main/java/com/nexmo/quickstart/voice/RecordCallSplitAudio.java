@@ -58,7 +58,7 @@ public class RecordCallSplitAudio {
         /*
          * Webhook Route which prints out the recording URL it is given to stdout.
          */
-        Route recordingWebhookRoute = (req, res) -> {
+        Route recordingRoute = (req, res) -> {
             System.out.println(RecordingPayload.fromJson(req.bodyAsBytes()).getRecordingUrl());
 
             res.status(204);
@@ -67,6 +67,6 @@ public class RecordCallSplitAudio {
 
         Spark.port(3000);
         Spark.get("/webhooks/answer", answerRoute);
-        Spark.post("/webhooks/recordings", recordingWebhookRoute);
+        Spark.post("/webhooks/recordings", recordingRoute);
     }
 }
