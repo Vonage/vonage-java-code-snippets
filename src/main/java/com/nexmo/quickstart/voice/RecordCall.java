@@ -39,7 +39,7 @@ public class RecordCall {
          * Route to answer and connect incoming calls with recording.
          */
         Route answerRoute = (req, res) -> {
-            String recordingUrl = String.format("%s://%s/webhook/recordings", req.scheme(), req.host());
+            String recordingUrl = String.format("%s://%s/webhooks/recordings", req.scheme(), req.host());
 
             RecordNcco record = new RecordNcco();
             record.setEventUrl(recordingUrl);
@@ -64,7 +64,7 @@ public class RecordCall {
         };
 
         Spark.port(3000);
-        Spark.get("/webhook/answer", answerRoute);
-        Spark.post("/webhook/recordings", recordingRoute);
+        Spark.get("/webhooks/answer", answerRoute);
+        Spark.post("/webhooks/recordings", recordingRoute);
     }
 }

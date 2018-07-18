@@ -46,7 +46,7 @@ public class ConferenceCall {
         };
 
         Spark.port(3000);
-        Spark.get("/webhook/answer", answerRoute);
-        Spark.post("/webhook/answer", answerRoute);
+        Spark.get("/webhooks/answer", answerRoute);
+        Spark.post("/webhooks/answer", answerRoute);
     }
 }

@@ -35,7 +35,7 @@ public class RecordConversation {
          * Route to answer and connect incoming calls with recording.
          */
         Route answerRoute = (req, res) -> {
-            String recordingUrl = String.format("%s://%s/webhook/recordings", req.scheme(), req.host());
+            String recordingUrl = String.format("%s://%s/webhooks/recordings", req.scheme(), req.host());
 
             ConversationNcco conversation = new ConversationNcco(CONV_NAME);
             conversation.setRecord(true);
@@ -59,7 +59,7 @@ public class RecordConversation {
         };
 
         Spark.port(3000);
-        Spark.get("/webhook/answer", answerRoute);
-        Spark.post("/webhook/recordings", recordingWebhookRoute);
+        Spark.get("/webhooks/answer", answerRoute);
+        Spark.post("/webhooks/recordings", recordingWebhookRoute);
     }
 }

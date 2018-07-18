@@ -34,7 +34,7 @@ public class RecordMessage {
          * Route to answer and connect incoming calls with rec.ording.
          */
         Route answerRoute = (req, res) -> {
-            String recordingUrl = String.format("%s://%s/webhook/recordings", req.scheme(), req.host());
+            String recordingUrl = String.format("%s://%s/webhooks/recordings", req.scheme(), req.host());
 
             TalkNcco intro = new TalkNcco(
                     "Please leave a message after the tone, then press #. We will get back to you as soon as we can.");
@@ -64,7 +64,7 @@ public class RecordMessage {
         };
 
         Spark.port(3000);
-        Spark.get("/webhook/answer", answerRoute);
-        Spark.post("/webhook/recordings", recordingRoute);
+        Spark.get("/webhooks/answer", answerRoute);
+        Spark.post("/webhooks/recordings", recordingRoute);
     }
 }
