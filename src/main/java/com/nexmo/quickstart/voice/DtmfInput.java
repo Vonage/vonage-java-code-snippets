@@ -26,12 +26,10 @@ import com.nexmo.client.voice.ncco.InputNcco;
 import com.nexmo.client.voice.ncco.Ncco;
 import com.nexmo.client.voice.ncco.TalkNcco;
 import spark.Route;
-
-import static spark.Spark.*;
+import spark.Spark;
 
 public class DtmfInput {
     public static void main(String[] args) {
-
         /*
          * Route to answer incoming calls with an NCCO response.
          */
@@ -61,8 +59,8 @@ public class DtmfInput {
             return new ObjectMapper().writer().writeValueAsString(nccos);
         };
 
-        port(3000);
-        get("/webhook/answer", incomingCall);
-        post("/webhook/dtmf", answerRoute);
+        Spark.port(3000);
+        Spark.get("/webhook/answer", incomingCall);
+        Spark.post("/webhook/dtmf", answerRoute);
     }
 }

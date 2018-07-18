@@ -27,12 +27,15 @@ import com.nexmo.client.voice.ncco.Ncco;
 import com.nexmo.client.voice.ncco.RecordNcco;
 import com.nexmo.client.voice.ncco.SplitRecording;
 import spark.Route;
+import spark.Spark;
 
 import static com.nexmo.quickstart.Util.envVar;
-import static spark.Spark.*;
 
 public class RecordCallSplitAudio {
     public static void main(String[] args) {
+        final String TO_NUMBER = envVar("TO_NUMBER");
+        final String NEXMO_NUMBER = envVar("NEXMO_NUMBER");
+
         /*
          * Route to answer and connect incoming calls with recording.
          */
@@ -43,8 +46,6 @@ public class RecordCallSplitAudio {
             record.setEventUrl(recordingUrl);
             record.setSplit(SplitRecording.CONVERSATION);
 
-            String TO_NUMBER = envVar("TO_NUMBER");
-            String NEXMO_NUMBER = envVar("NEXMO_NUMBER");
             ConnectNcco connect = new ConnectNcco(TO_NUMBER);
             connect.setFrom(NEXMO_NUMBER);
 
@@ -64,8 +65,8 @@ public class RecordCallSplitAudio {
             return "";
         };
 
-        port(3000);
-        get("/webhook/answer", answerRoute);
-        post("/webhook/recordings", recordingWebhookRoute);
+        Spark.port(3000);
+        Spark.get("/webhook/answer", answerRoute);
+        Spark.post("/webhook/recordings", recordingWebhookRoute);
     }
 }
