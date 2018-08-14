@@ -22,20 +22,27 @@
 package com.nexmo.quickstart.voice;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DtmfPayload {
-    private static ObjectMapper objectMapper = new ObjectMapper();
     private String dtmf;
 
-    public String getDtmf() {
+    @JsonProperty("dtmf")
+    String getDtmf() {
         return this.dtmf;
     }
 
-    public static DtmfPayload fromJson(byte[] bytes) throws IOException {
-        return objectMapper.readValue(bytes, DtmfPayload.class);
+    public static DtmfPayload fromJson(String json) {
+        try {
+            return new ObjectMapper().readValue(json, DtmfPayload.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return new DtmfPayload();
     }
 }
