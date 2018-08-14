@@ -21,12 +21,15 @@
  */
 package com.nexmo.quickstart.voice;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nexmo.client.voice.ncco.InputNcco;
 import com.nexmo.client.voice.ncco.Ncco;
 import com.nexmo.client.voice.ncco.TalkNcco;
-import spark.Route;
 import spark.Spark;
+
+import java.io.IOException;
 
 public class DtmfInput {
     public static void main(String[] args) {
@@ -60,5 +63,19 @@ public class DtmfInput {
             res.type("application/json");
             return new ObjectMapper().writer().writeValueAsString(nccos);
         });
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class DtmfPayload {
+        private String dtmf;
+
+        @JsonProperty("dtmf")
+        String getDtmf() {
+            return this.dtmf;
+        }
+
+        public static DtmfPayload fromJson(String json) throws IOException {
+            return new ObjectMapper().readValue(json, DtmfPayload.class);
+        }
     }
 }
