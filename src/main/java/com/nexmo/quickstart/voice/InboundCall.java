@@ -41,11 +41,13 @@ public class InboundCall {
             return new ObjectMapper().writer().writeValueAsString(nccos);
         };
 
-        Spark.port(3000);
-        Spark.get("/webhooks/answer", answerRoute);
-        Spark.post("/webhooks/events", (req, res) -> {
+        Route eventRoute = (req, res) -> {
             System.out.println(req.body());
             return "";
-        });
+        };
+
+        Spark.port(3000);
+        Spark.get("/webhooks/answer", answerRoute);
+        Spark.post("/webhooks/events", eventRoute);
     }
 }
