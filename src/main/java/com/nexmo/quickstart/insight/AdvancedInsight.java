@@ -35,14 +35,14 @@ public class AdvancedInsight {
 
         String API_KEY = envVar("API_KEY");
         String API_SECRET = envVar("API_SECRET");
-        String TO_NUMBER = envVar("TO_NUMBER");
+        String INSIGHT_NUMBER = envVar("INSIGHT_NUMBER");
         boolean CNAM = booleanEnvVar("CNAM");
 
         AuthMethod auth = new TokenAuthMethod(API_KEY, API_SECRET);
         NexmoClient client = new NexmoClient(auth);
 
         AdvancedInsightResponse response = client.getInsightClient().getAdvancedNumberInsight(
-                TO_NUMBER, null, null, CNAM);
+                INSIGHT_NUMBER, null, null, CNAM);
         System.out.println("BASIC INFO:");
         System.out.println("International format: " + response.getInternationalFormatNumber());
         System.out.println("National format: " + response.getNationalFormatNumber());

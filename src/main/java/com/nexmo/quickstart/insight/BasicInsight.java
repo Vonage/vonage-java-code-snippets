@@ -35,12 +35,12 @@ public class BasicInsight {
 
         String API_KEY = envVar("API_KEY");
         String API_SECRET = envVar("API_SECRET");
-        String TO_NUMBER = envVar("TO_NUMBER");
+        String INSIGHT_NUMBER = envVar("INSIGHT_NUMBER");
 
         AuthMethod auth = new TokenAuthMethod(API_KEY, API_SECRET);
         NexmoClient client = new NexmoClient(auth);
 
-        BasicInsightResponse response = client.getInsightClient().getBasicNumberInsight(TO_NUMBER);
+        BasicInsightResponse response = client.getInsightClient().getBasicNumberInsight(INSIGHT_NUMBER);
         System.out.println("International format: " + response.getInternationalFormatNumber());
         System.out.println("National format: " + response.getNationalFormatNumber());
         System.out.println("Country: " + response.getCountryName() +
