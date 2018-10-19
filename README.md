@@ -28,7 +28,7 @@ This will build the following file: `build/libs/nexmo-java-quickstart-with-depen
 
 Copy `.env-example` to `.env` and edit the values. You'll need to load those
 values into environment variables, so you'll probably want to use a tool like
-[Foreman](foreman) to run your code like this:
+[Foreman](https://theforeman.org/) to run your code like this:
 
 ```sh
 foreman run java -cp build/libs/nexmo-java-quickstart-with-dependencies.jar CLASS
