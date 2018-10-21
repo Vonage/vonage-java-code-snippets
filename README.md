@@ -14,7 +14,7 @@ For some of the examples you will need to [buy a number][buy-number].
 
 ## Building The Library
 
-You will need to have [Gradle](gradle) installed to build the code. Once
+You will need to have [Gradle][gradle] installed to build the code. Once
 you have gradle installed, run the following to build a jar that contains
 the quickstart code along with all the nexmo client library dependencies:
 
@@ -28,7 +28,7 @@ This will build the following file: `build/libs/nexmo-java-quickstart-with-depen
 
 Copy `.env-example` to `.env` and edit the values. You'll need to load those
 values into environment variables, so you'll probably want to use a tool like
-[Foreman](foreman) to run your code like this:
+[Foreman][foreman] to run your code like this:
 
 ```sh
 foreman run java -cp build/libs/nexmo-java-quickstart-with-dependencies.jar CLASS
