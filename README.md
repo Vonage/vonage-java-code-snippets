@@ -14,7 +14,7 @@ For some of the examples you will need to [buy a number][buy-number].
 
 ## Building The Library
 
-You will need to have [Gradle](gradle) installed to build the code. Once
+You will need to have [Gradle](https://gradle.org/) installed to build the code. Once
 you have gradle installed, run the following to build a jar that contains
 the quickstart code along with all the nexmo client library dependencies:
 
