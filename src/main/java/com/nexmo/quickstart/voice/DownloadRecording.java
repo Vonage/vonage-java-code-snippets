@@ -22,12 +22,8 @@
 package com.nexmo.quickstart.voice;
 
 import com.nexmo.client.NexmoClient;
-import com.nexmo.client.auth.AuthMethod;
-import com.nexmo.client.auth.JWTAuthMethod;
 import spark.Route;
 import spark.Spark;
-
-import java.nio.file.FileSystems;
 
 import static com.nexmo.quickstart.Util.configureLogging;
 import static com.nexmo.quickstart.Util.envVar;
@@ -36,11 +32,13 @@ public class DownloadRecording {
     public static void main(String[] args) throws Exception {
         configureLogging();
 
-        final String NEXMO_APPLICATION_ID = envVar("APPLICATION_ID");
-        final String NEXMO_PRIVATE_KEY = envVar("PRIVATE_KEY");
+        final String NEXMO_APPLICATION_ID = envVar("NEXMO_APPLICATION_ID");
+        final String NEXMO_PRIVATE_KEY_PATH = envVar("NEXMO_PRIVATE_KEY_PATH");
 
-        AuthMethod auth = new JWTAuthMethod(NEXMO_APPLICATION_ID, FileSystems.getDefault().getPath(NEXMO_PRIVATE_KEY));
-        NexmoClient nexmo = new NexmoClient(auth);
+        NexmoClient client = new NexmoClient.Builder()
+                .applicationId(NEXMO_APPLICATION_ID)
+                .privateKeyPath(NEXMO_PRIVATE_KEY_PATH)
+                .build();
 
         /*
          * A recording webhook endpoint which automatically downloads the specified recording to a file in the
@@ -51,7 +49,7 @@ public class DownloadRecording {
             final String RECORDING_URL = payload.getRecordingUrl();
 
             System.out.println("Downloading from " + RECORDING_URL);
-            nexmo.getVoiceClient().downloadRecording(RECORDING_URL).save("downloaded_recording.mp3");
+            client.getVoiceClient().downloadRecording(RECORDING_URL).save("downloaded_recording.mp3");
             return "OK";
         };
 
