@@ -22,6 +22,7 @@
 package com.nexmo.quickstart.voice;
 
 import com.nexmo.client.NexmoClient;
+import com.nexmo.client.incoming.RecordEvent;
 import spark.Route;
 import spark.Spark;
 
@@ -45,8 +46,8 @@ public class DownloadRecording {
          * current working directory, called "downloaded_recording.mp3"
          */
         Route downloadRoute = (req, res) -> {
-            RecordingPayload payload = RecordingPayload.fromJson(req.bodyAsBytes());
-            final String RECORDING_URL = payload.getRecordingUrl();
+            RecordEvent event = RecordEvent.fromJson(req.body());
+            final String RECORDING_URL = event.getUrl();
 
             System.out.println("Downloading from " + RECORDING_URL);
             client.getVoiceClient().downloadRecording(RECORDING_URL).save("downloaded_recording.mp3");
