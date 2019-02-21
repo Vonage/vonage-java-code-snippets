@@ -32,7 +32,7 @@ import static com.nexmo.quickstart.Util.envVar;
 public class ConnectInboundCall {
     public static void main(String[] args) {
         final String RECIPIENT_NUMBER = envVar("RECIPIENT_NUMBER");
-        final String NEXMO_NUMBER = envVar("NEXMO_NUMBER");
+        final String YOUR_SECOND_NUMBER = envVar("YOUR_SECOND_NUMBER");
 
         /*
          * Route to answer incoming calls with an NCCO response.
@@ -40,7 +40,7 @@ public class ConnectInboundCall {
         Route answerRoute = (req, res) -> {
             ConnectAction connect = new ConnectAction.Builder()
                     .endpoint(new PhoneEndpoint.Builder(RECIPIENT_NUMBER).build())
-                    .from(NEXMO_NUMBER)
+                    .from(YOUR_SECOND_NUMBER)
                     .build();
 
             res.type("application/json");
