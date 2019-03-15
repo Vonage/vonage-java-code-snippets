@@ -22,8 +22,8 @@
 package com.nexmo.quickstart.sms;
 
 import com.nexmo.client.NexmoClient;
+import com.nexmo.client.sms.MessageStatus;
 import com.nexmo.client.sms.SmsSubmissionResponse;
-import com.nexmo.client.sms.SmsSubmissionResponseMessage;
 import com.nexmo.client.sms.messages.TextMessage;
 
 import static com.nexmo.quickstart.Util.configureLogging;
@@ -37,15 +37,21 @@ public class SendMessage {
         String NEXMO_API_KEY = envVar("NEXMO_API_KEY");
         String NEXMO_API_SECRET = envVar("NEXMO_API_SECRET");
         String TO_NUMBER = envVar("TO_NUMBER");
+        String NEXMO_BRAND_NAME = envVar("NEXMO_NUMBER");
 
         NexmoClient client = new NexmoClient.Builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
 
-        TextMessage message = new TextMessage("Acme Inc", TO_NUMBER, "A text message sent using the Nexmo SMS API");
+        TextMessage message = new TextMessage(NEXMO_BRAND_NAME,
+                TO_NUMBER,
+                "A text message sent using the Nexmo SMS API"
+        );
 
         SmsSubmissionResponse response = client.getSmsClient().submitMessage(message);
 
-        for (SmsSubmissionResponseMessage responseMessage : response.getMessages()) {
-            System.out.println(responseMessage);
+        if (response.getMessages().get(0).getStatus() == MessageStatus.OK) {
+            System.out.println("Message sent successfully.");
+        } else {
+            System.out.println("Message failed with error: " + response.getMessages().get(0).getErrorText());
         }
     }
 }
