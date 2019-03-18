@@ -36,7 +36,7 @@ public class ListNumbers {
         String NEXMO_API_SECRET = envVar("NEXMO_API_SECRET");
 
 
-        NexmoClient client = new NexmoClient.Builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
+        NexmoClient client = NexmoClient.builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
         ListNumbersResponse response = client.getNumbersClient().listNumbers();
         for (OwnedNumber ownedNumber : response.getNumbers()) {
             System.out.println("Tel: " + ownedNumber.getMsisdn());

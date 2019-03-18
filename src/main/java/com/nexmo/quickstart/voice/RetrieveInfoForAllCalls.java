@@ -19,12 +19,12 @@ public class RetrieveInfoForAllCalls {
         final String NEXMO_APPLICATION_ID = envVar("NEXMO_APPLICATION_ID");
         final String NEXMO_PRIVATE_KEY_PATH = envVar("NEXMO_PRIVATE_KEY_PATH");
 
-        NexmoClient client = new NexmoClient.Builder()
+        NexmoClient client = NexmoClient.builder()
                 .applicationId(NEXMO_APPLICATION_ID)
                 .privateKeyPath(NEXMO_PRIVATE_KEY_PATH)
                 .build();
 
-        CallsFilter filter = new CallsFilter.Builder()
+        CallsFilter filter = CallsFilter.builder()
                 .dateStart(getYesterdaysDate())
                 .dateEnd(getTodaysDate())
                 .build();

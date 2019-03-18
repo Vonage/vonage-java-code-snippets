@@ -33,7 +33,9 @@ public class InboundCall {
          */
         Route answerRoute = (req, res) -> {
             String from = req.queryParams("from").replace("", " ");
-            TalkAction message = new TalkAction.Builder(String.format("Thank you for calling from %s", from)).build();
+            TalkAction message = TalkAction
+                    .builder(String.format("Thank you for calling from %s", from))
+                    .build();
 
             res.type("application/json");
 

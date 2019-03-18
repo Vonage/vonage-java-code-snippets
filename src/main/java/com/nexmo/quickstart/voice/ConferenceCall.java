@@ -35,8 +35,8 @@ public class ConferenceCall {
          * Route to answer incoming calls with an NCCO response.
          */
         Route answerRoute = (req, res) -> {
-            TalkAction intro = new TalkAction.Builder("Please wait while we connect you to the conference.").build();
-            ConversationAction conversation = new ConversationAction.Builder(CONF_NAME).build();
+            TalkAction intro = TalkAction.builder("Please wait while we connect you to the conference.").build();
+            ConversationAction conversation = ConversationAction.builder(CONF_NAME).build();
 
             res.type("application/json");
 

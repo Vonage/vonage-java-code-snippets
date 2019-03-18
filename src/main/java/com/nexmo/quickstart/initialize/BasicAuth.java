@@ -12,6 +12,6 @@ public class BasicAuth {
         String NEXMO_API_KEY = envVar("NEXMO_API_KEY");
         String NEXMO_API_SECRET = envVar("NEXMO_API_SECRET");
 
-        NexmoClient client = new NexmoClient.Builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
+        NexmoClient client = NexmoClient.builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
     }
 }

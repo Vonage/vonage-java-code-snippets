@@ -37,7 +37,7 @@ public class SearchNumbers {
         String COUNTRY = envVar("COUNTRY");
 
 
-        NexmoClient client = new NexmoClient.Builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
+        NexmoClient client = NexmoClient.builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
         SearchNumbersResponse response = client.getNumbersClient().searchNumbers(COUNTRY);
         for (AvailableNumber number : response.getNumbers()) {
             System.out.println("Tel: " + number.getMsisdn());

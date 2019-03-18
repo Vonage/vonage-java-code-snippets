@@ -39,7 +39,7 @@ public class SendMessage {
         String TO_NUMBER = envVar("TO_NUMBER");
         String NEXMO_BRAND_NAME = envVar("NEXMO_NUMBER");
 
-        NexmoClient client = new NexmoClient.Builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
+        NexmoClient client = NexmoClient.builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
 
         TextMessage message = new TextMessage(NEXMO_BRAND_NAME,
                 TO_NUMBER,
