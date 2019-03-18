@@ -37,7 +37,7 @@ public class AdvancedInsightWithCnam {
         String NEXMO_API_SECRET = envVar("NEXMO_API_SECRET");
         String INSIGHT_NUMBER = envVar("INSIGHT_NUMBER");
 
-        NexmoClient client = new NexmoClient.Builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
+        NexmoClient client = NexmoClient.builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
 
         AdvancedInsightRequest request = new AdvancedInsightRequest.Builder(INSIGHT_NUMBER).cnam(true).build();
 

@@ -36,17 +36,17 @@ public class RecordMessage {
         Route answerRoute = (req, res) -> {
             String recordingUrl = String.format("%s://%s/webhooks/recordings", req.scheme(), req.host());
 
-            TalkAction intro = new TalkAction.Builder(
+            TalkAction intro = TalkAction.builder(
                     "Please leave a message after the tone, then press #. We will get back to you as soon as we can.").build();
 
-            RecordAction record = new RecordAction.Builder()
+            RecordAction record = RecordAction.builder()
                     .eventUrl(recordingUrl)
                     .endOnSilence(3)
                     .endOnKey('#')
                     .beepStart(true)
                     .build();
 
-            TalkAction outro = new TalkAction.Builder("Thank you for your message. Goodbye").build();
+            TalkAction outro = TalkAction.builder("Thank you for your message. Goodbye").build();
 
             res.type("application/json");
 

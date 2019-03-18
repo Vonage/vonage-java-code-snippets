@@ -40,7 +40,7 @@ public class NumberLifecycle {
         String country = "GB";
 
 
-        NumbersClient client = new NexmoClient.Builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build().getNumbersClient();
+        NumbersClient client = NexmoClient.builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build().getNumbersClient();
         SearchNumbersResponse response = client.searchNumbers(country);
 
         if (response.getCount() == 0) {

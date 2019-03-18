@@ -42,9 +42,9 @@ public class RecordCall {
         Route answerRoute = (req, res) -> {
             String recordingUrl = String.format("%s://%s/webhooks/recordings", req.scheme(), req.host());
 
-            RecordAction record = new RecordAction.Builder().eventUrl(recordingUrl).build();
+            RecordAction record = RecordAction.builder().eventUrl(recordingUrl).build();
 
-            ConnectAction connect = new ConnectAction.Builder(new PhoneEndpoint.Builder(TO_NUMBER).build())
+            ConnectAction connect = ConnectAction.builder(PhoneEndpoint.builder(TO_NUMBER).build())
                     .from(NEXMO_NUMBER)
                     .build();
 

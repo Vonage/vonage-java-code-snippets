@@ -15,7 +15,7 @@ public class FullAuth {
         String NEXMO_APPLICATION_ID = envVar("NEXMO_APPLICATION_ID");
         String NEXMO_APPLICATION_PRIVATE_KEY_PATH = envVar("NEXMO_PRIVATE_KEY_PATH");
 
-        NexmoClient client = new NexmoClient.Builder()
+        NexmoClient client = NexmoClient.builder()
                 .apiKey(NEXMO_API_KEY)
                 .apiSecret(NEXMO_API_SECRET)
                 .applicationId(NEXMO_APPLICATION_ID)

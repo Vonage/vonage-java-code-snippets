@@ -38,7 +38,7 @@ public class RecordConversation {
         Route answerRoute = (req, res) -> {
             String recordingUrl = String.format("%s://%s/webhooks/recordings", req.scheme(), req.host());
 
-            ConversationAction conversation = new ConversationAction.Builder(CONV_NAME)
+            ConversationAction conversation = ConversationAction.builder(CONV_NAME)
                     .record(true)
                     .eventMethod(EventMethod.POST)
                     .eventUrl(recordingUrl)

@@ -36,7 +36,7 @@ public class CancelNumber {
         String COUNTRY = envVar("COUNTRY");
         String NUMBER = envVar("NUMBER");
 
-        NexmoClient client = new NexmoClient.Builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
+        NexmoClient client = NexmoClient.builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
         client.getNumbersClient().cancelNumber(COUNTRY, NUMBER);
     }
 }

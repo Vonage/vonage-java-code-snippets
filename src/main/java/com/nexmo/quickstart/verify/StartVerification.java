@@ -37,7 +37,7 @@ public class StartVerification {
         String RECIPIENT_NUMBER = envVar("RECIPIENT_NUMBER");
 
 
-        NexmoClient client = new NexmoClient.Builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
+        NexmoClient client = NexmoClient.builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
         VerifyResponse response = client.getVerifyClient().verify(RECIPIENT_NUMBER, "NEXMO");
 
         if (response.getStatus() == VerifyStatus.OK) {

@@ -38,8 +38,8 @@ public class ConnectInboundCall {
          * Route to answer incoming calls with an NCCO response.
          */
         Route answerRoute = (req, res) -> {
-            ConnectAction connect = new ConnectAction.Builder()
-                    .endpoint(new PhoneEndpoint.Builder(RECIPIENT_NUMBER).build())
+            ConnectAction connect = ConnectAction.builder()
+                    .endpoint(PhoneEndpoint.builder(RECIPIENT_NUMBER).build())
                     .from(NEXMO_NUMBER)
                     .build();
 

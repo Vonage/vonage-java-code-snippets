@@ -38,7 +38,7 @@ public class SendUnicodeMessage {
         String NEXMO_API_SECRET = envVar("NEXMO_API_SECRET");
         String TO_NUMBER = envVar("TO_NUMBER");
 
-        NexmoClient client = new NexmoClient.Builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
+        NexmoClient client = NexmoClient.builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
 
         TextMessage message = new TextMessage("Acme Inc", TO_NUMBER, "Blue Öyster Cult \uD83E\uDD18", true);
 

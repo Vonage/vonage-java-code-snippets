@@ -34,9 +34,11 @@ public class DtmfInput {
          * Route to answer incoming calls.
          */
         Route answerRoute = (req, res) -> {
-            TalkAction intro = new TalkAction.Builder("Hello. Please press any key to continue.").build();
+            TalkAction intro = TalkAction
+                    .builder("Hello. Please press any key to continue.")
+                    .build();
 
-            InputAction input = new InputAction.Builder()
+            InputAction input = InputAction.builder()
                     .eventUrl(String.format("%s://%s/webhooks/dtmf", req.scheme(), req.host()))
                     .maxDigits(1)
                     .build();
@@ -53,7 +55,7 @@ public class DtmfInput {
         Route inputRoute = (req, res) -> {
             InputEvent event = InputEvent.fromJson(req.body());
 
-            TalkAction response = new TalkAction.Builder(String.format("You pressed %s, Goodbye.",
+            TalkAction response = TalkAction.builder(String.format("You pressed %s, Goodbye.",
                     event.getDtmf()
             )).build();
 

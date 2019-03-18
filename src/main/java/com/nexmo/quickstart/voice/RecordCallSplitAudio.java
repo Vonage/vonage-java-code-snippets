@@ -39,13 +39,13 @@ public class RecordCallSplitAudio {
         Route answerRoute = (req, res) -> {
             String recordingUrl = String.format("%s://%s/webhooks/recordings", req.scheme(), req.host());
 
-            RecordAction record = new RecordAction.Builder()
+            RecordAction record = RecordAction.builder()
                     .eventUrl(recordingUrl)
                     .channels(2)
                     .split(SplitRecording.CONVERSATION)
                     .build();
 
-            ConnectAction connect = new ConnectAction.Builder(new PhoneEndpoint.Builder(TO_NUMBER).build())
+            ConnectAction connect = ConnectAction.builder(PhoneEndpoint.builder(TO_NUMBER).build())
                     .from(NEXMO_NUMBER)
                     .build();
 

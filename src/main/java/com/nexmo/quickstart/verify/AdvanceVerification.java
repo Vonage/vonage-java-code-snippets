@@ -35,7 +35,7 @@ public class AdvanceVerification {
         String REQUEST_ID = envVar("REQUEST_ID");
 
 
-        NexmoClient client = new NexmoClient.Builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
+        NexmoClient client = NexmoClient.builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
         client.getVerifyClient().advanceVerification(REQUEST_ID);
         System.out.println("Verification advanced to next stage!");
     }
