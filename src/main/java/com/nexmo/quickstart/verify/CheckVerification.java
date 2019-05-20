@@ -46,5 +46,4 @@ public class CheckVerification {
             System.out.println("Verification failed: " + response.getErrorText());
         }
     }
-
 }
