@@ -22,21 +22,27 @@
 package com.nexmo.quickstart.numbers;
 
 import com.nexmo.client.NexmoClient;
+import com.nexmo.client.numbers.NumbersClient;
 
 import static com.nexmo.quickstart.Util.configureLogging;
 import static com.nexmo.quickstart.Util.envVar;
 
 public class CancelNumber {
-    public static void main(String[] args) throws Exception {
+    private static final String NEXMO_API_KEY = envVar("NEXMO_API_KEY");
+    private static final String NEXMO_API_SECRET = envVar("NEXMO_API_SECRET");
+    private static final String COUNTRY_CODE = envVar("COUNTRY_CODE");
+    private static final String NEXMO_NUMBER = envVar("NEXMO_NUMBER");
+
+    public static void main(String[] args) {
         configureLogging();
 
-        String NEXMO_API_KEY = envVar("NEXMO_API_KEY");
-        String NEXMO_API_SECRET = envVar("NEXMO_API_SECRET");
+        NexmoClient client = NexmoClient.builder()
+                .apiKey(NEXMO_API_KEY)
+                .apiSecret(NEXMO_API_SECRET)
+                .build();
 
-        String COUNTRY = envVar("COUNTRY");
-        String NUMBER = envVar("NUMBER");
+        NumbersClient numbersClient = client.getNumbersClient();
 
-        NexmoClient client = NexmoClient.builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
-        client.getNumbersClient().cancelNumber(COUNTRY, NUMBER);
+        numbersClient.cancelNumber(COUNTRY_CODE, NEXMO_NUMBER);
     }
 }
