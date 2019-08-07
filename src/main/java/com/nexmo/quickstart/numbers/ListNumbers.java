@@ -22,26 +22,35 @@
 package com.nexmo.quickstart.numbers;
 
 import com.nexmo.client.NexmoClient;
-import com.nexmo.client.numbers.ListNumbersResponse;
-import com.nexmo.client.numbers.OwnedNumber;
+import com.nexmo.client.numbers.*;
 
 import static com.nexmo.quickstart.Util.configureLogging;
 import static com.nexmo.quickstart.Util.envVar;
 
 public class ListNumbers {
-    public static void main(String[] args) throws Exception {
+    private static final String NEXMO_API_KEY = envVar("NEXMO_API_KEY");
+    private static final String NEXMO_API_SECRET = envVar("NEXMO_API_SECRET");
+    private static final String NUMBER_SEARCH_CRITERIA = envVar("NUMBER_SEARCH_CRITERIA");
+    private static final SearchPattern NUMBER_SEARCH_PATTERN = SearchPattern.valueOf(envVar("NUMBER_SEARCH_PATTERN"));
+
+    public static void main(String[] args) {
         configureLogging();
 
-        String NEXMO_API_KEY = envVar("NEXMO_API_KEY");
-        String NEXMO_API_SECRET = envVar("NEXMO_API_SECRET");
+        NexmoClient client = NexmoClient.builder()
+                .apiKey(NEXMO_API_KEY)
+                .apiSecret(NEXMO_API_SECRET)
+                .build();
 
+        NumbersClient numbersClient = client.getNumbersClient();
 
-        NexmoClient client = NexmoClient.builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
-        ListNumbersResponse response = client.getNumbersClient().listNumbers();
-        for (OwnedNumber ownedNumber : response.getNumbers()) {
-            System.out.println("Tel: " + ownedNumber.getMsisdn());
-            System.out.println("Country: " + ownedNumber.getCountry());
-            System.out.println("------------");
+        ListNumbersResponse response = numbersClient.listNumbers(
+                new ListNumbersFilter(1, 10, NUMBER_SEARCH_CRITERIA, NUMBER_SEARCH_PATTERN)
+        );
+
+        for (OwnedNumber number : response.getNumbers()) {
+            System.out.println("Tel: " + number.getMsisdn());
+            System.out.println("Type: " + number.getType());
+            System.out.println("Country: " + number.getCountry());
         }
     }
 }
