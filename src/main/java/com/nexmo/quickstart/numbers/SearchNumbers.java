@@ -22,27 +22,46 @@
 package com.nexmo.quickstart.numbers;
 
 import com.nexmo.client.NexmoClient;
-import com.nexmo.client.numbers.AvailableNumber;
-import com.nexmo.client.numbers.SearchNumbersResponse;
+import com.nexmo.client.numbers.*;
 
 import static com.nexmo.quickstart.Util.configureLogging;
 import static com.nexmo.quickstart.Util.envVar;
 
 public class SearchNumbers {
-    public static void main(String[] args) throws Exception {
+    private static final String NEXMO_API_KEY = envVar("NEXMO_API_KEY");
+    private static final String NEXMO_API_SECRET = envVar("NEXMO_API_SECRET");
+    private static final String NUMBER_SEARCH_CRITERIA = envVar("NUMBER_SEARCH_CRITERIA");
+    private static final SearchPattern NUMBER_SEARCH_PATTERN = SearchPattern.valueOf(envVar("NUMBER_SEARCH_PATTERN"));
+    private static final String COUNTRY_CODE = envVar("COUNTRY_CODE");
+    private static final String[] NEXMO_NUMBER_FEATURES = envVar("NEXMO_NUMBER_FEATURES").split(",");
+
+    public static void main(String[] args) {
         configureLogging();
 
-        String NEXMO_API_KEY = envVar("NEXMO_API_KEY");
-        String NEXMO_API_SECRET = envVar("NEXMO_API_SECRET");
-        String COUNTRY = envVar("COUNTRY");
+        NexmoClient client = NexmoClient.builder()
+                .apiKey(NEXMO_API_KEY)
+                .apiSecret(NEXMO_API_SECRET)
+                .build();
 
+        NumbersClient numbersClient = client.getNumbersClient();
 
-        NexmoClient client = NexmoClient.builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
-        SearchNumbersResponse response = client.getNumbersClient().searchNumbers(COUNTRY);
+        SearchNumbersFilter filter = new SearchNumbersFilter(COUNTRY_CODE);
+        filter.setFeatures(NEXMO_NUMBER_FEATURES);
+        filter.setPattern(NUMBER_SEARCH_CRITERIA);
+        filter.setSearchPattern(NUMBER_SEARCH_PATTERN);
+
+        SearchNumbersResponse response = numbersClient.searchNumbers(filter);
+
+        System.out.println("Here are "
+                + response.getNumbers().length
+                + " of the "
+                + response.getCount()
+                + " matching numbers available for purchase."
+        );
+
         for (AvailableNumber number : response.getNumbers()) {
             System.out.println("Tel: " + number.getMsisdn());
-            System.out.println("Country: " + number.getCountry());
-            System.out.println("------------");
+            System.out.println("Cost: " + number.getCost());
         }
     }
 }
