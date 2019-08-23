@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2017 Nexmo Inc
+ * Copyright (c) 2011-2019 Nexmo Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -19,28 +19,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.nexmo.quickstart.account;
+package com.nexmo.quickstart.verify;
 
 import com.nexmo.client.NexmoClient;
-import com.nexmo.client.account.AccountClient;
-import com.nexmo.client.account.BalanceResponse;
+import com.nexmo.client.verify.SearchVerifyResponse;
+import com.nexmo.client.verify.VerifyClient;
+import com.nexmo.client.verify.VerifyStatus;
 
 import static com.nexmo.quickstart.Util.envVar;
 
-public class GetBalance {
+public class SearchVerification {
     private static final String NEXMO_API_KEY = envVar("NEXMO_API_KEY");
     private static final String NEXMO_API_SECRET = envVar("NEXMO_API_SECRET");
+    private static final String REQUEST_ID = envVar("REQUEST_ID");
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String... args) throws Exception {
         NexmoClient client = NexmoClient.builder()
                 .apiKey(NEXMO_API_KEY)
                 .apiSecret(NEXMO_API_SECRET)
                 .build();
 
-        AccountClient accountClient = client.getAccountClient();
+        VerifyClient verifyClient = client.getVerifyClient();
 
-        BalanceResponse response = accountClient.getBalance();
-        System.out.printf("Balance: %s EUR\n", response.getValue());
-        System.out.printf("Auto-reload Enabled: %s\n", response.isAutoReload());
+        SearchVerifyResponse response = verifyClient.search(REQUEST_ID);
+        if (response.getStatus() == VerifyStatus.OK) {
+            response.getVerificationRequests().forEach(it -> {
+                System.out.println(it.getRequestId() + " " + it.getStatus());
+            });
+        }
     }
 }

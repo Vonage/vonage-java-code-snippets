@@ -23,13 +23,13 @@ package com.nexmo.quickstart.account;
 
 import com.nexmo.client.NexmoClient;
 import com.nexmo.client.account.AccountClient;
-import com.nexmo.client.account.BalanceResponse;
 
 import static com.nexmo.quickstart.Util.envVar;
 
-public class GetBalance {
+public class RevokeSecret {
     private static final String NEXMO_API_KEY = envVar("NEXMO_API_KEY");
     private static final String NEXMO_API_SECRET = envVar("NEXMO_API_SECRET");
+    private static final String NEXMO_SECRET_ID = envVar("NEXMO_SECRET_ID");
 
     public static void main(String[] args) throws Exception {
         NexmoClient client = NexmoClient.builder()
@@ -39,8 +39,6 @@ public class GetBalance {
 
         AccountClient accountClient = client.getAccountClient();
 
-        BalanceResponse response = accountClient.getBalance();
-        System.out.printf("Balance: %s EUR\n", response.getValue());
-        System.out.printf("Auto-reload Enabled: %s\n", response.isAutoReload());
+        accountClient.revokeSecret(NEXMO_API_KEY, NEXMO_SECRET_ID);
     }
 }

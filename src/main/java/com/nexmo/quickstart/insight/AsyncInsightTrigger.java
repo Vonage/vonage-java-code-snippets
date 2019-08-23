@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2017 Nexmo Inc
+ * Copyright (c) 2011-2019 Nexmo Inc
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -19,28 +19,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.nexmo.quickstart.account;
+package com.nexmo.quickstart.insight;
 
-import com.nexmo.client.NexmoClient;
-import com.nexmo.client.account.AccountClient;
-import com.nexmo.client.account.BalanceResponse;
+import com.nexmo.client.insight.AdvancedInsightResponse;
+import spark.Spark;
 
-import static com.nexmo.quickstart.Util.envVar;
+import static spark.Spark.port;
 
-public class GetBalance {
-    private static final String NEXMO_API_KEY = envVar("NEXMO_API_KEY");
-    private static final String NEXMO_API_SECRET = envVar("NEXMO_API_SECRET");
+public class AsyncInsightTrigger {
+    public static void main(String... args) {
+        port(3000);
+        Spark.post("/webhooks/insight", (req, res) -> {
+            AdvancedInsightResponse response = AdvancedInsightResponse.fromJson(req.body());
+            System.out.println("Country: " + response.getCountryName());
 
-    public static void main(String[] args) throws Exception {
-        NexmoClient client = NexmoClient.builder()
-                .apiKey(NEXMO_API_KEY)
-                .apiSecret(NEXMO_API_SECRET)
-                .build();
-
-        AccountClient accountClient = client.getAccountClient();
-
-        BalanceResponse response = accountClient.getBalance();
-        System.out.printf("Balance: %s EUR\n", response.getValue());
-        System.out.printf("Auto-reload Enabled: %s\n", response.isAutoReload());
+            res.status(204);
+            return "";
+        });
     }
 }
