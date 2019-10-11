@@ -37,7 +37,7 @@ foreman run java -cp build/libs/nexmo-java-quickstart-with-dependencies.jar CLAS
 So to run the OutboundTextToSpeechExample class, you would run the following:
 
 ```sh
-foreman run java -cp build/libs/nexmo-java-quickstart-with-dependencies.jar com.nexmo.quickstart.voice.OutboundTextToSpeech
+foreman run java -cp build/libs/nexmo-java-code-snippets-with-dependencies.jar com.nexmo.quickstart.voice.OutboundTextToSpeech
 ```
 
 If you set the environment variable `QUICKSTART_DEBUG` to any value, extra information
