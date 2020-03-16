@@ -1,5 +1,7 @@
 # Nexmo Quickstart Examples for Java
 
+<img src="https://developer.nexmo.com/assets/images/Vonage_Nexmo.svg" height="48px" alt="Nexmo is now known as Vonage" />
+
 Quickstarts also available for: [Python](https://github.com/Nexmo/nexmo-python-code-snippets), [.NET](https://github.com/Nexmo/nexmo-dotnet-code-snippets), [Node.js](https://github.com/Nexmo/nexmo-node-code-snippets), [PHP](https://github.com/Nexmo/nexmo-php-code-snippets),  [Ruby](https://github.com/Nexmo/nexmo-ruby-code-snippets) and [curl](https://github.com/Nexmo/nexmo-curl-code-snippets).
 
 The purpose of the quickstart guide is to provide simple examples focused on
