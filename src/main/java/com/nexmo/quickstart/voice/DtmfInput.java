@@ -21,12 +21,17 @@
  */
 package com.nexmo.quickstart.voice;
 
+import com.nexmo.client.NexmoUnexpectedException;
+import com.nexmo.client.incoming.DtmfOutput;
 import com.nexmo.client.incoming.InputEvent;
-import com.nexmo.client.voice.ncco.InputAction;
-import com.nexmo.client.voice.ncco.Ncco;
-import com.nexmo.client.voice.ncco.TalkAction;
+import com.nexmo.client.voice.ncco.*;
 import spark.Route;
 import spark.Spark;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Set;
 
 public class DtmfInput {
     public static void main(String[] args) {
@@ -35,12 +40,16 @@ public class DtmfInput {
          */
         Route answerRoute = (req, res) -> {
             TalkAction intro = TalkAction
-                    .builder("Hello. Please press any key to continue.")
+                    .builder("Hello please press any key to continue")
                     .build();
+
+            DTMFSettings dtmfSettings = new DTMFSettings();
+            dtmfSettings.setMaxDigits(3);
+            dtmfSettings.setTimeOut(2);
 
             InputAction input = InputAction.builder()
                     .eventUrl(String.format("%s://%s/webhooks/dtmf", req.scheme(), req.host()))
-                    .maxDigits(1)
+                    .dtmf(dtmfSettings)
                     .build();
 
 
@@ -53,10 +62,18 @@ public class DtmfInput {
          * Route which returns NCCO saying which DTMF code was received.
          */
         Route inputRoute = (req, res) -> {
-            InputEvent event = InputEvent.fromJson(req.body());
+            System.out.println("req: " + req.body());
+
+            InputEvent<DtmfOutput> event;
+            try {
+                event = InputEvent.fromJson(req.body());
+            }catch (NexmoUnexpectedException e){
+                res.body(e.getLocalizedMessage());
+                return e.getLocalizedMessage();
+            }
 
             TalkAction response = TalkAction.builder(String.format("You pressed %s, Goodbye.",
-                    event.getDtmf()
+                    event.getDtmf().getDigits()
             )).build();
 
             res.type("application/json");

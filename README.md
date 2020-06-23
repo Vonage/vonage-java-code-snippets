@@ -42,8 +42,68 @@ So to run the OutboundTextToSpeechExample class, you would run the following:
 foreman run java -cp build/libs/nexmo-java-code-snippets-with-dependencies.jar com.nexmo.quickstart.voice.OutboundTextToSpeech
 ```
 
+Foreman allows you to run only parts of your application instead of having to run the entire jar.
 If you set the environment variable `QUICKSTART_DEBUG` to any value, extra information
 will be output to the console from the Nexmo Client library.
+
+## Running NCCO Webhook Examples
+
+Sign up for a free [ngrok](https://ngrok.com/) account
+
+Download and install from the ngrok site or use Homebrew (mac0S)
+
+```sh
+brew install cask ngrok
+```
+
+### Connect the installed ngrok to your ngrok account
+1. Go to your ngrok dashboard.
+2. Go to Setup & Installation
+3. Copy the token from the **Connect your account** step without the `./` prefix. What you copy should look like this:
+```shell script
+ngrok authentication 112skjl4jlwlkjdl4lkj66565lkjmn56n==e4w4l
+```
+4. Start a HTTP tunnel forwarding to your local port. Check your snippet to locate the port ngrok should forward to.
+For the Voice NCCO snippets we use port 3000, so our command would be:
+```shell script
+ngrok http 3000
+```
+
+You may then enter `http://localhost:4040/inspect/http` in your web browser to see a more detailed view of your requests, or use the 
+console to http status and message of your requests. 
+
+### Setup a Vonage Application 
+
+After setting up `ngrok` you will need to setup a Vonage application that will be used for monitoring your webhooks. Add a vonage feature
+that you would like your webhook to monitor for. In this example, we will setup a Vonage application and add voice capabilities. 
+
+Setup a Vonage Application with voice capabilities using the [Vonage Developer Portal](https://dashboard.nexmo.com/)
+1. On the developer portal, go to Applications.
+2. Click on the **Create new application** button.
+3. Give your applications a name.
+4. Under *Capabilities*, toggle the *Voice* capability.
+Go back to the terminal that has ngrok fired up and grab the forwarding url. Add that domain as the prefix to the path for the 
+webhook. Resulting url should look similar to the following:
+```sh
+ http://17e80b46d273.ngrok.io/webhook/answer
+```
+Go back to the *Voice* capabilities section and add the urls for the webhooks. Ex:
+
+**Answer URL:** http://17e80b46d273.ngrok.io/webhook/answer
+
+**Event URL:** http://17e80b46d273.ngrok.io/webhook/event
+
+**Answer Fallback URL:** http://17e80b46d273.ngrok.io/webhook/fallback (if no path is specified in the snippet use a random domain)
+
+5. Click the **generate public and private key** button. A private key file called private.key should be downloaded to your computer.
+6. Move the private key to the nexmo-java-code-snippets project root.
+7. Go the developer portal and click **Generate application**
+8. In your `.env` file, add the environment variables for your application that is needed to run the snippet to. For the voice dtmf webhook snippet,
+we would need the *application id*, and *private key file location* 
+9. (Optional) Link the number associated with your nexmo account to your app. In the developer portal, click the Link button
+on the application details screen to link that number to your application. This will allow you to test webhooks that require you to 
+call or text a number to test the NCCOs for that snippet.
+
 
 ## Request an Example
 
@@ -51,7 +111,7 @@ Please [raise an issue](https://github.com/nexmo-community/nexmo-java-quickstart
 
 ## License
 
-This code is licensed under the [MIT](LICENSE.txt) license.
+This code is licensed under the [MIT](LICENSE.md) license.
 
 [gradle]: https://gradle.org/
 [foreman]: https://github.com/ddollar/foreman
