@@ -4,9 +4,7 @@
 
 Quickstarts also available for: [Python](https://github.com/Nexmo/nexmo-python-code-snippets), [.NET](https://github.com/Nexmo/nexmo-dotnet-code-snippets), [Node.js](https://github.com/Nexmo/nexmo-node-code-snippets), [PHP](https://github.com/Nexmo/nexmo-php-code-snippets),  [Ruby](https://github.com/Nexmo/nexmo-ruby-code-snippets) and [curl](https://github.com/Nexmo/nexmo-curl-code-snippets).
 
-The purpose of the quickstart guide is to provide simple examples focused on
-one goal. For example, sending an SMS, handling an incoming SMS webhook,
-making a Text to Speech call.
+The purpose of the quickstart guide is to provide simple examples focused on one goal. For example, sending an SMS, handling an incoming SMS webhook, making a Text to Speech call. These code samples are meant to be used for https://developer.nexmo.com/, and are structured in such a way as to be used for internal testing. Developers are free to use these code snippets as a reference, but these may require changes to be worked into your specific application. We recommend checking out the Nexmo Developer Website, which displays these code snippets in a more copy/paste fashion.
 
 ## Setup
 
