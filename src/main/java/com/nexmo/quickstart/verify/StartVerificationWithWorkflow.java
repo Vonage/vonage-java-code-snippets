@@ -18,12 +18,8 @@ public class StartVerificationWithWorkflow {
         String RECIPIENT_NUMBER = envVar("RECIPIENT_NUMBER");
         String NEXMO_BRAND = envVar("BRAND_NAME");
 
-        VerifyRequest request = new VerifyRequest(RECIPIENT_NUMBER,NEXMO_BRAND);
-
-        request.setWorkflow(VerifyRequest.Workflow.TTS_TTS);
-
         NexmoClient client = NexmoClient.builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
-        VerifyResponse response = client.getVerifyClient().verify(request);
+        VerifyResponse response = client.getVerifyClient().verify(RECIPIENT_NUMBER,NEXMO_BRAND, VerifyRequest.Workflow.TTS_TTS);
 
         if (response.getStatus() == VerifyStatus.OK) {
             System.out.printf("RequestID: %s", response.getRequestId());
