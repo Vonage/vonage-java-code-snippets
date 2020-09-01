@@ -1,7 +1,6 @@
 package com.nexmo.quickstart.verify;
 
 import com.nexmo.client.NexmoClient;
-import com.nexmo.client.verify.BaseRequest;
 import com.nexmo.client.verify.Psd2Request;
 import com.nexmo.client.verify.VerifyResponse;
 import com.nexmo.client.verify.VerifyStatus;

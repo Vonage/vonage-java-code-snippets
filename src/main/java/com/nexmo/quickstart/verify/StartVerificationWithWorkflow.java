@@ -1,9 +1,9 @@
 package com.nexmo.quickstart.verify;
 
 import com.nexmo.client.NexmoClient;
+import com.nexmo.client.verify.VerifyRequest;
 import com.nexmo.client.verify.VerifyResponse;
 import com.nexmo.client.verify.VerifyStatus;
-import com.nexmo.client.verify.VerifyRequest;
 
 import static com.nexmo.quickstart.Util.configureLogging;
 import static com.nexmo.quickstart.Util.envVar;
