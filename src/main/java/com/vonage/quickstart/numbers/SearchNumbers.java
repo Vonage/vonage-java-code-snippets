@@ -21,8 +21,8 @@
  */
 package com.vonage.quickstart.numbers;
 
-import com.nexmo.client.VonageClient;
-import com.nexmo.client.numbers.*;
+import com.vonage.client.VonageClient;
+import com.vonage.client.numbers.*;
 import com.vonage.quickstart.Util;
 
 public class SearchNumbers {

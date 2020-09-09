@@ -21,10 +21,10 @@
  */
 package com.vonage.quickstart.voice;
 
-import com.nexmo.client.incoming.RecordEvent;
-import com.nexmo.client.voice.ncco.ConversationAction;
-import com.nexmo.client.voice.ncco.EventMethod;
-import com.nexmo.client.voice.ncco.Ncco;
+import com.vonage.client.incoming.RecordEvent;
+import com.vonage.client.voice.ncco.ConversationAction;
+import com.vonage.client.voice.ncco.EventMethod;
+import com.vonage.client.voice.ncco.Ncco;
 import spark.Route;
 import spark.Spark;
 

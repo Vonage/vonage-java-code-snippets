@@ -21,13 +21,13 @@
  */
 package com.vonage.quickstart.verify;
 
-import com.nexmo.client.VonageClient;
-import com.nexmo.client.verify.VerifyResponse;
-import com.nexmo.client.verify.VerifyStatus;
-import com.nexmo.client.verify.VerifyRequest;
+import com.vonage.client.VonageClient;
+import com.vonage.client.verify.VerifyResponse;
+import com.vonage.client.verify.VerifyStatus;
+import com.vonage.client.verify.VerifyRequest;
 
-import static com.nexmo.quickstart.Util.configureLogging;
-import static com.nexmo.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.configureLogging;
+import static com.vonage.quickstart.Util.envVar;
 
 public class StartVerificationWithWorkflow {
     public static void main(String[] args) {

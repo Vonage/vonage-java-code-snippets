@@ -21,7 +21,7 @@
  */
 package com.vonage.quickstart.insight;
 
-import com.nexmo.client.insight.AdvancedInsightResponse;
+import com.vonage.client.insight.AdvancedInsightResponse;
 import spark.Spark;
 
 import static spark.Spark.port;

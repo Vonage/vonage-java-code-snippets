@@ -21,9 +21,9 @@
  */
 package com.vonage.quickstart.redact;
 
-import com.nexmo.client.VonageClient;
-import com.nexmo.client.redact.RedactClient;
-import com.nexmo.client.redact.RedactRequest;
+import com.vonage.client.VonageClient;
+import com.vonage.client.redact.RedactClient;
+import com.vonage.client.redact.RedactRequest;
 import com.vonage.quickstart.Util;
 
 public class RedactATransaction {

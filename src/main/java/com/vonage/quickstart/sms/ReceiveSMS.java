@@ -21,7 +21,7 @@
  */
 package com.vonage.quickstart.sms;
 
-import com.nexmo.client.incoming.MessageEvent;
+import com.vonage.client.incoming.MessageEvent;
 import spark.Route;
 import spark.Spark;
 

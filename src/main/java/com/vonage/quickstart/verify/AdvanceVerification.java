@@ -21,7 +21,7 @@
  */
 package com.vonage.quickstart.verify;
 
-import com.nexmo.client.VonageClient;
+import com.vonage.client.VonageClient;
 import com.vonage.quickstart.Util;
 
 public class AdvanceVerification {

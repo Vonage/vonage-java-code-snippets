@@ -21,10 +21,10 @@
  */
 package com.vonage.quickstart.insight;
 
-import com.nexmo.client.VonageClient;
-import com.nexmo.client.insight.AdvancedInsightRequest;
-import com.nexmo.client.insight.AdvancedInsightResponse;
-import com.nexmo.client.insight.RoamingDetails;
+import com.vonage.client.VonageClient;
+import com.vonage.client.insight.AdvancedInsightRequest;
+import com.vonage.client.insight.AdvancedInsightResponse;
+import com.vonage.client.insight.RoamingDetails;
 import com.vonage.quickstart.Util;
 
 public class AdvancedInsightWithCnam {

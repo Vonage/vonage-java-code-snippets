@@ -21,9 +21,9 @@
  */
 package com.vonage.quickstart.verify;
 
-import com.nexmo.client.VonageClient;
-import com.nexmo.client.verify.VerifyResponse;
-import com.nexmo.client.verify.VerifyStatus;
+import com.vonage.client.VonageClient;
+import com.vonage.client.verify.VerifyResponse;
+import com.vonage.client.verify.VerifyStatus;
 import com.vonage.quickstart.Util;
 
 public class StartVerification {

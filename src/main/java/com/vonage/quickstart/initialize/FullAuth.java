@@ -21,11 +21,11 @@
  */
 package com.vonage.quickstart.initialize;
 
-import com.nexmo.client.VonageClient;
+import com.vonage.client.VonageClient;
 import com.vonage.quickstart.Util;
 
 /**
- * Example of configuring a NexmoClient with authentication for
+ * Example of configuring a VonageClient with authentication for
  * both API secret and Application (JWT) authentication credentials.
  */
 public class FullAuth {

@@ -21,8 +21,8 @@
  */
 package com.vonage.quickstart.application;
 
-import com.nexmo.client.VonageClient;
-import com.nexmo.client.application.ApplicationClient;
+import com.vonage.client.VonageClient;
+import com.vonage.client.application.ApplicationClient;
 import com.vonage.quickstart.Util;
 
 public class DeleteApplication {

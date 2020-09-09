@@ -21,8 +21,8 @@
  */
 package com.vonage.quickstart.insight;
 
-import com.nexmo.client.VonageClient;
-import com.nexmo.client.insight.BasicInsightResponse;
+import com.vonage.client.VonageClient;
+import com.vonage.client.insight.BasicInsightResponse;
 import com.vonage.quickstart.Util;
 
 public class BasicInsight {

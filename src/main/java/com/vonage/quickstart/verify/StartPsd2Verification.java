@@ -19,27 +19,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.nexmo.quickstart.verify;
+package com.vonage.quickstart.verify;
 
-import com.nexmo.client.NexmoClient;
-import com.nexmo.client.verify.VerifyResponse;
-import com.nexmo.client.verify.VerifyStatus;
+import com.vonage.client.VonageClient;
+import com.vonage.client.verify.VerifyResponse;
+import com.vonage.client.verify.VerifyStatus;
 
-import static com.nexmo.quickstart.Util.configureLogging;
-import static com.nexmo.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.configureLogging;
+import static com.vonage.quickstart.Util.envVar;
 
 public class StartPsd2Verification {
     public static void main(String[] args) {
         configureLogging();
 
-        String NEXMO_API_KEY = envVar("NEXMO_API_KEY");
-        String NEXMO_API_SECRET = envVar("NEXMO_API_SECRET");
+        String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
+        String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
         String RECIPIENT_NUMBER = envVar("RECIPIENT_NUMBER");
         String PAYEE = envVar("PAYEE");
         double AMOUNT = Double.parseDouble(envVar("AMOUNT"));
 
 
-        NexmoClient client = NexmoClient.builder().apiKey(NEXMO_API_KEY).apiSecret(NEXMO_API_SECRET).build();
+        VonageClient client = VonageClient.builder().apiKey(VONAGE_API_KEY).apiSecret(VONAGE_API_SECRET).build();
         VerifyResponse response = client.getVerifyClient().psd2Verify(RECIPIENT_NUMBER, AMOUNT, PAYEE);
 
         if (response.getStatus() == VerifyStatus.OK) {

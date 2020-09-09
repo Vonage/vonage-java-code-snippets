@@ -39,7 +39,7 @@ public class Util {
         if (value != null) {
             Handler handler = new ConsoleHandler();
             handler.setLevel(Level.FINEST);
-            Logger logger = Logger.getLogger("com.nexmo");
+            Logger logger = Logger.getLogger("com.vonage");
             logger.setLevel(Level.FINEST);
             logger.addHandler(handler);
         }

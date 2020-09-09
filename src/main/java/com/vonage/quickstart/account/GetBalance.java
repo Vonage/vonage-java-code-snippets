@@ -21,14 +21,15 @@
  */
 package com.vonage.quickstart.account;
 
-import com.nexmo.client.VonageClient;
-import com.nexmo.client.account.AccountClient;
-import com.nexmo.client.account.BalanceResponse;
-import com.vonage.quickstart.Util;
+import com.vonage.client.VonageClient;
+import com.vonage.client.account.AccountClient;
+import com.vonage.client.account.BalanceResponse;
+
+import static com.vonage.quickstart.Util.envVar;
 
 public class GetBalance {
-    private static final String VONAGE_API_KEY = Util.envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = Util.envVar("VONAGE_API_SECRET");
+    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
+    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
 
     public static void main(String[] args) throws Exception {
         VonageClient client = VonageClient.builder()

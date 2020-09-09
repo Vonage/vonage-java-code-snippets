@@ -21,19 +21,20 @@
  */
 package com.vonage.quickstart.application;
 
-import com.nexmo.client.VonageClient;
-import com.nexmo.client.application.Application;
-import com.nexmo.client.application.ApplicationClient;
-import com.nexmo.client.application.capabilities.Capability;
-import com.nexmo.client.application.capabilities.Messages;
-import com.nexmo.client.common.HttpMethod;
-import com.nexmo.client.common.Webhook;
-import com.vonage.quickstart.Util;
+import com.vonage.client.VonageClient;
+import com.vonage.client.application.Application;
+import com.vonage.client.application.ApplicationClient;
+import com.vonage.client.application.capabilities.Capability;
+import com.vonage.client.application.capabilities.Messages;
+import com.vonage.client.common.HttpMethod;
+import com.vonage.client.common.Webhook;
+
+import static com.vonage.quickstart.Util.envVar;
 
 public class CreateApplication {
     private static final String NAME = "Code Snippets V2 Application";
-    private static final String VONAGE_API_KEY = Util.envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = Util.envVar("VONAGE_API_SECRET");
+    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
+    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
 
     public static void main(String... args) {
         VonageClient client = VonageClient.builder()

@@ -21,19 +21,20 @@
  */
 package com.vonage.quickstart.voice;
 
-import com.nexmo.client.incoming.RecordEvent;
-import com.nexmo.client.voice.ncco.ConnectAction;
-import com.nexmo.client.voice.ncco.Ncco;
-import com.nexmo.client.voice.ncco.PhoneEndpoint;
-import com.nexmo.client.voice.ncco.RecordAction;
-import com.vonage.quickstart.Util;
+import com.vonage.client.incoming.RecordEvent;
+import com.vonage.client.voice.ncco.ConnectAction;
+import com.vonage.client.voice.ncco.Ncco;
+import com.vonage.client.voice.ncco.PhoneEndpoint;
+import com.vonage.client.voice.ncco.RecordAction;
+
+import static com.vonage.quickstart.Util.envVar;
 import spark.Route;
 import spark.Spark;
 
 public class RecordCall {
     public static void main(String[] args) {
-        final String TO_NUMBER = Util.envVar("TO_NUMBER");
-        final String VONAGE_NUMBER = Util.envVar("VONAGE_NUMBER");
+        final String TO_NUMBER = envVar("TO_NUMBER");
+        final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
 
         /*
          * Route to answer and connect incoming calls with recording.

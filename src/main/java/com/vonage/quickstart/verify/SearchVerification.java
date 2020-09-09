@@ -21,10 +21,10 @@
  */
 package com.vonage.quickstart.verify;
 
-import com.nexmo.client.VonageClient;
-import com.nexmo.client.verify.SearchVerifyResponse;
-import com.nexmo.client.verify.VerifyClient;
-import com.nexmo.client.verify.VerifyStatus;
+import com.vonage.client.VonageClient;
+import com.vonage.client.verify.SearchVerifyResponse;
+import com.vonage.client.verify.VerifyClient;
+import com.vonage.client.verify.VerifyStatus;
 import com.vonage.quickstart.Util;
 
 public class SearchVerification {

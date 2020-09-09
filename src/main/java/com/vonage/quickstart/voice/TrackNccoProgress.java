@@ -21,9 +21,9 @@
  */
 package com.vonage.quickstart.voice;
 
-import com.nexmo.client.voice.ncco.Ncco;
-import com.nexmo.client.voice.ncco.NotifyAction;
-import com.nexmo.client.voice.ncco.TalkAction;
+import com.vonage.client.voice.ncco.Ncco;
+import com.vonage.client.voice.ncco.NotifyAction;
+import com.vonage.client.voice.ncco.TalkAction;
 
 import java.util.HashMap;
 import java.util.Map;

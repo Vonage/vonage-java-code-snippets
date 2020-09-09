@@ -21,9 +21,9 @@
  */
 package com.vonage.quickstart.insight;
 
-import com.nexmo.client.VonageClient;
-import com.nexmo.client.insight.AdvancedInsightRequest;
-import com.nexmo.client.insight.InsightClient;
+import com.vonage.client.VonageClient;
+import com.vonage.client.insight.AdvancedInsightRequest;
+import com.vonage.client.insight.InsightClient;
 import com.vonage.quickstart.Util;
 
 public class AdvancedInsightAsync {

@@ -21,10 +21,10 @@
  */
 package com.vonage.quickstart.sms;
 
-import com.nexmo.client.VonageClient;
-import com.nexmo.client.sms.MessageStatus;
-import com.nexmo.client.sms.SmsSubmissionResponse;
-import com.nexmo.client.sms.messages.TextMessage;
+import com.vonage.client.VonageClient;
+import com.vonage.client.sms.MessageStatus;
+import com.vonage.client.sms.SmsSubmissionResponse;
+import com.vonage.client.sms.messages.TextMessage;
 
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;

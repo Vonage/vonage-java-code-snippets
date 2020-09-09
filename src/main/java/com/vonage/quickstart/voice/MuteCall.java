@@ -21,10 +21,10 @@
  */
 package com.vonage.quickstart.voice;
 
-import com.nexmo.client.VonageClient;
-import com.nexmo.client.voice.Call;
-import com.nexmo.client.voice.CallEvent;
-import com.nexmo.client.voice.ModifyCallAction;
+import com.vonage.client.VonageClient;
+import com.vonage.client.voice.Call;
+import com.vonage.client.voice.CallEvent;
+import com.vonage.client.voice.ModifyCallAction;
 import com.vonage.quickstart.Util;
 
 public class MuteCall {

@@ -21,9 +21,9 @@
  */
 package com.vonage.quickstart.voice;
 
-import com.nexmo.client.voice.ncco.ConnectAction;
-import com.nexmo.client.voice.ncco.Ncco;
-import com.nexmo.client.voice.ncco.PhoneEndpoint;
+import com.vonage.client.voice.ncco.ConnectAction;
+import com.vonage.client.voice.ncco.Ncco;
+import com.vonage.client.voice.ncco.PhoneEndpoint;
 import com.vonage.quickstart.Util;
 import spark.Route;
 import spark.Spark;

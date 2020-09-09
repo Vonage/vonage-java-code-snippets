@@ -22,9 +22,9 @@
 package com.vonage.quickstart.voice;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nexmo.client.VonageClient;
-import com.nexmo.client.voice.CallInfoPage;
-import com.nexmo.client.voice.CallsFilter;
+import com.vonage.client.VonageClient;
+import com.vonage.client.voice.CallInfoPage;
+import com.vonage.client.voice.CallsFilter;
 import com.vonage.quickstart.Util;
 
 import java.util.Calendar;

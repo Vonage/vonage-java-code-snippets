@@ -21,25 +21,26 @@
  */
 package com.vonage.quickstart.numbers;
 
-import com.nexmo.client.VonageClient;
-import com.nexmo.client.VonageClientException;
-import com.nexmo.client.VonageResponseParseException;
-import com.nexmo.client.numbers.NumbersClient;
-import com.nexmo.client.numbers.UpdateNumberRequest;
-import com.vonage.quickstart.Util;
+import com.vonage.client.VonageClient;
+import com.vonage.client.VonageClientException;
+import com.vonage.client.VonageResponseParseException;
+import com.vonage.client.numbers.NumbersClient;
+import com.vonage.client.numbers.UpdateNumberRequest;
+import static com.vonage.quickstart.Util.configureLogging;
+import static com.vonage.quickstart.Util.envVar;
 
 public class UpdateNumber {
-    private static final String VONAGE_API_KEY = Util.envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = Util.envVar("VONAGE_API_SECRET");
-    private static final String COUNTRY_CODE = Util.envVar("COUNTRY_CODE");
-    private static final String VONAGE_NUMBER = Util.envVar("VONAGE_NUMBER");
-    private static final String SMS_CALLBACK_URL = Util.envVar("SMS_CALLBACK_URL");
-    private static final UpdateNumberRequest.CallbackType VOICE_CALLBACK_TYPE = UpdateNumberRequest.CallbackType.valueOf(Util.envVar("VOICE_CALLBACK_TYPE"));
-    private static final String VOICE_CALLBACK_VALUE = Util.envVar("VOICE_CALLBACK_VALUE");
-    private static final String VOICE_STATUS_URL = Util.envVar("VOICE_STATUS_URL");
+    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
+    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
+    private static final String COUNTRY_CODE = envVar("COUNTRY_CODE");
+    private static final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
+    private static final String SMS_CALLBACK_URL = envVar("SMS_CALLBACK_URL");
+    private static final UpdateNumberRequest.CallbackType VOICE_CALLBACK_TYPE = UpdateNumberRequest.CallbackType.valueOf(envVar("VOICE_CALLBACK_TYPE"));
+    private static final String VOICE_CALLBACK_VALUE = envVar("VOICE_CALLBACK_VALUE");
+    private static final String VOICE_STATUS_URL = envVar("VOICE_STATUS_URL");
 
     public static void main(String[] args) {
-        Util.configureLogging();
+        configureLogging();
 
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)

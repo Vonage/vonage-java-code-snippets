@@ -21,11 +21,11 @@
  */
 package com.vonage.quickstart.initialize;
 
-import com.nexmo.client.VonageClient;
+import com.vonage.client.VonageClient;
 import com.vonage.quickstart.Util;
 
 /**
- * Example of configuring a NexmoClient with an API secret.
+ * Example of configuring a VonageClient with an API secret.
  */
 public class BasicAuth {
     public static void main(String[] argv) throws Exception {

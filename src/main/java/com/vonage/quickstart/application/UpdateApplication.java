@@ -21,12 +21,12 @@
  */
 package com.vonage.quickstart.application;
 
-import com.nexmo.client.VonageClient;
-import com.nexmo.client.application.Application;
-import com.nexmo.client.application.ApplicationClient;
-import com.nexmo.client.application.capabilities.*;
-import com.nexmo.client.common.HttpMethod;
-import com.nexmo.client.common.Webhook;
+import com.vonage.client.VonageClient;
+import com.vonage.client.application.Application;
+import com.vonage.client.application.ApplicationClient;
+import com.vonage.client.application.capabilities.*;
+import com.vonage.client.common.HttpMethod;
+import com.vonage.client.common.Webhook;
 import com.vonage.quickstart.Util;
 
 public class UpdateApplication {
