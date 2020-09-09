@@ -16,7 +16,7 @@ For some of the examples you will need to [buy a number][buy-number].
 
 You will need to have [Gradle](https://gradle.org/) installed to build the code. Once
 you have gradle installed, run the following to build a jar that contains
-the quickstart code along with all the vonage client library dependencies:
+the quickstart code along with all the vonage server sdk dependencies:
 
 ```sh
 gradle assemble
@@ -41,7 +41,7 @@ foreman run java -cp build/libs/vonage-java-code-snippets-with-dependencies.jar 
 ```
 
 If you set the environment variable `QUICKSTART_DEBUG` to any value, extra information
-will be output to the console from the Vonage Client library.
+will be output to the console from the Vonage Server SDK.
 
 ## Request an Example
 
