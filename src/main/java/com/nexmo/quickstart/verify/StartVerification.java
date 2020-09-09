@@ -29,7 +29,7 @@ import static com.nexmo.quickstart.Util.configureLogging;
 import static com.nexmo.quickstart.Util.envVar;
 
 public class StartVerification {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         configureLogging();
 
         String NEXMO_API_KEY = envVar("NEXMO_API_KEY");
