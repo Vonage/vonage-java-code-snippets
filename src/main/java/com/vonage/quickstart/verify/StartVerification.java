@@ -28,7 +28,7 @@ import com.vonage.quickstart.Util;
 
 public class StartVerification {
     public static void main(String[] args) {
-        configureLogging();
+        Util.configureLogging();
 
         String VONAGE_API_KEY = Util.envVar("VONAGE_API_KEY");
         String VONAGE_API_SECRET = Util.envVar("VONAGE_API_SECRET");
