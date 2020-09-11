@@ -44,7 +44,7 @@ public class OutboundTextToSpeechWithEventUrl {
         Call call = new Call(
                 TO_NUMBER,
                 VONAGE_NUMBER,
-                "https://nexmo-community.github.io/ncco-examples/first_call_talk.json"
+                "https://nexmo-community.github.io/ncco-examples/talk.json"
         );
         call.setEventUrl(EVENT_URL);
         client.getVoiceClient().createCall(call);

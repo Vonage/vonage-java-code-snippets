@@ -24,15 +24,15 @@ package com.vonage.quickstart.verify;
 import com.vonage.client.VonageClient;
 import com.vonage.client.verify.VerifyResponse;
 import com.vonage.client.verify.VerifyStatus;
-import com.vonage.quickstart.Util;
+import static com.vonage.quickstart.Util;
 
 public class StartVerification {
     public static void main(String[] args) {
-        Util.configureLogging();
+        configureLogging();
 
-        String VONAGE_API_KEY = Util.envVar("VONAGE_API_KEY");
-        String VONAGE_API_SECRET = Util.envVar("VONAGE_API_SECRET");
-        String RECIPIENT_NUMBER = Util.envVar("RECIPIENT_NUMBER");
+        String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
+        String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
+        String RECIPIENT_NUMBER = envVar("RECIPIENT_NUMBER");
 
 
         VonageClient client = VonageClient.builder().apiKey(VONAGE_API_KEY).apiSecret(VONAGE_API_SECRET).build();

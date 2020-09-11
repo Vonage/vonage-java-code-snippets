@@ -49,7 +49,7 @@ public class TransferCall {
         CallEvent call = client.getVoiceClient().createCall(new Call(
                 TO_NUMBER,
                 VONAGE_NUMBER,
-                "https://gist.githubusercontent.com/cr0wst/9417cac4c0d9004805a04aed403ae94a/raw/b95e3cd5126587d25986e0bf832eb33a7538394d/tts_long.json"
+                "https://nexmo-community.github.io/ncco-examples/long-tts.json"
         ));
 
         /*

@@ -46,7 +46,7 @@ public class ModifyCall {
         CallEvent call = client.getVoiceClient().createCall(new Call(
                 TO_NUMBER,
                 VONAGE_NUMBER,
-                "https://gist.githubusercontent.com/ChrisGuzman/d6add5b23a8cf913dcdc5a8eabc223ef/raw/a1eb52e0ce2d3cef98bab14d27f3adcdff2af881/long_talk.json"
+                "https://nexmo-community.github.io/ncco-examples/long-tts.json"
         ));
 
         Thread.sleep(20000);
