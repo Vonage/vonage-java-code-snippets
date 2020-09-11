@@ -24,11 +24,12 @@ package com.vonage.quickstart.application;
 import com.vonage.client.VonageClient;
 import com.vonage.client.application.ApplicationClient;
 import com.vonage.client.application.ApplicationList;
-import com.vonage.quickstart.Util;
+
+import static com.vonage.quickstart.Util.envVar;
 
 public class ListApplications {
-    private static final String VONAGE_API_KEY = Util.envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = Util.envVar("VONAGE_API_SECRET");
+    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
+    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
 
     public static void main(String... args) {
         VonageClient client = VonageClient.builder()

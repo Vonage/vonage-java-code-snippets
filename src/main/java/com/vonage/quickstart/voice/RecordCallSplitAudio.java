@@ -23,14 +23,15 @@ package com.vonage.quickstart.voice;
 
 import com.vonage.client.incoming.RecordEvent;
 import com.vonage.client.voice.ncco.*;
-import com.vonage.quickstart.Util;
 import spark.Route;
 import spark.Spark;
 
+import static com.vonage.quickstart.Util.envVar;
+
 public class RecordCallSplitAudio {
     public static void main(String[] args) {
-        final String TO_NUMBER = Util.envVar("TO_NUMBER");
-        final String VONAGE_NUMBER = Util.envVar("VONAGE_NUMBER");
+        final String TO_NUMBER = envVar("TO_NUMBER");
+        final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
 
         /*
          * Route to answer and connect incoming calls with recording.

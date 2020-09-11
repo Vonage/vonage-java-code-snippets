@@ -24,13 +24,13 @@ package com.vonage.quickstart.insight;
 import com.vonage.client.VonageClient;
 import com.vonage.client.insight.AdvancedInsightRequest;
 import com.vonage.client.insight.InsightClient;
-import com.vonage.quickstart.Util;
+import static com.vonage.quickstart.Util.envVar;
 
 public class AdvancedInsightAsync {
-    private static final String VONAGE_API_KEY = Util.envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = Util.envVar("VONAGE_API_SECRET");
-    private static final String INSIGHT_NUMBER = Util.envVar("INSIGHT_NUMBER");
-    private static final String ASYNC_CALLBACK_URL = Util.envVar("ASYNC_CALLBACK_URL");
+    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
+    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
+    private static final String INSIGHT_NUMBER = envVar("INSIGHT_NUMBER");
+    private static final String ASYNC_CALLBACK_URL = envVar("ASYNC_CALLBACK_URL");
 
     public static void main(String... args) {
         VonageClient client = VonageClient.builder()

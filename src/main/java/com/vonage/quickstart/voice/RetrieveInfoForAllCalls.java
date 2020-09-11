@@ -25,18 +25,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vonage.client.VonageClient;
 import com.vonage.client.voice.CallInfoPage;
 import com.vonage.client.voice.CallsFilter;
-import com.vonage.quickstart.Util;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+import static com.vonage.quickstart.Util.configureLogging;
+import static com.vonage.quickstart.Util.envVar;
+
 public class RetrieveInfoForAllCalls {
     public static void main(String... args) throws Exception {
-        Util.configureLogging();
+        configureLogging();
 
-        final String VONAGE_APPLICATION_ID = Util.envVar("VONAGE_APPLICATION_ID");
-        final String VONAGE_PRIVATE_KEY_PATH = Util.envVar("VONAGE_PRIVATE_KEY_PATH");
+        final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
+        final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
 
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)

@@ -22,7 +22,8 @@
 package com.vonage.quickstart.initialize;
 
 import com.vonage.client.VonageClient;
-import com.vonage.quickstart.Util;
+
+import static com.vonage.quickstart.Util.envVar;
 
 /**
  * Example of configuring a VonageClient with authentication for
@@ -30,10 +31,10 @@ import com.vonage.quickstart.Util;
  */
 public class FullAuth {
     public static void main(String[] argv) throws Exception {
-        String VONAGE_API_KEY = Util.envVar("VONAGE_API_KEY");
-        String VONAGE_API_SECRET = Util.envVar("VONAGE_API_SECRET");
-        String VONAGE_APPLICATION_ID = Util.envVar("VONAGE_APPLICATION_ID");
-        String VONAGE_APPLICATION_PRIVATE_KEY_PATH = Util.envVar("VONAGE_PRIVATE_KEY_PATH");
+        String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
+        String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
+        String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
+        String VONAGE_APPLICATION_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
 
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)

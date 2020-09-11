@@ -25,15 +25,17 @@ import com.vonage.client.VonageClient;
 import com.vonage.client.insight.AdvancedInsightRequest;
 import com.vonage.client.insight.AdvancedInsightResponse;
 import com.vonage.client.insight.RoamingDetails;
-import com.vonage.quickstart.Util;
+
+import static com.vonage.quickstart.Util.configureLogging;
+import static com.vonage.quickstart.Util.envVar;
 
 public class AdvancedInsightWithCnam {
     public static void main(String[] args) throws Exception {
-        Util.configureLogging();
+        configureLogging();
 
-        String VONAGE_API_KEY = Util.envVar("VONAGE_API_KEY");
-        String VONAGE_API_SECRET = Util.envVar("VONAGE_API_SECRET");
-        String INSIGHT_NUMBER = Util.envVar("INSIGHT_NUMBER");
+        String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
+        String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
+        String INSIGHT_NUMBER = envVar("INSIGHT_NUMBER");
 
         VonageClient client = VonageClient.builder().apiKey(VONAGE_API_KEY).apiSecret(VONAGE_API_SECRET).build();
 

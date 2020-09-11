@@ -22,15 +22,17 @@
 package com.vonage.quickstart.verify;
 
 import com.vonage.client.VonageClient;
-import com.vonage.quickstart.Util;
+
+import static com.vonage.quickstart.Util.configureLogging;
+import static com.vonage.quickstart.Util.envVar;
 
 public class AdvanceVerification {
     public static void main(String[] args) throws Exception {
-        Util.configureLogging();
+        configureLogging();
 
-        String VONAGE_API_KEY = Util.envVar("VONAGE_API_KEY");
-        String VONAGE_API_SECRET = Util.envVar("VONAGE_API_SECRET");
-        String REQUEST_ID = Util.envVar("REQUEST_ID");
+        String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
+        String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
+        String REQUEST_ID = envVar("REQUEST_ID");
 
 
         VonageClient client = VonageClient.builder().apiKey(VONAGE_API_KEY).apiSecret(VONAGE_API_SECRET).build();

@@ -25,12 +25,12 @@ import com.vonage.client.VonageClient;
 import com.vonage.client.verify.SearchVerifyResponse;
 import com.vonage.client.verify.VerifyClient;
 import com.vonage.client.verify.VerifyStatus;
-import com.vonage.quickstart.Util;
+import static com.vonage.quickstart.Util.envVar;
 
 public class SearchVerification {
-    private static final String VONAGE_API_KEY = Util.envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = Util.envVar("VONAGE_API_SECRET");
-    private static final String REQUEST_ID = Util.envVar("REQUEST_ID");
+    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
+    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
+    private static final String REQUEST_ID = envVar("REQUEST_ID");
 
     public static void main(String... args) throws Exception {
         VonageClient client = VonageClient.builder()

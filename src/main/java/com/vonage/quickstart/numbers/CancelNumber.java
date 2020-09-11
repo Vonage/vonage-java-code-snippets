@@ -23,16 +23,18 @@ package com.vonage.quickstart.numbers;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.numbers.NumbersClient;
-import com.vonage.quickstart.Util;
+
+import static com.vonage.quickstart.Util.configureLogging;
+import static com.vonage.quickstart.Util.envVar;
 
 public class CancelNumber {
-    private static final String VONAGE_API_KEY = Util.envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = Util.envVar("VONAGE_API_SECRET");
-    private static final String COUNTRY_CODE = Util.envVar("COUNTRY_CODE");
-    private static final String VONAGE_NUMBER = Util.envVar("VONAGE_NUMBER");
+    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
+    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
+    private static final String COUNTRY_CODE = envVar("COUNTRY_CODE");
+    private static final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
 
     public static void main(String[] args) {
-        Util.configureLogging();
+        configureLogging();
 
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)

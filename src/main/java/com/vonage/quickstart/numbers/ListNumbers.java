@@ -23,16 +23,18 @@ package com.vonage.quickstart.numbers;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.numbers.*;
-import com.vonage.quickstart.Util;
+
+import static com.vonage.quickstart.Util.configureLogging;
+import static com.vonage.quickstart.Util.envVar;
 
 public class ListNumbers {
-    private static final String VONAGE_API_KEY = Util.envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = Util.envVar("VONAGE_API_SECRET");
-    private static final String NUMBER_SEARCH_CRITERIA = Util.envVar("NUMBER_SEARCH_CRITERIA");
-    private static final SearchPattern NUMBER_SEARCH_PATTERN = SearchPattern.valueOf(Util.envVar("NUMBER_SEARCH_PATTERN"));
+    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
+    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
+    private static final String NUMBER_SEARCH_CRITERIA = envVar("NUMBER_SEARCH_CRITERIA");
+    private static final SearchPattern NUMBER_SEARCH_PATTERN = SearchPattern.valueOf(envVar("NUMBER_SEARCH_PATTERN"));
 
     public static void main(String[] args) {
-        Util.configureLogging();
+        configureLogging();
 
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)

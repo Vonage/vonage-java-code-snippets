@@ -23,7 +23,9 @@ package com.vonage.quickstart.voice;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.incoming.RecordEvent;
-import com.vonage.quickstart.Util;
+
+import static com.vonage.quickstart.Util.envVar;
+
 import spark.Route;
 import spark.Spark;
 
@@ -31,8 +33,8 @@ public class DownloadRecording {
     public static void main(String[] args) throws Exception {
         Util.configureLogging();
 
-        final String VONAGE_APPLICATION_ID = Util.envVar("VONAGE_APPLICATION_ID");
-        final String VONAGE_PRIVATE_KEY_PATH = Util.envVar("VONAGE_PRIVATE_KEY_PATH");
+        final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
+        final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
 
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)

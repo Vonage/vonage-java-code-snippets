@@ -25,22 +25,24 @@ import com.vonage.client.VonageClient;
 import com.vonage.client.voice.Call;
 import com.vonage.client.voice.CallEvent;
 import com.vonage.client.voice.VoiceName;
-import com.vonage.quickstart.Util;
+
+import static com.vonage.quickstart.Util.configureLogging;
+import static com.vonage.quickstart.Util.envVar;
 
 public class SendTalkToCall {
     public static void main(String[] args) throws Exception {
-        Util.configureLogging();
+        configureLogging();
 
-        final String VONAGE_APPLICATION_ID = Util.envVar("VONAGE_APPLICATION_ID");
-        final String VONAGE_PRIVATE_KEY_PATH = Util.envVar("VONAGE_PRIVATE_KEY_PATH");
+        final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
+        final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
 
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
-        final String VONAGE_NUMBER = Util.envVar("VONAGE_NUMBER");
-        final String TO_NUMBER = Util.envVar("TO_NUMBER");
+        final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
+        final String TO_NUMBER = envVar("TO_NUMBER");
         CallEvent call = client
                 .getVoiceClient()
                 .createCall(new Call(TO_NUMBER, VONAGE_NUMBER, "http://s3.sammachin.com/silent_loop.json"));

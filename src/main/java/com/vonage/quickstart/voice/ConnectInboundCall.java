@@ -24,14 +24,16 @@ package com.vonage.quickstart.voice;
 import com.vonage.client.voice.ncco.ConnectAction;
 import com.vonage.client.voice.ncco.Ncco;
 import com.vonage.client.voice.ncco.PhoneEndpoint;
-import com.vonage.quickstart.Util;
+
+import static com.vonage.quickstart.Util.envVar;
+
 import spark.Route;
 import spark.Spark;
 
 public class ConnectInboundCall {
     public static void main(String[] args) {
-        final String RECIPIENT_NUMBER = Util.envVar("RECIPIENT_NUMBER");
-        final String VONAGE_NUMBER = Util.envVar("VONAGE_NUMBER");
+        final String RECIPIENT_NUMBER = envVar("RECIPIENT_NUMBER");
+        final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
 
         /*
          * Route to answer incoming calls with an NCCO response.

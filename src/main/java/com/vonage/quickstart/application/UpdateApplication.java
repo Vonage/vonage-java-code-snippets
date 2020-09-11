@@ -27,12 +27,13 @@ import com.vonage.client.application.ApplicationClient;
 import com.vonage.client.application.capabilities.*;
 import com.vonage.client.common.HttpMethod;
 import com.vonage.client.common.Webhook;
-import com.vonage.quickstart.Util;
+
+import static com.vonage.quickstart.Util.envVar;
 
 public class UpdateApplication {
-    private static final String VONAGE_API_KEY = Util.envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = Util.envVar("VONAGE_API_SECRET");
-    private static final String VONAGE_APPLICATION_ID = Util.envVar("VONAGE_APPLICATION_ID");
+    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
+    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
+    private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
 
     public static void main(String... args) {
         VonageClient client = VonageClient.builder()

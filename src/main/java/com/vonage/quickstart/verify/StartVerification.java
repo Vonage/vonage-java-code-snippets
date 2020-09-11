@@ -24,7 +24,8 @@ package com.vonage.quickstart.verify;
 import com.vonage.client.VonageClient;
 import com.vonage.client.verify.VerifyResponse;
 import com.vonage.client.verify.VerifyStatus;
-import static com.vonage.quickstart.Util;
+import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.configureLogging;
 
 public class StartVerification {
     public static void main(String[] args) {
