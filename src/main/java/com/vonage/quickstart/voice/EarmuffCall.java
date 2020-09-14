@@ -27,10 +27,11 @@ import com.vonage.client.voice.CallEvent;
 import com.vonage.client.voice.ModifyCallAction;
 
 import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.configureLogging;
 
 public class EarmuffCall {
     public static void main(String... args) throws Exception {
-        Util.configureLogging();
+        configureLogging();
 
         final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
         final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");

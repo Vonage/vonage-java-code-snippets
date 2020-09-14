@@ -39,12 +39,8 @@ public class StartVerificationWithWorkflow {
         String RECIPIENT_NUMBER = envVar("RECIPIENT_NUMBER");
         String VONAGE_BRAND = envVar("BRAND_NAME");
 
-        VerifyRequest request = new VerifyRequest(RECIPIENT_NUMBER,VONAGE_BRAND);
-
-        request.setWorkflow(VerifyRequest.Workflow.TTS_TTS);
-
         VonageClient client = VonageClient.builder().apiKey(VONAGE_API_KEY).apiSecret(VONAGE_API_SECRET).build();
-        VerifyResponse response = client.getVerifyClient().verify(request);
+        VerifyResponse response = client.getVerifyClient().verify(RECIPIENT_NUMBER,VONAGE_BRAND, VerifyRequest.Workflow.TTS_TTS);
 
         if (response.getStatus() == VerifyStatus.OK) {
             System.out.printf("RequestID: %s", response.getRequestId());

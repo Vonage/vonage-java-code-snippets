@@ -37,7 +37,7 @@ public class SendMessage {
         String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
         String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
         String TO_NUMBER = envVar("TO_NUMBER");
-        String VONAGE_BRAND_NAME = envVar("VONAGE_NUMBER");
+        String VONAGE_BRAND_NAME = envVar("VONAGE_BRAND_NAME");
 
         VonageClient client = VonageClient.builder().apiKey(VONAGE_API_KEY).apiSecret(VONAGE_API_SECRET).build();
 

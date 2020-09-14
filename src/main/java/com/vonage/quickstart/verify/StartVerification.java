@@ -34,10 +34,11 @@ public class StartVerification {
         String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
         String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
         String RECIPIENT_NUMBER = envVar("RECIPIENT_NUMBER");
+        String BRAND_NAME = envVar("BRAND_NAME");
 
 
         VonageClient client = VonageClient.builder().apiKey(VONAGE_API_KEY).apiSecret(VONAGE_API_SECRET).build();
-        VerifyResponse response = client.getVerifyClient().verify(RECIPIENT_NUMBER, "VONAGE");
+        VerifyResponse response = client.getVerifyClient().verify(RECIPIENT_NUMBER, BRAND_NAME);
 
         if (response.getStatus() == VerifyStatus.OK) {
             System.out.printf("RequestID: %s", response.getRequestId());

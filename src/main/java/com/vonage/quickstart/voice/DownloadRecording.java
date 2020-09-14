@@ -25,13 +25,14 @@ import com.vonage.client.VonageClient;
 import com.vonage.client.incoming.RecordEvent;
 
 import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.configureLogging;
 
 import spark.Route;
 import spark.Spark;
 
 public class DownloadRecording {
     public static void main(String[] args) throws Exception {
-        Util.configureLogging();
+        configureLogging();
 
         final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
         final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");

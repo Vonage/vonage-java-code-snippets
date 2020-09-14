@@ -42,6 +42,7 @@ public class TransferCall {
 
         final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
         final String TO_NUMBER = envVar("TO_NUMBER");
+        final String ANSWER_URL = "https://nexmo-community.github.io/ncco-examples/long-tts.json";
 
         /*
         Establish a call for testing purposes.
@@ -49,7 +50,7 @@ public class TransferCall {
         CallEvent call = client.getVoiceClient().createCall(new Call(
                 TO_NUMBER,
                 VONAGE_NUMBER,
-                "https://nexmo-community.github.io/ncco-examples/long-tts.json"
+                ANSWER_URL
         ));
 
         /*

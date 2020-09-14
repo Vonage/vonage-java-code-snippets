@@ -43,9 +43,10 @@ public class SendTalkToCall {
 
         final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
         final String TO_NUMBER = envVar("TO_NUMBER");
+        final String ANSWER_URL = "https://nexmo-community.github.io/ncco-examples/silent_loop.json";
         CallEvent call = client
                 .getVoiceClient()
-                .createCall(new Call(TO_NUMBER, VONAGE_NUMBER, "http://s3.sammachin.com/silent_loop.json"));
+                .createCall(new Call(TO_NUMBER, VONAGE_NUMBER, ANSWER_URL));
 
         Thread.sleep(5000);
 

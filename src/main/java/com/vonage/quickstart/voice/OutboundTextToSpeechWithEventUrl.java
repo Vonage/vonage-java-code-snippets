@@ -38,6 +38,8 @@ public class OutboundTextToSpeechWithEventUrl {
         final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
         final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
 
+        final String ANSWER_URL = "https://nexmo-community.github.io/ncco-examples/talk.json";
+
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
@@ -46,7 +48,7 @@ public class OutboundTextToSpeechWithEventUrl {
         Call call = new Call(
                 TO_NUMBER,
                 VONAGE_NUMBER,
-                "https://nexmo-community.github.io/ncco-examples/talk.json"
+                ANSWER_URL
         );
         call.setEventUrl(EVENT_URL);
         client.getVoiceClient().createCall(call);
