@@ -31,7 +31,7 @@ values into environment variables, so you'll probably want to use a tool like
 [Foreman](https://github.com/ddollar/foreman) to run your code like this:
 
 ```sh
-foreman run java -cp build/libs/vonage-java-code-snippets-with-dependencies.jar CLASS
+foreman run java -cp build/libs/vonage-java-code-snippets-with-dependencies.jar PACKAGE.CLASS
 ```
 
 So to run the OutboundTextToSpeechExample class, you would run the following:
