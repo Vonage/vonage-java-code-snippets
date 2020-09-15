@@ -22,7 +22,7 @@ the quickstart code along with all the vonage server sdk dependencies:
 gradle assemble
 ```
 
-This will build the following file: `build/libs/vonage-java-quickstart-with-dependencies.jar`
+This will build the following file: `build/libs/vonage-java-code-snippets-with-dependencies.jar`
 
 ## Running The Examples
 
@@ -31,13 +31,13 @@ values into environment variables, so you'll probably want to use a tool like
 [Foreman](https://github.com/ddollar/foreman) to run your code like this:
 
 ```sh
-foreman run java -cp build/libs/vonage-java-quickstart-with-dependencies.jar CLASS
+foreman run java -cp build/libs/vonage-java-code-snippets-with-dependencies.jar CLASS
 ```
 
 So to run the OutboundTextToSpeechExample class, you would run the following:
 
 ```sh
-foreman run java -cp build/libs/vonage-java-code-snippets-with-dependencies.jar OutboundTextToSpeech
+foreman run java -cp build/libs/vonage-java-code-snippets-with-dependencies.jar com.vonage.quickstart.voice.OutboundTextToSpeech
 ```
 
 If you set the environment variable `QUICKSTART_DEBUG` to any value, extra information
