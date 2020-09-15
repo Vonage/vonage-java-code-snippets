@@ -1,10 +1,10 @@
 
 apply plugin: 'java'
 
-// Uncomment the following lines to work with a local copy of nexmo-java:
+// Uncomment the following lines to work with a local copy of vonage-java-sdk:
 // configurations.all {
 //    resolutionStrategy.dependencySubstitution {
-//        substitute module("com.nexmo:client") with project(":client")
+//        substitute module("com.vonage:client") with project(":client")
 //    }
 // }
 
@@ -15,7 +15,7 @@ repositories {
 dependencies {
     testCompile 'junit:junit:4.12'
 
-    compile 'com.nexmo:client:5.2.0'
+    compile 'com.vonage:client:5.5.0'
     compile "com.sparkjava:spark-core:2.6.0"
     compile 'javax.xml.bind:jaxb-api:2.3.0'
 }

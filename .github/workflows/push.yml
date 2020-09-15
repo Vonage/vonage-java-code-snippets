@@ -18,4 +18,4 @@ jobs:
         PR_TARGET_BRANCH: master
         PR_TARGET_ORG: nexmo
         PR_TARGET_REPO: nexmo-developer
-        PR_TITLE: nexmo-java-code-snippets Update
+        PR_TITLE: vonage-java-code-snippets Update
