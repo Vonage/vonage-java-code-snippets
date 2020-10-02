@@ -23,9 +23,9 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.9'
 }
 
-task fatJar(type: Jar, dependsOn:configurations.runtime) {
+task fatJar(type: Jar, dependsOn:configurations.runtimeClasspath) {
     archiveBaseName = project.name + '-with-dependencies'
-    from { configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) } }
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
 assemble.dependsOn fatJar
