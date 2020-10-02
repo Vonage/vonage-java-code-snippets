@@ -6,13 +6,13 @@ Quickstarts also available for: [Python](https://github.com/Vonage/vonage-python
 
 The purpose of the quickstart guide is to provide simple examples focused on one goal. For example, sending an SMS, handling an incoming SMS webhook, making a Text to Speech call. These code samples are meant to be used for https://developer.nexmo.com/, and are structured in such a way as to be used for internal testing. Developers are free to use these code snippets as a reference, but these may require changes to be worked into your specific application. We recommend checking out the Vonage Developer Website, which displays these code snippets in a more copy/paste fashion.
 
-## Setup
+## ⚙️ Setup
 
 To use this sample you will first need a [Vonage account][sign-up].
 
 For some of the examples you will need to [buy a number][buy-number].
 
-## Building The Library
+## 📚 Building The Library
 
 You will need to have [Gradle](https://gradle.org/) installed to build the code. Once
 you have gradle installed, run the following to build a jar that contains
@@ -24,7 +24,7 @@ gradle assemble
 
 This will build the following file: `build/libs/vonage-java-code-snippets-with-dependencies.jar`
 
-## Running The Examples
+## 📋 Running The Examples
 
 Copy `.env-example` to `.env` and edit the values. You'll need to load those
 values into environment variables, so you'll probably want to use a tool like
@@ -43,11 +43,11 @@ foreman run java -cp build/libs/vonage-java-code-snippets-with-dependencies.jar 
 If you set the environment variable `QUICKSTART_DEBUG` to any value, extra information
 will be output to the console from the Vonage Server SDK.
 
-## Request an Example
+## 🙏 Request an Example
 
 Please [raise an issue](https://github.com/nexmo-community/nexmo-java-quickstart/issues) to request an example that isn't present within the quickstart. Pull requests will be gratefully received.
 
-## License
+## 📝 License
 
 This code is licensed under the [MIT](LICENSE.txt) license.
 
