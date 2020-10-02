@@ -1,5 +1,7 @@
 
-apply plugin: 'java'
+plugins {
+    id 'java'
+}
 
 // Uncomment the following lines to work with a local copy of vonage-java-sdk:
 // configurations.all {
@@ -13,16 +15,17 @@ repositories {
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 
-    compile 'com.vonage:client:5.5.0'
-    compile "com.sparkjava:spark-core:2.6.0"
-    compile 'javax.xml.bind:jaxb-api:2.3.0'
+    implementation 'com.vonage:client:5.5.0'
+    implementation "com.sparkjava:spark-core:2.6.0"
+    implementation 'javax.xml.bind:jaxb-api:2.3.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.9'
 }
 
-task fatJar(type: Jar, dependsOn:configurations.runtime) {
-    baseName = project.name + '-with-dependencies'
-    from { configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) } }
+task fatJar(type: Jar, dependsOn:configurations.runtimeClasspath) {
+    archiveBaseName = project.name + '-with-dependencies'
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
 assemble.dependsOn fatJar
