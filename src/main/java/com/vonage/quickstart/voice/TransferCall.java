@@ -58,7 +58,7 @@ public class TransferCall {
         Thread.sleep(10000);
 
         final String UUID = call.getUuid();
-        final String NCCO_URL = "https://developer.nexmo.com/ncco/tts.json";
+        final String NCCO_URL = "https://nexmo-community.github.io/ncco-examples/talk.json";
         client.getVoiceClient().transferCall(UUID, NCCO_URL);
     }
 }

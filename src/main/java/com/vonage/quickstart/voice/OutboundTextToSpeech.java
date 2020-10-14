@@ -41,7 +41,7 @@ public class OutboundTextToSpeech {
 
         final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
         final String TO_NUMBER = envVar("TO_NUMBER");
-        final String ANSWER_URL = "https://developer.nexmo.com/ncco/tts.json";
+        final String ANSWER_URL = "https://nexmo-community.github.io/ncco-examples/talk.json";
 
         client.getVoiceClient().createCall(new Call(TO_NUMBER, VONAGE_NUMBER, ANSWER_URL));
     }
