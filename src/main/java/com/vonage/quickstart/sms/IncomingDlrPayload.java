@@ -73,7 +73,7 @@ public class IncomingDlrPayload {
         return errCode;
     }
 
-    @JsonProperty("messageTimestamp")
+    @JsonProperty("message-timestamp")
     public String getMessageTimestamp() {
         return messageTimestamp;
     }
