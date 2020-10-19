@@ -43,11 +43,11 @@ foreman run java -cp build/libs/vonage-java-code-snippets-with-dependencies.jar 
 If you set the environment variable `QUICKSTART_DEBUG` to any value, extra information
 will be output to the console from the Vonage Server SDK.
 
-## 🙏 Request an Example
+## :octocat: Request an Example
 
 Please [raise an issue](https://github.com/nexmo-community/nexmo-java-quickstart/issues) to request an example that isn't present within the quickstart. Pull requests will be gratefully received.
 
-## 📝 License
+## 📄 License
 
 This code is licensed under the [MIT](LICENSE.txt) license.
 
