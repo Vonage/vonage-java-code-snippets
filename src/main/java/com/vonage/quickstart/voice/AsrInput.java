@@ -22,32 +22,33 @@
 package com.vonage.quickstart.voice;
 
 import com.vonage.client.incoming.InputEvent;
-import com.vonage.client.voice.ncco.DtmfSettings;
 import com.vonage.client.voice.ncco.InputAction;
 import com.vonage.client.voice.ncco.Ncco;
+import com.vonage.client.voice.ncco.SpeechSettings;
 import com.vonage.client.voice.ncco.TalkAction;
 import spark.Route;
 import spark.Spark;
 
 import java.util.Collections;
 
-public class DtmfInput {
+public class AsrInput {
+
     public static void main(String[] args) {
         /*
          * Route to answer incoming calls.
          */
-        Route answerRoute = (req, res) -> {
+        Route answerCallRoute = (req, res) -> {
             TalkAction intro = TalkAction
-                    .builder("Hello. Please press any key to continue.")
+                    .builder("Please say something")
                     .build();
 
-            DtmfSettings dtmfSettings = new DtmfSettings();
-            dtmfSettings.setMaxDigits(1);
+            SpeechSettings speechSettings = new SpeechSettings();
+            speechSettings.setLanguage(SpeechSettings.Language.ENGLISH_UNITED_STATES);
 
             InputAction input = InputAction.builder()
-                    .type(Collections.singletonList("dtmf"))
-                    .eventUrl(String.format("%s://%s/webhooks/dtmf", req.scheme(), req.host()))
-                    .dtmf(dtmfSettings)
+                    .type(Collections.singletonList("speech"))
+                    .eventUrl(String.format("%s://%s/webhooks/asr", req.scheme(), req.host()))
+                    .speech(speechSettings)
                     .build();
 
 
@@ -57,22 +58,21 @@ public class DtmfInput {
         };
 
         /*
-         * Route which returns NCCO saying which DTMF code was received.
+         * Route which returns NCCO saying which word was recognized.
          */
-        Route inputRoute = (req, res) -> {
+        Route speechInputRoute = (req, res) -> {
             InputEvent event = InputEvent.fromJson(req.body());
 
-            TalkAction response = TalkAction.builder(String.format("You pressed %s, Goodbye.",
-                    event.getDtmf().getDigits()
+            TalkAction response = TalkAction.builder(String.format("You said %s, Goodbye.",
+                    event.getSpeech().getResults().iterator().next().getText()
             )).build();
-
             res.type("application/json");
 
             return new Ncco(response).toJson();
         };
 
         Spark.port(3000);
-        Spark.get("/webhooks/answer", answerRoute);
-        Spark.post("/webhooks/dtmf", inputRoute);
+        Spark.get("/webhooks/answer", answerCallRoute);
+        Spark.post("/webhooks/asr", speechInputRoute);
     }
 }
