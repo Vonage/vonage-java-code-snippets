@@ -47,8 +47,7 @@ public class ReceiveDLR {
                     System.out.printf("%s: %s\n", param, req.queryParams(param));
                 }
             } else {
-                IncomingDlrPayload jsonPayload = IncomingDlrPayload.fromJson(req.bodyAsBytes());
-                System.out.println(jsonPayload);
+                System.out.println(req.body());
             }
 
             res.status(204);

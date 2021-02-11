@@ -34,6 +34,7 @@ public class SearchNumbers {
     private static final SearchPattern NUMBER_SEARCH_PATTERN = SearchPattern.valueOf(envVar("NUMBER_SEARCH_PATTERN"));
     private static final String COUNTRY_CODE = envVar("COUNTRY_CODE");
     private static final String[] VONAGE_NUMBER_FEATURES = envVar("VONAGE_NUMBER_FEATURES").split(",");
+    private static final String VONAGE_NUMBER_TYPE = envVar("VONAGE_NUMBER_TYPE");
 
     public static void main(String[] args) {
         configureLogging();

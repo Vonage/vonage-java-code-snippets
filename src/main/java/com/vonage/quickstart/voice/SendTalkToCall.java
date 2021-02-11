@@ -24,6 +24,7 @@ package com.vonage.quickstart.voice;
 import com.vonage.client.VonageClient;
 import com.vonage.client.voice.Call;
 import com.vonage.client.voice.CallEvent;
+import com.vonage.client.voice.TextToSpeechLanguage;
 import com.vonage.client.voice.VoiceName;
 
 import static com.vonage.quickstart.Util.configureLogging;
@@ -43,7 +44,7 @@ public class SendTalkToCall {
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
-        final String ANSWER_URL = "https://nexmo-community.github.io/ncco-examples/silent_loop.json";
+        final String ANSWER_URL = "https://nexmo-community.github.io/ncco-examples/silent-loop.json";
         CallEvent call = client
                 .getVoiceClient()
                 .createCall(new Call(TO_NUMBER, VONAGE_NUMBER, ANSWER_URL));
@@ -51,10 +52,7 @@ public class SendTalkToCall {
         Thread.sleep(5000);
 
         final String UUID = call.getUuid();
-        final String TEXT = "Hello World! Would you like to know more? I bet you would";
-        client.getVoiceClient().startTalk(UUID, TEXT, VoiceName.KIMBERLY, 0);
-
-        Thread.sleep(5000);
-        client.getVoiceClient().stopTalk(UUID);
+        final String TEXT = "Hello World! Would you like to know more? I bet you would.";
+        client.getVoiceClient().startTalk(UUID,TEXT, TextToSpeechLanguage.AMERICAN_ENGLISH);
     }
 }

@@ -19,43 +19,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.sms;
+package com.vonage.quickstart.voice;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.sms.MessageStatus;
-import com.vonage.client.sms.SmsSubmissionResponse;
-import com.vonage.client.sms.messages.TextMessage;
-import com.vonage.client.auth.hashutils.HashUtil;
+import com.vonage.client.voice.Call;
+import com.vonage.client.voice.CallEvent;
+import com.vonage.client.voice.ncco.Ncco;
+import com.vonage.client.voice.ncco.TalkAction;
 
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
+public class TransferCallNCCO {
 
-public class SendSignedSms {
+    public static void main(String... args) throws Exception {
 
-    public static void main(String[] args) throws Exception {
         configureLogging();
 
-        String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-        String VONAGE_SIGNATURE_SECRET = envVar("VONAGE_SIGNATURE_SECRET");
-        String TO_NUMBER = envVar("TO_NUMBER");
-        String FROM_NUMBER = envVar("FROM_NUMBER");
+        final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
+        final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
+        final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
+        final String TO_NUMBER = envVar("TO_NUMBER");
 
         VonageClient client = VonageClient.builder()
-            .apiKey(VONAGE_API_KEY)
-            .signatureSecret(VONAGE_SIGNATURE_SECRET)
-            .hashType(HashUtil.HashType.MD5).build();
-        
-        TextMessage message = new TextMessage(FROM_NUMBER,
+                .applicationId(VONAGE_APPLICATION_ID)
+                .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
+                .build();
+
+        /*
+        Establish a call for testing purposes.
+         */
+        final String ANSWER_URL = "https://nexmo-community.github.io/ncco-examples/long-tts.json";
+        CallEvent call = client.getVoiceClient().createCall(new Call(
                 TO_NUMBER,
-                "A text message sent using the Vonage SMS API"
-        );
+                VONAGE_NUMBER,
+                ANSWER_URL
+        ));
 
-        SmsSubmissionResponse response = client.getSmsClient().submitMessage(message);
+        /*
+        Give them time to answer.
+         */
+        Thread.sleep(10000);
 
-        if (response.getMessages().get(0).getStatus() == MessageStatus.OK) {
-            System.out.println("Message sent successfully.");
-        } else {
-            System.out.println("Message failed with error: " + response.getMessages().get(0).getErrorText());
-        }
+        TalkAction talkAction = TalkAction.builder("This is a transfer action using an inline NCCO.").build();
+        Ncco ncco = new Ncco(talkAction);
+        final String UUID = call.getUuid();
+        client.getVoiceClient().transferCall(UUID, ncco);
     }
 }

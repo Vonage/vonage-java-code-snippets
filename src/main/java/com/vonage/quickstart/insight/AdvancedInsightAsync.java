@@ -30,7 +30,7 @@ public class AdvancedInsightAsync {
     private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
     private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
     private static final String INSIGHT_NUMBER = envVar("INSIGHT_NUMBER");
-    private static final String ASYNC_CALLBACK_URL = envVar("ASYNC_CALLBACK_URL");
+
 
     public static void main(String... args) {
         VonageClient client = VonageClient.builder()
@@ -42,7 +42,7 @@ public class AdvancedInsightAsync {
 
         AdvancedInsightRequest request = AdvancedInsightRequest.builder(INSIGHT_NUMBER)
                 .async(true)
-                .callback(ASYNC_CALLBACK_URL)
+                .callback("https://demo.ngrok.io/webhooks/insight")
                 .build();
         insightClient.getAdvancedNumberInsight(request);
     }

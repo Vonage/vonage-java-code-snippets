@@ -32,7 +32,7 @@ import com.vonage.client.common.Webhook;
 import static com.vonage.quickstart.Util.envVar;
 
 public class CreateApplication {
-    private static final String NAME = "Code Snippets V2 Application";
+    private static final String APPLIACATION_NAME = "Code Snippets V2 Application";
     private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
     private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
 
@@ -53,7 +53,7 @@ public class CreateApplication {
 
         Application application = applicationClient.createApplication(
                 Application.builder()
-                        .name(NAME)
+                        .name(APPLIACATION_NAME)
                         .addCapability(messages)
                         .build()
         );
