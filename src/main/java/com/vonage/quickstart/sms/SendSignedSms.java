@@ -38,14 +38,14 @@ public class SendSignedSms {
         String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
         String VONAGE_SIGNATURE_SECRET = envVar("VONAGE_SIGNATURE_SECRET");
         String TO_NUMBER = envVar("TO_NUMBER");
-        String FROM_NUMBER = envVar("FROM_NUMBER");
+        String VONAGE_BRAND_NAME = envVar("VONAGE_BRAND_NAME");
 
         VonageClient client = VonageClient.builder()
             .apiKey(VONAGE_API_KEY)
             .signatureSecret(VONAGE_SIGNATURE_SECRET)
             .hashType(HashUtil.HashType.MD5).build();
         
-        TextMessage message = new TextMessage(FROM_NUMBER,
+        TextMessage message = new TextMessage(VONAGE_BRAND_NAME,
                 TO_NUMBER,
                 "A text message sent using the Vonage SMS API"
         );
