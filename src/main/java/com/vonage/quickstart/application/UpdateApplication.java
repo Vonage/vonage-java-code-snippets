@@ -31,7 +31,7 @@ import com.vonage.client.common.Webhook;
 import static com.vonage.quickstart.Util.envVar;
 
 public class UpdateApplication {
-    private static final String NAME = "An Updated Name for an Application";
+    private static final String APPLICATION_NAME =envVar("APPLICATION_NAME");
     private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
     private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
     private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
@@ -68,7 +68,7 @@ public class UpdateApplication {
 
         Application application = applicationClient.updateApplication(
                 Application.builder(existingApplication)
-                        .name(NAME)
+                        .name(APPLICATION_NAME)
                         .addCapability(messages)
                         .addCapability(voice)
                         .addCapability(rtc)
