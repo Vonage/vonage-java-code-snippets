@@ -32,7 +32,7 @@ import spark.Spark;
 
 public class ConnectInboundCall {
     public static void main(String[] args) {
-        final String RECIPIENT_NUMBER = envVar("RECIPIENT_NUMBER");
+        final String YOUR_SECOND_NUMBER = envVar("YOUR_SECOND_NUMBER");
         final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
 
         /*
@@ -40,7 +40,7 @@ public class ConnectInboundCall {
          */
         Route answerRoute = (req, res) -> {
             ConnectAction connect = ConnectAction.builder()
-                    .endpoint(PhoneEndpoint.builder(RECIPIENT_NUMBER).build())
+                    .endpoint(PhoneEndpoint.builder(YOUR_SECOND_NUMBER).build())
                     .from(VONAGE_NUMBER)
                     .build();
 

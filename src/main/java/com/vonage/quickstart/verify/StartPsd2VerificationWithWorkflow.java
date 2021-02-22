@@ -36,14 +36,14 @@ public class StartPsd2VerificationWithWorkflow {
         String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
         String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
         String RECIPIENT_NUMBER = envVar("RECIPIENT_NUMBER");
-        String PAYEE = envVar("PAYEE");
+        String PAYEE_NAME = envVar("PAYEE_NAME");
         String AMOUNT = envVar("AMOUNT");
 
 
 
         VonageClient client = VonageClient.builder().apiKey(VONAGE_API_KEY).apiSecret(VONAGE_API_SECRET).build();
         VerifyResponse response = client.getVerifyClient()
-                .psd2Verify(RECIPIENT_NUMBER, Double.parseDouble(AMOUNT), PAYEE, Psd2Request.Workflow.SMS_SMS);
+                .psd2Verify(RECIPIENT_NUMBER, Double.parseDouble(AMOUNT), PAYEE_NAME, Psd2Request.Workflow.SMS_SMS);
 
         if (response.getStatus() == VerifyStatus.OK) {
             System.out.printf("Request ID: %s", response.getRequestId());

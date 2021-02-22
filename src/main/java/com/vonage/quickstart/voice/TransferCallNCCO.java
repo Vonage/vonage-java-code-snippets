@@ -24,14 +24,15 @@ package com.vonage.quickstart.voice;
 import com.vonage.client.VonageClient;
 import com.vonage.client.voice.Call;
 import com.vonage.client.voice.CallEvent;
-import com.vonage.client.voice.TextToSpeechLanguage;
-import com.vonage.client.voice.VoiceName;
+import com.vonage.client.voice.ncco.Ncco;
+import com.vonage.client.voice.ncco.TalkAction;
 
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
+public class TransferCallNCCO {
 
-public class SendTalkToCall {
-    public static void main(String[] args) throws Exception {
+    public static void main(String... args) throws Exception {
+
         configureLogging();
 
         final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
@@ -44,15 +45,24 @@ public class SendTalkToCall {
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
-        final String ANSWER_URL = "https://nexmo-community.github.io/ncco-examples/silent-loop.json";
-        CallEvent call = client
-                .getVoiceClient()
-                .createCall(new Call(TO_NUMBER, VONAGE_NUMBER, ANSWER_URL));
+        /*
+        Establish a call for testing purposes.
+         */
+        final String ANSWER_URL = "https://nexmo-community.github.io/ncco-examples/long-tts.json";
+        CallEvent call = client.getVoiceClient().createCall(new Call(
+                TO_NUMBER,
+                VONAGE_NUMBER,
+                ANSWER_URL
+        ));
 
-        Thread.sleep(5000);
+        /*
+        Give them time to answer.
+         */
+        Thread.sleep(10000);
 
+        TalkAction talkAction = TalkAction.builder("This is a transfer action using an inline NCCO.").build();
+        Ncco ncco = new Ncco(talkAction);
         final String UUID = call.getUuid();
-        final String TEXT = "Hello World! Would you like to know more? I bet you would.";
-        client.getVoiceClient().startTalk(UUID,TEXT, TextToSpeechLanguage.AMERICAN_ENGLISH);
+        client.getVoiceClient().transferCall(UUID, ncco);
     }
 }
