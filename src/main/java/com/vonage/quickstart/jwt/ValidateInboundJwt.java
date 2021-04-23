@@ -41,7 +41,7 @@ public class ValidateInboundJwt {
                                 .getBytes(StandardCharsets.UTF_8))
                                 .build();
                 String token = req.headers("Authorization").substring(7);
-                parser.parse(token);
+                parser.parseClaimsJws(token);
                 res.status(204);
             }
             catch (Exception ex){
