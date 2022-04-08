@@ -18,11 +18,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
     implementation 'com.vonage:client:[6.1.0,7.0.0)'
+    implementation 'com.nexmo:jwt:[1.0.1,2.0.0)'
     implementation "com.sparkjava:spark-core:2.6.0"
     implementation 'javax.xml.bind:jaxb-api:2.3.0'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.9'
-    compile 'io.jsonwebtoken:jjwt-api:0.11.2'
-    runtime 'io.jsonwebtoken:jjwt-impl:0.11.2',
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2',
             'io.jsonwebtoken:jjwt-jackson:0.11.2'
 }
 
@@ -30,5 +31,11 @@ task fatJar(type: Jar, dependsOn:configurations.runtimeClasspath) {
     archiveBaseName = project.name + '-with-dependencies'
     from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 assemble.dependsOn fatJar
+
+sourceCompatibility = "11"
+targetCompatibility = "11"
+
+
