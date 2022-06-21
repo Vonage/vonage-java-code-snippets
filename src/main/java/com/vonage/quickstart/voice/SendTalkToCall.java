@@ -25,7 +25,6 @@ import com.vonage.client.VonageClient;
 import com.vonage.client.voice.Call;
 import com.vonage.client.voice.CallEvent;
 import com.vonage.client.voice.TextToSpeechLanguage;
-import com.vonage.client.voice.VoiceName;
 
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;

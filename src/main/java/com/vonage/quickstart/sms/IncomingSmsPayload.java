@@ -79,7 +79,7 @@ public class IncomingSmsPayload {
         return messageTimestamp;
     }
 
-    private static ObjectMapper objectMapper = new ObjectMapper();
+    private static final ObjectMapper objectMapper = new ObjectMapper();
 
     public static IncomingSmsPayload fromJson(byte[] bytes) throws IOException {
         return objectMapper.readValue(bytes, IncomingSmsPayload.class);

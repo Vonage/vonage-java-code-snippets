@@ -45,7 +45,7 @@ public class ValidateInboundJwt {
                 res.status(204);
             }
             catch (Exception ex){
-                System.out.println(ex.toString());
+                System.out.println(ex);
                 res.status(401);
             }
             return "";

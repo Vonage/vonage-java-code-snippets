@@ -21,7 +21,6 @@
  */
 package com.vonage.quickstart.sms;
 
-import com.vonage.client.incoming.MessageEvent;
 import com.vonage.client.auth.RequestSigning;
 import com.vonage.client.auth.hashutils.HashUtil;
 
