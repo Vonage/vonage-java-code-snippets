@@ -53,7 +53,7 @@ public class NumberLifecycle {
             client.buyNumber(country, availableNumber.getMsisdn());
             System.out.println("❤️ Bought number.");
 
-            Thread.currentThread().sleep(1000);
+            Thread.sleep(1000);
             ListNumbersFilter filter = new ListNumbersFilter();
             filter.setPattern(availableNumber.getMsisdn());
             filter.setSearchPattern(SearchPattern.STARTS_WITH);

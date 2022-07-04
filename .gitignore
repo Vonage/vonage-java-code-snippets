@@ -33,5 +33,5 @@ build
 
 *.key
 
-.env
+*.env
 .DS_Store

@@ -93,7 +93,7 @@ public class IncomingDlrPayload {
                 '}';
     }
 
-    private static ObjectMapper objectMapper = new ObjectMapper();
+    private static final ObjectMapper objectMapper = new ObjectMapper();
 
     public static IncomingDlrPayload fromJson(byte[] bytes) throws IOException {
         return objectMapper.readValue(bytes, IncomingDlrPayload.class);
