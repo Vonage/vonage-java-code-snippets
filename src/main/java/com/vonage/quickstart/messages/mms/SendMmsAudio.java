@@ -22,7 +22,9 @@
 package com.vonage.quickstart.messages.mms;
 
 import com.vonage.client.VonageClient;
+import com.vonage.client.messages.MessageResponse;
 import com.vonage.client.messages.MessageResponseException;
+import com.vonage.client.messages.MessagesClient;
 import com.vonage.client.messages.mms.MmsAudioRequest;
 
 import static com.vonage.quickstart.Util.configureLogging;
@@ -43,6 +45,8 @@ public class SendMmsAudio {
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
+		MessagesClient messagesClient = client.getMessagesClient();
+
 		var message = MmsAudioRequest.builder()
 				.from(FROM_NUMBER).to(TO_NUMBER)
 				.url("https://file-examples.com/wp-content/uploads/2017/11/file_example_WAV_1MG.wav")
@@ -50,7 +54,7 @@ public class SendMmsAudio {
 				.build();
 
 		try {
-			var response = client.getMessagesClient().sendMessage(message);
+			MessageResponse response = messagesClient.sendMessage(message);
 			System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
 		}
 		catch (MessageResponseException mrx) {
@@ -58,14 +62,13 @@ public class SendMmsAudio {
 				default: throw mrx;
 				case 401: // Bad credentials
 					throw new IllegalStateException(mrx.getTitle(), mrx);
+				case 422: // Invalid
+					throw new IllegalStateException(mrx.getDetail(), mrx);
 				case 402: // Low balance
 					client.getAccountClient().topUp("transactionID");
 					break;
 				case 429: // Rate limit
 					Thread.sleep(12_000);
-					break;
-				case 422: // Invalid
-					System.out.println(mrx.getDetail());
 					break;
 			}
 		}

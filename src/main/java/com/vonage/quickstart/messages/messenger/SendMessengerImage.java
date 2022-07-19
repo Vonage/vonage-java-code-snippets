@@ -22,7 +22,9 @@
 package com.vonage.quickstart.messages.messenger;
 
 import com.vonage.client.VonageClient;
+import com.vonage.client.messages.MessageResponse;
 import com.vonage.client.messages.MessageResponseException;
+import com.vonage.client.messages.MessagesClient;
 import com.vonage.client.messages.messenger.MessengerImageRequest;
 
 import static com.vonage.quickstart.Util.configureLogging;
@@ -43,29 +45,29 @@ public class SendMessengerImage {
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
+		MessagesClient messagesClient = client.getMessagesClient();
+
 		var message = MessengerImageRequest.builder()
 				.from(FROM_ID).to(TO_ID)
 				.url("https://file-examples.com/wp-content/uploads/2017/10/file_example_JPG_500kB.jpg")
 				.build();
 
 		try {
-			var response = client.getMessagesClient().sendMessage(message);
+			MessageResponse response = messagesClient.sendMessage(message);
 			System.out.println("Message sent successfully. ID: " + response.getMessageUuid());
 		}
 		catch (MessageResponseException mrx) {
 			switch (mrx.getStatusCode()) {
-				default:
-					throw mrx;
+				default: throw mrx;	
 				case 401: // Bad credentials
 					throw new IllegalStateException(mrx.getTitle(), mrx);
+				case 422: // Invalid
+					throw new IllegalStateException(mrx.getDetail(), mrx);
 				case 402: // Low balance
 					client.getAccountClient().topUp("transactionID");
 					break;
 				case 429: // Rate limit
 					Thread.sleep(12_000);
-					break;
-				case 422: // Invalid
-					System.out.println(mrx.getDetail());
 					break;
 			}
 		}

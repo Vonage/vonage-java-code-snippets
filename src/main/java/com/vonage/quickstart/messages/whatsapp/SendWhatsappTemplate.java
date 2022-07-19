@@ -22,7 +22,9 @@
 package com.vonage.quickstart.messages.whatsapp;
 
 import com.vonage.client.VonageClient;
+import com.vonage.client.messages.MessageResponse;
 import com.vonage.client.messages.MessageResponseException;
+import com.vonage.client.messages.MessagesClient;
 import com.vonage.client.messages.whatsapp.Policy;
 import com.vonage.client.messages.whatsapp.WhatsappTemplateRequest;
 
@@ -49,6 +51,8 @@ public class SendWhatsappTemplate {
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
+		MessagesClient messagesClient = client.getMessagesClient();
+
 		var message = WhatsappTemplateRequest.builder()
 				.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
 				.policy(Policy.DETERMINISTIC).locale("en-GB")
@@ -61,7 +65,7 @@ public class SendWhatsappTemplate {
 				.build();
 
 		try {
-			var response = client.getMessagesClient().sendMessage(message);
+			MessageResponse response = messagesClient.sendMessage(message);
 			System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
 		}
 		catch (MessageResponseException mrx) {
@@ -69,14 +73,13 @@ public class SendWhatsappTemplate {
 				default: throw mrx;
 				case 401: // Bad credentials
 					throw new IllegalStateException(mrx.getTitle(), mrx);
+				case 422: // Invalid
+					throw new IllegalStateException(mrx.getDetail(), mrx);
 				case 402: // Low balance
 					client.getAccountClient().topUp("transactionID");
 					break;
 				case 429: // Rate limit
 					Thread.sleep(12_000);
-					break;
-				case 422: // Invalid
-					System.out.println(mrx.getDetail());
 					break;
 			}
 		}
