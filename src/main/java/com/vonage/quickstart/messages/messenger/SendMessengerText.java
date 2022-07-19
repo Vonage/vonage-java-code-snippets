@@ -22,7 +22,9 @@
 package com.vonage.quickstart.messages.messenger;
 
 import com.vonage.client.VonageClient;
+import com.vonage.client.messages.MessageResponse;
 import com.vonage.client.messages.MessageResponseException;
+import com.vonage.client.messages.MessagesClient;
 import com.vonage.client.messages.messenger.Category;
 import com.vonage.client.messages.messenger.MessengerTextRequest;
 import com.vonage.client.messages.messenger.Tag;
@@ -45,6 +47,8 @@ public class SendMessengerText {
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
+		MessagesClient messagesClient = client.getMessagesClient();
+
 		var message = MessengerTextRequest.builder()
 				.from(FROM_ID).to(TO_ID)
 				.text("Reminder of your event, which starts in 30 minutes.")
@@ -53,23 +57,21 @@ public class SendMessengerText {
 				.build();
 
 		try {
-			var response = client.getMessagesClient().sendMessage(message);
+			MessageResponse response = messagesClient.sendMessage(message);
 			System.out.println("Message sent successfully. ID: " + response.getMessageUuid());
 		}
 		catch (MessageResponseException mrx) {
 			switch (mrx.getStatusCode()) {
-				default:
-					throw mrx;
+				default: throw mrx;	
 				case 401: // Bad credentials
 					throw new IllegalStateException(mrx.getTitle(), mrx);
+				case 422: // Invalid
+					throw new IllegalStateException(mrx.getDetail(), mrx);
 				case 402: // Low balance
 					client.getAccountClient().topUp("transactionID");
 					break;
 				case 429: // Rate limit
 					Thread.sleep(12_000);
-					break;
-				case 422: // Invalid
-					System.out.println(mrx.getDetail());
 					break;
 			}
 		}
