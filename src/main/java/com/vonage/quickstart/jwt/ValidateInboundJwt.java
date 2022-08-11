@@ -32,10 +32,10 @@ import static com.vonage.quickstart.Util.envVar;
 
 public class ValidateInboundJwt {
     public static void main(String[] args) throws Exception {
-        Route validateJwt = (req, res)->{
+        Route validateJwt = (req, res)-> {
             String signatureSecret = envVar("VONAGE_SIGNATURE_SECRET");
 
-            try{
+            try {
                 JwtParser parser = Jwts.parserBuilder()
                                 .setSigningKey(signatureSecret
                                 .getBytes(StandardCharsets.UTF_8))
@@ -44,8 +44,8 @@ public class ValidateInboundJwt {
                 parser.parseClaimsJws(token);
                 res.status(204);
             }
-            catch (Exception ex){
-                System.out.println(ex);
+            catch (Exception ex) {
+                ex.printStackTrace();
                 res.status(401);
             }
             return "";
