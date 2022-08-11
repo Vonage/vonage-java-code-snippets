@@ -25,6 +25,7 @@ import com.vonage.client.VonageClient;
 import com.vonage.client.messages.MessageResponse;
 import com.vonage.client.messages.MessageResponseException;
 import com.vonage.client.messages.MessagesClient;
+import com.vonage.client.messages.whatsapp.Locale;
 import com.vonage.client.messages.whatsapp.Policy;
 import com.vonage.client.messages.whatsapp.WhatsappTemplateRequest;
 
@@ -55,12 +56,12 @@ public class SendWhatsappTemplate {
 
 		var message = WhatsappTemplateRequest.builder()
 				.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
-				.policy(Policy.DETERMINISTIC).locale("en-GB")
+				.policy(Policy.DETERMINISTIC).locale(Locale.ENGLISH_UK)
 				.name(WHATSAPP_TEMPLATE_NAMESPACE+':'+WHATSAPP_TEMPLATE_NAME)
 				.parameters(List.of(
-					Map.of("default", "Vonage Verification"),
-					Map.of("default", "64873"),
-					Map.of("default", "10")
+					"Vonage Verification",
+					"64873",
+					"10"
 				))
 				.build();
 

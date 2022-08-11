@@ -39,7 +39,7 @@ public class AdvancedInsightWithCnam {
 
         VonageClient client = VonageClient.builder().apiKey(VONAGE_API_KEY).apiSecret(VONAGE_API_SECRET).build();
 
-        AdvancedInsightRequest request = new AdvancedInsightRequest.Builder(INSIGHT_NUMBER).cnam(true).build();
+        AdvancedInsightRequest request = AdvancedInsightRequest.builder(INSIGHT_NUMBER).cnam(true).build();
 
         AdvancedInsightResponse response = client.getInsightClient().getAdvancedNumberInsight(request);
 

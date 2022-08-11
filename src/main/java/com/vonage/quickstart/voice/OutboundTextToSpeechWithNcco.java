@@ -46,6 +46,6 @@ public class OutboundTextToSpeechWithNcco {
 
         Ncco ncco = new Ncco(TalkAction.builder("This is a text to speech call from Vonage").build());
 
-        client.getVoiceClient().createCall(new Call(TO_NUMBER, VONAGE_NUMBER, ncco));
+        client.getVoiceClient().createCall(new Call(TO_NUMBER, VONAGE_NUMBER, ncco.getActions()));
     }
 }

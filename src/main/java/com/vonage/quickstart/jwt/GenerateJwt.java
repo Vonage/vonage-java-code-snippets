@@ -21,7 +21,7 @@
  */
 package com.vonage.quickstart.jwt;
 
-import com.nexmo.jwt.Jwt;
+import com.vonage.jwt.Jwt;
 import java.nio.file.Paths;
 import java.time.ZonedDateTime;
 import java.util.Map;
