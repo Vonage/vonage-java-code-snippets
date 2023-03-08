@@ -19,36 +19,55 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.messages.sandbox;
+package com.vonage.quickstart.messages.viber;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.MessageResponse;
 import com.vonage.client.messages.MessageResponseException;
 import com.vonage.client.messages.MessagesClient;
-import com.vonage.client.messages.whatsapp.WhatsappCustomRequest;
-import com.vonage.client.messages.whatsapp.WhatsappLocationRequest;
+import com.vonage.client.messages.viber.ViberFileRequest;
+import com.vonage.client.messages.viber.ViberVideoRequest;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
-import java.util.Map;
 
-public class SendWhatsappLocation {
+public class SendViberFile {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
 
-		System.out.println(VonageClient.builder()
-				.apiKey(envVar("VONAGE_API_KEY"))
-				.apiSecret(envVar("VONAGE_API_SECRET"))
-				.build()
-				.getMessagesClient()
-				.useSandboxEndpoint()
-				.sendMessage(WhatsappLocationRequest.builder()
-						.longitude(-122.425332)
-						.latitude(37.758056)
-						.name("Facebook HQ")
-						.address("1 Hacker Way, Menlo Park, CA 94025")
-					.build()
-				).getMessageUuid()
-		);
+		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
+		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
+		String FROM_ID = envVar("FROM_ID");
+		String TO_NUMBER = envVar("TO_NUMBER");
+
+		VonageClient client = VonageClient.builder()
+				.applicationId(VONAGE_APPLICATION_ID)
+				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
+				.build();
+
+		MessagesClient messagesClient = client.getMessagesClient();
+
+		var message = ViberFileRequest.builder()
+				.from(FROM_ID).to(TO_NUMBER)
+				.url("https://file-examples.com/storage/fee788409562ada83b58ed5/2017/10/file-sample_150kB.pdf")
+				.build();
+
+		try {
+			MessageResponse response = messagesClient.sendMessage(message);
+			System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
+		}
+		catch (MessageResponseException mrx) {
+			switch (mrx.getStatusCode()) {
+				default: throw mrx;
+				case 401: // Bad credentials
+					throw new IllegalStateException(mrx.getTitle(), mrx);
+				case 402: // Low balance
+					client.getAccountClient().topUp("transactionID");
+					break;
+				case 429: // Rate limit
+					Thread.sleep(12_000);
+					break;
+			}
+		}
 	}
 }

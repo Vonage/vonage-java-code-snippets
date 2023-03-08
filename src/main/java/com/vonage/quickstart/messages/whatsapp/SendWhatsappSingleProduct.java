@@ -25,15 +25,12 @@ import com.vonage.client.VonageClient;
 import com.vonage.client.messages.MessageResponse;
 import com.vonage.client.messages.MessageResponseException;
 import com.vonage.client.messages.MessagesClient;
-import com.vonage.client.messages.whatsapp.WhatsappCustomRequest;
-
-import java.util.Map;
-
 import com.vonage.client.messages.whatsapp.WhatsappLocationRequest;
+import com.vonage.client.messages.whatsapp.WhatsappSingleProductRequest;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
-public class SendWhatsappLocation {
+public class SendWhatsappSingleProduct {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
@@ -42,6 +39,8 @@ public class SendWhatsappLocation {
 		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
 		String VONAGE_WHATSAPP_NUMBER = envVar("VONAGE_WHATSAPP_NUMBER");
 		String TO_NUMBER = envVar("TO_NUMBER");
+		String CATALOG_ID = envVar("CATALOG_ID");
+		String PRODUCT_ID = envVar("PRODUCT_ID");
 
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
@@ -50,11 +49,12 @@ public class SendWhatsappLocation {
 
 		MessagesClient messagesClient = client.getMessagesClient();
 
-		var message = WhatsappLocationRequest.builder()
+		var message = WhatsappSingleProductRequest.builder()
 				.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
-				.name("Facebook HQ")
-				.address("1 Hacker Way, Menlo Park, CA 94025")
-				.longitude(-122.425332).latitude(37.758056)
+				.catalogId(CATALOG_ID)
+				.productRetailerId(PRODUCT_ID)
+				.bodyText("Check out this cool product")
+				.footerText("Sale now on!")
 				.build();
 
 		try {

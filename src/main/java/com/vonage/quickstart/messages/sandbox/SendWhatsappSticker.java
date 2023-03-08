@@ -22,16 +22,12 @@
 package com.vonage.quickstart.messages.sandbox;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.messages.MessageResponse;
-import com.vonage.client.messages.MessageResponseException;
-import com.vonage.client.messages.MessagesClient;
-import com.vonage.client.messages.whatsapp.WhatsappCustomRequest;
-import com.vonage.client.messages.whatsapp.WhatsappLocationRequest;
+import com.vonage.client.messages.whatsapp.WhatsappStickerRequest;
+import com.vonage.client.messages.whatsapp.WhatsappTextRequest;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
-import java.util.Map;
 
-public class SendWhatsappLocation {
+public class SendWhatsappSticker {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
@@ -42,11 +38,10 @@ public class SendWhatsappLocation {
 				.build()
 				.getMessagesClient()
 				.useSandboxEndpoint()
-				.sendMessage(WhatsappLocationRequest.builder()
-						.longitude(-122.425332)
-						.latitude(37.758056)
-						.name("Facebook HQ")
-						.address("1 Hacker Way, Menlo Park, CA 94025")
+				.sendMessage(WhatsappStickerRequest.builder()
+					.from(envVar("VONAGE_WHATSAPP_NUMBER"))
+					.to(envVar("TO_NUMBER"))
+					.url("https://file-examples.com/storage/fe0b804ac5640668798b8d0/2020/03/file_example_WEBP_250kB.webp")
 					.build()
 				).getMessageUuid()
 		);
