@@ -49,7 +49,7 @@ public class SendWhatsappStickerUrl {
 
 		var message = WhatsappStickerRequest.builder()
 				.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
-				.id(STICKER_URL)
+				.url(STICKER_URL)
 				.build();
 
 		try {
