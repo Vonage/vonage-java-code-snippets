@@ -25,15 +25,13 @@ import com.vonage.client.VonageClient;
 import com.vonage.client.messages.MessageResponse;
 import com.vonage.client.messages.MessageResponseException;
 import com.vonage.client.messages.MessagesClient;
-import com.vonage.client.messages.whatsapp.WhatsappCustomRequest;
-
-import java.util.Map;
-
-import com.vonage.client.messages.whatsapp.WhatsappLocationRequest;
+import com.vonage.client.messages.whatsapp.WhatsappMultiProductRequest;
+import com.vonage.client.messages.whatsapp.WhatsappSingleProductRequest;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
+import java.util.Arrays;
 
-public class SendWhatsappLocation {
+public class SendWhatsappMultiProduct {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
@@ -50,11 +48,14 @@ public class SendWhatsappLocation {
 
 		MessagesClient messagesClient = client.getMessagesClient();
 
-		var message = WhatsappLocationRequest.builder()
+		var message = WhatsappMultiProductRequest.builder()
 				.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
-				.name("Facebook HQ")
-				.address("1 Hacker Way, Menlo Park, CA 94025")
-				.longitude(-122.425332).latitude(37.758056)
+				.catalogId("1166260820787549")
+				.headerText("Our top products")
+				.bodyText("Check out these great products")
+				.addProductsSection("Cool products", Arrays.asList("ch76nhzdeq", "r07qei73l7"))
+				.addProductsSection("Awesome product", "unepvzvsfp")
+				.footerText("Sale now on!")
 				.build();
 
 		try {

@@ -19,36 +19,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.messages.sandbox;
+package com.vonage.quickstart.messages;
 
-import com.vonage.client.VonageClient;
-import com.vonage.client.messages.MessageResponse;
-import com.vonage.client.messages.MessageResponseException;
-import com.vonage.client.messages.MessagesClient;
-import com.vonage.client.messages.whatsapp.WhatsappCustomRequest;
-import com.vonage.client.messages.whatsapp.WhatsappLocationRequest;
+import com.vonage.client.messages.InboundMessage;
 import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
-import java.util.Map;
+import spark.Route;
+import spark.Spark;
 
-public class SendWhatsappLocation {
+public class IncomingMessage {
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		configureLogging();
 
-		System.out.println(VonageClient.builder()
-				.apiKey(envVar("VONAGE_API_KEY"))
-				.apiSecret(envVar("VONAGE_API_SECRET"))
-				.build()
-				.getMessagesClient()
-				.useSandboxEndpoint()
-				.sendMessage(WhatsappLocationRequest.builder()
-						.longitude(-122.425332)
-						.latitude(37.758056)
-						.name("Facebook HQ")
-						.address("1 Hacker Way, Menlo Park, CA 94025")
-					.build()
-				).getMessageUuid()
-		);
+		Route inboundRoute = (request, response) -> {
+			InboundMessage messageDetails = InboundMessage.fromJson(request.body());
+			System.out.println(
+					"Message ID "+messageDetails.getMessageUuid()+" of type " +
+					messageDetails.getMessageType()+" was sent from " +
+					messageDetails.getFrom()+" to "+messageDetails.getTo()+" via "+
+					messageDetails.getChannel()+" at "+messageDetails.getTimestamp()
+			);
+			return "OK";
+		};
+
+		Spark.port(3000);
+		Spark.post("/webhooks/inbound-message", inboundRoute);
 	}
 }

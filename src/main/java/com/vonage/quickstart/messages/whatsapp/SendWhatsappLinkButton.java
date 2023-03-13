@@ -25,15 +25,16 @@ import com.vonage.client.VonageClient;
 import com.vonage.client.messages.MessageResponse;
 import com.vonage.client.messages.MessageResponseException;
 import com.vonage.client.messages.MessagesClient;
+import com.vonage.client.messages.whatsapp.Locale;
+import com.vonage.client.messages.whatsapp.Policy;
 import com.vonage.client.messages.whatsapp.WhatsappCustomRequest;
-
-import java.util.Map;
-
-import com.vonage.client.messages.whatsapp.WhatsappLocationRequest;
+import com.vonage.client.messages.whatsapp.WhatsappTemplateRequest;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
+import java.util.List;
+import java.util.Map;
 
-public class SendWhatsappLocation {
+public class SendWhatsappLinkButton {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
@@ -42,6 +43,9 @@ public class SendWhatsappLocation {
 		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
 		String VONAGE_WHATSAPP_NUMBER = envVar("VONAGE_WHATSAPP_NUMBER");
 		String TO_NUMBER = envVar("TO_NUMBER");
+		String WHATSAPP_TEMPLATE_NAMESPACE = envVar("WHATSAPP_TEMPLATE_NAMESPACE");
+		String WHATSAPP_TEMPLATE_NAME = envVar("WHATSAPP_TEMPLATE_NAMES");
+		String HEADER_IMAGE_URL = envVar("HEADER_IMAGE_URL");
 
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
@@ -50,11 +54,64 @@ public class SendWhatsappLocation {
 
 		MessagesClient messagesClient = client.getMessagesClient();
 
-		var message = WhatsappLocationRequest.builder()
+		var message = WhatsappCustomRequest.builder()
 				.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
-				.name("Facebook HQ")
-				.address("1 Hacker Way, Menlo Park, CA 94025")
-				.longitude(-122.425332).latitude(37.758056)
+				.custom(Map.of(
+					"type", "template",
+					"template", Map.of(
+						"namespace", WHATSAPP_TEMPLATE_NAMESPACE,
+						"name", WHATSAPP_TEMPLATE_NAME,
+						"language", Map.of(
+							"code", Locale.ENGLISH,
+							"policy", Policy.DETERMINISTIC
+						),
+						"components", List.of(
+							Map.of(
+								"type", "header",
+								"parameters", List.of(
+									Map.of(
+										"type", "image",
+										"image", Map.of(
+											"link", HEADER_IMAGE_URL
+										)
+									)
+								)
+							),
+							Map.of(
+								"type", "body",
+								"parameters", List.of(
+									Map.of(
+										"type", "text",
+										"text", "Anand"
+									),
+									Map.of(
+										"type", "text",
+										"text", "Quest"
+									),
+									Map.of(
+										"type", "text",
+										"text", "113-0921387"
+									),
+									Map.of(
+										"type", "text",
+										"text", "23rd Nov 2019"
+									)
+								)
+							),
+							Map.of(
+								"type", "button",
+								"index", "0",
+								"sub_type", "url",
+								"parameters", List.of(
+									Map.of(
+										"type", "text",
+										"text", "1Z999AA10123456784"
+									)
+								)
+							)
+						)
+					)
+				))
 				.build();
 
 		try {
