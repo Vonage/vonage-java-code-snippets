@@ -26,6 +26,7 @@ import com.vonage.client.messages.MessageResponse;
 import com.vonage.client.messages.MessageResponseException;
 import com.vonage.client.messages.MessagesClient;
 import com.vonage.client.messages.whatsapp.WhatsappImageRequest;
+import com.vonage.client.messages.whatsapp.WhatsappLocationRequest;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
@@ -34,21 +35,19 @@ public class SendWhatsappImage {
 	public static void main(String[] args) throws Exception {
 		configureLogging();
 
-		VonageClient client = VonageClient.builder()
+		System.out.println(VonageClient.builder()
 				.apiKey(envVar("VONAGE_API_KEY"))
 				.apiSecret(envVar("VONAGE_API_SECRET"))
-				.build();
-
-		MessagesClient messagesClient = client.getMessagesClient().useSandboxEndpoint();
-
-		var message = WhatsappImageRequest.builder()
-				.from(envVar("VONAGE_WHATSAPP_NUMBER"))
-				.to(envVar("TO_NUMBER"))
-				.url("https://lastfm.freetls.fastly.net/i/u/770x0/a21ed806c65618ea1e7a6c8b4abf0402.jpg")
-				.caption("Fluttershy")
-				.build();
-
-		MessageResponse response = messagesClient.sendMessage(message);
-		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
+				.build()
+				.getMessagesClient()
+				.useSandboxEndpoint()
+				.sendMessage(WhatsappImageRequest.builder()
+						.from(envVar("VONAGE_WHATSAPP_NUMBER"))
+						.to(envVar("TO_NUMBER"))
+						.url("https://lastfm.freetls.fastly.net/i/u/770x0/a21ed806c65618ea1e7a6c8b4abf0402.jpg")
+						.caption("Fluttershy")
+						.build()
+				).getMessageUuid()
+		);
 	}
 }
