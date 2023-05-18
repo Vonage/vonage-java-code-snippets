@@ -1,5 +1,5 @@
 /*
- * Copyright  2022 Vonage
+ * Copyright  2023 Vonage
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -19,56 +19,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.messages.sms;
+package com.vonage.quickstart.verify2;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.messages.MessageResponse;
-import com.vonage.client.messages.MessageResponseException;
-import com.vonage.client.messages.MessagesClient;
-import com.vonage.client.messages.sms.*;
+import com.vonage.client.verify2.EmailWorkflow;
+import com.vonage.client.verify2.VerificationRequest;
+import com.vonage.client.verify2.VerifyResponseException;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
+import java.util.UUID;
 
-public class SendSmsText {
+public class CancelVerification {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
 
 		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
 		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		String FROM_NUMBER = envVar("FROM_NUMBER");
-		String TO_NUMBER = envVar("TO_NUMBER");
+		UUID REQUEST_ID = UUID.fromString(envVar("USER_CODE"));
 
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
-		MessagesClient messagesClient = client.getMessagesClient();
-
-		var message = SmsTextRequest.builder()
-				.from(FROM_NUMBER).to(TO_NUMBER)
-				.text("Hello from Vonage!")
-				.build();
-
-		try {
-			MessageResponse response = messagesClient.sendMessage(message);
-			System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
-		}
-		catch (MessageResponseException mrx) {
-			switch (mrx.getStatusCode()) {
-				default: throw mrx;
-				case 401: // Bad credentials
-					throw new IllegalStateException(mrx.getTitle(), mrx);
-				case 422: // Invalid
-					throw new IllegalStateException(mrx.getDetail(), mrx);
-				case 402: // Low balance
-					client.getAccountClient().topUp("transactionID");
-					break;
-				case 429: // Rate limit
-					Thread.sleep(12_000);
-					break;
-			}
-		}
+		client.getVerify2Client().cancelVerification(REQUEST_ID);
 	}
 }
