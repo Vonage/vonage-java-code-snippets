@@ -29,5 +29,5 @@ task fatJar(type: Jar, dependsOn:configurations.runtimeClasspath) {
 }
 assemble.dependsOn fatJar
 
-sourceCompatibility = "11"
-targetCompatibility = "11"
+sourceCompatibility = "17"
+targetCompatibility = "17"
