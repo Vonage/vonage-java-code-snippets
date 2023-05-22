@@ -37,8 +37,8 @@ public class SendWhatsappContact {
 		configureLogging();
 
 		System.out.println(VonageClient.builder()
-				.apiKey(envVar("VONAGE_API_KEY"))
-				.apiSecret(envVar("VONAGE_API_SECRET"))
+				.applicationId(envVar("VONAGE_APPLICATION_ID"))
+				.privateKeyPath(envVar("VONAGE_PRIVATE_KEY_PATH"))
 				.build()
 				.getMessagesClient()
 				.useSandboxEndpoint()

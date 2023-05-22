@@ -14,11 +14,11 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'junit:junit:4.13.2'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
-    implementation 'com.vonage:client:7.2.0'
+    implementation 'com.vonage:client:7.4.0'
     implementation 'com.vonage:jwt:1.0.2'
     implementation 'com.sparkjava:spark-core:2.9.4'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.0'
+    testImplementation 'junit:junit:4.13.2'
 }
 
 task fatJar(type: Jar, dependsOn:configurations.runtimeClasspath) {
@@ -29,5 +29,5 @@ task fatJar(type: Jar, dependsOn:configurations.runtimeClasspath) {
 }
 assemble.dependsOn fatJar
 
-sourceCompatibility = "11"
-targetCompatibility = "11"
+sourceCompatibility = "17"
+targetCompatibility = "17"

@@ -22,14 +22,12 @@
 package com.vonage.quickstart.messages.sandbox;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.messages.MessageResponse;
-import com.vonage.client.messages.MessageResponseException;
-import com.vonage.client.messages.MessagesClient;
-import com.vonage.client.messages.whatsapp.WhatsappTextRequest;
+import com.vonage.client.messages.whatsapp.WhatsappFileRequest;
+import com.vonage.client.messages.whatsapp.WhatsappVideoRequest;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
-public class SendWhatsappText {
+public class SendWhatsappFile {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
@@ -40,10 +38,11 @@ public class SendWhatsappText {
 				.build()
 				.getMessagesClient()
 				.useSandboxEndpoint()
-				.sendMessage(WhatsappTextRequest.builder()
+				.sendMessage(WhatsappFileRequest.builder()
 					.from(envVar("VONAGE_WHATSAPP_NUMBER"))
 					.to(envVar("TO_NUMBER"))
-					.text("Hello from Vonage, "+System.getenv("NAME"))
+					.url("https://file-examples.com/storage/fee788409562ada83b58ed5/2017/10/file-sample_150kB.pdf")
+					.caption("Accompanying message (optional)")
 					.build()
 				).getMessageUuid()
 		);

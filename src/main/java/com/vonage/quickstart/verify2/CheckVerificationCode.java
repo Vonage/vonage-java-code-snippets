@@ -1,5 +1,5 @@
 /*
- * Copyright  2022 Vonage
+ * Copyright  2023 Vonage
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -19,33 +19,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.messages.sandbox;
+package com.vonage.quickstart.verify2;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.messages.MessageResponse;
-import com.vonage.client.messages.MessageResponseException;
-import com.vonage.client.messages.MessagesClient;
-import com.vonage.client.messages.whatsapp.WhatsappTextRequest;
+import com.vonage.client.verify2.*;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
+import java.util.UUID;
 
-public class SendWhatsappText {
+public class CheckVerificationCode {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
 
-		System.out.println(VonageClient.builder()
-				.applicationId(envVar("VONAGE_APPLICATION_ID"))
-				.privateKeyPath(envVar("VONAGE_PRIVATE_KEY_PATH"))
-				.build()
-				.getMessagesClient()
-				.useSandboxEndpoint()
-				.sendMessage(WhatsappTextRequest.builder()
-					.from(envVar("VONAGE_WHATSAPP_NUMBER"))
-					.to(envVar("TO_NUMBER"))
-					.text("Hello from Vonage, "+System.getenv("NAME"))
-					.build()
-				).getMessageUuid()
-		);
+		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
+		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
+		String USER_CODE = envVar("USER_CODE");
+		String TO_EMAIL = envVar("TO_EMAIL");
+
+		VonageClient client = VonageClient.builder()
+				.applicationId(VONAGE_APPLICATION_ID)
+				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
+				.build();
+
+		var request = VerificationRequest.builder()
+				.brand("My Company")
+				.codeLength(6)
+				.addWorkflow(new EmailWorkflow(TO_EMAIL))
+				.build();
+
+		UUID requestId = client.getVerify2Client().sendVerification(request).getRequestId();
+		//...
+
+		try {
+			client.getVerify2Client().checkVerificationCode(requestId, USER_CODE);
+		}
+		catch (VerifyResponseException ex) {
+			switch (ex.getStatusCode()) {
+				case 400: // Code does not match
+				case 404: // Already verified or not found
+				case 409: // Workflow does not support code
+				case 410: // Incorrect code provided too many times
+				case 429: // Rate limit exceeded
+					ex.printStackTrace();
+			}
+		}
 	}
 }

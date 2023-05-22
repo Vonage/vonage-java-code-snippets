@@ -54,7 +54,7 @@ public class SendWhatsappLocation {
 				.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
 				.name("Facebook HQ")
 				.address("1 Hacker Way, Menlo Park, CA 94025")
-				.longitude(-122.425332).latitude(37.758056)
+				.longitude(-122.1503115).latitude(37.4843538)
 				.build();
 
 		try {

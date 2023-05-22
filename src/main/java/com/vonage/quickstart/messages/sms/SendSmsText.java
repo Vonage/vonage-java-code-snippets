@@ -26,7 +26,6 @@ import com.vonage.client.messages.MessageResponse;
 import com.vonage.client.messages.MessageResponseException;
 import com.vonage.client.messages.MessagesClient;
 import com.vonage.client.messages.sms.*;
-
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 

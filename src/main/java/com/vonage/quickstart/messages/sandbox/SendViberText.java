@@ -25,11 +25,13 @@ import com.vonage.client.VonageClient;
 import com.vonage.client.messages.MessageResponse;
 import com.vonage.client.messages.MessageResponseException;
 import com.vonage.client.messages.MessagesClient;
-import com.vonage.client.messages.whatsapp.WhatsappTextRequest;
+import com.vonage.client.messages.viber.Category;
+import com.vonage.client.messages.viber.ViberTextRequest;
+import com.vonage.client.messages.whatsapp.WhatsappLocationRequest;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
-public class SendWhatsappText {
+public class SendViberText {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
@@ -40,11 +42,11 @@ public class SendWhatsappText {
 				.build()
 				.getMessagesClient()
 				.useSandboxEndpoint()
-				.sendMessage(WhatsappTextRequest.builder()
-					.from(envVar("VONAGE_WHATSAPP_NUMBER"))
-					.to(envVar("TO_NUMBER"))
-					.text("Hello from Vonage, "+System.getenv("NAME"))
-					.build()
+				.sendMessage(ViberTextRequest.builder()
+						.from(envVar("FROM_ID")).to(envVar("TO_NUMBER"))
+						.text("Don't miss out on our latest offers!")
+						.category(Category.PROMOTION)
+						.build()
 				).getMessageUuid()
 		);
 	}
