@@ -22,19 +22,17 @@
 package com.vonage.quickstart.verify2;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.verify2.*;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 import java.util.UUID;
 
-public class CheckVerificationCode {
+public class CancelRequest {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
 
 		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
 		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		String CODE = envVar("CODE");
 		UUID REQUEST_ID = UUID.fromString(envVar("REQUEST_ID"));
 
 		VonageClient client = VonageClient.builder()
@@ -42,20 +40,6 @@ public class CheckVerificationCode {
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
-		try {
-			client.getVerify2Client().checkVerificationCode(REQUEST_ID, CODE);
-			System.out.println("SUCCESS - code matches!");
-		}
-		catch (VerifyResponseException ex) {
-			switch (ex.getStatusCode()) {
-				case 400: // Code does not match
-				case 404: // Already verified or not found
-				case 409: // Workflow does not support code
-				case 410: // Incorrect code provided too many times
-				case 429: // Rate limit exceeded
-				default:  // Unknown or internal server error (500)
-					ex.printStackTrace();
-			}
-		}
+		client.getVerify2Client().cancelVerification(REQUEST_ID);
 	}
 }

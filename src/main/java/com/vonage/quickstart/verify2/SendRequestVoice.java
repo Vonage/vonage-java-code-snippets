@@ -22,27 +22,32 @@
 package com.vonage.quickstart.verify2;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.verify2.EmailWorkflow;
+import com.vonage.client.verify2.SmsWorkflow;
 import com.vonage.client.verify2.VerificationRequest;
-import com.vonage.client.verify2.VerifyResponseException;
+import com.vonage.client.verify2.VoiceWorkflow;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
-import java.util.UUID;
 
-public class CancelVerification {
+public class SendRequestVoice {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
 
 		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
 		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		UUID REQUEST_ID = UUID.fromString(envVar("USER_CODE"));
+		String BRAND_NAME = envVar("BRAND_NAME");
+		String TO_NUMBER = envVar("TO_NUMBER");
 
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
-		client.getVerify2Client().cancelVerification(REQUEST_ID);
+		var request = VerificationRequest.builder()
+				.addWorkflow(new VoiceWorkflow(TO_NUMBER))
+				.brand(BRAND_NAME).build();
+
+		var requestId = client.getVerify2Client().sendVerification(request).getRequestId();
+		System.out.println("Verification sent: "+requestId);
 	}
 }
