@@ -22,27 +22,21 @@
 package com.vonage.quickstart.verify2;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.messages.MessageResponse;
-import com.vonage.client.messages.MessageResponseException;
-import com.vonage.client.messages.MessagesClient;
-import com.vonage.client.messages.sms.SmsTextRequest;
-import com.vonage.client.verify2.SilentAuthWorkflow;
-import com.vonage.client.verify2.VerificationRequest;
-import com.vonage.client.verify2.VerificationResponse;
-import com.vonage.client.verify2.WhatsappCodelessWorkflow;
+import com.vonage.client.verify2.*;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
-import java.util.UUID;
+import java.util.List;
 
-public class CodelessVerificationRequest {
+public class SendRequestAllChannels {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
 
 		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
 		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		String VONAGE_BRAND_NAME = envVar("VONAGE_BRAND_NAME");
+		String BRAND_NAME = envVar("BRAND_NAME");
 		String TO_NUMBER = envVar("TO_NUMBER");
+		String TO_EMAIL = envVar("TO_EMAIL");
 
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
@@ -50,13 +44,21 @@ public class CodelessVerificationRequest {
 				.build();
 
 		var request = VerificationRequest.builder()
-				.brand(VONAGE_BRAND_NAME)
-				.addWorkflow(new SilentAuthWorkflow(TO_NUMBER))
-				.addWorkflow(new WhatsappCodelessWorkflow(TO_NUMBER))
+				.workflows(List.of(
+						new SilentAuthWorkflow(TO_NUMBER),
+						new WhatsappCodelessWorkflow(TO_NUMBER),
+						new EmailWorkflow(TO_EMAIL),
+						new WhatsappWorkflow(TO_NUMBER),
+						new SmsWorkflow(TO_NUMBER),
+						new VoiceWorkflow(TO_NUMBER)
+				))
+				.codeLength(7)
+				.brand(BRAND_NAME)
+				.locale(Locale.ENGLISH_UK)
 				.channelTimeout(120)
 				.build();
 
-		UUID requestId = client.getVerify2Client().sendVerification(request).getRequestId();
+		var requestId = client.getVerify2Client().sendVerification(request).getRequestId();
 		System.out.println("Verification sent: "+requestId);
 	}
 }
