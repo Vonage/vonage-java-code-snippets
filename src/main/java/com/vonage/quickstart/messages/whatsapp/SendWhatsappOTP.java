@@ -25,17 +25,13 @@ import com.vonage.client.VonageClient;
 import com.vonage.client.messages.MessageResponse;
 import com.vonage.client.messages.MessageResponseException;
 import com.vonage.client.messages.MessagesClient;
+import com.vonage.client.messages.whatsapp.*;
 import com.vonage.client.messages.whatsapp.Locale;
-import com.vonage.client.messages.whatsapp.Policy;
-import com.vonage.client.messages.whatsapp.WhatsappTemplateRequest;
-
-import java.util.List;
-import java.util.Map;
-
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
+import java.util.*;
 
-public class SendWhatsappTemplate {
+public class SendWhatsappOTP {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
@@ -44,7 +40,6 @@ public class SendWhatsappTemplate {
 		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
 		String VONAGE_WHATSAPP_NUMBER = envVar("VONAGE_WHATSAPP_NUMBER");
 		String TO_NUMBER = envVar("TO_NUMBER");
-		String WHATSAPP_TEMPLATE_NAMESPACE = envVar("WHATSAPP_TEMPLATE_NAMESPACE");
 		String WHATSAPP_TEMPLATE_NAME = envVar("WHATSAPP_TEMPLATE_NAME");
 
 		VonageClient client = VonageClient.builder()
@@ -52,37 +47,37 @@ public class SendWhatsappTemplate {
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
-		MessagesClient messagesClient = client.getMessagesClient();
+		Map<String, Object> custom = new LinkedHashMap<>(4);
+		custom.put("type", "template");
+		Map<String, Object> template = new LinkedHashMap<>();
+		template.put("name", WHATSAPP_TEMPLATE_NAME);
+		custom.put("template", template);
+		Map<String, Object> language = new LinkedHashMap<>(2);
+		language.put("code", "en_US");
+		language.put("policy", "deterministic");
+		custom.put("language", language);
+		List<Map<String, Object>> components = new ArrayList<>(2);
+		Map<String, Object> component1 = new LinkedHashMap<>(2);
+		component1.put("type", "body");
+		List<Map<String, Object>> comp1Parameters = new ArrayList<>(1);
+		Map<String, Object> comp1param1 = new LinkedHashMap<>(2);
+		comp1param1.put("type", "text");
+		comp1param1.put("text", "123456");
+		comp1Parameters.add(comp1param1);
+		component1.put("parameters", comp1Parameters);
+		components.add(component1);
+		Map<String, Object> component2 = new LinkedHashMap<>(4);
+		component2.put("type", "button");
+		component2.put("sub_type", "url");
+		component2.put("index", "0");
+		component2.put("parameters", comp1Parameters);
+		components.add(component2);
+		custom.put("components", components);
 
-		var message = WhatsappTemplateRequest.builder()
+		WhatsappCustomRequest message = WhatsappCustomRequest.builder()
 				.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
-				.policy(Policy.DETERMINISTIC).locale(Locale.ENGLISH_UK)
-				.name(WHATSAPP_TEMPLATE_NAMESPACE+':'+WHATSAPP_TEMPLATE_NAME)
-				.parameters(List.of(
-					"Vonage Verification",
-					"64873",
-					"10"
-				))
-				.build();
+				.custom(custom).build();
 
-		try {
-			MessageResponse response = messagesClient.sendMessage(message);
-			System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
-		}
-		catch (MessageResponseException mrx) {
-			switch (mrx.getStatusCode()) {
-				default: throw mrx;
-				case 401: // Bad credentials
-					throw new IllegalStateException(mrx.getTitle(), mrx);
-				case 422: // Invalid
-					throw new IllegalStateException(mrx.getDetail(), mrx);
-				case 402: // Low balance
-					client.getAccountClient().topUp("transactionID");
-					break;
-				case 429: // Rate limit
-					Thread.sleep(12_000);
-					break;
-			}
-		}
+		client.getMessagesClient().sendMessage(message);
 	}
 }
