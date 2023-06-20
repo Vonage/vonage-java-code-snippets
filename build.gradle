@@ -14,14 +14,15 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.vonage:client:7.4.0'
+    implementation 'com.vonage:client:7.5.0'
     implementation 'com.vonage:jwt:1.0.2'
     implementation 'com.sparkjava:spark-core:2.9.4'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
     testImplementation 'junit:junit:4.13.2'
 }
 
-task fatJar(type: Jar, dependsOn:configurations.runtimeClasspath) {
+tasks.register('fatJar', Jar) {
+    dependsOn configurations.runtimeClasspath
     archiveBaseName = project.name + '-with-dependencies'
     from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
