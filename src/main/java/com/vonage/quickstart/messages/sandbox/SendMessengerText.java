@@ -19,59 +19,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.messages.viber;
+package com.vonage.quickstart.messages.sandbox;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.messages.MessageResponse;
-import com.vonage.client.messages.MessageResponseException;
-import com.vonage.client.messages.MessagesClient;
+import com.vonage.client.messages.messenger.MessengerTextRequest;
 import com.vonage.client.messages.viber.Category;
 import com.vonage.client.messages.viber.ViberTextRequest;
-
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
-public class SendViberText {
+public class SendMessengerText {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
 
-		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		String FROM_ID = envVar("FROM_ID");
-		String TO_NUMBER = envVar("TO_NUMBER");
-
-		VonageClient client = VonageClient.builder()
-				.applicationId(VONAGE_APPLICATION_ID)
-				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
-				.build();
-
-		MessagesClient messagesClient = client.getMessagesClient();
-
-		var message = ViberTextRequest.builder()
-				.from(FROM_ID).to(TO_NUMBER)
-				.text("Don't miss out on our latest offers!")
-				.category(Category.PROMOTION)
-				.build();
-
-		try {
-			MessageResponse response = messagesClient.sendMessage(message);
-			System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
-		}
-		catch (MessageResponseException mrx) {
-			switch (mrx.getStatusCode()) {
-				default: throw mrx;
-				case 401: // Bad credentials
-					throw new IllegalStateException(mrx.getTitle(), mrx);
-				case 422: // Invalid
-					throw new IllegalStateException(mrx.getDetail(), mrx);
-				case 402: // Low balance
-					client.getAccountClient().topUp("transactionID");
-					break;
-				case 429: // Rate limit
-					Thread.sleep(12_000);
-					break;
-			}
-		}
+		System.out.println(VonageClient.builder()
+				.applicationId(envVar("VONAGE_APPLICATION_ID"))
+				.privateKeyPath(envVar("VONAGE_PRIVATE_KEY_PATH"))
+				.build()
+				.getMessagesClient()
+				.useSandboxEndpoint()
+				.sendMessage(MessengerTextRequest.builder()
+						.from(envVar("FROM_ID")).to(envVar("TO_NUMBER"))
+						.text("Don't miss out on our latest offers!")
+						.build()
+				).getMessageUuid()
+		);
 	}
 }
