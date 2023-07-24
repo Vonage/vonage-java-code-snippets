@@ -42,6 +42,6 @@ public class ListDialInNumbers {
 				.build();
 
 		List<DialInNumber> dialInNumbers = client.getMeetingsClient().listDialNumbers();
-		dialInNumbers.forEach(din -> System.out.println(din.getDisplayName()+" " +din.getNumber()));
+		dialInNumbers.forEach(din -> System.out.println(din.getDisplayName()+": "+din.getNumber()));
 	}
 }
