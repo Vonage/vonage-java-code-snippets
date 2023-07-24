@@ -22,26 +22,31 @@
 package com.vonage.quickstart.meetings;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.meetings.MeetingRoom;
+import com.vonage.client.meetings.LogoType;
+import com.vonage.client.meetings.Theme;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.UUID;
 
-public class CreateInstantRoom {
+public class UploadLogo {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
 
 		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
 		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		String DISPLAY_NAME = envVar("DISPLAY_NAME");
+		UUID THEME_ID = UUID.fromString(envVar("THEME_ID"));
+		LogoType LOGO_TYPE = LogoType.fromString(envVar("LOGO_TYPE"));
+		Path LOGO_FILEPATH = Paths.get(envVar("LOGO_FILEPATH"));
 
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
-		MeetingRoom room = MeetingRoom.builder(DISPLAY_NAME).build();
-		client.getMeetingsClient().createRoom(room);
-		System.out.println("Created room "+room.getId());
+		client.getMeetingsClient().updateThemeLogo(THEME_ID, LOGO_TYPE, LOGO_FILEPATH);
+		System.out.println("Updated '"+LOGO_TYPE+"' logo for theme "+THEME_ID);
 	}
 }

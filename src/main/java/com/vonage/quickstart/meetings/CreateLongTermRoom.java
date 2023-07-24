@@ -26,7 +26,7 @@ import com.vonage.client.meetings.MeetingRoom;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
-public class CreateInstantRoom {
+public class CreateLongTermRoom {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();

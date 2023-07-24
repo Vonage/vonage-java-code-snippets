@@ -22,26 +22,27 @@
 package com.vonage.quickstart.meetings;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.meetings.MeetingRoom;
+import com.vonage.client.meetings.Recording;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
+import java.util.List;
+import java.util.UUID;
 
-public class CreateInstantRoom {
+public class ListRecordings {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
 
 		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
 		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		String DISPLAY_NAME = envVar("DISPLAY_NAME");
+		String SESSION_ID = envVar("SESSION_ID");
 
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
-		MeetingRoom room = MeetingRoom.builder(DISPLAY_NAME).build();
-		client.getMeetingsClient().createRoom(room);
-		System.out.println("Created room "+room.getId());
+		List<Recording> recordings = client.getMeetingsClient().listRecordings(SESSION_ID);
+		recordings.forEach(recording -> System.out.println(recording.getId()));
 	}
 }
