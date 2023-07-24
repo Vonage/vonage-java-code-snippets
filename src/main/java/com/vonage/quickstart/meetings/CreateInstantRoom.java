@@ -23,6 +23,7 @@ package com.vonage.quickstart.meetings;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.meetings.MeetingRoom;
+import com.vonage.client.meetings.RoomType;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
@@ -40,7 +41,7 @@ public class CreateInstantRoom {
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
-		MeetingRoom room = MeetingRoom.builder(DISPLAY_NAME).build();
+		MeetingRoom room = MeetingRoom.builder(DISPLAY_NAME).type(RoomType.INSTANT).build();
 		client.getMeetingsClient().createRoom(room);
 		System.out.println("Created room "+room.getId());
 	}
