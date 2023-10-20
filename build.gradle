@@ -14,10 +14,10 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.vonage:client:7.9.0'
+    implementation 'com.vonage:client:7.10.0'
     implementation 'com.vonage:jwt:1.0.2'
     implementation 'com.sparkjava:spark-core:2.9.4'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.3'
 }
 
 tasks.register('fatJar', Jar) {
