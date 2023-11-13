@@ -36,7 +36,7 @@ public class ValidateInboundJwt {
             String signatureSecret = envVar("VONAGE_SIGNATURE_SECRET");
 
             try {
-                JwtParser parser = Jwts.parserBuilder()
+                JwtParser parser = Jwts.parser()
                                 .setSigningKey(signatureSecret
                                 .getBytes(StandardCharsets.UTF_8))
                                 .build();
