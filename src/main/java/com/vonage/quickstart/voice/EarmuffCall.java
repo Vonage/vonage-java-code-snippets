@@ -43,23 +43,18 @@ public class EarmuffCall {
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
-        /*
-        Establish a call for testing purposes.
-         */
+        // Establish a call for testing purposes.
         CallEvent call = client.getVoiceClient().createCall(new Call(
                 TO_NUMBER,
                 VONAGE_NUMBER,
                 "https://nexmo-community.github.io/ncco-examples/long-tts.json"
         ));
 
-        /*
-        Give them time to answer.
-         */
+        // Give them time to answer.
         Thread.sleep(10000);
 
-        final String UUID = call.getUuid();
-        client.getVoiceClient().modifyCall(UUID, ModifyCallAction.EARMUFF);
+        client.getVoiceClient().earmuffCall(call.getUuid());
         Thread.sleep(3000);
-        client.getVoiceClient().modifyCall(UUID, ModifyCallAction.UNEARMUFF);
+        client.getVoiceClient().unearmuffCall(call.getUuid());
     }
 }

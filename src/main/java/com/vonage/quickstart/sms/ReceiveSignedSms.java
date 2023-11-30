@@ -37,8 +37,12 @@ public class ReceiveSignedSms {
         Route inboundSmsAsGet = (req, res) -> {
             String signatureSecret = envVar("VONAGE_SIGNATURE_SECRET");
             System.out.println(signatureSecret);
-            if(RequestSigning.verifyRequestSignature(req.raw(),signatureSecret,HashUtil.HashType.MD5)){
-                
+            if (RequestSigning.verifyRequestSignature(
+                    req.raw().getInputStream(),
+                    req.contentType(),
+                    req.queryMap().toMap(),
+                    signatureSecret
+            )) {
                 System.out.println("msisdn: " + req.queryParams("msisdn"));
                 System.out.println("messageId: " + req.queryParams("messageId"));
                 System.out.println("text: " + req.queryParams("text"));

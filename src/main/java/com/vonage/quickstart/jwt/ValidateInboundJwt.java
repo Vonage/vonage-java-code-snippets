@@ -21,8 +21,7 @@
  */
 package com.vonage.quickstart.jwt;
 
-import io.jsonwebtoken.JwtParser;
-import io.jsonwebtoken.Jwts;
+import com.vonage.jwt.Jwt;
 import spark.Route;
 import spark.Spark;
 
@@ -32,22 +31,19 @@ import static com.vonage.quickstart.Util.envVar;
 
 public class ValidateInboundJwt {
     public static void main(String[] args) throws Exception {
-        Route validateJwt = (req, res)-> {
-            String signatureSecret = envVar("VONAGE_SIGNATURE_SECRET");
 
-            try {
-                JwtParser parser = Jwts.parser()
-                                .setSigningKey(signatureSecret
-                                .getBytes(StandardCharsets.UTF_8))
-                                .build();
-                String token = req.headers("Authorization").substring(7);
-                parser.parseClaimsJws(token);
+        final String signatureSecret = envVar("VONAGE_SIGNATURE_SECRET");
+
+        Route validateJwt = (req, res) -> {
+            String token = req.headers("Authorization").substring(7);
+
+            if (Jwt.verifySignature(token, signatureSecret)) {
                 res.status(204);
             }
-            catch (Exception ex) {
-                ex.printStackTrace();
+            else {
                 res.status(401);
             }
+
             return "";
         };
         Spark.port(5000);

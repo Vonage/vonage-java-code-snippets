@@ -43,23 +43,18 @@ public class MuteCall {
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
-        /*
-        Establish a call for testing purposes.
-         */
+        // Establish a call for testing purposes.
         CallEvent call = client.getVoiceClient().createCall(new Call(
                 TO_NUMBER,
                 VONAGE_NUMBER,
                 "https://nexmo-community.github.io/ncco-examples/long-tts.json"
         ));
 
-        /*
-        Give them time to answer.
-         */
-        Thread.sleep(10000);
+        // Give them time to answer.
+        Thread.sleep(10_000);
 
-        final String UUID = call.getUuid();
-        client.getVoiceClient().modifyCall(UUID, ModifyCallAction.MUTE);
+        client.getVoiceClient().muteCall(call.getUuid());
         Thread.sleep(3000);
-        client.getVoiceClient().modifyCall(UUID, ModifyCallAction.UNMUTE);
+        client.getVoiceClient().unmuteCall(call.getUuid());
     }
 }

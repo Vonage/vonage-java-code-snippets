@@ -53,6 +53,6 @@ public class ModifyCall {
 
         Thread.sleep(20000);
 
-        client.getVoiceClient().modifyCall(call.getUuid(), ModifyCallAction.HANGUP);
+        client.getVoiceClient().terminateCall(call.getUuid());
     }
 }

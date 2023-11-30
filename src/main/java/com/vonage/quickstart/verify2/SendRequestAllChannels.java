@@ -54,7 +54,7 @@ public class SendRequestAllChannels {
 				))
 				.codeLength(7)
 				.brand(BRAND_NAME)
-				.locale(Locale.ENGLISH_UK)
+				.locale("en-gb")
 				.channelTimeout(120)
 				.build();
 

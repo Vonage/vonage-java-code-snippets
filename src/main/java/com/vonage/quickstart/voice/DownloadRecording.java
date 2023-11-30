@@ -29,6 +29,8 @@ import static com.vonage.quickstart.Util.configureLogging;
 
 import spark.Route;
 import spark.Spark;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class DownloadRecording {
     public static void main(String[] args) throws Exception {
@@ -48,10 +50,11 @@ public class DownloadRecording {
          */
         Route downloadRoute = (req, res) -> {
             RecordEvent event = RecordEvent.fromJson(req.body());
-            final String RECORDING_URL = event.getUrl();
+            String recordingUrl = event.getUrl();
+            Path recordingFile = Paths.get("downloaded_recording.mp3");
 
-            System.out.println("Downloading from " + RECORDING_URL);
-            client.getVoiceClient().downloadRecording(RECORDING_URL).save("downloaded_recording.mp3");
+            System.out.println("Downloading from " + recordingUrl);
+            client.getVoiceClient().saveRecording(recordingUrl, recordingFile);
             return "OK";
         };
 
