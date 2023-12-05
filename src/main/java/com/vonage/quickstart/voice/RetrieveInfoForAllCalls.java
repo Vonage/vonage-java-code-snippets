@@ -21,7 +21,6 @@
  */
 package com.vonage.quickstart.voice;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vonage.client.VonageClient;
 import com.vonage.client.voice.CallInfoPage;
 import com.vonage.client.voice.CallsFilter;
