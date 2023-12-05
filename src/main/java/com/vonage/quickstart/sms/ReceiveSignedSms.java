@@ -50,7 +50,7 @@ public class ReceiveSignedSms {
 
                 res.status(204);    
             }
-            else{
+            else {
                 System.out.println("Bad signature");
                 res.status(401);
             }

@@ -28,7 +28,7 @@ import com.vonage.client.voice.CallEvent;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
-public class ModifyCall {
+public class EndCall {
     public static void main(String[] args) throws Exception {
         configureLogging();
 

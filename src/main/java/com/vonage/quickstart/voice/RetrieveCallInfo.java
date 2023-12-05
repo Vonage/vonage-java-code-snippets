@@ -24,7 +24,7 @@ package com.vonage.quickstart.voice;
 import com.vonage.client.VonageClient;
 import com.vonage.client.voice.Call;
 import com.vonage.client.voice.CallEvent;
-
+import com.vonage.client.voice.CallInfo;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
@@ -42,21 +42,16 @@ public class RetrieveCallInfo {
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
-        /*
-        Establish a call for testing purposes.
-         */
+        // Establish a call for testing purposes.
         CallEvent call = client.getVoiceClient().createCall(new Call(
                 TO_NUMBER,
                 VONAGE_NUMBER,
                 "https://nexmo-community.github.io/ncco-examples/long-tts.json"
         ));
 
-        /*
-        Give them time to answer.
-         */
-        Thread.sleep(10000);
-
-        final String UUID = call.getUuid();
-        System.out.println(client.getVoiceClient().getCallDetails(UUID));
+        // Give them time to answer.
+        Thread.sleep(10_000);
+        CallInfo details = client.getVoiceClient().getCallDetails(call.getUuid());
+        System.out.println(details);
     }
 }

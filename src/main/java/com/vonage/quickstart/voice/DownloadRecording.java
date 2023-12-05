@@ -23,12 +23,12 @@ package com.vonage.quickstart.voice;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.incoming.RecordEvent;
-import static com.vonage.quickstart.Util.envVar;
-import static com.vonage.quickstart.Util.configureLogging;
 import spark.Route;
 import spark.Spark;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.configureLogging;
 
 public class DownloadRecording {
     public static void main(String[] args) throws Exception {
@@ -50,7 +50,6 @@ public class DownloadRecording {
             RecordEvent event = RecordEvent.fromJson(req.body());
             String recordingUrl = event.getUrl();
             Path recordingFile = Paths.get("downloaded_recording.mp3");
-
             System.out.println("Downloading from " + recordingUrl);
             client.getVoiceClient().saveRecording(recordingUrl, recordingFile);
             return "OK";

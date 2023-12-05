@@ -24,8 +24,6 @@ package com.vonage.quickstart.voice;
 import com.vonage.client.VonageClient;
 import com.vonage.client.voice.Call;
 import com.vonage.client.voice.CallEvent;
-import com.vonage.client.voice.ModifyCallAction;
-
 import static com.vonage.quickstart.Util.envVar;
 import static com.vonage.quickstart.Util.configureLogging;
 
@@ -51,7 +49,7 @@ public class EarmuffCall {
         ));
 
         // Give them time to answer.
-        Thread.sleep(10000);
+        Thread.sleep(10_000);
 
         client.getVoiceClient().earmuffCall(call.getUuid());
         Thread.sleep(3000);

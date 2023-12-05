@@ -24,10 +24,8 @@ package com.vonage.quickstart.voice;
 import com.vonage.client.voice.ncco.Ncco;
 import com.vonage.client.voice.ncco.NotifyAction;
 import com.vonage.client.voice.ncco.TalkAction;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import static spark.Spark.*;
 
 public class TrackNccoProgress {

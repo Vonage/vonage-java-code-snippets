@@ -25,11 +25,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vonage.client.VonageClient;
 import com.vonage.client.voice.CallInfoPage;
 import com.vonage.client.voice.CallsFilter;
-
-import java.util.Calendar;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Date;
-import java.util.TimeZone;
-
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
@@ -45,24 +43,15 @@ public class RetrieveInfoForAllCalls {
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
+        Date yesterday = new Date(Instant.now().minus(Duration.ofDays(1)).toEpochMilli());
+        Date now = new Date();
+
         CallsFilter filter = CallsFilter.builder()
-                .dateStart(getYesterdaysDate())
-                .dateEnd(getTodaysDate())
+                .dateStart(yesterday)
+                .dateEnd(now)
                 .build();
 
         CallInfoPage calls = client.getVoiceClient().listCalls(filter);
-
-        // com.fasterxml.jackson.databind.ObjectMapper;
-        System.out.println(new ObjectMapper().writer().writeValueAsString(calls));
-    }
-
-    private static Date getTodaysDate() {
-        return Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTime();
-    }
-
-    private static Date getYesterdaysDate() {
-        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        calendar.add(Calendar.DATE, -1);
-        return calendar.getTime();
+        System.out.println(calls.toJson());
     }
 }

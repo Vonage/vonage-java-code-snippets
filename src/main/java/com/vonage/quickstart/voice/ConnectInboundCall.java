@@ -24,11 +24,9 @@ package com.vonage.quickstart.voice;
 import com.vonage.client.voice.ncco.ConnectAction;
 import com.vonage.client.voice.ncco.Ncco;
 import com.vonage.client.voice.ncco.PhoneEndpoint;
-
-import static com.vonage.quickstart.Util.envVar;
-
 import spark.Route;
 import spark.Spark;
+import static com.vonage.quickstart.Util.envVar;
 
 public class ConnectInboundCall {
     public static void main(String[] args) {

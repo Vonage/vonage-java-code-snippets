@@ -25,7 +25,6 @@ package com.vonage.quickstart.voice;
 import com.vonage.client.VonageClient;
 import com.vonage.client.voice.Call;
 import com.vonage.client.voice.CallEvent;
-
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
@@ -43,18 +42,16 @@ public class SendDtmfToCall {
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
-
         final String ANSWER_URL = "https://nexmo-community.github.io/ncco-examples/long-tts.json";
+        final String DIGITS = "332393";
+
         CallEvent call = client.getVoiceClient().createCall(new Call(
                 TO_NUMBER,
                 VONAGE_NUMBER,
                 ANSWER_URL
         ));
 
-        Thread.sleep(20000);
-
-        final String UUID = call.getUuid();
-        final String DIGITS = "332393";
-        client.getVoiceClient().sendDtmf(UUID, DIGITS);
+        Thread.sleep(10_000);
+        client.getVoiceClient().sendDtmf(call.getUuid(), DIGITS);
     }
 }
