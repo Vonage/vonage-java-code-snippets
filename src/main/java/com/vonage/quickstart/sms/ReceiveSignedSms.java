@@ -1,5 +1,5 @@
 /*
- * Copyright  2020 Vonage
+ * Copyright 2023 Vonage
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,11 +22,9 @@
 package com.vonage.quickstart.sms;
 
 import com.vonage.client.auth.RequestSigning;
-import com.vonage.client.auth.hashutils.HashUtil;
-
-import static com.vonage.quickstart.Util.envVar;
 import spark.Route;
 import spark.Spark;
+import static com.vonage.quickstart.Util.envVar;
 
 public class ReceiveSignedSms {
 

@@ -1,5 +1,5 @@
 /*
- * Copyright  2020 Vonage
+ * Copyright 2023 Vonage
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@ package com.vonage.quickstart.voice;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.voice.Call;
-
 import com.vonage.client.voice.PhoneEndpoint;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;

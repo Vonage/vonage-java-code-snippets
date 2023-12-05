@@ -24,9 +24,6 @@ package com.vonage.quickstart.jwt;
 import com.vonage.jwt.Jwt;
 import spark.Route;
 import spark.Spark;
-
-import java.nio.charset.StandardCharsets;
-
 import static com.vonage.quickstart.Util.envVar;
 
 public class ValidateInboundJwt {
