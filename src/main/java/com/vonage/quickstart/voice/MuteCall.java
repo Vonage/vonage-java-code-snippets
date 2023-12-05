@@ -1,5 +1,5 @@
 /*
- * Copyright  2020 Vonage
+ * Copyright 2023 Vonage
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,8 +24,6 @@ package com.vonage.quickstart.voice;
 import com.vonage.client.VonageClient;
 import com.vonage.client.voice.Call;
 import com.vonage.client.voice.CallEvent;
-import com.vonage.client.voice.ModifyCallAction;
-
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
@@ -33,8 +31,8 @@ public class MuteCall {
     public static void main(String... args) throws Exception {
        configureLogging();
 
-        String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-        String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
+        final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
+        final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
         final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
         final String TO_NUMBER = envVar("TO_NUMBER");
 
@@ -43,23 +41,18 @@ public class MuteCall {
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
-        /*
-        Establish a call for testing purposes.
-         */
+        // Establish a call for testing purposes.
         CallEvent call = client.getVoiceClient().createCall(new Call(
                 TO_NUMBER,
                 VONAGE_NUMBER,
                 "https://nexmo-community.github.io/ncco-examples/long-tts.json"
         ));
 
-        /*
-        Give them time to answer.
-         */
-        Thread.sleep(10000);
+        // Give them time to answer.
+        Thread.sleep(10_000);
 
-        final String UUID = call.getUuid();
-        client.getVoiceClient().modifyCall(UUID, ModifyCallAction.MUTE);
+        client.getVoiceClient().muteCall(call.getUuid());
         Thread.sleep(3000);
-        client.getVoiceClient().modifyCall(UUID, ModifyCallAction.UNMUTE);
+        client.getVoiceClient().unmuteCall(call.getUuid());
     }
 }

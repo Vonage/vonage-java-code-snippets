@@ -1,5 +1,5 @@
 /*
- * Copyright  2020 Vonage
+ * Copyright 2023 Vonage
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,11 +22,9 @@
 package com.vonage.quickstart.sms;
 
 import com.vonage.client.auth.RequestSigning;
-import com.vonage.client.auth.hashutils.HashUtil;
-
-import static com.vonage.quickstart.Util.envVar;
 import spark.Route;
 import spark.Spark;
+import static com.vonage.quickstart.Util.envVar;
 
 public class ReceiveSignedSms {
 
@@ -37,8 +35,12 @@ public class ReceiveSignedSms {
         Route inboundSmsAsGet = (req, res) -> {
             String signatureSecret = envVar("VONAGE_SIGNATURE_SECRET");
             System.out.println(signatureSecret);
-            if(RequestSigning.verifyRequestSignature(req.raw(),signatureSecret,HashUtil.HashType.MD5)){
-                
+            if (RequestSigning.verifyRequestSignature(
+                    req.raw().getInputStream(),
+                    req.contentType(),
+                    req.queryMap().toMap(),
+                    signatureSecret
+            )) {
                 System.out.println("msisdn: " + req.queryParams("msisdn"));
                 System.out.println("messageId: " + req.queryParams("messageId"));
                 System.out.println("text: " + req.queryParams("text"));
@@ -48,7 +50,7 @@ public class ReceiveSignedSms {
 
                 res.status(204);    
             }
-            else{
+            else {
                 System.out.println("Bad signature");
                 res.status(401);
             }

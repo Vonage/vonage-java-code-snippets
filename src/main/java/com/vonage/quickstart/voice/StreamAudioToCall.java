@@ -1,5 +1,5 @@
 /*
- * Copyright  2020 Vonage
+ * Copyright 2023 Vonage
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,11 +21,9 @@
  */
 
 package com.vonage.quickstart.voice;
-
 import com.vonage.client.VonageClient;
 import com.vonage.client.voice.Call;
 import com.vonage.client.voice.CallEvent;
-
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
@@ -44,19 +42,18 @@ public class StreamAudioToCall {
                 .build();
 
         final String ANSWER_URL = "https://nexmo-community.github.io/ncco-examples/long-tts.json";
+        final String URL = "https://nexmo-community.github.io/ncco-examples/assets/voice_api_audio_streaming.mp3";
+
         CallEvent call = client.getVoiceClient().createCall(new Call(
                 TO_NUMBER,
                 VONAGE_NUMBER,
                 ANSWER_URL
         ));
 
-        Thread.sleep(20000);
+        Thread.sleep(10_000);
 
-        final String UUID = call.getUuid();
-        final String URL = "https://nexmo-community.github.io/ncco-examples/assets/voice_api_audio_streaming.mp3";
-
-        client.getVoiceClient().startStream(UUID, URL, 0);
+        client.getVoiceClient().startStream(call.getUuid(), URL, 0);
         Thread.sleep(5000);
-        client.getVoiceClient().stopStream(UUID);
+        client.getVoiceClient().stopStream(call.getUuid());
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright  2020 Vonage
+ * Copyright 2023 Vonage
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,9 +26,9 @@ import com.vonage.client.voice.Call;
 import com.vonage.client.voice.CallEvent;
 import com.vonage.client.voice.ncco.Ncco;
 import com.vonage.client.voice.ncco.TalkAction;
-
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
+
 public class TransferCallNCCO {
 
     public static void main(String... args) throws Exception {
@@ -45,9 +45,7 @@ public class TransferCallNCCO {
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
-        /*
-        Establish a call for testing purposes.
-         */
+        // Establish a call for testing purposes.
         final String ANSWER_URL = "https://nexmo-community.github.io/ncco-examples/long-tts.json";
         CallEvent call = client.getVoiceClient().createCall(new Call(
                 TO_NUMBER,
@@ -55,14 +53,10 @@ public class TransferCallNCCO {
                 ANSWER_URL
         ));
 
-        /*
-        Give them time to answer.
-         */
+        // Give them time to answer.
         Thread.sleep(10000);
 
         TalkAction talkAction = TalkAction.builder("This is a transfer action using an inline NCCO.").build();
-        Ncco ncco = new Ncco(talkAction);
-        final String UUID = call.getUuid();
-        client.getVoiceClient().transferCall(UUID, ncco);
+        client.getVoiceClient().transferCall(call.getUuid(), new Ncco(talkAction));
     }
 }

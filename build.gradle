@@ -2,22 +2,18 @@ plugins {
     id 'java'
 }
 
-// Uncomment the following lines to work with a local copy of vonage-java-sdk:
-// configurations.all {
-//    resolutionStrategy.dependencySubstitution {
-//        substitute module("com.vonage:client") with project(":client")
-//    }
-// }
-
 repositories {
     mavenCentral()
 }
 
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
 dependencies {
-    implementation 'com.vonage:client:7.10.0'
-    implementation 'com.vonage:jwt:1.0.2'
+    implementation 'com.vonage:server-sdk:8.0.0'
+    implementation 'com.vonage:jwt:1.1.0'
     implementation 'com.sparkjava:spark-core:2.9.4'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.0'
 }
 
 tasks.register('fatJar', Jar) {
@@ -28,6 +24,3 @@ tasks.register('fatJar', Jar) {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 assemble.dependsOn fatJar
-
-sourceCompatibility = "17"
-targetCompatibility = "17"
