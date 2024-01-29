@@ -6,14 +6,16 @@ repositories {
     mavenCentral()
 }
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = sourceCompatibility
+}
 
 dependencies {
-    implementation 'com.vonage:server-sdk:8.0.0'
+    implementation 'com.vonage:server-sdk:8.2.0'
     implementation 'com.vonage:jwt:1.1.0'
     implementation 'com.sparkjava:spark-core:2.9.4'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
 }
 
 tasks.register('fatJar', Jar) {
