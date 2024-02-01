@@ -22,6 +22,7 @@
 package com.vonage.quickstart.voice;
 
 import com.vonage.client.incoming.InputEvent;
+import com.vonage.client.voice.EventWebhook;
 import com.vonage.client.voice.ncco.DtmfSettings;
 import com.vonage.client.voice.ncco.InputAction;
 import com.vonage.client.voice.ncco.Ncco;
@@ -60,7 +61,7 @@ public class DtmfInput {
          * Route which returns NCCO saying which DTMF code was received.
          */
         Route inputRoute = (req, res) -> {
-            InputEvent event = InputEvent.fromJson(req.body());
+            EventWebhook event = EventWebhook.fromJson(req.body());
 
             TalkAction response = TalkAction.builder(String.format("You pressed %s, Goodbye.",
                     event.getDtmf().getDigits()

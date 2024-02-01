@@ -42,8 +42,8 @@ public class AsrInput {
                     .builder("Please say something")
                     .build();
 
-            SpeechSettings speechSettings = new SpeechSettings();
-            speechSettings.setLanguage(SpeechSettings.Language.ENGLISH_UNITED_STATES);
+            SpeechSettings speechSettings = SpeechSettings.builder()
+                    .language(SpeechSettings.Language.ENGLISH_UNITED_STATES).build();
 
             InputAction input = InputAction.builder()
                     .type(Collections.singletonList("speech"))

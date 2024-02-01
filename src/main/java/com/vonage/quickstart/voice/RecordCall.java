@@ -22,6 +22,7 @@
 package com.vonage.quickstart.voice;
 
 import com.vonage.client.incoming.RecordEvent;
+import com.vonage.client.voice.EventWebhook;
 import com.vonage.client.voice.ncco.ConnectAction;
 import com.vonage.client.voice.ncco.Ncco;
 import com.vonage.client.voice.ncco.PhoneEndpoint;
@@ -57,7 +58,7 @@ public class RecordCall {
          * Route which prints out the recording URL it is given to stdout.
          */
         Route recordingRoute = (req, res) -> {
-            System.out.println(RecordEvent.fromJson(req.body()).getUrl());
+            System.out.println(EventWebhook.fromJson(req.body()).getRecordingUrl());
 
             res.status(204);
             return "";
