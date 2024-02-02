@@ -33,27 +33,15 @@ public class TransferCall {
 
         final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
         final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-        final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
-        final String TO_NUMBER = envVar("TO_NUMBER");
+        final String CALL_UUID = envVar("CALL_UUID");
 
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
-        // Establish a call for testing purposes.
-        final String ANSWER_URL = "https://nexmo-community.github.io/ncco-examples/long-tts.json";
         final String NCCO_URL = "https://nexmo-community.github.io/ncco-examples/talk.json";
 
-        CallEvent call = client.getVoiceClient().createCall(new Call(
-                TO_NUMBER,
-                VONAGE_NUMBER,
-                ANSWER_URL
-        ));
-
-        // Give them time to answer.
-        Thread.sleep(10_000);
-
-        client.getVoiceClient().transferCall(call.getUuid(), NCCO_URL);
+        client.getVoiceClient().transferCall(CALL_UUID, NCCO_URL);
     }
 }

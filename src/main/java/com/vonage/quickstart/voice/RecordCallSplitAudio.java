@@ -22,6 +22,7 @@
 package com.vonage.quickstart.voice;
 
 import com.vonage.client.incoming.RecordEvent;
+import com.vonage.client.voice.EventWebhook;
 import com.vonage.client.voice.ncco.*;
 import spark.Route;
 import spark.Spark;
@@ -58,7 +59,7 @@ public class RecordCallSplitAudio {
          * Route which prints out the recording URL it is given to stdout.
          */
         Route recordingRoute = (req, res) -> {
-            System.out.println(RecordEvent.fromJson(req.body()).getUrl());
+            System.out.println(EventWebhook.fromJson(req.body()).getRecordingUrl());
 
             res.status(204);
             return "";

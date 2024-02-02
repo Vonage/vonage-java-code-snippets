@@ -35,20 +35,15 @@ public class SendTalkToCall {
 
         final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
         final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-        final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
-        final String TO_NUMBER = envVar("TO_NUMBER");
+        final String CALL_UUID = envVar("CALL_UUID");
 
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
-        final String ANSWER_URL = "https://nexmo-community.github.io/ncco-examples/silent-loop.json";
         final String TEXT = "Hello World! Would you like to know more? I bet you would.";
-
-        CallEvent call = client.getVoiceClient().createCall(new Call(TO_NUMBER, VONAGE_NUMBER, ANSWER_URL));
-        TalkPayload payload = TalkPayload.builder(TEXT).language(TextToSpeechLanguage.AMERICAN_ENGLISH).build();
-        Thread.sleep(5000);
-        client.getVoiceClient().startTalk(call.getUuid(), payload);
+        var payload = TalkPayload.builder(TEXT).language(TextToSpeechLanguage.AMERICAN_ENGLISH).build();
+        client.getVoiceClient().startTalk(CALL_UUID, payload);
     }
 }

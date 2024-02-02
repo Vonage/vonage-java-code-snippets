@@ -32,31 +32,18 @@ import static com.vonage.quickstart.Util.envVar;
 public class TransferCallNCCO {
 
     public static void main(String... args) throws Exception {
-
         configureLogging();
 
         final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
         final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-        final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
-        final String TO_NUMBER = envVar("TO_NUMBER");
+        final String CALL_UUID = envVar("CALL_UUID");
 
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
-        // Establish a call for testing purposes.
-        final String ANSWER_URL = "https://nexmo-community.github.io/ncco-examples/long-tts.json";
-        CallEvent call = client.getVoiceClient().createCall(new Call(
-                TO_NUMBER,
-                VONAGE_NUMBER,
-                ANSWER_URL
-        ));
-
-        // Give them time to answer.
-        Thread.sleep(10000);
-
         TalkAction talkAction = TalkAction.builder("This is a transfer action using an inline NCCO.").build();
-        client.getVoiceClient().transferCall(call.getUuid(), new Ncco(talkAction));
+        client.getVoiceClient().transferCall(CALL_UUID, new Ncco(talkAction));
     }
 }
