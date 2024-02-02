@@ -47,6 +47,7 @@ public class OutboundTextToSpeechWithEventUrl {
                 .from(VONAGE_NUMBER).to(new PhoneEndpoint(TO_NUMBER))
                 .answerUrl(ANSWER_URL).eventUrl(EVENT_URL).build();
 
-        client.getVoiceClient().createCall(call);
+        var response = client.getVoiceClient().createCall(call);
+        System.out.println(response);
     }
 }

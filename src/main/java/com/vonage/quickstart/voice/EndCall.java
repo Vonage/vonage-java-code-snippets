@@ -32,25 +32,15 @@ public class EndCall {
     public static void main(String[] args) throws Exception {
         configureLogging();
 
-        String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
-        String TO_NUMBER = envVar("TO_NUMBER");
-
-        String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-        String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
+        final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
+        final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
+        final String CALL_UUID = envVar("CALL_UUID");
 
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
-        CallEvent call = client.getVoiceClient().createCall(new Call(
-                TO_NUMBER,
-                VONAGE_NUMBER,
-                "https://nexmo-community.github.io/ncco-examples/long-tts.json"
-        ));
-
-        Thread.sleep(20000);
-
-        client.getVoiceClient().terminateCall(call.getUuid());
+        client.getVoiceClient().terminateCall(CALL_UUID);
     }
 }
