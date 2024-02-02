@@ -22,11 +22,9 @@
 package com.vonage.quickstart.voice;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.incoming.RecordEvent;
 import com.vonage.client.voice.EventWebhook;
 import spark.Route;
 import spark.Spark;
-import java.net.URI;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import static com.vonage.quickstart.Util.envVar;

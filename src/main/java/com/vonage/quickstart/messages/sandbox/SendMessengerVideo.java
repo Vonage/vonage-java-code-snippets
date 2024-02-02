@@ -23,7 +23,6 @@ package com.vonage.quickstart.messages.sandbox;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.messenger.MessengerVideoRequest;
-import com.vonage.client.messages.whatsapp.WhatsappImageRequest;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 

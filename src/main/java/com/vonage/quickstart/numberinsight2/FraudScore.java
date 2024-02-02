@@ -22,11 +22,6 @@
 package com.vonage.quickstart.numberinsight2;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.messages.MessageResponse;
-import com.vonage.client.messages.MessageResponseException;
-import com.vonage.client.messages.MessagesClient;
-import com.vonage.client.messages.sms.SmsTextRequest;
-import com.vonage.client.numberinsight2.FraudCheckResponse;
 import com.vonage.client.numberinsight2.Insight;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;

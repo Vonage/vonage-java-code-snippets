@@ -25,7 +25,6 @@ import com.vonage.client.VonageClient;
 import com.vonage.client.meetings.MeetingRoom;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
-import java.util.List;
 import java.util.UUID;
 
 public class GetRoom {

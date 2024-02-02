@@ -23,8 +23,6 @@ package com.vonage.quickstart.messages.sandbox;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.messenger.MessengerTextRequest;
-import com.vonage.client.messages.viber.Category;
-import com.vonage.client.messages.viber.ViberTextRequest;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 

@@ -21,7 +21,6 @@
  */
 package com.vonage.quickstart.voice;
 
-import com.vonage.client.incoming.RecordEvent;
 import com.vonage.client.voice.EventWebhook;
 import com.vonage.client.voice.ncco.ConversationAction;
 import com.vonage.client.voice.ncco.EventMethod;

@@ -30,7 +30,6 @@ import com.vonage.client.messages.whatsapp.Policy;
 import com.vonage.client.messages.whatsapp.WhatsappTemplateRequest;
 
 import java.util.List;
-import java.util.Map;
 
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;

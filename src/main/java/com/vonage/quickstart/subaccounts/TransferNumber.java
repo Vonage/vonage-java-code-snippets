@@ -22,7 +22,6 @@
 package com.vonage.quickstart.subaccounts;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.subaccounts.MoneyTransfer;
 import com.vonage.client.subaccounts.NumberTransfer;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;

@@ -22,8 +22,6 @@
 package com.vonage.quickstart.voice;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.voice.Call;
-import com.vonage.client.voice.CallEvent;
 import static com.vonage.quickstart.Util.envVar;
 import static com.vonage.quickstart.Util.configureLogging;
 

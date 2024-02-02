@@ -26,7 +26,6 @@ import com.vonage.client.subaccounts.Account;
 import com.vonage.client.subaccounts.CreateSubaccountRequest;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
-import java.util.UUID;
 
 public class CreateSubaccount {
 	static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");

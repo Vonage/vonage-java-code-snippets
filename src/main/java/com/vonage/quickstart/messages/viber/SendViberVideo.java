@@ -25,7 +25,6 @@ import com.vonage.client.VonageClient;
 import com.vonage.client.messages.MessageResponse;
 import com.vonage.client.messages.MessageResponseException;
 import com.vonage.client.messages.MessagesClient;
-import com.vonage.client.messages.viber.ViberImageRequest;
 import com.vonage.client.messages.viber.ViberVideoRequest;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
