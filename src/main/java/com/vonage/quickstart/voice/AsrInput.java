@@ -21,7 +21,7 @@
  */
 package com.vonage.quickstart.voice;
 
-import com.vonage.client.incoming.InputEvent;
+import com.vonage.client.voice.EventWebhook;
 import com.vonage.client.voice.ncco.InputAction;
 import com.vonage.client.voice.ncco.Ncco;
 import com.vonage.client.voice.ncco.SpeechSettings;
@@ -61,10 +61,10 @@ public class AsrInput {
          * Route which returns NCCO saying which word was recognized.
          */
         Route speechInputRoute = (req, res) -> {
-            InputEvent event = InputEvent.fromJson(req.body());
+            EventWebhook event = EventWebhook.fromJson(req.body());
 
             TalkAction response = TalkAction.builder(String.format("You said %s, Goodbye.",
-                    event.getSpeech().getResults().iterator().next().getText()
+                    event.getSpeech().getResults().get(0).getText()
             )).build();
             res.type("application/json");
 
