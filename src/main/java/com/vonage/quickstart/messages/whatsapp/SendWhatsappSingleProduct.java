@@ -25,7 +25,6 @@ import com.vonage.client.VonageClient;
 import com.vonage.client.messages.MessageResponse;
 import com.vonage.client.messages.MessageResponseException;
 import com.vonage.client.messages.MessagesClient;
-import com.vonage.client.messages.whatsapp.WhatsappLocationRequest;
 import com.vonage.client.messages.whatsapp.WhatsappSingleProductRequest;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;

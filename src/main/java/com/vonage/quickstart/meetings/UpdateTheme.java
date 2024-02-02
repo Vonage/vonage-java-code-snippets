@@ -22,9 +22,7 @@
 package com.vonage.quickstart.meetings;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.meetings.MeetingRoom;
 import com.vonage.client.meetings.Theme;
-import com.vonage.client.meetings.UpdateRoomRequest;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 import java.util.UUID;

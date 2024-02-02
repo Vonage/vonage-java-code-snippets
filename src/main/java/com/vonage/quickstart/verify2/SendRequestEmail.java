@@ -23,12 +23,9 @@ package com.vonage.quickstart.verify2;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.verify2.EmailWorkflow;
-import com.vonage.client.verify2.SilentAuthWorkflow;
 import com.vonage.client.verify2.VerificationRequest;
-import com.vonage.client.verify2.WhatsappCodelessWorkflow;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
-import java.util.UUID;
 
 public class SendRequestEmail {
 

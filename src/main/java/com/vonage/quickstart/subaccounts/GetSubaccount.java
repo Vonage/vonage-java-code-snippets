@@ -23,7 +23,6 @@ package com.vonage.quickstart.subaccounts;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.subaccounts.Account;
-import com.vonage.client.subaccounts.CreateSubaccountRequest;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
