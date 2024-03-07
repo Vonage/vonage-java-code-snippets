@@ -23,20 +23,16 @@ package com.vonage.quickstart.messages.sandbox;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.whatsapp.WhatsappLocationRequest;
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
 
 public class SendWhatsappLocation {
 
 	public static void main(String[] args) throws Exception {
-		configureLogging();
-
 		System.out.println(VonageClient.builder()
 				.apiKey(envVar("VONAGE_API_KEY"))
 				.apiSecret(envVar("VONAGE_API_SECRET"))
 				.build()
 				.getMessagesClient()
-				.useSandboxEndpoint()
 				.sendMessage(WhatsappLocationRequest.builder()
 						.to(envVar("TO_NUMBER"))
 						.from(envVar("VONAGE_WHATSAPP_NUMBER"))

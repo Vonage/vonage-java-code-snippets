@@ -23,21 +23,18 @@ package com.vonage.quickstart.messages.sandbox;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.sms.SmsTextRequest;
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
 
 public class SendSmsText {
 
 	public static void main(String[] args) throws Exception {
-		configureLogging();
-
 		System.out.println(VonageClient.builder()
 				.applicationId(envVar("VONAGE_APPLICATION_ID"))
 				.privateKeyPath(envVar("VONAGE_PRIVATE_KEY_PATH"))
 				.build()
 				.getMessagesClient()
 				.sendMessage(SmsTextRequest.builder()
-					.from(envVar("FROM_NUMBER"))
+					.from("Vonage Java SDK")
 					.to(envVar("TO_NUMBER"))
 					.text("Hello, "+System.getenv("NAME"))
 					.build()
