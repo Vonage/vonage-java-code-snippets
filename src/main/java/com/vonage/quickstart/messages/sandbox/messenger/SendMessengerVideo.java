@@ -19,28 +19,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.messages.sandbox;
+package com.vonage.quickstart.messages.sandbox.messenger;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.messages.whatsapp.WhatsappImageRequest;
-import static com.vonage.quickstart.Util.*;
+import com.vonage.client.messages.messenger.MessengerVideoRequest;
+import static com.vonage.quickstart.Util.configureLogging;
+import static com.vonage.quickstart.Util.envVar;
 
-public class SendWhatsappImage {
+public class SendMessengerVideo {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
 
 		System.out.println(VonageClient.builder()
-				.apiKey(envVar("VONAGE_API_KEY"))
-				.apiSecret(envVar("VONAGE_API_SECRET"))
+				.applicationId(envVar("VONAGE_APPLICATION_ID"))
+				.privateKeyPath(envVar("VONAGE_PRIVATE_KEY_PATH"))
 				.build()
 				.getMessagesClient()
 				.useSandboxEndpoint()
-				.sendMessage(WhatsappImageRequest.builder()
-						.from(envVar("VONAGE_WHATSAPP_NUMBER"))
-						.to(envVar("TO_NUMBER"))
-						.url("https://lastfm.freetls.fastly.net/i/u/770x0/a21ed806c65618ea1e7a6c8b4abf0402.jpg")
-						.caption("Fluttershy")
+				.sendMessage(MessengerVideoRequest.builder()
+						.from(envVar("MESSAGES_SANDBOX_FB_ID"))
+						.to(envVar("MESSAGES_SANDBOX_ALLOW_LISTED_FB_RECIPIENT_ID"))
+						.url("https://file-examples.com/storage/fee788409562ada83b58ed5/2017/04/file_example_MP4_640_3MG.mp4")
 						.build()
 				).getMessageUuid()
 		);

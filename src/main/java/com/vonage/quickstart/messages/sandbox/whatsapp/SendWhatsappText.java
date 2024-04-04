@@ -19,14 +19,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.messages.sandbox;
+package com.vonage.quickstart.messages.sandbox.whatsapp;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.messages.messenger.MessengerTextRequest;
+import com.vonage.client.messages.whatsapp.WhatsappTextRequest;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
-public class SendMessengerText {
+public class SendWhatsappText {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
@@ -37,10 +37,11 @@ public class SendMessengerText {
 				.build()
 				.getMessagesClient()
 				.useSandboxEndpoint()
-				.sendMessage(MessengerTextRequest.builder()
-						.from(envVar("FROM_ID")).to(envVar("TO_NUMBER"))
-						.text("Don't miss out on our latest offers!")
-						.build()
+				.sendMessage(WhatsappTextRequest.builder()
+					.from(envVar("MESSAGES_SANDBOX_WHATSAPP_NUMBER"))
+					.to(envVar("MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER"))
+					.text("Hello from Vonage, "+System.getenv("NAME"))
+					.build()
 				).getMessageUuid()
 		);
 	}

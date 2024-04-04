@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.messages.sandbox;
+package com.vonage.quickstart.messages.sandbox.whatsapp;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.whatsapp.WhatsappAudioRequest;
@@ -38,8 +38,8 @@ public class SendWhatsappAudio {
 				.getMessagesClient()
 				.useSandboxEndpoint()
 				.sendMessage(WhatsappAudioRequest.builder()
-					.from(envVar("VONAGE_WHATSAPP_NUMBER"))
-					.to(envVar("TO_NUMBER"))
+					.from(envVar("MESSAGES_SANDBOX_WHATSAPP_NUMBER"))
+					.to(envVar("MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER"))
 					.url("https://file-examples.com/storage/fee788409562ada83b58ed5/2017/11/file_example_MP3_1MG.mp3")
 					.build()
 				).getMessageUuid()
