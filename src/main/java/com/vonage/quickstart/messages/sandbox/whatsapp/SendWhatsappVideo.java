@@ -19,14 +19,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.messages.sandbox;
+package com.vonage.quickstart.messages.sandbox.whatsapp;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.messages.whatsapp.WhatsappFileRequest;
+import com.vonage.client.messages.whatsapp.WhatsappVideoRequest;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
-public class SendWhatsappFile {
+public class SendWhatsappVideo {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
@@ -37,11 +37,10 @@ public class SendWhatsappFile {
 				.build()
 				.getMessagesClient()
 				.useSandboxEndpoint()
-				.sendMessage(WhatsappFileRequest.builder()
-					.from(envVar("VONAGE_WHATSAPP_NUMBER"))
-					.to(envVar("TO_NUMBER"))
-					.url("https://file-examples.com/storage/fee788409562ada83b58ed5/2017/10/file-sample_150kB.pdf")
-					.caption("Accompanying message (optional)")
+				.sendMessage(WhatsappVideoRequest.builder()
+					.from(envVar("MESSAGES_SANDBOX_WHATSAPP_NUMBER"))
+					.to(envVar("MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER"))
+					.url("https://file-examples.com/storage/fee788409562ada83b58ed5/2017/04/file_example_MP4_640_3MG.mp4")
 					.build()
 				).getMessageUuid()
 		);

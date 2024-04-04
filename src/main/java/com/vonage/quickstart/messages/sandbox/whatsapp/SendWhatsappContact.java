@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.messages.sandbox;
+package com.vonage.quickstart.messages.sandbox.whatsapp;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.whatsapp.WhatsappCustomRequest;
@@ -40,8 +40,8 @@ public class SendWhatsappContact {
 				.getMessagesClient()
 				.useSandboxEndpoint()
 				.sendMessage(WhatsappCustomRequest.builder()
-					.from(envVar("VONAGE_WHATSAPP_NUMBER"))
-					.to(envVar("TO_NUMBER"))
+					.from(envVar("MESSAGES_SANDBOX_WHATSAPP_NUMBER"))
+					.to(envVar("MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER"))
 					.custom(Map.of(
 						"type", "contacts",
 						"contacts", List.of(Map.of(

@@ -19,28 +19,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.messages.sandbox;
+package com.vonage.quickstart.messages.sandbox.whatsapp;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.messages.messenger.MessengerTextRequest;
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
+import com.vonage.client.messages.whatsapp.WhatsappLocationRequest;
+import static com.vonage.quickstart.Util.*;
 
-public class SendMessengerText {
+public class SendWhatsappLocation {
 
 	public static void main(String[] args) throws Exception {
-		configureLogging();
-
 		System.out.println(VonageClient.builder()
-				.applicationId(envVar("VONAGE_APPLICATION_ID"))
-				.privateKeyPath(envVar("VONAGE_PRIVATE_KEY_PATH"))
+				.apiKey(envVar("VONAGE_API_KEY"))
+				.apiSecret(envVar("VONAGE_API_SECRET"))
 				.build()
 				.getMessagesClient()
-				.useSandboxEndpoint()
-				.sendMessage(MessengerTextRequest.builder()
-						.from(envVar("FROM_ID")).to(envVar("TO_NUMBER"))
-						.text("Don't miss out on our latest offers!")
-						.build()
+				.sendMessage(WhatsappLocationRequest.builder()
+						.from(envVar("MESSAGES_SANDBOX_WHATSAPP_NUMBER"))
+					.to(envVar("MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER"))
+						.longitude(-122.1503115)
+						.latitude(37.4843538)
+						.name("Facebook HQ")
+						.address("1 Hacker Way, Menlo Park, CA 94025")
+					.build()
 				).getMessageUuid()
 		);
 	}

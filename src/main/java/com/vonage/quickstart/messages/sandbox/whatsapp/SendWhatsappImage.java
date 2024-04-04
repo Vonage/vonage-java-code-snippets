@@ -19,30 +19,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.messages.sandbox;
+package com.vonage.quickstart.messages.sandbox.whatsapp;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.messages.mms.MmsImageRequest;
+import com.vonage.client.messages.whatsapp.WhatsappImageRequest;
+import static com.vonage.quickstart.Util.*;
 
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
-
-public class SendMmsImage {
+public class SendWhatsappImage {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
 
 		System.out.println(VonageClient.builder()
-				.applicationId(envVar("VONAGE_APPLICATION_ID"))
-				.privateKeyPath(envVar("VONAGE_PRIVATE_KEY_PATH"))
+				.apiKey(envVar("VONAGE_API_KEY"))
+				.apiSecret(envVar("VONAGE_API_SECRET"))
 				.build()
 				.getMessagesClient()
-				.sendMessage(MmsImageRequest.builder()
-					.from(envVar("FROM_NUMBER"))
-					.to(envVar("TO_NUMBER"))
-					.url("https://lastfm.freetls.fastly.net/i/u/770x0/a21ed806c65618ea1e7a6c8b4abf0402.jpg")
-					.caption("Fluttershy")
-					.build()
+				.useSandboxEndpoint()
+				.sendMessage(WhatsappImageRequest.builder()
+						.from(envVar("MESSAGES_SANDBOX_WHATSAPP_NUMBER"))
+					.to(envVar("MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER"))
+						.url("https://lastfm.freetls.fastly.net/i/u/770x0/a21ed806c65618ea1e7a6c8b4abf0402.jpg")
+						.caption("Fluttershy")
+						.build()
 				).getMessageUuid()
 		);
 	}
