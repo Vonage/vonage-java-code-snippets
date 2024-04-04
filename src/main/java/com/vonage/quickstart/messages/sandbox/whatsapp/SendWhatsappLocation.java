@@ -35,7 +35,7 @@ public class SendWhatsappLocation {
 				.getMessagesClient()
 				.sendMessage(WhatsappLocationRequest.builder()
 						.from(envVar("MESSAGES_SANDBOX_WHATSAPP_NUMBER"))
-					.to(envVar("MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER"))
+						.to(envVar("MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER"))
 						.longitude(-122.1503115)
 						.latitude(37.4843538)
 						.name("Facebook HQ")
