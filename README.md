@@ -4,7 +4,7 @@
 
 Quickstarts also available for: [Python](https://github.com/Vonage/vonage-python-code-snippets), [.NET](https://github.com/Vonage/vonage-dotnet-code-snippets), [Node.js](https://github.com/Vonage/vonage-node-code-snippets), [PHP](https://github.com/Vonage/vonage-php-code-snippets),  [Ruby](https://github.com/Vonage/vonage-ruby-code-snippets) and [curl](https://github.com/Vonage/vonage-curl-code-snippets).
 
-The purpose of the quickstart guide is to provide simple examples focused on one goal. For example, sending an SMS, handling an incoming SMS webhook, making a Text to Speech call. These code samples are meant to be used for https://developer.nexmo.com/, and are structured in such a way as to be used for internal testing. Developers are free to use these code snippets as a reference, but these may require changes to be worked into your specific application. We recommend checking out the Vonage Developer Website, which displays these code snippets in a more copy/paste fashion.
+The purpose of the quickstart guide is to provide simple examples focused on one goal. For example, sending an SMS, handling an incoming SMS webhook, making a Text to Speech call. These code samples are meant to be used for https://developer.vonage.com/, and are structured in such a way as to be used for internal testing. Developers are free to use these code snippets as a reference, but these may require changes to be worked into your specific application. We recommend checking out the Vonage Developer Website, which displays these code snippets in a more copy/paste fashion.
 
 ## Setup
 
@@ -14,9 +14,9 @@ For some of the examples you will need to [buy a number][buy-number].
 
 ## Building The Library
 
-You will need to have [Gradle](https://gradle.org/) installed to build the code. Once
-you have gradle installed, run the following to build a jar that contains
-the quickstart code along with all the vonage server sdk dependencies:
+You will need to have [Gradle](https://gradle.org/) installed to build the code. Once you have Gradle installed,
+run the following to build a jar that contains the quickstart code along with all
+the [Vonage Java Server SDK](https://github.com/Vonage/vonage-java-sdk) dependencies:
 
 ```sh
 gradle assemble
