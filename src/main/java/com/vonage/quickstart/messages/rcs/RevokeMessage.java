@@ -19,14 +19,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.messages.sandbox.whatsapp;
+package com.vonage.quickstart.messages.rcs;
 
 import com.vonage.client.ApiRegion;
 import com.vonage.client.VonageClient;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
-public class AcknowledgeWhatsappMessage {
+public class RevokeMessage {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
@@ -40,6 +40,6 @@ public class AcknowledgeWhatsappMessage {
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
-		client.getMessagesClient().ackInboundMessage(MESSAGE_UUID, ApiRegion.API_EU);
+		client.getMessagesClient().revokeOutboundMessage(MESSAGE_UUID, ApiRegion.API_EU);
 	}
 }

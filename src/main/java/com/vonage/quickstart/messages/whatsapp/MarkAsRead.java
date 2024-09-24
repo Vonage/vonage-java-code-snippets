@@ -19,14 +19,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.messages.rcs;
+package com.vonage.quickstart.messages.whatsapp;
 
 import com.vonage.client.ApiRegion;
 import com.vonage.client.VonageClient;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
-public class RevokeRcsMessage {
+public class MarkAsRead {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
@@ -40,6 +40,6 @@ public class RevokeRcsMessage {
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
-		client.getMessagesClient().revokeOutboundMessage(MESSAGE_UUID, ApiRegion.API_EU);
+		client.getMessagesClient().ackInboundMessage(MESSAGE_UUID, ApiRegion.API_EU);
 	}
 }
