@@ -19,22 +19,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.messages.viber;
+package com.vonage.quickstart.messages.rcs;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.messages.viber.Category;
-import com.vonage.client.messages.viber.ViberVideoRequest;
+import com.vonage.client.messages.rcs.RcsCustomRequest;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
+import java.time.Instant;
+import java.util.List;
+import java.util.Map;
 
-public class SendViberVideo {
+public class SendRcsSuggestedCalendarEvent {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
 
 		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
 		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		String VONAGE_VIBER_SERVICE_MESSAGE_ID = envVar("VONAGE_VIBER_SERVICE_MESSAGE_ID");
+		String RCS_SENDER_ID = envVar("RCS_SENDER_ID");
 		String TO_NUMBER = envVar("TO_NUMBER");
 
 		VonageClient client = VonageClient.builder()
@@ -43,15 +45,28 @@ public class SendViberVideo {
 				.build();
 
 		var response = client.getMessagesClient().sendMessage(
-			ViberVideoRequest.builder()
-				.to(TO_NUMBER)
-				.from(VONAGE_VIBER_SERVICE_MESSAGE_ID)
-				.url("https://example.com/video.mp4")
-				.thumbUrl("https://example.com/image.jpg")
-				.category(Category.TRANSACTION)
-				.fileSize(42).duration(35).ttl(86400)
-				.build()
+			RcsCustomRequest.builder()
+				.from(RCS_SENDER_ID).to(TO_NUMBER)
+				.custom(Map.of("contentMessage", Map.of(
+						"text", "Product Launch: Save the date!",
+						"suggestions", List.of(
+							Map.of(
+								"action", Map.of(
+									"text", "Save to calendar",
+									"postbackData", "postback_data_1234",
+									"fallbackUrl", "https://www.google.com/calendar",
+									"createCalendarEventAction", Map.of(
+										"startTime", Instant.ofEpochSecond(1719604800),
+										"endTime", Instant.ofEpochSecond(1719601200),
+										"title", "Vonage API Product Launch",
+										"description", "Event to demo Vonage's new and exciting API product"
+									)
+								)
+							)
+						)
+					))
+				).build()
 		);
-		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
+		System.out.println("Message sent successfully. ID: " + response.getMessageUuid());
 	}
 }

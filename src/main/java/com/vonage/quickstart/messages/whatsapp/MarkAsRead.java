@@ -19,39 +19,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.messages.viber;
+package com.vonage.quickstart.messages.whatsapp;
 
+import com.vonage.client.ApiRegion;
 import com.vonage.client.VonageClient;
-import com.vonage.client.messages.viber.Category;
-import com.vonage.client.messages.viber.ViberVideoRequest;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
-public class SendViberVideo {
+public class MarkAsRead {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
 
 		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
 		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		String VONAGE_VIBER_SERVICE_MESSAGE_ID = envVar("VONAGE_VIBER_SERVICE_MESSAGE_ID");
-		String TO_NUMBER = envVar("TO_NUMBER");
+		String MESSAGE_UUID = envVar("MESSAGE_UUID");
 
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
-		var response = client.getMessagesClient().sendMessage(
-			ViberVideoRequest.builder()
-				.to(TO_NUMBER)
-				.from(VONAGE_VIBER_SERVICE_MESSAGE_ID)
-				.url("https://example.com/video.mp4")
-				.thumbUrl("https://example.com/image.jpg")
-				.category(Category.TRANSACTION)
-				.fileSize(42).duration(35).ttl(86400)
-				.build()
-		);
-		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
+		client.getMessagesClient().ackInboundMessage(MESSAGE_UUID, ApiRegion.API_EU);
 	}
 }

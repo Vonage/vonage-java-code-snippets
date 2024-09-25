@@ -19,22 +19,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.messages.viber;
+package com.vonage.quickstart.messages.rcs;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.messages.viber.Category;
-import com.vonage.client.messages.viber.ViberVideoRequest;
+import com.vonage.client.messages.rcs.RcsCustomRequest;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
+import java.util.List;
+import java.util.Map;
 
-public class SendViberVideo {
+public class SendRcsSuggestedShareLocation {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
 
 		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
 		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		String VONAGE_VIBER_SERVICE_MESSAGE_ID = envVar("VONAGE_VIBER_SERVICE_MESSAGE_ID");
+		String RCS_SENDER_ID = envVar("RCS_SENDER_ID");
 		String TO_NUMBER = envVar("TO_NUMBER");
 
 		VonageClient client = VonageClient.builder()
@@ -43,15 +44,22 @@ public class SendViberVideo {
 				.build();
 
 		var response = client.getMessagesClient().sendMessage(
-			ViberVideoRequest.builder()
-				.to(TO_NUMBER)
-				.from(VONAGE_VIBER_SERVICE_MESSAGE_ID)
-				.url("https://example.com/video.mp4")
-				.thumbUrl("https://example.com/image.jpg")
-				.category(Category.TRANSACTION)
-				.fileSize(42).duration(35).ttl(86400)
-				.build()
+			RcsCustomRequest.builder()
+				.from(RCS_SENDER_ID).to(TO_NUMBER)
+				.custom(Map.of("contentMessage", Map.of(
+						"text", "Your driver will come and meet you at your specified location.",
+						"suggestions", List.of(
+							Map.of(
+								"action", Map.of(
+									"text", "Share a location",
+									"postbackData", "postback_data_1234",
+									"shareLocationAction", Map.of()
+								)
+							)
+						)
+					))
+				).build()
 		);
-		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
+		System.out.println("Message sent successfully. ID: " + response.getMessageUuid());
 	}
 }

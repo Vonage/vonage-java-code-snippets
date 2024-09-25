@@ -19,23 +19,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.messages.viber;
+package com.vonage.quickstart.messages.whatsapp;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.messages.viber.Category;
-import com.vonage.client.messages.viber.ViberVideoRequest;
+import com.vonage.client.messages.MessageType;
+import com.vonage.client.messages.whatsapp.Locale;
+import com.vonage.client.messages.whatsapp.Policy;
+import com.vonage.client.messages.whatsapp.WhatsappCustomRequest;
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
+import java.util.List;
+import java.util.Map;
 
-public class SendViberVideo {
+public class SendWhatsappMediaTemplate {
 
 	public static void main(String[] args) throws Exception {
 		configureLogging();
 
 		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
 		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		String VONAGE_VIBER_SERVICE_MESSAGE_ID = envVar("VONAGE_VIBER_SERVICE_MESSAGE_ID");
+		String VONAGE_WHATSAPP_NUMBER = envVar("VONAGE_WHATSAPP_NUMBER");
 		String TO_NUMBER = envVar("TO_NUMBER");
+		String WHATSAPP_TEMPLATE_NAME = envVar("WHATSAPP_TEMPLATE_NAME");
+		String WHATSAPP_TEMPLATE_REPLACEMENT_TEXT = envVar("WHATSAPP_TEMPLATE_REPLACEMENT_TEXT");
+		String IMAGE_URL = envVar("IMAGE_URL");
 
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
@@ -43,14 +50,40 @@ public class SendViberVideo {
 				.build();
 
 		var response = client.getMessagesClient().sendMessage(
-			ViberVideoRequest.builder()
-				.to(TO_NUMBER)
-				.from(VONAGE_VIBER_SERVICE_MESSAGE_ID)
-				.url("https://example.com/video.mp4")
-				.thumbUrl("https://example.com/image.jpg")
-				.category(Category.TRANSACTION)
-				.fileSize(42).duration(35).ttl(86400)
-				.build()
+			WhatsappCustomRequest.builder()
+				.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
+				.custom(Map.of(
+						"type", MessageType.TEMPLATE,
+						"template", Map.of(
+							"name", WHATSAPP_TEMPLATE_NAME,
+							"language", Map.of(
+								"policy", Policy.DETERMINISTIC,
+								"code", Locale.ENGLISH
+							),
+							"components", List.of(
+								Map.of(
+									"type", "header",
+									"parameters", List.of(
+										Map.of(
+											"type", MessageType.IMAGE,
+											"image", Map.of(
+												"link", IMAGE_URL
+											)
+										)
+									)
+								),
+								Map.of(
+									"type", "body",
+									"parameters", List.of(
+										Map.of(
+											"type", MessageType.TEXT,
+											"text", WHATSAPP_TEMPLATE_REPLACEMENT_TEXT
+										)
+									)
+								)
+							)
+						)
+				)).build()
 		);
 		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
 	}
