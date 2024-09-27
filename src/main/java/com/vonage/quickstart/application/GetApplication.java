@@ -38,9 +38,7 @@ public class GetApplication {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        ApplicationClient applicationClient = client.getApplicationClient();
-
-        Application application = applicationClient.getApplication(VONAGE_APPLICATION_ID);
+        Application application = client.getApplicationClient().getApplication(VONAGE_APPLICATION_ID);
 
         System.out.println(application.toJson());
     }

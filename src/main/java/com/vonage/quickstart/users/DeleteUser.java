@@ -19,31 +19,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.insight;
+package com.vonage.quickstart.users;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.insight.BasicInsightResponse;
-import static com.vonage.quickstart.Util.configureLogging;
+import com.vonage.client.users.User;
 import static com.vonage.quickstart.Util.envVar;
 
-public class BasicInsight {
+public class DeleteUser {
     private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
     private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String INSIGHT_NUMBER = envVar("INSIGHT_NUMBER");
+    private static final String USER_ID = envVar("USER_ID");
 
-    public static void main(String[] args) throws Exception {
-        configureLogging();
-
+    public static void main(String... args) {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        BasicInsightResponse response = client.getInsightClient().getBasicNumberInsight(INSIGHT_NUMBER);
-        System.out.println("International format: " + response.getInternationalFormatNumber());
-        System.out.println("National format: " + response.getNationalFormatNumber());
-        System.out.println("Country: " + response.getCountryName() +
-                " (" + response.getCountryCodeIso3() + ", +" + response.getCountryPrefix() + ")"
-        );
+        client.getUsersClient().deleteUser(USER_ID);
     }
 }

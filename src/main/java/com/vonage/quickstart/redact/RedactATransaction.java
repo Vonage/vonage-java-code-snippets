@@ -22,16 +22,15 @@
 package com.vonage.quickstart.redact;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.redact.RedactClient;
 import com.vonage.client.redact.RedactRequest;
-
 import static com.vonage.quickstart.Util.envVar;
 
 public class RedactATransaction {
     private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
     private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
     private static final String VONAGE_REDACT_ID = envVar("VONAGE_REDACT_ID");
-    private static final RedactRequest.Product VONAGE_REDACT_PRODUCT = RedactRequest.Product.valueOf(envVar("VONAGE_REDACT_PRODUCT"));
+    private static final RedactRequest.Product VONAGE_REDACT_PRODUCT =
+            RedactRequest.Product.valueOf(envVar("VONAGE_REDACT_PRODUCT"));
 
     public static void main(String... args) {
         VonageClient client = VonageClient.builder()
@@ -39,8 +38,6 @@ public class RedactATransaction {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        RedactClient redactClient = client.getRedactClient();
-
-        redactClient.redactTransaction(VONAGE_REDACT_ID, VONAGE_REDACT_PRODUCT);
+        client.getRedactClient().redactTransaction(VONAGE_REDACT_ID, VONAGE_REDACT_PRODUCT);
     }
 }

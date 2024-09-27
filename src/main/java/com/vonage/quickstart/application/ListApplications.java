@@ -37,9 +37,7 @@ public class ListApplications {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        ApplicationClient applicationClient = client.getApplicationClient();
-
-        ApplicationList applications = applicationClient.listApplications();
+        ApplicationList applications = client.getApplicationClient().listApplications();
 
         applications.getApplications().forEach(
                 application -> System.out.println(application.toJson())

@@ -19,31 +19,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.insight;
+package com.vonage.quickstart.messages.sandbox.viber;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.insight.BasicInsightResponse;
-import static com.vonage.quickstart.Util.configureLogging;
+import com.vonage.client.messages.viber.Category;
+import com.vonage.client.messages.viber.ViberVideoRequest;
 import static com.vonage.quickstart.Util.envVar;
 
-public class BasicInsight {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String INSIGHT_NUMBER = envVar("INSIGHT_NUMBER");
+public class SendViberVideo {
 
-    public static void main(String[] args) throws Exception {
-        configureLogging();
-
-        VonageClient client = VonageClient.builder()
-                .apiKey(VONAGE_API_KEY)
-                .apiSecret(VONAGE_API_SECRET)
-                .build();
-
-        BasicInsightResponse response = client.getInsightClient().getBasicNumberInsight(INSIGHT_NUMBER);
-        System.out.println("International format: " + response.getInternationalFormatNumber());
-        System.out.println("National format: " + response.getNationalFormatNumber());
-        System.out.println("Country: " + response.getCountryName() +
-                " (" + response.getCountryCodeIso3() + ", +" + response.getCountryPrefix() + ")"
-        );
-    }
+	public static void main(String[] args) throws Exception {
+		System.out.println(VonageClient.builder()
+				.applicationId(envVar("VONAGE_APPLICATION_ID"))
+				.privateKeyPath(envVar("VONAGE_PRIVATE_KEY_PATH"))
+				.build()
+				.getMessagesClient().useSandboxEndpoint()
+				.sendMessage(ViberVideoRequest.builder()
+						.from(envVar("MESSAGES_SANDBOX_VIBER_SERVICE_ID"))
+						.to(envVar("MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER"))
+						.category(Category.PROMOTION)
+						.duration(Integer.parseInt(envVar("VIDEO_DURATION")))
+						.fileSize(Integer.parseInt(envVar("VIDEO_SIZE")))
+						.thumbUrl(envVar("THUMB_URL"))
+						.url(envVar("VIDEO_URL"))
+						.caption("Check out this video!").build()
+				).getMessageUuid()
+		);
+	}
 }

@@ -19,31 +19,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.insight;
+package com.vonage.quickstart.users;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.insight.BasicInsightResponse;
-import static com.vonage.quickstart.Util.configureLogging;
+import com.vonage.client.users.User;
+import com.vonage.client.users.channels.*;
 import static com.vonage.quickstart.Util.envVar;
 
-public class BasicInsight {
+public class CreateUser {
     private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
     private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String INSIGHT_NUMBER = envVar("INSIGHT_NUMBER");
+    private static final String USER_NAME = envVar("USER_NAME");
+    private static final String USER_DISPLAY_NAME = envVar("USER_NAME");
 
-    public static void main(String[] args) throws Exception {
-        configureLogging();
-
+    public static void main(String... args) {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        BasicInsightResponse response = client.getInsightClient().getBasicNumberInsight(INSIGHT_NUMBER);
-        System.out.println("International format: " + response.getInternationalFormatNumber());
-        System.out.println("National format: " + response.getNationalFormatNumber());
-        System.out.println("Country: " + response.getCountryName() +
-                " (" + response.getCountryCodeIso3() + ", +" + response.getCountryPrefix() + ")"
+        User user = client.getUsersClient().createUser(
+            User.builder()
+                .name(USER_NAME)
+                .displayName(USER_DISPLAY_NAME)
+                .imageUrl("https://example.com/profile.jpg")
+                .channels(
+                    new Pstn("448001234567"),
+                    new Sms("447700900000"),
+                    new Viber("447700900000"),
+                    new Whatsapp("447700900000"),
+                    new Viber("447700900000"),
+                    new Messenger("12345abcd"),
+                    new Vbc(123),
+                    new Sip("sip:4442138907@sip.example.com;transport=tls", "myUserName", "P@ssw0rd"),
+                    new Websocket("wss://example.com/socket")
+                )
+                .build()
         );
     }
 }
