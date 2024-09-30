@@ -37,8 +37,6 @@ public class DeleteApplication {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        ApplicationClient applicationClient = client.getApplicationClient();
-
-        applicationClient.deleteApplication(VONAGE_APPLICATION_ID);
+        client.getApplicationClient().deleteApplication(VONAGE_APPLICATION_ID);
     }
 }

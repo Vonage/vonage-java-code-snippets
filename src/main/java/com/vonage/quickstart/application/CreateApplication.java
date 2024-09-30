@@ -42,20 +42,17 @@ public class CreateApplication {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        ApplicationClient applicationClient = client.getApplicationClient();
-
-        Capability messages = Messages.builder()
-                .addWebhook(Webhook.Type.INBOUND,
-                        new Webhook("https://example.com/webhooks/inbound", HttpMethod.POST))
-                .addWebhook(Webhook.Type.STATUS,
-                        new Webhook("https://example.com/webhooks/status", HttpMethod.POST))
-                .build();
-
-        Application application = applicationClient.createApplication(
-                Application.builder()
-                        .name(APPLICATION_NAME)
-                        .addCapability(messages)
+        Application application = client.getApplicationClient().createApplication(
+            Application.builder()
+                .name(APPLICATION_NAME)
+                .addCapability(Messages.builder()
+                        .addWebhook(Webhook.Type.INBOUND,
+                                new Webhook("https://example.com/webhooks/inbound", HttpMethod.POST))
+                        .addWebhook(Webhook.Type.STATUS,
+                                new Webhook("https://example.com/webhooks/status", HttpMethod.POST))
                         .build()
+                )
+                .build()
         );
 
         System.out.println("Application Created:");

@@ -22,21 +22,28 @@
 package com.vonage.quickstart.verify;
 
 import com.vonage.client.VonageClient;
-
-import static com.vonage.quickstart.Util.configureLogging;
+import com.vonage.client.verify.ControlResponse;
 import static com.vonage.quickstart.Util.envVar;
 
 public class AdvanceVerification {
+    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
+    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
+    private static final String REQUEST_ID = envVar("REQUEST_ID");
+
     public static void main(String[] args) throws Exception {
-        configureLogging();
+        VonageClient client = VonageClient.builder()
+                .apiKey(VONAGE_API_KEY)
+                .apiSecret(VONAGE_API_SECRET)
+                .build();
 
-        String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-        String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-        String REQUEST_ID = envVar("REQUEST_ID");
+        ControlResponse response = client.getVerifyClient().advanceVerification(REQUEST_ID);
 
-
-        VonageClient client = VonageClient.builder().apiKey(VONAGE_API_KEY).apiSecret(VONAGE_API_SECRET).build();
-        client.getVerifyClient().advanceVerification(REQUEST_ID);
-        System.out.println("Verification advanced to next stage!");
+        String errorText = response.getErrorText();
+        if (errorText != null) {
+            System.out.println("Couldn't advance workflow: " + errorText);
+        }
+        else {
+            System.out.println("Verification advanced to next stage!");
+        }
     }
 }

@@ -23,9 +23,8 @@ package com.vonage.quickstart.numbers;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.numbers.*;
-
-import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
+import java.util.Arrays;
 
 public class SearchNumbers {
     private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
@@ -33,30 +32,28 @@ public class SearchNumbers {
     private static final String NUMBER_SEARCH_CRITERIA = envVar("NUMBER_SEARCH_CRITERIA");
     private static final SearchPattern NUMBER_SEARCH_PATTERN = SearchPattern.valueOf(envVar("NUMBER_SEARCH_PATTERN"));
     private static final String COUNTRY_CODE = envVar("COUNTRY_CODE");
-    private static final String[] VONAGE_NUMBER_FEATURES = envVar("VONAGE_NUMBER_FEATURES").split(",");
-    private static final String VONAGE_NUMBER_TYPE = envVar("VONAGE_NUMBER_TYPE");
+    private static final Feature[] VONAGE_NUMBER_FEATURES = Arrays.stream(
+            envVar("VONAGE_NUMBER_FEATURES").split(",")).map(Feature::valueOf).toArray(Feature[]::new);
+    private static final Type VONAGE_NUMBER_TYPE = Type.valueOf(envVar("VONAGE_NUMBER_TYPE"));
 
     public static void main(String[] args) {
-        configureLogging();
-
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        NumbersClient numbersClient = client.getNumbersClient();
-
-        SearchNumbersFilter filter = new SearchNumbersFilter(COUNTRY_CODE);
-        filter.setFeatures(VONAGE_NUMBER_FEATURES);
-        filter.setPattern(NUMBER_SEARCH_CRITERIA);
-        filter.setSearchPattern(NUMBER_SEARCH_PATTERN);
-
-        SearchNumbersResponse response = numbersClient.searchNumbers(filter);
+        SearchNumbersResponse response = client.getNumbersClient().searchNumbers(
+                SearchNumbersFilter.builder()
+                    .country(COUNTRY_CODE)
+                    .type(VONAGE_NUMBER_TYPE)
+                    .features(VONAGE_NUMBER_FEATURES)
+                    .pattern(NUMBER_SEARCH_PATTERN, NUMBER_SEARCH_CRITERIA)
+                    .build()
+        );
 
         System.out.println("Here are "
                 + response.getNumbers().length
-                + " of the "
-                + response.getCount()
+                + " of the " + response.getCount()
                 + " matching numbers available for purchase."
         );
 

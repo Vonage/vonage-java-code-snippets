@@ -19,23 +19,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.numbers;
+package com.vonage.quickstart.users;
 
 import com.vonage.client.VonageClient;
+import com.vonage.client.users.User;
+import com.vonage.client.users.channels.*;
 import static com.vonage.quickstart.Util.envVar;
 
-public class BuyNumber {
+public class CreateUser {
     private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
     private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String COUNTRY_CODE = envVar("COUNTRY_CODE");
-    private static final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
+    private static final String USER_NAME = envVar("USER_NAME");
+    private static final String USER_DISPLAY_NAME = envVar("USER_NAME");
 
-    public static void main(String[] args) {
+    public static void main(String... args) {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        client.getNumbersClient().buyNumber(COUNTRY_CODE, VONAGE_NUMBER);
+        User user = client.getUsersClient().createUser(
+            User.builder()
+                .name(USER_NAME)
+                .displayName(USER_DISPLAY_NAME)
+                .imageUrl("https://example.com/profile.jpg")
+                .channels(
+                    new Pstn("448001234567"),
+                    new Sms("447700900000"),
+                    new Viber("447700900000"),
+                    new Whatsapp("447700900000"),
+                    new Viber("447700900000"),
+                    new Messenger("12345abcd"),
+                    new Vbc(123),
+                    new Sip("sip:4442138907@sip.example.com;transport=tls", "myUserName", "P@ssw0rd"),
+                    new Websocket("wss://example.com/socket")
+                )
+                .build()
+        );
     }
 }

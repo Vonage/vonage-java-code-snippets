@@ -22,8 +22,6 @@
 package com.vonage.quickstart.account;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.account.AccountClient;
-
 import static com.vonage.quickstart.Util.envVar;
 
 public class RevokeSecret {
@@ -37,8 +35,6 @@ public class RevokeSecret {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        AccountClient accountClient = client.getAccountClient();
-
-        accountClient.revokeSecret(VONAGE_API_KEY, VONAGE_SECRET_ID);
+        client.getAccountClient().revokeSecret(VONAGE_API_KEY, VONAGE_SECRET_ID);
     }
 }

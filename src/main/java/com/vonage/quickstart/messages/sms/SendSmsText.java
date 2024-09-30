@@ -22,53 +22,27 @@
 package com.vonage.quickstart.messages.sms;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.messages.MessageResponse;
-import com.vonage.client.messages.MessageResponseException;
-import com.vonage.client.messages.MessagesClient;
-import com.vonage.client.messages.sms.*;
-import static com.vonage.quickstart.Util.configureLogging;
+import com.vonage.client.messages.sms.SmsTextRequest;
 import static com.vonage.quickstart.Util.envVar;
 
 public class SendSmsText {
+	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
+	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
+	private static final String VONAGE_BRAND_NAME = envVar("VONAGE_BRAND_NAME");
+	private static final String TO_NUMBER = envVar("TO_NUMBER");
 
 	public static void main(String[] args) throws Exception {
-		configureLogging();
-
-		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		String FROM_NUMBER = envVar("FROM_NUMBER");
-		String TO_NUMBER = envVar("TO_NUMBER");
-
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
-		MessagesClient messagesClient = client.getMessagesClient();
-
-		var message = SmsTextRequest.builder()
-				.from(FROM_NUMBER).to(TO_NUMBER)
-				.text("Hello from Vonage!")
-				.build();
-
-		try {
-			MessageResponse response = messagesClient.sendMessage(message);
-			System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
-		}
-		catch (MessageResponseException mrx) {
-			switch (mrx.getStatusCode()) {
-				default: throw mrx;
-				case 401: // Bad credentials
-					throw new IllegalStateException(mrx.getTitle(), mrx);
-				case 422: // Invalid
-					throw new IllegalStateException(mrx.getDetail(), mrx);
-				case 402: // Low balance
-					client.getAccountClient().topUp("transactionID");
-					break;
-				case 429: // Rate limit
-					Thread.sleep(12_000);
-					break;
-			}
-		}
+		var response = client.getMessagesClient().sendMessage(
+				SmsTextRequest.builder()
+					.from(VONAGE_BRAND_NAME).to(TO_NUMBER)
+					.text("This is an SMS text message sent using the Messages API")
+					.build()
+		);
+		System.out.println("Message sent successfully. ID: " + response.getMessageUuid());
 	}
 }

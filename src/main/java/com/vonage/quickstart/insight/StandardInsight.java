@@ -23,27 +23,30 @@ package com.vonage.quickstart.insight;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.insight.StandardInsightResponse;
-
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
 public class StandardInsight {
+    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
+    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
+    private static final String INSIGHT_NUMBER = envVar("INSIGHT_NUMBER");
+
     public static void main(String[] args) throws Exception {
         configureLogging();
 
-        String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-        String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-        String INSIGHT_NUMBER = envVar("INSIGHT_NUMBER");
-
-        VonageClient client = VonageClient.builder().apiKey(VONAGE_API_KEY).apiSecret(VONAGE_API_SECRET).build();
+        VonageClient client = VonageClient.builder()
+                .apiKey(VONAGE_API_KEY)
+                .apiSecret(VONAGE_API_SECRET)
+                .build();
 
         StandardInsightResponse response = client.getInsightClient().getStandardNumberInsight(INSIGHT_NUMBER);
 
         System.out.println("BASIC INFO:");
         System.out.println("International format: " + response.getInternationalFormatNumber());
         System.out.println("National format: " + response.getNationalFormatNumber());
-        System.out.println("Country: " + response.getCountryName() + " (" + response.getCountryCodeIso3() + ", +"
-                + response.getCountryPrefix() + ")");
+        System.out.println("Country: " + response.getCountryName() +
+                " (" + response.getCountryCodeIso3() + ", +" + response.getCountryPrefix() + ")"
+        );
 
         System.out.println();
         System.out.println("CARRIER INFO:");

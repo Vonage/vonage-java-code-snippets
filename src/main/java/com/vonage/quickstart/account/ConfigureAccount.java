@@ -22,9 +22,7 @@
 package com.vonage.quickstart.account;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.account.AccountClient;
 import com.vonage.client.account.SettingsResponse;
-
 import static com.vonage.quickstart.Util.envVar;
 
 public class ConfigureAccount {
@@ -38,9 +36,7 @@ public class ConfigureAccount {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        AccountClient accountClient = client.getAccountClient();
-
-        SettingsResponse response = accountClient.updateSmsIncomingUrl(SMS_CALLBACK_URL);
+        SettingsResponse response = client.getAccountClient().updateSmsIncomingUrl(SMS_CALLBACK_URL);
         System.out.println("SMS Callback URL is now " + response.getIncomingSmsUrl());
     }
 }

@@ -22,29 +22,29 @@
 package com.vonage.quickstart.verify;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.verify.VerifyResponse;
-import com.vonage.client.verify.VerifyStatus;
-import com.vonage.client.verify.VerifyRequest;
-
-import static com.vonage.quickstart.Util.configureLogging;
+import com.vonage.client.verify.*;
 import static com.vonage.quickstart.Util.envVar;
 
 public class StartVerificationWithWorkflow {
+    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
+    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
+    private static final String RECIPIENT_NUMBER = envVar("RECIPIENT_NUMBER");
+    private static final String BRAND_NAME = envVar("BRAND_NAME");
+
     public static void main(String[] args) {
-        configureLogging();
+        VonageClient client = VonageClient.builder()
+                .apiKey(VONAGE_API_KEY)
+                .apiSecret(VONAGE_API_SECRET)
+                .build();
 
-        String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-        String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-
-        String RECIPIENT_NUMBER = envVar("RECIPIENT_NUMBER");
-        String BRAND_NAME = envVar("BRAND_NAME");
-
-        VonageClient client = VonageClient.builder().apiKey(VONAGE_API_KEY).apiSecret(VONAGE_API_SECRET).build();
-        VerifyResponse response = client.getVerifyClient().verify(RECIPIENT_NUMBER,BRAND_NAME, VerifyRequest.Workflow.TTS_TTS);
+        VerifyResponse response = client.getVerifyClient().verify(
+                RECIPIENT_NUMBER,BRAND_NAME, VerifyRequest.Workflow.TTS_TTS
+        );
 
         if (response.getStatus() == VerifyStatus.OK) {
             System.out.printf("RequestID: %s", response.getRequestId());
-        } else {
+        }
+        else {
             System.out.printf("ERROR! %s: %s", response.getStatus(), response.getErrorText());
         }
     }

@@ -23,7 +23,6 @@ package com.vonage.quickstart.insight;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.insight.AdvancedInsightRequest;
-import com.vonage.client.insight.InsightClient;
 import static com.vonage.quickstart.Util.envVar;
 
 public class AdvancedInsightAsync {
@@ -32,19 +31,15 @@ public class AdvancedInsightAsync {
     private static final String INSIGHT_NUMBER = envVar("INSIGHT_NUMBER");
     private static final String CALLBACK_URL = envVar("CALLBACK_URL");
 
-
     public static void main(String... args) {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        InsightClient insightClient = client.getInsightClient();
-
-        AdvancedInsightRequest request = AdvancedInsightRequest.builder(INSIGHT_NUMBER)
-                .async(true)
-                .callback(CALLBACK_URL)
-                .build();
-        insightClient.getAdvancedNumberInsight(request);
+        client.getInsightClient().getAdvancedNumberInsight(
+                AdvancedInsightRequest.builder(INSIGHT_NUMBER)
+                    .async(true).callback(CALLBACK_URL).build()
+        );
     }
 }

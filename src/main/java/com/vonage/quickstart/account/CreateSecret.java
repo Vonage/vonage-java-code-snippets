@@ -22,9 +22,7 @@
 package com.vonage.quickstart.account;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.account.AccountClient;
 import com.vonage.client.account.SecretResponse;
-
 import static com.vonage.quickstart.Util.envVar;
 
 public class CreateSecret {
@@ -38,9 +36,7 @@ public class CreateSecret {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        AccountClient accountClient = client.getAccountClient();
-
-        SecretResponse response = accountClient.createSecret(VONAGE_API_KEY, NEW_SECRET);
+        SecretResponse response = client.getAccountClient().createSecret(VONAGE_API_KEY, NEW_SECRET);
         System.out.println(response.getId() + " created at " + response.getCreated());
     }
 }

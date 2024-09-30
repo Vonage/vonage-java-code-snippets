@@ -24,27 +24,30 @@ package com.vonage.quickstart.insight;
 import com.vonage.client.VonageClient;
 import com.vonage.client.insight.AdvancedInsightResponse;
 import com.vonage.client.insight.RoamingDetails;
-
 import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
 public class AdvancedInsight {
+    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
+    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
+    private static final String INSIGHT_NUMBER = envVar("INSIGHT_NUMBER");
+
     public static void main(String[] args) throws Exception {
         configureLogging();
 
-        String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-        String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-        String INSIGHT_NUMBER = envVar("INSIGHT_NUMBER");
-
-        VonageClient client = VonageClient.builder().apiKey(VONAGE_API_KEY).apiSecret(VONAGE_API_SECRET).build();
+        VonageClient client = VonageClient.builder()
+                .apiKey(VONAGE_API_KEY)
+                .apiSecret(VONAGE_API_SECRET)
+                .build();
 
         AdvancedInsightResponse response = client.getInsightClient().getAdvancedNumberInsight(INSIGHT_NUMBER);
 
         System.out.println("BASIC INFO:");
         System.out.println("International format: " + response.getInternationalFormatNumber());
         System.out.println("National format: " + response.getNationalFormatNumber());
-        System.out.println("Country: " + response.getCountryName() + " (" + response.getCountryCodeIso3() + ", +"
-                + response.getCountryPrefix() + ")");
+        System.out.println("Country: " + response.getCountryName() + " (" +
+                response.getCountryCodeIso3() + ", +" + response.getCountryPrefix() + ")"
+        );
         System.out.println();
         System.out.println("STANDARD INFO:");
         System.out.println("Current carrier: " + response.getCurrentCarrier().getName());
@@ -59,7 +62,8 @@ public class AdvancedInsight {
         RoamingDetails roaming = response.getRoaming();
         if (roaming == null) {
             System.out.println("- No Roaming Info -");
-        } else {
+        }
+        else {
             System.out.println("Roaming status: " + roaming.getStatus());
             if (response.getRoaming().getStatus() == RoamingDetails.RoamingStatus.ROAMING) {
                 System.out.print("    Currently roaming in: " + roaming.getRoamingCountryCode());
