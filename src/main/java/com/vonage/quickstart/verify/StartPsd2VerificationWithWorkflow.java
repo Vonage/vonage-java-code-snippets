@@ -22,32 +22,30 @@
 package com.vonage.quickstart.verify;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.verify.Psd2Request;
-import com.vonage.client.verify.VerifyResponse;
-import com.vonage.client.verify.VerifyStatus;
-
-import static com.vonage.quickstart.Util.configureLogging;
+import com.vonage.client.verify.*;
 import static com.vonage.quickstart.Util.envVar;
 
 public class StartPsd2VerificationWithWorkflow {
+    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
+    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
+    private static final String RECIPIENT_NUMBER = envVar("RECIPIENT_NUMBER");
+    private static final String PAYEE_NAME = envVar("PAYEE_NAME");
+    private static final Double AMOUNT = Double.valueOf(envVar("AMOUNT"));
+
     public static void main(String[] args) {
-        configureLogging();
+        VonageClient client = VonageClient.builder()
+                .apiKey(VONAGE_API_KEY)
+                .apiSecret(VONAGE_API_SECRET)
+                .build();
 
-        String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-        String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-        String RECIPIENT_NUMBER = envVar("RECIPIENT_NUMBER");
-        String PAYEE_NAME = envVar("PAYEE_NAME");
-        String AMOUNT = envVar("AMOUNT");
-
-
-
-        VonageClient client = VonageClient.builder().apiKey(VONAGE_API_KEY).apiSecret(VONAGE_API_SECRET).build();
-        VerifyResponse response = client.getVerifyClient()
-                .psd2Verify(RECIPIENT_NUMBER, Double.parseDouble(AMOUNT), PAYEE_NAME, Psd2Request.Workflow.SMS_SMS);
+        VerifyResponse response = client.getVerifyClient().psd2Verify(
+                RECIPIENT_NUMBER, AMOUNT, PAYEE_NAME, Psd2Request.Workflow.SMS_SMS
+        );
 
         if (response.getStatus() == VerifyStatus.OK) {
             System.out.printf("Request ID: %s", response.getRequestId());
-        } else {
+        }
+        else {
             System.out.printf("Error: %s: %s", response.getStatus(), response.getErrorText());
         }
     }

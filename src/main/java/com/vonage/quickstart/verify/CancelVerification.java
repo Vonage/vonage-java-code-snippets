@@ -22,21 +22,28 @@
 package com.vonage.quickstart.verify;
 
 import com.vonage.client.VonageClient;
-
+import com.vonage.client.verify.ControlResponse;
 import static com.vonage.quickstart.Util.envVar;
-import static com.vonage.quickstart.Util.configureLogging;
 
 public class CancelVerification {
+    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
+    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
+    private static final String REQUEST_ID = envVar("REQUEST_ID");
+
     public static void main(String[] args) throws Exception {
-        configureLogging();
+        VonageClient client = VonageClient.builder()
+                .apiKey(VONAGE_API_KEY)
+                .apiSecret(VONAGE_API_SECRET)
+                .build();
 
-        String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-        String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-        String REQUEST_ID = envVar("REQUEST_ID");
+        ControlResponse response = client.getVerifyClient().cancelVerification(REQUEST_ID);
 
-
-        VonageClient client = VonageClient.builder().apiKey(VONAGE_API_KEY).apiSecret(VONAGE_API_SECRET).build();
-        client.getVerifyClient().cancelVerification(REQUEST_ID);
-        System.out.println("Verification cancelled.");
+        String errorText = response.getErrorText();
+        if (errorText != null) {
+            System.out.println("Cancellation failed: " + errorText);
+        }
+        else {
+            System.out.println("Verification cancelled.");
+        }
     }
 }
