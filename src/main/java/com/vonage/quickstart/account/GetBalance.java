@@ -22,9 +22,7 @@
 package com.vonage.quickstart.account;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.account.AccountClient;
 import com.vonage.client.account.BalanceResponse;
-
 import static com.vonage.quickstart.Util.envVar;
 
 public class GetBalance {
@@ -37,9 +35,7 @@ public class GetBalance {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        AccountClient accountClient = client.getAccountClient();
-
-        BalanceResponse response = accountClient.getBalance();
+        BalanceResponse response = client.getAccountClient().getBalance();
         System.out.printf("Balance: %s EUR\n", response.getValue());
         System.out.printf("Auto-reload Enabled: %s\n", response.isAutoReload());
     }
