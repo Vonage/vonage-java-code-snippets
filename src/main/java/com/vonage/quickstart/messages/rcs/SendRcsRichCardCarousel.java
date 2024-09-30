@@ -23,22 +23,19 @@ package com.vonage.quickstart.messages.rcs;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.rcs.RcsCustomRequest;
-import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 import java.util.List;
 import java.util.Map;
 
-public class SendRcsSuggestedRichCard {
+public class SendRcsRichCardCarousel {
+	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
+	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
+	private static final String RCS_SENDER_ID = envVar("RCS_SENDER_ID");
+	private static final String TO_NUMBER = envVar("TO_NUMBER");
+	private static final String IMAGE_URL = envVar("IMAGE_URL");
+	private static final String VIDEO_URL = envVar("VIDEO_URL");
 
 	public static void main(String[] args) throws Exception {
-		configureLogging();
-
-		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		String RCS_SENDER_ID = envVar("RCS_SENDER_ID");
-		String TO_NUMBER = envVar("TO_NUMBER");
-		String IMAGE_URL = envVar("IMAGE_URL");
-
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
@@ -48,35 +45,49 @@ public class SendRcsSuggestedRichCard {
 			RcsCustomRequest.builder()
 				.from(RCS_SENDER_ID).to(TO_NUMBER)
 				.custom(Map.of("contentMessage", Map.of(
-						"richCard", Map.of("standaloneCard", Map.of(
-							"thumbnailImageAlignment", "RIGHT",
-							"cardOrientation", "VERTICAL",
-							"cardContent", Map.of(
-								"title", "Quick question",
-								"description", "Do you like this picture?",
-								"media", Map.of(
-									"height", "TALL",
-									"contentInfo", Map.of(
-										"fileUrl", IMAGE_URL,
-										"forceRefresh", "false"
-									)
-								),
-								"suggestions", List.of(
-									Map.of(
-										"reply", Map.of(
-											"text", "Yes",
-											"postbackData", "suggestion_1"
+						"carouselCard", Map.of(
+							"cardWidth", "MEDIUM",
+							"cardContents", List.of(
+								Map.of(
+									"title", "Option 1: Photo",
+									"description", "Do you prefer this photo?",
+									"suggestions", List.of(
+										Map.of(
+											"reply", Map.of(
+												"text", "Option 1",
+												"postbackData", "card_1"
+											)
 										)
 									),
-									Map.of(
-										"reply", Map.of(
-											"text", "I love it!",
-											"postbackData", "suggestion_2"
+									"media", Map.of(
+										"height", "MEDIUM",
+										"contentInfo", Map.of(
+											"fileUrl", IMAGE_URL,
+											"forceRefresh", "false"
+										)
+									)
+								),
+								Map.of(
+									"title", "Option 2: Video",
+									"description", "Or this video?",
+									"suggestions", List.of(
+										Map.of(
+											"reply", Map.of(
+												"text", "Option 2",
+												"postbackData", "card_2"
+											)
+										)
+									),
+									"media", Map.of(
+										"height", "MEDIUM",
+										"contentInfo", Map.of(
+											"fileUrl", VIDEO_URL,
+											"forceRefresh", "false"
 										)
 									)
 								)
 							)
-						))
+						)
 					))
 				).build()
 		);

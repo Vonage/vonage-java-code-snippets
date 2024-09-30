@@ -23,20 +23,16 @@ package com.vonage.quickstart.messages.rcs;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.rcs.RcsImageRequest;
-import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
 public class SendRcsImage {
+	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
+	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
+	private static final String RCS_SENDER_ID = envVar("RCS_SENDER_ID");
+	private static final String TO_NUMBER = envVar("TO_NUMBER");
+	private static final String IMAGE_URL = envVar("IMAGE_URL");
 
 	public static void main(String[] args) throws Exception {
-		configureLogging();
-
-		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		String RCS_SENDER_ID = envVar("RCS_SENDER_ID");
-		String TO_NUMBER = envVar("TO_NUMBER");
-		String IMAGE_URL = envVar("IMAGE_URL");
-
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)

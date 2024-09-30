@@ -22,35 +22,30 @@
 package com.vonage.quickstart.messages.viber;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.messages.viber.Category;
-import com.vonage.client.messages.viber.ViberVideoRequest;
-import static com.vonage.quickstart.Util.configureLogging;
+import com.vonage.client.messages.viber.*;
 import static com.vonage.quickstart.Util.envVar;
 
 public class SendViberVideo {
+	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
+	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
+	private static final String VONAGE_VIBER_SERVICE_MESSAGE_ID = envVar("VONAGE_VIBER_SERVICE_MESSAGE_ID");
+	private static final String TO_NUMBER = envVar("TO_NUMBER");
 
 	public static void main(String[] args) throws Exception {
-		configureLogging();
-
-		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		String VONAGE_VIBER_SERVICE_MESSAGE_ID = envVar("VONAGE_VIBER_SERVICE_MESSAGE_ID");
-		String TO_NUMBER = envVar("TO_NUMBER");
-
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
 		var response = client.getMessagesClient().sendMessage(
-			ViberVideoRequest.builder()
-				.to(TO_NUMBER)
-				.from(VONAGE_VIBER_SERVICE_MESSAGE_ID)
-				.url("https://example.com/video.mp4")
-				.thumbUrl("https://example.com/image.jpg")
-				.category(Category.TRANSACTION)
-				.fileSize(42).duration(35).ttl(86400)
-				.build()
+				ViberVideoRequest.builder()
+					.to(TO_NUMBER)
+					.from(VONAGE_VIBER_SERVICE_MESSAGE_ID)
+					.url("https://example.com/video.mp4")
+					.thumbUrl("https://example.com/image.jpg")
+					.category(Category.TRANSACTION)
+					.fileSize(42).duration(35).ttl(86400)
+					.build()
 		);
 		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
 	}

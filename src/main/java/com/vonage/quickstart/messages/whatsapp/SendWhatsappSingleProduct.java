@@ -22,58 +22,32 @@
 package com.vonage.quickstart.messages.whatsapp;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.messages.MessageResponse;
-import com.vonage.client.messages.MessageResponseException;
-import com.vonage.client.messages.MessagesClient;
 import com.vonage.client.messages.whatsapp.WhatsappSingleProductRequest;
-import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
 public class SendWhatsappSingleProduct {
+	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
+	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
+	private static final String VONAGE_WHATSAPP_NUMBER = envVar("VONAGE_WHATSAPP_NUMBER");
+	private static final String TO_NUMBER = envVar("TO_NUMBER");
+	private static final String CATALOG_ID = envVar("CATALOG_ID");
+	private static final String PRODUCT_ID = envVar("PRODUCT_ID");
 
 	public static void main(String[] args) throws Exception {
-		configureLogging();
-
-		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		String VONAGE_WHATSAPP_NUMBER = envVar("VONAGE_WHATSAPP_NUMBER");
-		String TO_NUMBER = envVar("TO_NUMBER");
-		String CATALOG_ID = envVar("CATALOG_ID");
-		String PRODUCT_ID = envVar("PRODUCT_ID");
-
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
-		MessagesClient messagesClient = client.getMessagesClient();
-
-		var message = WhatsappSingleProductRequest.builder()
-				.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
-				.catalogId(CATALOG_ID)
-				.productRetailerId(PRODUCT_ID)
-				.bodyText("Check out this cool product")
-				.footerText("Sale now on!")
-				.build();
-
-		try {
-			MessageResponse response = messagesClient.sendMessage(message);
-			System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
-		}
-		catch (MessageResponseException mrx) {
-			switch (mrx.getStatusCode()) {
-				default: throw mrx;
-				case 401: // Bad credentials
-					throw new IllegalStateException(mrx.getTitle(), mrx);
-				case 422: // Invalid
-					throw new IllegalStateException(mrx.getDetail(), mrx);
-				case 402: // Low balance
-					client.getAccountClient().topUp("transactionID");
-					break;
-				case 429: // Rate limit
-					Thread.sleep(12_000);
-					break;
-			}
-		}
+		var response = client.getMessagesClient().sendMessage(
+				WhatsappSingleProductRequest.builder()
+					.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
+					.catalogId(CATALOG_ID)
+					.productRetailerId(PRODUCT_ID)
+					.bodyText("Check out this cool product")
+					.footerText("Sale now on!")
+					.build()
+		);
+		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
 	}
 }

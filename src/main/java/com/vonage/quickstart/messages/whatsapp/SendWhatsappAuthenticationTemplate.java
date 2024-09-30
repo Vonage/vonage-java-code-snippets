@@ -23,26 +23,20 @@ package com.vonage.quickstart.messages.whatsapp;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.MessageType;
-import com.vonage.client.messages.whatsapp.Locale;
-import com.vonage.client.messages.whatsapp.Policy;
-import com.vonage.client.messages.whatsapp.WhatsappCustomRequest;
-import static com.vonage.quickstart.Util.configureLogging;
+import com.vonage.client.messages.whatsapp.*;
 import static com.vonage.quickstart.Util.envVar;
 import java.util.List;
 import java.util.Map;
 
 public class SendWhatsappAuthenticationTemplate {
+	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
+	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
+	private static final String VONAGE_WHATSAPP_NUMBER = envVar("VONAGE_WHATSAPP_NUMBER");
+	private static final String TO_NUMBER = envVar("TO_NUMBER");
+	private static final String WHATSAPP_AUTH_TEMPLATE_NAME = envVar("WHATSAPP_AUTH_TEMPLATE_NAME");
+	private static final String OTP = envVar("OTP");
 
 	public static void main(String[] args) throws Exception {
-		configureLogging();
-
-		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		String VONAGE_WHATSAPP_NUMBER = envVar("VONAGE_WHATSAPP_NUMBER");
-		String TO_NUMBER = envVar("TO_NUMBER");
-		String WHATSAPP_AUTH_TEMPLATE_NAME = envVar("WHATSAPP_AUTH_TEMPLATE_NAME");
-		String OTP = envVar("OTP");
-
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
