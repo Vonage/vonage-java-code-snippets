@@ -23,21 +23,18 @@ package com.vonage.quickstart.verify2;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.verify2.*;
-import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 import java.util.List;
 
 public class SendRequestAllChannels {
+	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
+	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
+	private static final String BRAND_NAME = envVar("BRAND_NAME");
+	private static final String TO_NUMBER = envVar("TO_NUMBER");
+	private static final String WHATSAPP_BUSINESS_NUMBER = envVar("WHATSAPP_BUSINESS_NUMBER");
+	private static final String TO_EMAIL = envVar("TO_EMAIL");
 
 	public static void main(String[] args) throws Exception {
-		configureLogging();
-
-		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		String BRAND_NAME = envVar("BRAND_NAME");
-		String TO_NUMBER = envVar("TO_NUMBER");
-		String TO_EMAIL = envVar("TO_EMAIL");
-
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
@@ -46,9 +43,9 @@ public class SendRequestAllChannels {
 		var request = VerificationRequest.builder()
 				.workflows(List.of(
 						new SilentAuthWorkflow(TO_NUMBER),
-						new WhatsappCodelessWorkflow(TO_NUMBER),
+						new WhatsappCodelessWorkflow(TO_NUMBER, WHATSAPP_BUSINESS_NUMBER),
 						new EmailWorkflow(TO_EMAIL),
-						new WhatsappWorkflow(TO_NUMBER),
+						new WhatsappWorkflow(TO_NUMBER, WHATSAPP_BUSINESS_NUMBER),
 						new SmsWorkflow(TO_NUMBER),
 						new VoiceWorkflow(TO_NUMBER)
 				))

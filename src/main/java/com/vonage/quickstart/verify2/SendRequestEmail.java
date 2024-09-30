@@ -22,31 +22,28 @@
 package com.vonage.quickstart.verify2;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.verify2.EmailWorkflow;
-import com.vonage.client.verify2.VerificationRequest;
-import static com.vonage.quickstart.Util.configureLogging;
+import com.vonage.client.verify2.*;
 import static com.vonage.quickstart.Util.envVar;
 
 public class SendRequestEmail {
+	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
+	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
+	private static final String BRAND_NAME = envVar("BRAND_NAME");
+	private static final String TO_NUMBER = envVar("TO_NUMBER");
+	private static final String TO_EMAIL = envVar("TO_EMAIL");
 
 	public static void main(String[] args) throws Exception {
-		configureLogging();
-
-		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		String BRAND_NAME = envVar("BRAND_NAME");
-		String TO_EMAIL = envVar("TO_EMAIL");
-
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
-		var request = VerificationRequest.builder()
-				.addWorkflow(new EmailWorkflow(TO_EMAIL))
-				.brand(BRAND_NAME).build();
-
-		var requestId = client.getVerify2Client().sendVerification(request).getRequestId();
-		System.out.println("Verification sent: "+requestId);
+		VerificationResponse response = client.getVerify2Client().sendVerification(
+				VerificationRequest.builder()
+					.addWorkflow(new SilentAuthWorkflow(TO_NUMBER))
+					.addWorkflow(new EmailWorkflow(TO_EMAIL))
+					.brand(BRAND_NAME).build()
+		);
+		System.out.println("Verification sent: " + response.getRequestId());
 	}
 }
