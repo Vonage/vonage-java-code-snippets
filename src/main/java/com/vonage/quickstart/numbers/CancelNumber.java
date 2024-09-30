@@ -23,8 +23,6 @@ package com.vonage.quickstart.numbers;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.numbers.NumbersClient;
-
-import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
 public class CancelNumber {
@@ -34,15 +32,11 @@ public class CancelNumber {
     private static final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
 
     public static void main(String[] args) {
-        configureLogging();
-
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        NumbersClient numbersClient = client.getNumbersClient();
-
-        numbersClient.cancelNumber(COUNTRY_CODE, VONAGE_NUMBER);
+        client.getNumbersClient().cancelNumber(COUNTRY_CODE, VONAGE_NUMBER);
     }
 }

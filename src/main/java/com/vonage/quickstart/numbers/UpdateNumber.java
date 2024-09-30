@@ -22,11 +22,7 @@
 package com.vonage.quickstart.numbers;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.VonageClientException;
-import com.vonage.client.VonageResponseParseException;
-import com.vonage.client.numbers.NumbersClient;
 import com.vonage.client.numbers.UpdateNumberRequest;
-import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
 public class UpdateNumber {
@@ -35,32 +31,23 @@ public class UpdateNumber {
     private static final String COUNTRY_CODE = envVar("COUNTRY_CODE");
     private static final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
     private static final String SMS_CALLBACK_URL = envVar("SMS_CALLBACK_URL");
-    private static final UpdateNumberRequest.CallbackType VOICE_CALLBACK_TYPE = UpdateNumberRequest.CallbackType.valueOf(envVar("VOICE_CALLBACK_TYPE"));
+    private static final UpdateNumberRequest.CallbackType VOICE_CALLBACK_TYPE =
+            UpdateNumberRequest.CallbackType.valueOf(envVar("VOICE_CALLBACK_TYPE"));
     private static final String VOICE_CALLBACK_VALUE = envVar("VOICE_CALLBACK_VALUE");
     private static final String VOICE_STATUS_URL = envVar("VOICE_STATUS_URL");
 
     public static void main(String[] args) {
-        configureLogging();
-
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        NumbersClient numbersClient = client.getNumbersClient();
-
-        UpdateNumberRequest request = new UpdateNumberRequest(VONAGE_NUMBER, COUNTRY_CODE);
-        request.setVoiceCallbackType(VOICE_CALLBACK_TYPE);
-        request.setVoiceCallbackValue(VOICE_CALLBACK_VALUE);
-        request.setVoiceStatusCallback(VOICE_STATUS_URL);
-        request.setMoHttpUrl(SMS_CALLBACK_URL);
-
-        try {
-            numbersClient.updateNumber(request);
-        } catch (VonageClientException | VonageResponseParseException e) {
-            System.out.println("Error updating number.");
-        }
-
-        System.out.println("Number updated.");
+        client.getNumbersClient().updateNumber(
+                UpdateNumberRequest.builder(VONAGE_NUMBER, COUNTRY_CODE)
+                    .moHttpUrl(SMS_CALLBACK_URL)
+                    .voiceCallback(VOICE_CALLBACK_TYPE, VOICE_CALLBACK_VALUE)
+                    .voiceStatusCallback(VOICE_STATUS_URL)
+                    .build()
+        );
     }
 }

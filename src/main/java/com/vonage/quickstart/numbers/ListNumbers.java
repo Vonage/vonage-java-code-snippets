@@ -23,8 +23,6 @@ package com.vonage.quickstart.numbers;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.numbers.*;
-
-import static com.vonage.quickstart.Util.configureLogging;
 import static com.vonage.quickstart.Util.envVar;
 
 public class ListNumbers {
@@ -34,17 +32,15 @@ public class ListNumbers {
     private static final SearchPattern NUMBER_SEARCH_PATTERN = SearchPattern.valueOf(envVar("NUMBER_SEARCH_PATTERN"));
 
     public static void main(String[] args) {
-        configureLogging();
-
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        NumbersClient numbersClient = client.getNumbersClient();
-
-        ListNumbersResponse response = numbersClient.listNumbers(
-                new ListNumbersFilter(1, 10, NUMBER_SEARCH_CRITERIA, NUMBER_SEARCH_PATTERN)
+        ListNumbersResponse response = client.getNumbersClient().listNumbers(
+                ListNumbersFilter.builder()
+                        .pattern(NUMBER_SEARCH_PATTERN, NUMBER_SEARCH_CRITERIA)
+                        .build()
         );
 
         for (OwnedNumber number : response.getNumbers()) {
