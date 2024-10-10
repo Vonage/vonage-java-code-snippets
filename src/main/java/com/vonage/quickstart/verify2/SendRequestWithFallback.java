@@ -29,6 +29,7 @@ public class SendRequestWithFallback {
 	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
 	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
 	private static final String BRAND_NAME = envVar("BRAND_NAME");
+	private static final String TO_NUMBER = envVar("TO_NUMBER");
 	private static final String TO_EMAIL = envVar("TO_EMAIL");
 
 	public static void main(String[] args) throws Exception {
@@ -39,8 +40,9 @@ public class SendRequestWithFallback {
 
 		VerificationResponse response = client.getVerify2Client().sendVerification(
 				VerificationRequest.builder()
-						.addWorkflow(new EmailWorkflow(TO_EMAIL))
-						.brand(BRAND_NAME).build()
+					.addWorkflow(new SilentAuthWorkflow(TO_NUMBER))
+					.addWorkflow(new EmailWorkflow(TO_EMAIL))
+					.brand(BRAND_NAME).build()
 		);
 		System.out.println("Verification sent: " + response.getRequestId());
 	}
