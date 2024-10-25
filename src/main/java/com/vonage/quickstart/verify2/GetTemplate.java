@@ -37,5 +37,6 @@ public class GetTemplate {
 				.build();
 
 		var template = client.getVerify2Client().getTemplate(TEMPLATE_ID);
+		System.out.println(template);
 	}
 }

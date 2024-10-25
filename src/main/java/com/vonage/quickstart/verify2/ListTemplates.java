@@ -34,6 +34,7 @@ public class ListTemplates {
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
-		var fragments = client.getVerify2Client().listTemplates();
+		var templates = client.getVerify2Client().listTemplates();
+		templates.forEach(t -> System.out.println(t.getId()));
 	}
 }

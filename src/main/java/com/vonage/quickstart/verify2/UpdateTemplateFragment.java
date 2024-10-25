@@ -41,5 +41,6 @@ public class UpdateTemplateFragment {
 				TEMPLATE_ID, TEMPLATE_FRAGMENT_ID,
 				"The authentication code for your ${brand} is: ${code}"
 		);
+		System.out.println(updated);
 	}
 }

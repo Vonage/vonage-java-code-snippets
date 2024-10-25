@@ -37,5 +37,6 @@ public class ListTemplateFragments {
 				.build();
 
 		var fragments = client.getVerify2Client().listTemplateFragments(TEMPLATE_ID);
+		fragments.forEach(f -> System.out.println(f.getFragmentId()));
 	}
 }

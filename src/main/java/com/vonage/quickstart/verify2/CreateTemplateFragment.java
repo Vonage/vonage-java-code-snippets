@@ -44,5 +44,6 @@ public class CreateTemplateFragment {
 						"The authentication code for your ${brand} is: ${code}"
 				)
 		);
+		System.out.println(fragment);
 	}
 }

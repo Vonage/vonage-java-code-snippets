@@ -35,5 +35,6 @@ public class CreateTemplate {
 				.build();
 
 		var template = client.getVerify2Client().createTemplate("My_template");
+		System.out.println(template.getId());
 	}
 }

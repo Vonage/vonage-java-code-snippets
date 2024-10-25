@@ -38,5 +38,6 @@ public class GetTemplateFragment {
 				.build();
 
 		var fragment = client.getVerify2Client().getTemplateFragment(TEMPLATE_ID, TEMPLATE_FRAGMENT_ID);
+		System.out.println(fragment);
 	}
 }

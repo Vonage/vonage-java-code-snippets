@@ -37,5 +37,6 @@ public class UpdateTemplate {
 				.build();
 
 		var updated = client.getVerify2Client().updateTemplate(TEMPLATE_ID, "My_renamed_template", false);
+		System.out.println(updated);
 	}
 }
