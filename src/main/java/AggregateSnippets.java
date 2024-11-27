@@ -24,9 +24,9 @@ public class AggregateSnippets {
                 .filter(Files::isDirectory)
                 .map(Path::toFile)
                 .sorted((f1, f2) -> {
-                    if (f1.equals(f2)) return 0;
-                    else if (isInitialize(f1)) return 1;
-                    else return f1.getName().compareToIgnoreCase(f2.getName());
+                    if (isInitialize(f1)) return -1;
+                    if (isInitialize(f2)) return 1;
+                    return f1.getName().compareToIgnoreCase(f2.getName());
                 })
                 .toList();
 
@@ -88,10 +88,10 @@ public class AggregateSnippets {
         else if (level > 2 && path.getName().endsWith(".java")) {
             final var fileContent = Files.readString(path.toPath());
             final var clientInitEndStr = ".build();\n\n";
-            final var clientInitStartStr = "        VonageClient client";
+            final var clientInitStartStr = "VonageClient client";
             final int endIndex = fileContent.lastIndexOf(';') + 1;
             final int startIndex = Math.min(endIndex, fileContent.contains(clientInitStartStr) ?
-                        (isInitialize(path.getParentFile()) ? fileContent.indexOf(clientInitStartStr) :
+                        (isInitialize(path.getParentFile()) ? fileContent.indexOf(clientInitStartStr) - 8 :
                         fileContent.indexOf(clientInitEndStr) + clientInitEndStr.length()) :
                     fileContent.indexOf('{', fileContent.indexOf('{') + 1) + 2
             );
