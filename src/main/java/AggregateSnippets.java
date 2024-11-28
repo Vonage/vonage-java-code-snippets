@@ -53,7 +53,7 @@ public class AggregateSnippets {
     static String toHeadingTitle(String title) {
         var acronyms = new String[]{
                 "jwt", "id", "uuid", "url", "sim",
-                "sms", "rcs", "mms", "psd2", "dlr",
+                "sms", "rcs", "mms", "psd2", "dlr", "cnam",
                 "dtmf", "asr", "tts", "ncco", "rtc"
         };
         var result = (title.substring(0, 1).toUpperCase() + title.substring(1))
@@ -68,6 +68,9 @@ public class AggregateSnippets {
                 .replace("Callncco", "Call NCCO");
         for (var ac : acronyms) {
             result = result.replaceAll("\\b(?i:"+ac+")\\b", ac.toUpperCase());
+        }
+        if ("Insight".equals(result)) {
+            result = "Number Insight";
         }
         return result;
     }
@@ -89,7 +92,7 @@ public class AggregateSnippets {
             final var fileContent = Files.readString(path.toPath());
             final var clientInitEndStr = ".build();\n\n";
             final var clientInitStartStr = "VonageClient client";
-            final int endIndex = fileContent.lastIndexOf(';') + 1;
+            final int endIndex = fileContent.lastIndexOf('}', fileContent.lastIndexOf('}') - 1) - 1;
             final int startIndex = Math.min(endIndex, fileContent.contains(clientInitStartStr) ?
                         (isInitialize(path.getParentFile()) ? fileContent.indexOf(clientInitStartStr) - 8 :
                         fileContent.indexOf(clientInitEndStr) + clientInitEndStr.length()) :
@@ -97,7 +100,7 @@ public class AggregateSnippets {
             );
 
             final var nugget = fileContent.substring(startIndex, endIndex)
-                    .stripIndent().replace("\t", "    ");
+                    .stripTrailing().stripIndent().replace("\t", "    ");
             contentBuilder.append("\n```java\n").append(nugget).append("\n```\n");
         }
     }

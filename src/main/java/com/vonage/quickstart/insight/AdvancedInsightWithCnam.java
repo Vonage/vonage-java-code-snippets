@@ -43,10 +43,8 @@ public class AdvancedInsightWithCnam {
 
         AdvancedInsightResponse response = client.getInsightClient().getAdvancedNumberInsight(request);
 
-        printResults(response);
-    }
+        System.out.println(response);
 
-    private static void printResults(AdvancedInsightResponse response) {
         System.out.println("BASIC INFO:");
         System.out.println("International format: " + response.getInternationalFormatNumber());
         System.out.println("National format: " + response.getNationalFormatNumber());
@@ -66,7 +64,8 @@ public class AdvancedInsightWithCnam {
         RoamingDetails roaming = response.getRoaming();
         if (roaming == null) {
             System.out.println("- No Roaming Info -");
-        } else {
+        }
+        else {
             System.out.println("Roaming status: " + roaming.getStatus());
             if (response.getRoaming().getStatus() == RoamingDetails.RoamingStatus.ROAMING) {
                 System.out.print("    Currently roaming in: " + roaming.getRoamingCountryCode());
