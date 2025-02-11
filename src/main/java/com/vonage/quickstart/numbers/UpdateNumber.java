@@ -26,16 +26,6 @@ import com.vonage.client.numbers.UpdateNumberRequest;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class UpdateNumber {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String COUNTRY_CODE = envVar("COUNTRY_CODE");
-    private static final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
-    private static final String SMS_CALLBACK_URL = envVar("SMS_CALLBACK_URL");
-    private static final UpdateNumberRequest.CallbackType VOICE_CALLBACK_TYPE =
-            UpdateNumberRequest.CallbackType.valueOf(envVar("VOICE_CALLBACK_TYPE"));
-    private static final String VOICE_CALLBACK_VALUE = envVar("VOICE_CALLBACK_VALUE");
-    private static final String VOICE_STATUS_URL = envVar("VOICE_STATUS_URL");
-
     public static void main(String[] args) {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)

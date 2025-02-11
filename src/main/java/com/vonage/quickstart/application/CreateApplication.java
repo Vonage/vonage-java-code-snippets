@@ -30,10 +30,6 @@ import com.vonage.client.common.Webhook;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class CreateApplication {
-    private static final String APPLICATION_NAME = envVar("APPLICATION_NAME");
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-
     public static void main(String... args) {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)

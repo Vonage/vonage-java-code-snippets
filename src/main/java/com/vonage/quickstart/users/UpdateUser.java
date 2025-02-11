@@ -26,12 +26,6 @@ import com.vonage.client.users.User;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class UpdateUser {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String USER_ID = envVar("USER_ID");
-    private static final String USER_NEW_NAME = envVar("USER_NEW_NAME");
-    private static final String USER_NEW_DISPLAY_NAME = envVar("USER_NEW_DISPLAY_NAME");
-
     public static void main(String... args) {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)

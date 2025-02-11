@@ -32,7 +32,6 @@ import spark.Spark;
 import java.util.Collections;
 
 public class AsrInput {
-
     public static void main(String[] args) {
         /*
          * Route to answer incoming calls.

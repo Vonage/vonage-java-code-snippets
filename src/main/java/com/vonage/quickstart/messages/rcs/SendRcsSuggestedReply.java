@@ -28,12 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SendRcsSuggestedReply {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-	private static final String RCS_SENDER_ID = envVar("RCS_SENDER_ID");
-	private static final String TO_NUMBER = envVar("TO_NUMBER");
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)

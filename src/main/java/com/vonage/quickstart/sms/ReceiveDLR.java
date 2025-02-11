@@ -26,7 +26,6 @@ import com.vonage.quickstart.EnvironmentVariables;
 import static spark.Spark.*;
 
 public class ReceiveDLR {
-
     public static void main(String[] args) throws Exception {
         EnvironmentVariables.
         port(3000);

@@ -26,13 +26,12 @@ import com.vonage.client.meetings.Theme;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class CreateTheme {
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		
-		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		String MAIN_COLOR = envVar("MAIN_COLOR");
-		String BRAND_TEXT = envVar("BRAND_TEXT");
+		String VONAGE_APPLICATION_ID = VONAGE_APPLICATION_ID;
+		String VONAGE_PRIVATE_KEY_PATH = VONAGE_PRIVATE_KEY_PATH;
+		String MAIN_COLOR = MAIN_COLOR;
+		String BRAND_TEXT = BRAND_TEXT;
 
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)

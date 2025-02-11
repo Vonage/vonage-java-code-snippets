@@ -30,8 +30,8 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class RecordCallSplitAudio {
     public static void main(String[] args) {
-        final String TO_NUMBER = envVar("TO_NUMBER");
-        final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
+        final String TO_NUMBER = TO_NUMBER;
+        final String VONAGE_NUMBER = VONAGE_NUMBER;
 
         /*
          * Route to answer and connect incoming calls with recording.

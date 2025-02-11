@@ -30,8 +30,8 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class ConnectInboundCall {
     public static void main(String[] args) {
-        final String YOUR_SECOND_NUMBER = envVar("YOUR_SECOND_NUMBER");
-        final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
+        final String YOUR_SECOND_NUMBER = YOUR_SECOND_NUMBER;
+        final String VONAGE_NUMBER = VONAGE_NUMBER;
 
         /*
          * Route to answer incoming calls with an NCCO response.

@@ -26,8 +26,7 @@ import spark.Route;
 import spark.Spark;
 
 public class IncomingMessage {
-
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 		
 		Route inboundRoute = (request, response) -> {
 			InboundMessage messageDetails = InboundMessage.fromJson(request.body());

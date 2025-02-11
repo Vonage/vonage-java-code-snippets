@@ -28,18 +28,17 @@ import java.util.List;
 import java.util.Map;
 
 public class SendWhatsappContact {
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		
 		System.out.println(VonageClient.builder()
-				.applicationId(envVar("VONAGE_APPLICATION_ID"))
-				.privateKeyPath(envVar("VONAGE_PRIVATE_KEY_PATH"))
+				.applicationId(VONAGE_APPLICATION_ID)
+				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build()
 				.getMessagesClient()
 				.useSandboxEndpoint()
 				.sendMessage(WhatsappCustomRequest.builder()
-					.from(envVar("MESSAGES_SANDBOX_WHATSAPP_NUMBER"))
-					.to(envVar("MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER"))
+					.from(MESSAGES_SANDBOX_WHATSAPP_NUMBER)
+					.to(MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER)
 					.custom(Map.of(
 						"type", "contacts",
 						"contacts", List.of(Map.of(

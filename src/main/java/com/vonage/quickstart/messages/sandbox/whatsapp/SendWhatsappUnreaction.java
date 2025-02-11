@@ -26,18 +26,17 @@ import com.vonage.client.messages.whatsapp.WhatsappReactionRequest;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendWhatsappUnreaction {
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		System.out.println(VonageClient.builder()
-				.applicationId(envVar("VONAGE_APPLICATION_ID"))
-				.privateKeyPath(envVar("VONAGE_PRIVATE_KEY_PATH"))
+				.applicationId(VONAGE_APPLICATION_ID)
+				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build()
 				.getMessagesClient()
 				.useSandboxEndpoint()
 				.sendMessage(WhatsappReactionRequest.builder()
-					.from(envVar("MESSAGES_SANDBOX_WHATSAPP_NUMBER"))
-					.to(envVar("MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER"))
-					.contextMessageId(envVar("MESSAGE_UUID"))
+					.from(MESSAGES_SANDBOX_WHATSAPP_NUMBER)
+					.to(MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER)
+					.contextMessageId(MESSAGE_UUID)
 					.unreact().build()
 				).getMessageUuid()
 		);

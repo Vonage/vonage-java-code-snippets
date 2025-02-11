@@ -27,11 +27,6 @@ import com.vonage.client.users.channels.*;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class CreateUser {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String USER_NAME = envVar("USER_NAME");
-    private static final String USER_DISPLAY_NAME = envVar("USER_NAME");
-
     public static void main(String... args) {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)

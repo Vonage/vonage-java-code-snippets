@@ -61,7 +61,7 @@ public final class EnvironmentVariables {
      * @param key the name of the environment variable
      * @return the value
      */
-    public static String envVar(String key) {
+    private static String envVar(String key) {
         String value = dotenv.get(key);
         if (value == null) {
             throw new IllegalArgumentException("You must provide the " + key + " environment variable!");

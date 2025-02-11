@@ -29,14 +29,13 @@ import java.nio.file.Paths;
 import java.util.UUID;
 
 public class UploadLogo {
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		
-		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		UUID THEME_ID = UUID.fromString(envVar("THEME_ID"));
-		LogoType LOGO_TYPE = LogoType.fromString(envVar("LOGO_TYPE"));
-		Path LOGO_FILEPATH = Paths.get(envVar("LOGO_FILEPATH"));
+		String VONAGE_APPLICATION_ID = VONAGE_APPLICATION_ID;
+		String VONAGE_PRIVATE_KEY_PATH = VONAGE_PRIVATE_KEY_PATH;
+		UUID THEME_ID = UUID.fromString(THEME_ID);
+		LogoType LOGO_TYPE = LogoType.fromString(LOGO_TYPE);
+		Path LOGO_FILEPATH = Paths.get(LOGO_FILEPATH);
 
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)

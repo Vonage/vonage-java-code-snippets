@@ -26,11 +26,6 @@ import com.vonage.client.verify2.*;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendRequestVoice {
-    private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-    private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-    private static final String BRAND_NAME = envVar("BRAND_NAME");
-    private static final String TO_NUMBER = envVar("TO_NUMBER");
-
     public static void main(String[] args) throws Exception {
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)

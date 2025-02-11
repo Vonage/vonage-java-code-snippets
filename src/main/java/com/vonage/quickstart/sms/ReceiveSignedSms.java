@@ -27,13 +27,12 @@ import spark.Spark;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class ReceiveSignedSms {
-
     public static void main(String[] args) throws Exception {
         /*
          * Route to handle incoming SMS GET request.
          */
         Route inboundSmsAsGet = (req, res) -> {
-            String signatureSecret = envVar("VONAGE_SIGNATURE_SECRET");
+            String signatureSecret = VONAGE_SIGNATURE_SECRET;
             System.out.println(signatureSecret);
             if (RequestSigning.verifyRequestSignature(
                     req.raw().getInputStream(),

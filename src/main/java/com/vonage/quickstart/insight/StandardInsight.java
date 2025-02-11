@@ -26,10 +26,6 @@ import com.vonage.client.insight.StandardInsightResponse;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class StandardInsight {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String INSIGHT_NUMBER = envVar("INSIGHT_NUMBER");
-
     public static void main(String[] args) throws Exception {
         
         VonageClient client = VonageClient.builder()

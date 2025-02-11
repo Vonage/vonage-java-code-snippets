@@ -26,12 +26,11 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.util.UUID;
 
 public class DeleteTheme {
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		
-		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		UUID THEME_ID = UUID.fromString(envVar("THEME_ID"));
+		String VONAGE_APPLICATION_ID = VONAGE_APPLICATION_ID;
+		String VONAGE_PRIVATE_KEY_PATH = VONAGE_PRIVATE_KEY_PATH;
+		UUID THEME_ID = UUID.fromString(THEME_ID);
 
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)

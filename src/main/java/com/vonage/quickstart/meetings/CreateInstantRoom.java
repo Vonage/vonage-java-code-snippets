@@ -27,12 +27,11 @@ import com.vonage.client.meetings.RoomType;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class CreateInstantRoom {
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		
-		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		String DISPLAY_NAME = envVar("DISPLAY_NAME");
+		String VONAGE_APPLICATION_ID = VONAGE_APPLICATION_ID;
+		String VONAGE_PRIVATE_KEY_PATH = VONAGE_PRIVATE_KEY_PATH;
+		String DISPLAY_NAME = DISPLAY_NAME;
 
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)

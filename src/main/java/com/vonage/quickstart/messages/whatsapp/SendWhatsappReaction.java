@@ -26,14 +26,7 @@ import com.vonage.client.messages.whatsapp.WhatsappReactionRequest;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendWhatsappReaction {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-	private static final String VONAGE_WHATSAPP_NUMBER = envVar("VONAGE_WHATSAPP_NUMBER");
-	private static final String TO_NUMBER = envVar("TO_NUMBER");
-	private static final String EMOJI = envVar("EMOJI");
-	private static final String MESSAGE_UUID = envVar("MESSAGE_UUID");
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)

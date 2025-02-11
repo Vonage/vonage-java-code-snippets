@@ -25,11 +25,6 @@ import com.vonage.client.VonageClient;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class CancelNumber {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String COUNTRY_CODE = envVar("COUNTRY_CODE");
-    private static final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
-
     public static void main(String[] args) {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)

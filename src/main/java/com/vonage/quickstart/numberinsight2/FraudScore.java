@@ -26,12 +26,11 @@ import com.vonage.client.numberinsight2.Insight;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class FraudScore {
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		
-		String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-		String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-		String INSIGHT_NUMBER = envVar("INSIGHT_NUMBER");
+		String VONAGE_API_KEY = VONAGE_API_KEY;
+		String VONAGE_API_SECRET = VONAGE_API_SECRET;
+		String INSIGHT_NUMBER = INSIGHT_NUMBER;
 
 		VonageClient client = VonageClient.builder().apiKey(VONAGE_API_KEY).apiSecret(VONAGE_API_SECRET).build();
 

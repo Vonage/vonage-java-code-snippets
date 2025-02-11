@@ -26,11 +26,6 @@ import com.vonage.client.verify.*;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class StartVerificationWithWorkflow {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String RECIPIENT_NUMBER = envVar("RECIPIENT_NUMBER");
-    private static final String BRAND_NAME = envVar("BRAND_NAME");
-
     public static void main(String[] args) {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)

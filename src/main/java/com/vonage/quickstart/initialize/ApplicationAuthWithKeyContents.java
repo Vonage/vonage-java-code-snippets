@@ -31,8 +31,8 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
 public class ApplicationAuthWithKeyContents {
     public static void main(String[] argv) throws Exception {
 
-        String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-        String VONAGE_APPLICATION_PRIVATE_KEY= envVar("VONAGE_PRIVATE_KEY");
+        String VONAGE_APPLICATION_ID = VONAGE_APPLICATION_ID;
+        String VONAGE_APPLICATION_PRIVATE_KEY= VONAGE_PRIVATE_KEY;
 
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)

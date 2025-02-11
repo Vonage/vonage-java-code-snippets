@@ -27,12 +27,7 @@ import com.vonage.client.subaccounts.UpdateSubaccountRequest;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class RenameSubaccount {
-	static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-	static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-	static final String SUBACCOUNT_KEY = envVar("SUBACCOUNT_KEY");
-	static final String NEW_SUBACCOUNT_NAME = envVar("NEW_SUBACCOUNT_NAME");
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		
 		VonageClient client = VonageClient.builder()
 				.apiKey(VONAGE_API_KEY)

@@ -26,14 +26,7 @@ import com.vonage.client.messages.whatsapp.WhatsappSingleProductRequest;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendWhatsappSingleProduct {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-	private static final String VONAGE_WHATSAPP_NUMBER = envVar("VONAGE_WHATSAPP_NUMBER");
-	private static final String TO_NUMBER = envVar("TO_NUMBER");
-	private static final String CATALOG_ID = envVar("CATALOG_ID");
-	private static final String PRODUCT_ID = envVar("PRODUCT_ID");
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)

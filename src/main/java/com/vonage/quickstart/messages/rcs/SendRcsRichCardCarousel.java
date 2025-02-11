@@ -28,14 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SendRcsRichCardCarousel {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-	private static final String RCS_SENDER_ID = envVar("RCS_SENDER_ID");
-	private static final String TO_NUMBER = envVar("TO_NUMBER");
-	private static final String IMAGE_URL = envVar("IMAGE_URL");
-	private static final String VIDEO_URL = envVar("VIDEO_URL");
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)

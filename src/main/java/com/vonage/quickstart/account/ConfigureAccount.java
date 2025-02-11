@@ -26,7 +26,6 @@ import com.vonage.client.account.SettingsResponse;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class ConfigureAccount {
-
     public static void main(String[] args) throws Exception {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)

@@ -26,11 +26,7 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.util.UUID;
 
 public class GetTemplate {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-	private static final UUID TEMPLATE_ID = UUID.fromString(envVar("TEMPLATE_ID"));
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)

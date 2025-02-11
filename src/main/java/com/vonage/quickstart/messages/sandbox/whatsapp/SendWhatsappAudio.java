@@ -26,18 +26,17 @@ import com.vonage.client.messages.whatsapp.WhatsappAudioRequest;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendWhatsappAudio {
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		
 		System.out.println(VonageClient.builder()
-				.applicationId(envVar("VONAGE_APPLICATION_ID"))
-				.privateKeyPath(envVar("VONAGE_PRIVATE_KEY_PATH"))
+				.applicationId(VONAGE_APPLICATION_ID)
+				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build()
 				.getMessagesClient()
 				.useSandboxEndpoint()
 				.sendMessage(WhatsappAudioRequest.builder()
-					.from(envVar("MESSAGES_SANDBOX_WHATSAPP_NUMBER"))
-					.to(envVar("MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER"))
+					.from(MESSAGES_SANDBOX_WHATSAPP_NUMBER)
+					.to(MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER)
 					.url("https://file-examples.com/storage/fee788409562ada83b58ed5/2017/11/file_example_MP3_1MG.mp3")
 					.build()
 				).getMessageUuid()

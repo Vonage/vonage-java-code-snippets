@@ -26,8 +26,7 @@ import spark.Route;
 import spark.Spark;
 
 public class MessageStatusWebhook {
-
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 		
 		Route inboundRoute = (request, response) -> {
 			MessageStatus messageDetails = MessageStatus.fromJson(request.body());

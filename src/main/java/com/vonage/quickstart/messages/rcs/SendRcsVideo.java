@@ -26,13 +26,7 @@ import com.vonage.client.messages.rcs.RcsVideoRequest;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendRcsVideo {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-	private static final String RCS_SENDER_ID = envVar("RCS_SENDER_ID");
-	private static final String TO_NUMBER = envVar("TO_NUMBER");
-	private static final String VIDEO_URL = envVar("VIDEO_URL");
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)

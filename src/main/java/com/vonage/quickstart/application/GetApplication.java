@@ -27,10 +27,6 @@ import com.vonage.client.application.Application;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class GetApplication {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-
     public static void main(String... args) {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)

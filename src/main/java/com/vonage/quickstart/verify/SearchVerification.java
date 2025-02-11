@@ -27,10 +27,6 @@ import com.vonage.client.verify.VerifyStatus;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SearchVerification {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String REQUEST_ID = envVar("REQUEST_ID");
-
     public static void main(String... args) throws Exception {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)

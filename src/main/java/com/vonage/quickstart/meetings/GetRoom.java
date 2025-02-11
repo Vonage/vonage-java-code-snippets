@@ -27,12 +27,11 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.util.UUID;
 
 public class GetRoom {
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		
-		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		UUID ROOM_ID = UUID.fromString(envVar("ROOM_ID"));
+		String VONAGE_APPLICATION_ID = VONAGE_APPLICATION_ID;
+		String VONAGE_PRIVATE_KEY_PATH = VONAGE_PRIVATE_KEY_PATH;
+		UUID ROOM_ID = UUID.fromString(ROOM_ID);
 
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)

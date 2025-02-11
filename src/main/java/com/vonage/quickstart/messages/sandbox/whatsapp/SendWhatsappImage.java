@@ -26,18 +26,17 @@ import com.vonage.client.messages.whatsapp.WhatsappImageRequest;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendWhatsappImage {
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		
 		System.out.println(VonageClient.builder()
-				.apiKey(envVar("VONAGE_API_KEY"))
-				.apiSecret(envVar("VONAGE_API_SECRET"))
+				.apiKey(VONAGE_API_KEY)
+				.apiSecret(VONAGE_API_SECRET)
 				.build()
 				.getMessagesClient()
 				.useSandboxEndpoint()
 				.sendMessage(WhatsappImageRequest.builder()
-						.from(envVar("MESSAGES_SANDBOX_WHATSAPP_NUMBER"))
-					.to(envVar("MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER"))
+						.from(MESSAGES_SANDBOX_WHATSAPP_NUMBER)
+					.to(MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER)
 						.url("https://lastfm.freetls.fastly.net/i/u/770x0/a21ed806c65618ea1e7a6c8b4abf0402.jpg")
 						.caption("Fluttershy")
 						.build()

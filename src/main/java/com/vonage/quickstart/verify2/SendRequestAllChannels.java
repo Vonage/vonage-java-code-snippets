@@ -27,14 +27,7 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.util.List;
 
 public class SendRequestAllChannels {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-	private static final String BRAND_NAME = envVar("BRAND_NAME");
-	private static final String TO_NUMBER = envVar("TO_NUMBER");
-	private static final String WHATSAPP_BUSINESS_NUMBER = envVar("WHATSAPP_BUSINESS_NUMBER");
-	private static final String TO_EMAIL = envVar("TO_EMAIL");
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)

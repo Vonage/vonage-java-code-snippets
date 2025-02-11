@@ -27,14 +27,13 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.util.*;
 
 public class SendWhatsappOTP {
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		
-		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		String VONAGE_WHATSAPP_NUMBER = envVar("VONAGE_WHATSAPP_NUMBER");
-		String TO_NUMBER = envVar("TO_NUMBER");
-		String WHATSAPP_TEMPLATE_NAME = envVar("WHATSAPP_TEMPLATE_NAME");
+		String VONAGE_APPLICATION_ID = VONAGE_APPLICATION_ID;
+		String VONAGE_PRIVATE_KEY_PATH = VONAGE_PRIVATE_KEY_PATH;
+		String VONAGE_WHATSAPP_NUMBER = VONAGE_WHATSAPP_NUMBER;
+		String TO_NUMBER = TO_NUMBER;
+		String WHATSAPP_TEMPLATE_NAME = WHATSAPP_TEMPLATE_NAME;
 
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)

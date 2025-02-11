@@ -26,18 +26,17 @@ import com.vonage.client.messages.messenger.MessengerTextRequest;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendMessengerText {
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		
 		System.out.println(VonageClient.builder()
-				.applicationId(envVar("VONAGE_APPLICATION_ID"))
-				.privateKeyPath(envVar("VONAGE_PRIVATE_KEY_PATH"))
+				.applicationId(VONAGE_APPLICATION_ID)
+				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build()
 				.getMessagesClient()
 				.useSandboxEndpoint()
 				.sendMessage(MessengerTextRequest.builder()
-						.from(envVar("MESSAGES_SANDBOX_FB_ID"))
-						.to(envVar("MESSAGES_SANDBOX_ALLOW_LISTED_FB_RECIPIENT_ID"))
+						.from(MESSAGES_SANDBOX_FB_ID)
+						.to(MESSAGES_SANDBOX_ALLOW_LISTED_FB_RECIPIENT_ID)
 						.text("Don't miss out on our latest offers!")
 						.build()
 				).getMessageUuid()

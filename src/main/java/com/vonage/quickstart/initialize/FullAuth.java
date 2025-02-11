@@ -31,10 +31,10 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
  */
 public class FullAuth {
     public static void main(String[] argv) throws Exception {
-        String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-        String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-        String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-        String VONAGE_APPLICATION_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
+        String VONAGE_API_KEY = VONAGE_API_KEY;
+        String VONAGE_API_SECRET = VONAGE_API_SECRET;
+        String VONAGE_APPLICATION_ID = VONAGE_APPLICATION_ID;
+        String VONAGE_APPLICATION_PRIVATE_KEY_PATH = VONAGE_PRIVATE_KEY_PATH;
 
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)

@@ -27,21 +27,20 @@ import com.vonage.client.messages.viber.ViberVideoRequest;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendViberVideo {
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		System.out.println(VonageClient.builder()
-				.applicationId(envVar("VONAGE_APPLICATION_ID"))
-				.privateKeyPath(envVar("VONAGE_PRIVATE_KEY_PATH"))
+				.applicationId(VONAGE_APPLICATION_ID)
+				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build()
 				.getMessagesClient().useSandboxEndpoint()
 				.sendMessage(ViberVideoRequest.builder()
-						.from(envVar("MESSAGES_SANDBOX_VIBER_SERVICE_ID"))
-						.to(envVar("MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER"))
+						.from(MESSAGES_SANDBOX_VIBER_SERVICE_ID)
+						.to(MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER)
 						.category(Category.PROMOTION)
-						.duration(Integer.parseInt(envVar("VIDEO_DURATION")))
-						.fileSize(Integer.parseInt(envVar("VIDEO_SIZE")))
-						.thumbUrl(envVar("THUMB_URL"))
-						.url(envVar("VIDEO_URL"))
+						.duration(Integer.parseInt(VIDEO_DURATION))
+						.fileSize(Integer.parseInt(VIDEO_SIZE))
+						.thumbUrl(THUMB_URL)
+						.url(VIDEO_URL)
 						.caption("Check out this video!").build()
 				).getMessageUuid()
 		);

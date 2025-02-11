@@ -26,13 +26,7 @@ import com.vonage.client.messages.mms.MmsAudioRequest;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendMmsAudio {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-	private static final String FROM_NUMBER = envVar("FROM_NUMBER");
-	private static final String TO_NUMBER = envVar("TO_NUMBER");
-	private static final String AUDIO_URL = envVar("AUDIO_URL");
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)

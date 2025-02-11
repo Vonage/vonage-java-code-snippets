@@ -7,7 +7,6 @@ import java.nio.file.StandardOpenOption;
 import java.util.Objects;
 
 public class AggregateSnippets {
-
     public static void main(String[] args) throws Throwable {
         final var repoRoot = Paths.get("").toAbsolutePath();
         final var snippetsSrcRoot = repoRoot.resolve("src/main/java/com/vonage/quickstart");

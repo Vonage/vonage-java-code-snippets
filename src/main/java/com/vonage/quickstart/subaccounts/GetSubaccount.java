@@ -26,11 +26,7 @@ import com.vonage.client.subaccounts.Account;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class GetSubaccount {
-	static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-	static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-	static final String SUBACCOUNT_KEY = envVar("SUBACCOUNT_KEY");
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		
 		VonageClient client = VonageClient.builder()
 				.apiKey(VONAGE_API_KEY)

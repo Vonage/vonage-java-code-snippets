@@ -26,7 +26,6 @@ import spark.Route;
 import spark.Spark;
 
 public class ReceiveSMS {
-
     public static void main(String[] args) throws Exception {
         /*
          * Route to handle incoming SMS GET request.
