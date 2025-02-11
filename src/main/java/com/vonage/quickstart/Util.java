@@ -21,16 +21,27 @@
  */
 package com.vonage.quickstart;
 
+import com.vonage.client.ApiRegion;
+import com.vonage.client.numbers.Feature;
+import com.vonage.client.numbers.SearchPattern;
+import com.vonage.client.numbers.Type;
+import com.vonage.client.numbers.UpdateNumberRequest;
+import com.vonage.client.verify.Psd2Request;
+import com.vonage.client.verify.VerifyRequest;
+import com.vonage.client.voice.TextToSpeechLanguage;
+import java.time.Instant;
+import java.util.Arrays;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * This class contains utility methods designed to be statically imported into
- * the quickstart main classes.
+ * This class contains utility methods and environment variables designed to be statically
+ * imported into the quickstart main classes.
  */
 public class Util {
+
     /**
      * Configures logging if the QUICKSTART_DEBUG environment variable is set.
      */
@@ -60,28 +71,128 @@ public class Util {
         return value;
     }
 
-    /**
-     * Look up a required environment variable and throw an
-     * IllegalArgumentException if the value is not one of "0", "1", "true", "false", "on" or "off".
-     *
-     * @param key the name of the environment variable
-     * @return the value
-     */
-    public static boolean booleanEnvVar(String key) {
-        String stringValue = System.getenv(key);
-        if (stringValue == null) {
-            return false;
-        } else {
-            stringValue = stringValue.trim().toLowerCase();
-        }
+   public static final String
+       VONAGE_API_KEY = envVar("VONAGE_API_KEY"),
+       VONAGE_API_SECRET = envVar("VONAGE_API_SECRET"),
+       VONAGE_SIGNATURE_SECRET = envVar("VONAGE_SIGNATURE_SECRET"),
+       VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID"),
+       VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH"),
+       VONAGE_VIRTUAL_NUMBER = envVar("VONAGE_VIRTUAL_NUMBER"),
+       ACCOUNT_ID = envVar("ACCOUNT_ID"),
+       ACCOUNT_SECRET = envVar("ACCOUNT_SECRET"),
+       ACCOUNT_SECRET_ID = envVar("ACCOUNT_SECRET_ID"),
+       ACCOUNT_SMS_CALLBACK_URL = envVar("ACCOUNT_SMS_CALLBACK_URL"),
+       APPLICATION_NAME = envVar("APPLICATION_NAME"),
+       MESSAGES_TO_NUMBER = envVar("MESSAGES_TO_NUMBER"),
+       MESSAGES_MESSAGE_ID = envVar("MESSAGES_MESSAGE_ID"),
+       MESSAGES_IMAGE_URL = envVar("MESSAGES_IMAGE_URL"),
+       MESSAGES_AUDIO_URL = envVar("MESSAGES_AUDIO_URL"),
+       MESSAGES_VIDEO_URL = envVar("MESSAGES_VIDEO_URL"),
+       MESSAGES_FILE_URL = envVar("MESSAGES_FILE_URL"),
+       MESSAGES_VCARD_URL = envVar("MESSAGES_VCARD_URL"),
+       MESSAGES_EMOJI = envVar("MESSAGES_EMOJI"),
+       MESSAGES_CAPTION = envVar("MESSAGES_CAPTION"),
+       SMS_SENDER_ID = envVar("SMS_SENDER_ID"),
+       MMS_SENDER_ID = envVar("MMS_SENDER_ID"),
+       RCS_SENDER_ID = envVar("RCS_SENDER_ID"),
+       WHATSAPP_SENDER_ID = envVar("WHATSAPP_SENDER_ID"),
+       VIBER_SENDER_ID = envVar("VIBER_SENDER_ID"),
+       MESSENGER_SENDER_ID = envVar("MESSENGER_SENDER_ID"),
+       MESSENGER_RECIPIENT_ID = envVar("MESSENGER_RECIPIENT_ID"),
+       WHATSAPP_TEMPLATE_NAME = envVar("WHATSAPP_TEMPLATE_NAME"),
+       WHATSAPP_OTP = envVar("WHATSAPP_OTP"),
+       WHATSAPP_CATALOG_ID = envVar("WHATSAPP_CATALOG_ID"),
+       WHATSAPP_PRODUCT_ID = envVar("WHATSAPP_PRODUCT_ID"),
+       WHATSAPP_STICKER_ID = envVar("WHATSAPP_STICKER_ID"),
+       WHATSAPP_STICKER_URL = envVar("WHATSAPP_STICKER_URL"),
+       WHATSAPP_HEADER_IMAGE_URL = envVar("WHATSAPP_HEADER_IMAGE_URL"),
+       WHATSAPP_TEMPLATE_NAMESPACE = envVar("WHATSAPP_TEMPLATE_NAMESPACE"),
+       WHATSAPP_AUTH_TEMPLATE_NAME = envVar("WHATSAPP_AUTH_TEMPLATE_NAME"),
+       WHATSAPP_TEMPLATE_REPLACEMENT_TEXT = envVar("WHATSAPP_TEMPLATE_REPLACEMENT_TEXT"),
+       VIBER_THUMB_URL = envVar("VIBER_THUMB_URL"),
+       MESSAGES_SANDBOX_VIBER_SERVICE_ID = envVar("MESSAGES_SANDBOX_VIBER_SERVICE_ID"),
+       MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER = envVar("MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER"),
+       MESSAGES_SANDBOX_FB_ID = envVar("MESSAGES_SANDBOX_FB_ID"),
+       MESSAGES_SANDBOX_ALLOW_LISTED_FB_RECIPIENT_ID = envVar("MESSAGES_SANDBOX_ALLOW_LISTED_FB_RECIPIENT_ID"),
+       MESSAGES_SANDBOX_WHATSAPP_NUMBER = envVar("MESSAGES_SANDBOX_WHATSAPP_NUMBER"),
+       NV_MSISDN = envVar("NV_MSISDN"),
+       NV_REDIRECT_URI = envVar("NV_REDIRECT_URI"),
+       SIMSWAP_MSISDN = envVar("SIMSWAP_MSISDN"),
+       INSIGHT_NUMBER = envVar("INSIGHT_NUMBER"),
+       INSIGHT_CALLBACK_URL = envVar("INSIGHT_CALLBACK_URL"),
+       NUMBER_MSISDN = envVar("NUMBER_MSISDN"),
+       NUMBER_COUNTRY_CODE = envVar("NUMBER_COUNTRY_CODE"),
+       NUMBER_SEARCH_CRITERIA = envVar("NUMBER_SEARCH_CRITERIA"),
+       NUMBER_SMS_CALLBACK_URL = envVar("NUMBER_SMS_CALLBACK_URL"),
+       NUMBER_VOICE_CALLBACK_URL = envVar("NUMBER_VOICE_CALLBACK_URL"),
+       NUMBER_VOICE_STATUS_CALLBACK_URL = envVar("NUMBER_VOICE_STATUS_CALLBACK_URL"),
+       PRICING_COUNTRY_CODE = envVar("PRICING_COUNTRY_CODE"),
+       PRICING_DIAL_PREFIX = envVar("PRICING_DIAL_PREFIX"),
+       VONAGE_REDACT_ID = envVar("VONAGE_REDACT_ID"),
+       SMS_TO_NUMBER = envVar("SMS_TO_NUMBER"),
+       SUBACCOUNT_KEY = envVar("SUBACCOUNT_KEY"),
+       SUBACCOUNT_NAME = envVar("SUBACCOUNT_NAME"),
+       SUBACCOUNT_SECRET = envVar("SUBACCOUNT_SECRET"),
+       USER_ID = envVar("USER_ID"),
+       USER_NAME = envVar("USER_NAME"),
+       USER_DISPLAY_NAME = envVar("USER_DISPLAY_NAME"),
+       USER_NEW_NAME = envVar("USER_NEW_NAME"),
+       USER_NEW_DISPLAY_NAME = envVar("USER_NEW_DISPLAY_NAME"),
+       WEBSOCKET_URI = envVar("WEBSOCKET_URI"),
+       SIP_SECURE_URI = envVar("SIP_SECURE_URI"),
+       SIP_USERNAME = envVar("SIP_USERNAME"),
+       SIP_PASSWORD = envVar("SIP_PASSWORD"),
+       VERIFY_NUMBER = envVar("VERIFY_NUMBER"),
+       VERIFY_BRAND_NAME = envVar("VERIFY_BRAND_NAME"),
+       VERIFY_PAYEE_NAME = envVar("VERIFY_PAYEE_NAME"),
+       VERIFY_REQUEST_ID = envVar("VERIFY_REQUEST_ID"),
+       VERIFY_CODE = envVar("VERIFY_CODE"),
+       VERIFY_TO_EMAIL = envVar("VERIFY_TO_EMAIL"),
+       VERIFY_FROM_EMAIL = envVar("VERIFY_FROM_EMAIL"),
+       VERIFY_WHATSAPP_NUMBER = envVar("VERIFY_WHATSAPP_NUMBER"),
+       VERIFY_TEMPLATE_NAME = envVar("VERIFY_TEMPLATE_NAME"),
+       VERIFY_TEMPLATE_ID = envVar("VERIFY_TEMPLATE_ID"),
+       VERIFY_TEMPLATE_FRAGMENT_ID = envVar("VERIFY_TEMPLATE_FRAGMENT_ID"),
+       VOICE_CALL_ID = envVar("VOICE_CALL_ID"),
+       VOICE_TO_NUMBER = envVar("VOICE_TO_NUMBER"),
+       VOICE_TEXT = envVar("VOICE_TEXT"),
+       VOICE_DTMF_DIGITS = envVar("VOICE_DTMF_DIGITS"),
+       VOICE_CONFERENCE_NAME = envVar("VOICE_CONFERENCE_NAME"),
+       VOICE_NCCO_URL = envVar("VOICE_NCCO_URL"),
+       VOICE_ANSWER_URL = envVar("VOICE_ANSWER_URL"),
+       VOICE_STREAM_URL = envVar("VOICE_STREAM_URL"),
+       VOICE_RECORDING_URL = envVar("VOICE_RECORDING_URL");
 
-        if ("1".equals(stringValue) || "true".equals(stringValue) || "on".equals(stringValue)) {
-            return true;
-        } else if ("0".equals(stringValue) || "false".equals(stringValue) || "off".equals(stringValue)) {
-            return false;
-        } else {
-            throw new IllegalArgumentException(
-                    String.format("The value \"%s\" could not be converted to a boolean value", stringValue));
-        }
-    }
+   public static final int
+       VIBER_VIDEO_DURATION = Integer.parseInt(envVar("VIBER_VIDEO_DURATION")),
+       VIBER_VIDEO_FILE_SIZE = Integer.parseInt(envVar("VIBER_VIDEO_FILE_SIZE")),
+       VIBER_VIDEO_TTL = Integer.parseInt(envVar("VIBER_VIDEO_TTL")),
+       SIMSWAP_MAX_AGE = Integer.parseInt(envVar("SIMSWAP_MAX_AGE")),
+       VBC_EXTENSION = Integer.parseInt(envVar("VBC_EXTENSION"));
+
+   public static final Type
+       NUMBER_TYPE = Type.fromString(envVar("NUMBER_TYPE"));
+
+   public static final Feature[]
+       NUMBER_FEATURES = Arrays.stream(envVar("NUMBER_FEATURES").split(","))
+           .map(Feature::fromString)
+           .toArray(Feature[]::new);
+
+   public static final SearchPattern
+       NUMBER_SEARCH_PATTERN = SearchPattern.values()[Integer.parseInt(envVar("NUMBER_SEARCH_PATTERN"))];
+
+   public static final UpdateNumberRequest.CallbackType
+       NUMBER_VOICE_CALLBACK_TYPE = UpdateNumberRequest.CallbackType.fromString(envVar("NUMBER_VOICE_CALLBACK_TYPE"));
+
+   public static final VerifyRequest.Workflow
+       VERIFY_WORKFLOW_ID = VerifyRequest.Workflow.values()[Integer.parseInt(envVar("VERIFY_WORKFLOW_ID")) + 1];
+
+   public static final Psd2Request.Workflow
+       VERIFY_PSD2_WORKFLOW_ID = Psd2Request.Workflow.values()[Integer.parseInt(envVar("VERIFY_WORKFLOW_ID")) + 1];
+
+   public static final TextToSpeechLanguage
+       VOICE_LANGUAGE = TextToSpeechLanguage.valueOf(envVar("VOICE_LANGUAGE"));
+
+   public static final ApiRegion
+       MESSAGES_GEOSPECIFIC_API_HOST = ApiRegion.fromString(envVar("MESSAGES_GEOSPECIFIC_API_HOST"));
 }
