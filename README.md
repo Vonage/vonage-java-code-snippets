@@ -1,5 +1,12 @@
 # Vonage Quickstart Examples for Java
 
+[![Build Status](https://github.com/Vonage/vonage-java-code-snippets/actions/workflows/build.yml/badge.svg)](https://github.com/Vonage/vonage-kotlin-sdk/actions/workflows/build.yml)
+![CodeQL](https://github.com/Vonage/vonage-java-code-snippets/actions/workflows/codeql.yml/badge.svg)
+![SLOC](https://sloc.xyz/github/Vonage/vonage-java-code-snippets)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Community Slack](https://img.shields.io/badge/Slack-4A154B?style=flat&logo=slack&logoColor=white)](https://developer.vonage.com/community/slack)
+
 <img src="https://developer.nexmo.com/assets/images/Vonage_Nexmo.svg" height="48px" alt="Nexmo is now known as Vonage" />
 
 Quickstarts also available for:
