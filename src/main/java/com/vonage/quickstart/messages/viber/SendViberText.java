@@ -23,7 +23,7 @@ package com.vonage.quickstart.messages.viber;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.viber.*;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendViberText {
 	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");

@@ -23,16 +23,14 @@ package com.vonage.quickstart.meetings;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.meetings.MeetingRoom;
-import static com.vonage.quickstart.Util.*;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.util.List;
 import java.util.UUID;
 
 public class ListRoomsByTheme {
 
 	public static void main(String[] args) throws Exception {
-		configureLogging();
-
+		
 		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
 		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
 		UUID THEME_ID = UUID.fromString(envVar("THEME_ID"));

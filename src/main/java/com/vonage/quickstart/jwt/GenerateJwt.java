@@ -26,7 +26,7 @@ import java.nio.file.Paths;
 import java.time.ZonedDateTime;
 import java.util.Map;
 
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class GenerateJwt {
 	public static void main(String[] args) throws Throwable {

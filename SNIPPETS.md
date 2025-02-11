@@ -914,7 +914,6 @@ System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
 ### Incoming Message
 
 ```java
-configureLogging();
 
 Route inboundRoute = (request, response) -> {
     InboundMessage messageDetails = InboundMessage.fromJson(request.body());
@@ -987,7 +986,6 @@ System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
 ##### Send Messenger Text
 
 ```java
-configureLogging();
 
 System.out.println(VonageClient.builder()
         .applicationId(envVar("VONAGE_APPLICATION_ID"))
@@ -1006,7 +1004,6 @@ System.out.println(VonageClient.builder()
 ##### Send Messenger Video
 
 ```java
-configureLogging();
 
 System.out.println(VonageClient.builder()
         .applicationId(envVar("VONAGE_APPLICATION_ID"))
@@ -1046,7 +1043,6 @@ System.out.println(VonageClient.builder()
 ##### Send Viber Text
 
 ```java
-configureLogging();
 
 System.out.println(VonageClient.builder()
         .applicationId(envVar("VONAGE_APPLICATION_ID"))
@@ -1086,7 +1082,6 @@ System.out.println(VonageClient.builder()
 ##### Send WhatsApp Text
 
 ```java
-configureLogging();
 
 System.out.println(VonageClient.builder()
         .applicationId(envVar("VONAGE_APPLICATION_ID"))
@@ -1122,7 +1117,6 @@ System.out.println(VonageClient.builder()
 ##### Send WhatsApp Contact
 
 ```java
-configureLogging();
 
 System.out.println(VonageClient.builder()
         .applicationId(envVar("VONAGE_APPLICATION_ID"))
@@ -1203,7 +1197,6 @@ System.out.println(VonageClient.builder()
 ##### Send WhatsApp Sticker
 
 ```java
-configureLogging();
 
 System.out.println(VonageClient.builder()
         .applicationId(envVar("VONAGE_APPLICATION_ID"))
@@ -1222,7 +1215,6 @@ System.out.println(VonageClient.builder()
 ##### Send WhatsApp Audio
 
 ```java
-configureLogging();
 
 System.out.println(VonageClient.builder()
         .applicationId(envVar("VONAGE_APPLICATION_ID"))
@@ -1241,7 +1233,6 @@ System.out.println(VonageClient.builder()
 ##### Send WhatsApp File
 
 ```java
-configureLogging();
 
 System.out.println(VonageClient.builder()
         .applicationId(envVar("VONAGE_APPLICATION_ID"))
@@ -1261,7 +1252,6 @@ System.out.println(VonageClient.builder()
 ##### Send WhatsApp Image
 
 ```java
-configureLogging();
 
 System.out.println(VonageClient.builder()
         .apiKey(envVar("VONAGE_API_KEY"))
@@ -1299,7 +1289,6 @@ System.out.println(VonageClient.builder()
 ##### Send WhatsApp Video
 
 ```java
-configureLogging();
 
 System.out.println(VonageClient.builder()
         .applicationId(envVar("VONAGE_APPLICATION_ID"))
@@ -1318,7 +1307,6 @@ System.out.println(VonageClient.builder()
 ### Message Status Webhook
 
 ```java
-configureLogging();
 
 Route inboundRoute = (request, response) -> {
     MessageStatus messageDetails = MessageStatus.fromJson(request.body());
@@ -1962,8 +1950,7 @@ Spark.get("/webhooks/inbound-sms", inboundSmsAsGet);
 ### ReceiveDL R
 
 ```java
-Util.configureLogging();
-
+Util.
 port(3000);
 
 get("/webhooks/delivery-receipt", (req, res) -> {
@@ -2101,8 +2088,7 @@ import static com.vonage.quickstart.Util.*;
 public class SendSignedSms {
 
     public static void main(String[] args) throws Exception {
-        configureLogging();
-
+        
         String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
         String VONAGE_SIGNATURE_SECRET = envVar("VONAGE_SIGNATURE_SECRET");
         String TO_NUMBER = envVar("TO_NUMBER");

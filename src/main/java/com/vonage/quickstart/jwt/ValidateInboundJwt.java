@@ -24,7 +24,7 @@ package com.vonage.quickstart.jwt;
 import com.vonage.jwt.Jwt;
 import spark.Route;
 import spark.Spark;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class ValidateInboundJwt {
     public static void main(String[] args) throws Exception {

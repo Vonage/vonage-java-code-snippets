@@ -23,13 +23,11 @@ package com.vonage.quickstart.voice;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.voice.Call;
-import static com.vonage.quickstart.Util.*;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class OutboundTextToSpeech {
     public static void main(String[] args) throws Exception {
-        configureLogging();
-
+        
         final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
         final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
 

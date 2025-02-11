@@ -27,14 +27,12 @@ import com.vonage.client.sms.SmsSubmissionResponse;
 import com.vonage.client.sms.messages.TextMessage;
 import com.vonage.client.auth.hashutils.HashUtil;
 
-import static com.vonage.quickstart.Util.*;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendSignedSms {
 
     public static void main(String[] args) throws Exception {
-        configureLogging();
-
+        
         String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
         String VONAGE_SIGNATURE_SECRET = envVar("VONAGE_SIGNATURE_SECRET");
         String TO_NUMBER = envVar("TO_NUMBER");

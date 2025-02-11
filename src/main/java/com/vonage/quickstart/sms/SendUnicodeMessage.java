@@ -26,14 +26,12 @@ import com.vonage.client.sms.SmsSubmissionResponse;
 import com.vonage.client.sms.SmsSubmissionResponseMessage;
 import com.vonage.client.sms.messages.TextMessage;
 
-import static com.vonage.quickstart.Util.*;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendUnicodeMessage {
 
     public static void main(String[] args) throws Exception {
-        configureLogging();
-
+        
         String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
         String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
         String TO_NUMBER = envVar("TO_NUMBER");

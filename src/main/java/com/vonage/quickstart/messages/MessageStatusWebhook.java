@@ -22,15 +22,13 @@
 package com.vonage.quickstart.messages;
 
 import com.vonage.client.messages.MessageStatus;
-import static com.vonage.quickstart.Util.*;
 import spark.Route;
 import spark.Spark;
 
 public class MessageStatusWebhook {
 
 	public static void main(String[] args) {
-		configureLogging();
-
+		
 		Route inboundRoute = (request, response) -> {
 			MessageStatus messageDetails = MessageStatus.fromJson(request.body());
 			System.out.println(

@@ -24,7 +24,7 @@ package com.vonage.quickstart.messages.whatsapp;
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.MessageType;
 import com.vonage.client.messages.whatsapp.*;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.util.List;
 import java.util.Map;
 

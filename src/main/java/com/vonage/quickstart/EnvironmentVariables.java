@@ -29,7 +29,7 @@ import com.vonage.client.numbers.UpdateNumberRequest;
 import com.vonage.client.verify.Psd2Request;
 import com.vonage.client.verify.VerifyRequest;
 import com.vonage.client.voice.TextToSpeechLanguage;
-import java.time.Instant;
+import io.github.cdimascio.dotenv.Dotenv;
 import java.util.Arrays;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Handler;
@@ -37,17 +37,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * This class contains utility methods and environment variables designed to be statically
- * imported into the quickstart main classes.
+ * This class contains environment variables designed to be statically imported into the quickstart main classes.
  */
-public class Util {
+public final class EnvironmentVariables {
+    private EnvironmentVariables() {}
 
-    /**
-     * Configures logging if the QUICKSTART_DEBUG environment variable is set.
-     */
-    public static void configureLogging() {
-        String value = System.getenv("QUICKSTART_DEBUG");
-        if (value != null) {
+    private static final Dotenv dotenv = Dotenv.load();
+
+    static {
+        if (System.getenv("QUICKSTART_DEBUG") != null) {
             Handler handler = new ConsoleHandler();
             handler.setLevel(Level.FINEST);
             Logger logger = Logger.getLogger("com.vonage");
@@ -64,7 +62,7 @@ public class Util {
      * @return the value
      */
     public static String envVar(String key) {
-        String value = System.getenv(key);
+        String value = dotenv.get(key);
         if (value == null) {
             throw new IllegalArgumentException("You must provide the " + key + " environment variable!");
         }

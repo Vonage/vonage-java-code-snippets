@@ -23,8 +23,7 @@ package com.vonage.quickstart.subaccounts;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.subaccounts.NumberTransfer;
-import static com.vonage.quickstart.Util.*;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class TransferNumber {
 	static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
@@ -33,8 +32,7 @@ public class TransferNumber {
 	static final String NUMBER = envVar("NUMBER");
 
 	public static void main(String[] args) throws Exception {
-		configureLogging();
-
+		
 		VonageClient client = VonageClient.builder()
 				.apiKey(VONAGE_API_KEY)
 				.apiSecret(VONAGE_API_SECRET)

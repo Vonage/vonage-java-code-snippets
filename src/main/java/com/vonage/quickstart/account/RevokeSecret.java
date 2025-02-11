@@ -22,7 +22,7 @@
 package com.vonage.quickstart.account;
 
 import com.vonage.client.VonageClient;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class RevokeSecret {
     public static void main(String[] args) throws Exception {

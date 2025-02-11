@@ -26,13 +26,11 @@ import com.vonage.client.insight.AdvancedInsightRequest;
 import com.vonage.client.insight.AdvancedInsightResponse;
 import com.vonage.client.insight.RoamingDetails;
 
-import static com.vonage.quickstart.Util.*;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class AdvancedInsightWithCnam {
     public static void main(String[] args) throws Exception {
-        configureLogging();
-
+        
         String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
         String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
         String INSIGHT_NUMBER = envVar("INSIGHT_NUMBER");

@@ -24,7 +24,7 @@ package com.vonage.quickstart.verify2;
 import com.vonage.client.VonageClient;
 import com.vonage.client.verify2.FragmentChannel;
 import com.vonage.client.verify2.TemplateFragment;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.util.UUID;
 
 public class CreateTemplateFragment {

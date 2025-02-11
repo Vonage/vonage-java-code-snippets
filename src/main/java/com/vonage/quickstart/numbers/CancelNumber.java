@@ -22,8 +22,7 @@
 package com.vonage.quickstart.numbers;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.numbers.NumbersClient;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class CancelNumber {
     private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");

@@ -26,7 +26,7 @@ import com.vonage.client.messages.whatsapp.Locale;
 import com.vonage.client.messages.whatsapp.Policy;
 import com.vonage.client.messages.whatsapp.WhatsappTemplateRequest;
 import java.util.List;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendWhatsappTemplate {
 	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");

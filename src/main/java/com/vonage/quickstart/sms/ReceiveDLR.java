@@ -21,15 +21,14 @@
  */
 package com.vonage.quickstart.sms;
 
-import com.vonage.quickstart.Util;
+import com.vonage.quickstart.EnvironmentVariables;
 
 import static spark.Spark.*;
 
 public class ReceiveDLR {
 
     public static void main(String[] args) throws Exception {
-        Util.configureLogging();
-
+        EnvironmentVariables.
         port(3000);
 
         get("/webhooks/delivery-receipt", (req, res) -> {

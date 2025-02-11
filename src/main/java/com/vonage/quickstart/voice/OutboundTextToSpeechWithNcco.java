@@ -26,13 +26,11 @@ import com.vonage.client.voice.Call;
 import com.vonage.client.voice.ncco.Ncco;
 import com.vonage.client.voice.ncco.TalkAction;
 
-import static com.vonage.quickstart.Util.*;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class OutboundTextToSpeechWithNcco {
     public static void main(String[] args) throws Exception {
-        configureLogging();
-
+        
         final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
         final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
 

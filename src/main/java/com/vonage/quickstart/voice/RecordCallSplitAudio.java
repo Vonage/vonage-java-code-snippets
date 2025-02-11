@@ -26,7 +26,7 @@ import com.vonage.client.voice.ncco.*;
 import spark.Route;
 import spark.Spark;
 
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class RecordCallSplitAudio {
     public static void main(String[] args) {

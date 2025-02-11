@@ -24,8 +24,7 @@ package com.vonage.quickstart.insight;
 import com.vonage.client.VonageClient;
 import com.vonage.client.insight.AdvancedInsightResponse;
 import com.vonage.client.insight.RoamingDetails;
-import static com.vonage.quickstart.Util.*;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class AdvancedInsight {
     private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
@@ -33,8 +32,7 @@ public class AdvancedInsight {
     private static final String INSIGHT_NUMBER = envVar("INSIGHT_NUMBER");
 
     public static void main(String[] args) throws Exception {
-        configureLogging();
-
+        
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)
                 .apiSecret(VONAGE_API_SECRET)

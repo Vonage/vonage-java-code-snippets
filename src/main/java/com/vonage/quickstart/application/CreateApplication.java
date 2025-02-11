@@ -23,13 +23,11 @@ package com.vonage.quickstart.application;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.application.Application;
-import com.vonage.client.application.ApplicationClient;
-import com.vonage.client.application.capabilities.Capability;
 import com.vonage.client.application.capabilities.Messages;
 import com.vonage.client.common.HttpMethod;
 import com.vonage.client.common.Webhook;
 
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class CreateApplication {
     private static final String APPLICATION_NAME = envVar("APPLICATION_NAME");

@@ -24,7 +24,7 @@ package com.vonage.quickstart.sms;
 import com.vonage.client.auth.RequestSigning;
 import spark.Route;
 import spark.Spark;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class ReceiveSignedSms {
 

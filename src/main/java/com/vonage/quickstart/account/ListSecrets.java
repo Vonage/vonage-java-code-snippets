@@ -24,7 +24,7 @@ package com.vonage.quickstart.account;
 import com.vonage.client.VonageClient;
 import com.vonage.client.account.ListSecretsResponse;
 import com.vonage.client.account.SecretResponse;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class ListSecrets {
     public static void main(String[] args) {

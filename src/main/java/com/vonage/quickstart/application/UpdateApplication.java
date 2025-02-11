@@ -28,7 +28,7 @@ import com.vonage.client.application.capabilities.*;
 import com.vonage.client.common.HttpMethod;
 import com.vonage.client.common.Webhook;
 
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class UpdateApplication {
     private static final String APPLICATION_NAME =envVar("APPLICATION_NAME");

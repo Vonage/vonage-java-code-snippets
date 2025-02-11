@@ -24,8 +24,7 @@ package com.vonage.quickstart.subaccounts;
 import com.vonage.client.VonageClient;
 import com.vonage.client.subaccounts.Account;
 import com.vonage.client.subaccounts.CreateSubaccountRequest;
-import static com.vonage.quickstart.Util.*;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class CreateSubaccount {
 	static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
@@ -34,8 +33,7 @@ public class CreateSubaccount {
 	static final String NEW_SUBACCOUNT_SECRET = envVar("NEW_SUBACCOUNT_SECRET");
 
 	public static void main(String[] args) throws Exception {
-		configureLogging();
-
+		
 		VonageClient client = VonageClient.builder()
 				.apiKey(VONAGE_API_KEY)
 				.apiSecret(VONAGE_API_SECRET)

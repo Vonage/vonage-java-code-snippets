@@ -23,7 +23,7 @@ package com.vonage.quickstart.verify2;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.verify2.*;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.util.List;
 
 public class SendRequestAllChannels {

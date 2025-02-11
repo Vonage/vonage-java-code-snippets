@@ -23,13 +23,12 @@ package com.vonage.quickstart.messages.sandbox.whatsapp;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.whatsapp.WhatsappImageRequest;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendWhatsappImage {
 
 	public static void main(String[] args) throws Exception {
-		configureLogging();
-
+		
 		System.out.println(VonageClient.builder()
 				.apiKey(envVar("VONAGE_API_KEY"))
 				.apiSecret(envVar("VONAGE_API_SECRET"))

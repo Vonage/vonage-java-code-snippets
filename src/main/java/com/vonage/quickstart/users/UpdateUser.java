@@ -23,8 +23,7 @@ package com.vonage.quickstart.users;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.users.User;
-import com.vonage.client.users.channels.*;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class UpdateUser {
     private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");

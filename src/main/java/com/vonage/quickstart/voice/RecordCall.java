@@ -29,7 +29,7 @@ import com.vonage.client.voice.ncco.RecordAction;
 import spark.Route;
 import spark.Spark;
 
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class RecordCall {
     public static void main(String[] args) {

@@ -23,7 +23,7 @@ package com.vonage.quickstart.account;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.account.SettingsResponse;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class ConfigureAccount {
 

@@ -22,7 +22,7 @@
 package com.vonage.quickstart.numbers;
 
 import com.vonage.client.VonageClient;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class BuyNumber {
     private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");

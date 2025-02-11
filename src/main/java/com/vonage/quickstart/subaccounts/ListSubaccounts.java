@@ -23,16 +23,14 @@ package com.vonage.quickstart.subaccounts;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.subaccounts.ListSubaccountsResponse;
-import static com.vonage.quickstart.Util.*;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class ListSubaccounts {
 	static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
 	static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
 
 	public static void main(String[] args) throws Exception {
-		configureLogging();
-
+		
 		VonageClient client = VonageClient.builder()
 				.apiKey(VONAGE_API_KEY)
 				.apiSecret(VONAGE_API_SECRET)

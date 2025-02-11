@@ -27,13 +27,11 @@ import spark.Route;
 import spark.Spark;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import static com.vonage.quickstart.Util.*;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class DownloadRecording {
     public static void main(String[] args) throws Exception {
-        configureLogging();
-
+        
         final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
         final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
 

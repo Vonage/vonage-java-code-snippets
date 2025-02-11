@@ -23,7 +23,7 @@ package com.vonage.quickstart.users;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.users.BaseUser;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.util.List;
 
 public class ListUsers {

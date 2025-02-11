@@ -22,15 +22,13 @@
 package com.vonage.quickstart.simswap;
 
 import com.vonage.client.VonageClient;
-import static com.vonage.quickstart.Util.*;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.time.Instant;
 
 public class RetrieveSimSwapDate {
 
     public static void main(String[] args) throws Exception {
-        configureLogging();
-
+        
         String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
         String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
         String TO_NUMBER = envVar("TO_NUMBER");

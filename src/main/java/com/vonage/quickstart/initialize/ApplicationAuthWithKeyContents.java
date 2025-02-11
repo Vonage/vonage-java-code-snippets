@@ -23,7 +23,7 @@ package com.vonage.quickstart.initialize;
 
 import com.vonage.client.VonageClient;
 
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 /**
  * Example of configuring a VonageClient with Application (JWT) authentication credentials.

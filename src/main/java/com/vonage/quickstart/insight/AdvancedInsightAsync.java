@@ -23,7 +23,7 @@ package com.vonage.quickstart.insight;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.insight.AdvancedInsightRequest;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class AdvancedInsightAsync {
     private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");

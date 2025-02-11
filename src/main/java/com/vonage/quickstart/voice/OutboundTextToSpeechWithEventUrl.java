@@ -24,13 +24,11 @@ package com.vonage.quickstart.voice;
 import com.vonage.client.VonageClient;
 import com.vonage.client.voice.Call;
 import com.vonage.client.voice.PhoneEndpoint;
-import static com.vonage.quickstart.Util.*;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class OutboundTextToSpeechWithEventUrl {
     public static void main(String[] args) throws Exception {
-        configureLogging();
-
+        
         final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
         final String TO_NUMBER = envVar("TO_NUMBER");
         final String EVENT_URL = envVar("EVENT_URL");

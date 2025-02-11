@@ -22,7 +22,7 @@
 package com.vonage.quickstart.verify2;
 
 import com.vonage.client.VonageClient;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.util.UUID;
 
 public class DeleteTemplate {

@@ -23,14 +23,12 @@ package com.vonage.quickstart.messages.sandbox.messenger;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.messenger.MessengerTextRequest;
-import static com.vonage.quickstart.Util.*;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendMessengerText {
 
 	public static void main(String[] args) throws Exception {
-		configureLogging();
-
+		
 		System.out.println(VonageClient.builder()
 				.applicationId(envVar("VONAGE_APPLICATION_ID"))
 				.privateKeyPath(envVar("VONAGE_PRIVATE_KEY_PATH"))

@@ -23,7 +23,7 @@ package com.vonage.quickstart.verify;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.verify.ControlResponse;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class CancelVerification {
     private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");

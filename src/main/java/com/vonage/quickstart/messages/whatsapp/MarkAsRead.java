@@ -23,7 +23,7 @@ package com.vonage.quickstart.messages.whatsapp;
 
 import com.vonage.client.ApiRegion;
 import com.vonage.client.VonageClient;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class MarkAsRead {
 	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
