@@ -23,7 +23,7 @@ package com.vonage.quickstart.messages.whatsapp;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.whatsapp.WhatsappMultiProductRequest;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
 import java.util.Arrays;
 
 public class SendWhatsappMultiProduct {

@@ -22,7 +22,7 @@
 package com.vonage.quickstart.messages;
 
 import com.vonage.client.messages.MessageStatus;
-import static com.vonage.quickstart.Util.configureLogging;
+import static com.vonage.quickstart.Util.*;
 import spark.Route;
 import spark.Spark;
 

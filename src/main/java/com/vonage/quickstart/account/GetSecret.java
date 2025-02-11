@@ -23,20 +23,16 @@ package com.vonage.quickstart.account;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.account.SecretResponse;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
 
 public class GetSecret {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String VONAGE_SECRET_ID = envVar("VONAGE_SECRET_ID");
-
     public static void main(String[] args) {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        SecretResponse response = client.getAccountClient().getSecret(VONAGE_API_KEY, VONAGE_SECRET_ID);
+        SecretResponse response = client.getAccountClient().getSecret(VONAGE_API_KEY, ACCOUNT_SECRET_ID);
         System.out.println(response.getId() + " created at " + response.getCreated());
     }
 }

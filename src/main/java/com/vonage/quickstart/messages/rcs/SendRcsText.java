@@ -23,7 +23,7 @@ package com.vonage.quickstart.messages.rcs;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.rcs.RcsTextRequest;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
 
 public class SendRcsText {
 	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");

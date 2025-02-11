@@ -23,7 +23,7 @@ package com.vonage.quickstart.messages.mms;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.mms.MmsVcardRequest;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
 
 public class SendMmsVcard {
 	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");

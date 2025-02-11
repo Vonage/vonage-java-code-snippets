@@ -24,7 +24,7 @@ package com.vonage.quickstart.users;
 import com.vonage.client.VonageClient;
 import com.vonage.client.users.User;
 import com.vonage.client.users.channels.*;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
 
 public class CreateUser {
     private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");

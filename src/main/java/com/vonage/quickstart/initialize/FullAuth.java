@@ -23,7 +23,7 @@ package com.vonage.quickstart.initialize;
 
 import com.vonage.client.VonageClient;
 
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
 
 /**
  * Example of configuring a VonageClient with authentication for

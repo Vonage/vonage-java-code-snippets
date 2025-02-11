@@ -24,12 +24,9 @@ package com.vonage.quickstart.account;
 import com.vonage.client.VonageClient;
 import com.vonage.client.account.ListSecretsResponse;
 import com.vonage.client.account.SecretResponse;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
 
 public class ListSecrets {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-
     public static void main(String[] args) {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)

@@ -24,7 +24,7 @@ package com.vonage.quickstart.application;
 import com.vonage.client.VonageClient;
 import com.vonage.client.application.ApplicationClient;
 
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
 
 public class DeleteApplication {
     private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");

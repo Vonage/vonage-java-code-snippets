@@ -22,7 +22,7 @@
 package com.vonage.quickstart.verify2;
 
 import com.vonage.client.VonageClient;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
 
 public class ListTemplates {
 	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");

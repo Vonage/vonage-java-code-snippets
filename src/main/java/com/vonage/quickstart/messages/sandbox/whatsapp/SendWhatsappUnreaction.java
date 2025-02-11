@@ -23,7 +23,7 @@ package com.vonage.quickstart.messages.sandbox.whatsapp;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.whatsapp.WhatsappReactionRequest;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
 
 public class SendWhatsappUnreaction {
 

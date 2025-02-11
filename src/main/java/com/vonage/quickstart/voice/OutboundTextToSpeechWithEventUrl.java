@@ -24,8 +24,8 @@ package com.vonage.quickstart.voice;
 import com.vonage.client.VonageClient;
 import com.vonage.client.voice.Call;
 import com.vonage.client.voice.PhoneEndpoint;
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.Util.*;
 
 public class OutboundTextToSpeechWithEventUrl {
     public static void main(String[] args) throws Exception {

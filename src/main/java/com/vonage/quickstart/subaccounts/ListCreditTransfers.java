@@ -23,8 +23,8 @@ package com.vonage.quickstart.subaccounts;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.subaccounts.MoneyTransfer;
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.Util.*;
 import java.util.List;
 
 public class ListCreditTransfers {

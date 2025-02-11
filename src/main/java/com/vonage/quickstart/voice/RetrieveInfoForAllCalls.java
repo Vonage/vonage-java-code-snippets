@@ -27,8 +27,8 @@ import com.vonage.client.voice.CallsFilter;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.Util.*;
 
 public class RetrieveInfoForAllCalls {
     public static void main(String... args) throws Exception {

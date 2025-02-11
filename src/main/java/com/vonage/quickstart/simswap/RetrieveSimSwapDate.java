@@ -22,8 +22,8 @@
 package com.vonage.quickstart.simswap;
 
 import com.vonage.client.VonageClient;
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.Util.*;
 import java.time.Instant;
 
 public class RetrieveSimSwapDate {

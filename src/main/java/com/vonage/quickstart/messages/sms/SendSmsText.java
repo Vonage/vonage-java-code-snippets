@@ -23,7 +23,7 @@ package com.vonage.quickstart.messages.sms;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.sms.SmsTextRequest;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
 
 public class SendSmsText {
 	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");

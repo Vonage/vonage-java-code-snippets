@@ -26,8 +26,8 @@ import com.vonage.client.insight.AdvancedInsightRequest;
 import com.vonage.client.insight.AdvancedInsightResponse;
 import com.vonage.client.insight.RoamingDetails;
 
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.Util.*;
 
 public class AdvancedInsightWithCnam {
     public static void main(String[] args) throws Exception {

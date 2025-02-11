@@ -24,7 +24,7 @@ package com.vonage.quickstart.messages.sandbox.viber;
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.viber.Category;
 import com.vonage.client.messages.viber.ViberVideoRequest;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
 
 public class SendViberVideo {
 

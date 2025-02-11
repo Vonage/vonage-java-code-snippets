@@ -25,7 +25,7 @@ import com.vonage.client.VonageClient;
 import com.vonage.client.messages.whatsapp.WhatsappCustomRequest;
 import java.util.List;
 import java.util.Map;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
 
 public class SendWhatsappContact {
 	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");

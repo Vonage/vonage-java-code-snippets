@@ -23,8 +23,8 @@ package com.vonage.quickstart.meetings;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.meetings.LogoType;
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.Util.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;

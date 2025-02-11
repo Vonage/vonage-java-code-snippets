@@ -26,8 +26,8 @@ import com.vonage.client.voice.Call;
 import com.vonage.client.voice.ncco.Ncco;
 import com.vonage.client.voice.ncco.TalkAction;
 
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.Util.*;
 
 public class OutboundTextToSpeechWithNcco {
     public static void main(String[] args) throws Exception {

@@ -23,7 +23,7 @@ package com.vonage.quickstart.messages.rcs;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.rcs.RcsCustomRequest;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
 import java.util.List;
 import java.util.Map;
 

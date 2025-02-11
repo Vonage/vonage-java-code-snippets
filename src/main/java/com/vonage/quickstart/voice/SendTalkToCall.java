@@ -24,8 +24,8 @@ package com.vonage.quickstart.voice;
 import com.vonage.client.VonageClient;
 import com.vonage.client.voice.TalkPayload;
 import com.vonage.client.voice.TextToSpeechLanguage;
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.Util.*;
 
 public class SendTalkToCall {
     public static void main(String[] args) throws Exception {

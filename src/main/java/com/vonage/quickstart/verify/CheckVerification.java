@@ -24,7 +24,7 @@ package com.vonage.quickstart.verify;
 import com.vonage.client.VonageClient;
 import com.vonage.client.verify.CheckResponse;
 import com.vonage.client.verify.VerifyStatus;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
 
 public class CheckVerification {
     private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");

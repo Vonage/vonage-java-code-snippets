@@ -22,19 +22,15 @@
 package com.vonage.quickstart.account;
 
 import com.vonage.client.VonageClient;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
 
 public class RevokeSecret {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String VONAGE_SECRET_ID = envVar("VONAGE_SECRET_ID");
-
     public static void main(String[] args) throws Exception {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        client.getAccountClient().revokeSecret(VONAGE_API_KEY, VONAGE_SECRET_ID);
+        client.getAccountClient().revokeSecret(VONAGE_API_KEY, ACCOUNT_SECRET_ID);
     }
 }

@@ -29,7 +29,7 @@ import com.vonage.client.application.capabilities.Messages;
 import com.vonage.client.common.HttpMethod;
 import com.vonage.client.common.Webhook;
 
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
 
 public class CreateApplication {
     private static final String APPLICATION_NAME = envVar("APPLICATION_NAME");

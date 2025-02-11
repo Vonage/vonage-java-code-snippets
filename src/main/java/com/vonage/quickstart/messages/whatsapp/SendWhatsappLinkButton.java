@@ -25,7 +25,7 @@ import com.vonage.client.VonageClient;
 import com.vonage.client.messages.whatsapp.Locale;
 import com.vonage.client.messages.whatsapp.Policy;
 import com.vonage.client.messages.whatsapp.WhatsappCustomRequest;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.Util.*;
 import java.util.List;
 import java.util.Map;
 
