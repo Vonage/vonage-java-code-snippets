@@ -1947,7 +1947,7 @@ Route inboundSmsAsGet = (req, res) -> {
 Spark.port(5000);
 Spark.get("/webhooks/inbound-sms", inboundSmsAsGet);
 ```
-### ReceiveDL R
+### Receive DLR
 
 ```java
 port(3000);
@@ -1974,7 +1974,7 @@ post("/webhooks/delivery-receipt", (req, res) -> {
     return "";
 });
 ```
-### ReceiveSM S
+### Receive SMS
 
 ```java
 /*

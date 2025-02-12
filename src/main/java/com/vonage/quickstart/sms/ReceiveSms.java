@@ -25,7 +25,7 @@ import com.vonage.client.incoming.MessageEvent;
 import spark.Route;
 import spark.Spark;
 
-public class ReceiveSMS {
+public class ReceiveSms {
     public static void main(String[] args) throws Exception {
         /*
          * Route to handle incoming SMS GET request.

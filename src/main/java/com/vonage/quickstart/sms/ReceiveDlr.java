@@ -23,7 +23,7 @@ package com.vonage.quickstart.sms;
 
 import static spark.Spark.*;
 
-public class ReceiveDLR {
+public class ReceiveDlr {
     public static void main(String[] args) throws Exception {
         port(3000);
 
