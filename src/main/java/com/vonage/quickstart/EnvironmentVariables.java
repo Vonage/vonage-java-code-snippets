@@ -47,7 +47,7 @@ public final class EnvironmentVariables {
     private static final Dotenv dotenv = Dotenv.load();
 
     static {
-        if (System.getenv("QUICKSTART_DEBUG") != null) {
+        if (dotenv.get("QUICKSTART_DEBUG") != null) {
             Handler handler = new ConsoleHandler();
             handler.setLevel(Level.FINEST);
             Logger logger = Logger.getLogger("com.vonage");
@@ -170,7 +170,7 @@ public final class EnvironmentVariables {
        VERIFY_AMOUNT = Double.parseDouble(envVar("VERIFY_AMOUNT"));
 
    public static final UUID
-           VERIFY_REQUEST_UUID = UUID.fromString(VERIFY_REQUEST_ID),    // TODO temp workaround
+           VERIFY_REQUEST_UUID = UUID.fromString(envVar("VERIFY_REQUEST_UUID")),
            VERIFY_TEMPLATE_ID = UUID.fromString(envVar("VERIFY_TEMPLATE_ID")),
            VERIFY_TEMPLATE_FRAGMENT_ID = UUID.fromString(envVar("VERIFY_TEMPLATE_FRAGMENT_ID"));
 
