@@ -37,7 +37,7 @@ public class SendWhatsappFile {
 				.sendMessage(WhatsappFileRequest.builder()
 					.from(MESSAGES_SANDBOX_WHATSAPP_NUMBER)
 					.to(MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER)
-					.url("https://file-examples.com/storage/fee788409562ada83b58ed5/2017/10/file-sample_150kB.pdf")
+					.url(MESSAGES_FILE_URL)
 					.caption("Accompanying message (optional)")
 					.build()
 				).getMessageUuid()

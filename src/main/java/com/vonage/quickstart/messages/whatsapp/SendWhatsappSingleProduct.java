@@ -34,9 +34,9 @@ public class SendWhatsappSingleProduct {
 
 		var response = client.getMessagesClient().sendMessage(
 				WhatsappSingleProductRequest.builder()
-					.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
-					.catalogId(CATALOG_ID)
-					.productRetailerId(PRODUCT_ID)
+					.from(WHATSAPP_SENDER_ID).to(MESSAGES_TO_NUMBER)
+					.catalogId(WHATSAPP_CATALOG_ID)
+					.productRetailerId(WHATSAPP_PRODUCT_ID)
 					.bodyText("Check out this cool product")
 					.footerText("Sale now on!")
 					.build()

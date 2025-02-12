@@ -34,8 +34,8 @@ public class SendWhatsappUnreaction {
 
 		var response = client.getMessagesClient().sendMessage(
 			WhatsappReactionRequest.builder()
-				.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
-				.contextMessageId(MESSAGE_UUID)
+				.from(WHATSAPP_SENDER_ID).to(MESSAGES_TO_NUMBER)
+				.contextMessageId(MESSAGES_MESSAGE_ID)
 				.unreact().build()
 		);
 		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());

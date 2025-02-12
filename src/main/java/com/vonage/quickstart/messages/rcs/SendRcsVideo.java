@@ -34,8 +34,8 @@ public class SendRcsVideo {
 
 		var response = client.getMessagesClient().sendMessage(
 			RcsVideoRequest.builder()
-				.from(RCS_SENDER_ID).to(TO_NUMBER)
-				.url(VIDEO_URL)
+				.from(RCS_SENDER_ID).to(MESSAGES_TO_NUMBER)
+				.url(MESSAGES_VIDEO_URL)
 				.build()
 		);
 		System.out.println("Message sent successfully. ID: " + response.getMessageUuid());

@@ -34,7 +34,7 @@ public class SendSmsText {
 
 		var response = client.getMessagesClient().sendMessage(
 				SmsTextRequest.builder()
-					.from(VONAGE_BRAND_NAME).to(TO_NUMBER)
+					.from(SMS_SENDER_ID).to(MESSAGES_TO_NUMBER)
 					.text("This is an SMS text message sent using the Messages API")
 					.build()
 		);

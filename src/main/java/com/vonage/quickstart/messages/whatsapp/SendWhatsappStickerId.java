@@ -34,8 +34,8 @@ public class SendWhatsappStickerId {
 
 		var response = client.getMessagesClient().sendMessage(
 				WhatsappStickerRequest.builder()
-					.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
-					.id(STICKER_ID)
+					.from(WHATSAPP_SENDER_ID).to(MESSAGES_TO_NUMBER)
+					.id(WHATSAPP_STICKER_ID)
 					.build()
 		);
 		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());

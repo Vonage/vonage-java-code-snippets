@@ -34,9 +34,9 @@ public class SendViberFile {
 
 		var response = client.getMessagesClient().sendMessage(
 				ViberFileRequest.builder()
-					.from(VIBER_SERVICE_MESSAGE_ID)
-					.to(TO_NUMBER)
-					.url(FILE_URL)
+					.from(VIBER_SENDER_ID)
+					.to(MESSAGES_TO_NUMBER)
+					.url(MESSAGES_FILE_URL)
 					.build()
 		);
 		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());

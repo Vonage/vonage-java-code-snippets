@@ -32,6 +32,6 @@ public class MarkAsRead {
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
-		client.getMessagesClient().ackInboundMessage(MESSAGE_UUID, ApiRegion.API_EU);
+		client.getMessagesClient().ackInboundMessage(MESSAGES_MESSAGE_ID, ApiRegion.API_EU);
 	}
 }

@@ -36,9 +36,9 @@ public class SendWhatsappImage {
 				.useSandboxEndpoint()
 				.sendMessage(WhatsappImageRequest.builder()
 						.from(MESSAGES_SANDBOX_WHATSAPP_NUMBER)
-					.to(MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER)
-						.url("https://lastfm.freetls.fastly.net/i/u/770x0/a21ed806c65618ea1e7a6c8b4abf0402.jpg")
-						.caption("Fluttershy")
+						.to(MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER)
+						.url(MESSAGES_IMAGE_URL)
+						.caption(MESSAGES_CAPTION)
 						.build()
 				).getMessageUuid()
 		);

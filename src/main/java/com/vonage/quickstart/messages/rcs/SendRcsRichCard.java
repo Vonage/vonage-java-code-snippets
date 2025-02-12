@@ -36,7 +36,7 @@ public class SendRcsRichCard {
 
 		var response = client.getMessagesClient().sendMessage(
 			RcsCustomRequest.builder()
-				.from(RCS_SENDER_ID).to(TO_NUMBER)
+				.from(RCS_SENDER_ID).to(MESSAGES_TO_NUMBER)
 				.custom(Map.of("contentMessage", Map.of(
 						"richCard", Map.of("standaloneCard", Map.of(
 							"thumbnailImageAlignment", "RIGHT",
@@ -47,7 +47,7 @@ public class SendRcsRichCard {
 								"media", Map.of(
 									"height", "TALL",
 									"contentInfo", Map.of(
-										"fileUrl", IMAGE_URL,
+										"fileUrl", MESSAGES_IMAGE_URL,
 										"forceRefresh", "false"
 									)
 								),

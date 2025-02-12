@@ -34,7 +34,7 @@ public class SendViberText {
 
 		var response = client.getMessagesClient().sendMessage(
 				ViberTextRequest.builder()
-					.from(FROM_ID).to(TO_NUMBER)
+					.from(VIBER_SENDER_ID).to(MESSAGES_TO_NUMBER)
 					.text("Don't miss out on our latest offers!")
 					.category(Category.PROMOTION)
 					.build()

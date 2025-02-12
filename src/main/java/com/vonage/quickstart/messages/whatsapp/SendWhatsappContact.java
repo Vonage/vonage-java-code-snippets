@@ -36,7 +36,7 @@ public class SendWhatsappContact {
 
 		var response = client.getMessagesClient().sendMessage(
 				WhatsappCustomRequest.builder()
-					.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
+					.from(WHATSAPP_SENDER_ID).to(MESSAGES_TO_NUMBER)
 					.custom(Map.of(
 						"type", "contacts",
 						"contacts", List.of(Map.of(

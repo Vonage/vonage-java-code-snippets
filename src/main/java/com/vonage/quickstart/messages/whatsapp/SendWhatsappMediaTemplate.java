@@ -39,7 +39,7 @@ public class SendWhatsappMediaTemplate {
 
 		var response = client.getMessagesClient().sendMessage(
 			WhatsappCustomRequest.builder()
-				.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
+				.from(WHATSAPP_SENDER_ID).to(MESSAGES_TO_NUMBER)
 				.custom(Map.of(
 						"type", MessageType.TEMPLATE,
 						"template", Map.of(
@@ -55,7 +55,7 @@ public class SendWhatsappMediaTemplate {
 										Map.of(
 											"type", MessageType.IMAGE,
 											"image", Map.of(
-												"link", IMAGE_URL
+												"link", MESSAGES_IMAGE_URL
 											)
 										)
 									)

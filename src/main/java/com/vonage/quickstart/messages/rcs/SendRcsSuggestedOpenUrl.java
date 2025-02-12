@@ -36,7 +36,7 @@ public class SendRcsSuggestedOpenUrl {
 
 		var response = client.getMessagesClient().sendMessage(
 			RcsCustomRequest.builder()
-				.from(RCS_SENDER_ID).to(TO_NUMBER)
+				.from(RCS_SENDER_ID).to(MESSAGES_TO_NUMBER)
 				.custom(Map.of("contentMessage", Map.of(
 						"text", "Check out our latest offers!",
 						"suggestions", List.of(

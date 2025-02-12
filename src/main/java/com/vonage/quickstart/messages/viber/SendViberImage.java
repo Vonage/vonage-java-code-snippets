@@ -34,9 +34,9 @@ public class SendViberImage {
 
 		var response = client.getMessagesClient().sendMessage(
 				ViberImageRequest.builder()
-					.from(VIBER_SERVICE_MESSAGE_ID)
-					.to(TO_NUMBER)
-					.url(IMAGE_URL)
+					.from(VIBER_SENDER_ID)
+					.to(MESSAGES_TO_NUMBER)
+					.url(MESSAGES_IMAGE_URL)
 					.build()
 		);
 		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());

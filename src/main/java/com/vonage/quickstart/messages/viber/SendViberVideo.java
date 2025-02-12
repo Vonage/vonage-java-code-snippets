@@ -34,12 +34,14 @@ public class SendViberVideo {
 
 		var response = client.getMessagesClient().sendMessage(
 				ViberVideoRequest.builder()
-					.to(TO_NUMBER)
-					.from(VONAGE_VIBER_SERVICE_MESSAGE_ID)
-					.url("https://example.com/video.mp4")
-					.thumbUrl("https://example.com/image.jpg")
+					.to(MESSAGES_TO_NUMBER)
+					.from(VIBER_SENDER_ID)
+					.url(MESSAGES_VIDEO_URL)
+					.thumbUrl(VIBER_THUMB_URL)
 					.category(Category.TRANSACTION)
-					.fileSize(42).duration(35).ttl(86400)
+					.fileSize(VIBER_VIDEO_FILE_SIZE)
+					.duration(VIBER_VIDEO_DURATION)
+					.ttl(VIBER_VIDEO_TTL)
 					.build()
 		);
 		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());

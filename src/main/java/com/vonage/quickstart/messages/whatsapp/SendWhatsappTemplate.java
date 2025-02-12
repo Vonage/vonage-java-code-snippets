@@ -37,7 +37,7 @@ public class SendWhatsappTemplate {
 
 		var response = client.getMessagesClient().sendMessage(
 				WhatsappTemplateRequest.builder()
-					.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
+					.from(WHATSAPP_SENDER_ID).to(MESSAGES_TO_NUMBER)
 					.policy(Policy.DETERMINISTIC).locale(Locale.ENGLISH_UK)
 					.name(WHATSAPP_TEMPLATE_NAMESPACE+':'+WHATSAPP_TEMPLATE_NAME)
 					.parameters(List.of(

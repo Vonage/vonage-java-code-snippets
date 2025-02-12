@@ -36,7 +36,7 @@ public class SendRcsRichCardCarousel {
 
 		var response = client.getMessagesClient().sendMessage(
 			RcsCustomRequest.builder()
-				.from(RCS_SENDER_ID).to(TO_NUMBER)
+				.from(RCS_SENDER_ID).to(MESSAGES_TO_NUMBER)
 				.custom(Map.of("contentMessage", Map.of(
 						"carouselCard", Map.of(
 							"cardWidth", "MEDIUM",
@@ -55,7 +55,7 @@ public class SendRcsRichCardCarousel {
 									"media", Map.of(
 										"height", "MEDIUM",
 										"contentInfo", Map.of(
-											"fileUrl", IMAGE_URL,
+											"fileUrl", MESSAGES_IMAGE_URL,
 											"forceRefresh", "false"
 										)
 									)
@@ -74,7 +74,7 @@ public class SendRcsRichCardCarousel {
 									"media", Map.of(
 										"height", "MEDIUM",
 										"contentInfo", Map.of(
-											"fileUrl", VIDEO_URL,
+											"fileUrl", MESSAGES_VIDEO_URL,
 											"forceRefresh", "false"
 										)
 									)

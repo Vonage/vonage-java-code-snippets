@@ -36,8 +36,8 @@ public class SendWhatsappReaction {
 				.sendMessage(WhatsappReactionRequest.builder()
 					.from(MESSAGES_SANDBOX_WHATSAPP_NUMBER)
 					.to(MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER)
-					.contextMessageId(MESSAGE_UUID)
-					.reaction(EMOJI)
+					.contextMessageId(MESSAGES_MESSAGE_ID)
+					.reaction(MESSAGES_EMOJI)
 					.build()
 				).getMessageUuid()
 		);

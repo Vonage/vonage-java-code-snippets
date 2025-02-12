@@ -22,18 +22,20 @@
 package com.vonage.quickstart.subaccounts;
 
 import com.vonage.client.VonageClient;
+import com.vonage.client.subaccounts.ListTransfersFilter;
 import com.vonage.client.subaccounts.MoneyTransfer;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.util.List;
 
 public class ListBalanceTransfers {
     public static void main(String[] args) throws Exception {
-		
 		VonageClient client = VonageClient.builder()
 				.apiKey(VONAGE_API_KEY)
 				.apiSecret(VONAGE_API_SECRET)
 				.build();
 
-		List<MoneyTransfer> transfers = client.getSubaccountsClient().listBalanceTransfers();
+		List<MoneyTransfer> transfers = client.getSubaccountsClient().listBalanceTransfers(
+				ListTransfersFilter.builder().startDate(SUBACCOUNT_START_DATE).build()
+		);
 	}
 }

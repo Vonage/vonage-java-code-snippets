@@ -34,8 +34,8 @@ public class SendMmsVcard {
 
 		var response = client.getMessagesClient().sendMessage(
 				MmsVcardRequest.builder()
-					.from(FROM_NUMBER).to(TO_NUMBER)
-					.url(VCARD_URL)
+					.from(MMS_SENDER_ID).to(MESSAGES_TO_NUMBER)
+					.url(MESSAGES_VCARD_URL)
 					.build()
 		);
 		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());

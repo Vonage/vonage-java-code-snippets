@@ -34,8 +34,8 @@ public class SendRcsFile {
 
 		var response = client.getMessagesClient().sendMessage(
 			RcsFileRequest.builder()
-				.from(RCS_SENDER_ID).to(TO_NUMBER)
-				.url(FILE_URL)
+				.from(RCS_SENDER_ID).to(MESSAGES_TO_NUMBER)
+				.url(MESSAGES_FILE_URL)
 				.build()
 		);
 		System.out.println("Message sent successfully. ID: " + response.getMessageUuid());

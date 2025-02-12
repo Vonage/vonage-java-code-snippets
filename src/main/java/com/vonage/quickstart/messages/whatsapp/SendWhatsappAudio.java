@@ -34,9 +34,9 @@ public class SendWhatsappAudio {
 
 		var response = client.getMessagesClient().sendMessage(
 				WhatsappAudioRequest.builder()
-					.to(TO_NUMBER)
-					.from(VONAGE_WHATSAPP_NUMBER)
-					.url(AUDIO_URL)
+					.to(MESSAGES_TO_NUMBER)
+					.from(WHATSAPP_SENDER_ID)
+					.url(MESSAGES_AUDIO_URL)
 					.build()
 		);
 		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());

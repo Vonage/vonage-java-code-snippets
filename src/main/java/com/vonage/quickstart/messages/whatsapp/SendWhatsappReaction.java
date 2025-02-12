@@ -34,9 +34,9 @@ public class SendWhatsappReaction {
 
 		var response = client.getMessagesClient().sendMessage(
 			WhatsappReactionRequest.builder()
-				.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
-				.contextMessageId(MESSAGE_UUID)
-				.reaction(EMOJI).build()
+				.from(WHATSAPP_SENDER_ID).to(MESSAGES_TO_NUMBER)
+				.contextMessageId(MESSAGES_MESSAGE_ID)
+				.reaction(MESSAGES_EMOJI).build()
 		);
 		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
 	}

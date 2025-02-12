@@ -34,8 +34,8 @@ public class SendWhatsappImage {
 
 		var response = client.getMessagesClient().sendMessage(
 				WhatsappImageRequest.builder()
-					.to(TO_NUMBER).from(VONAGE_WHATSAPP_NUMBER)
-					.url(IMAGE_URL).caption(IMAGE_CAPTION)
+					.to(MESSAGES_TO_NUMBER).from(WHATSAPP_SENDER_ID)
+					.url(MESSAGES_IMAGE_URL).caption(MESSAGES_CAPTION)
 					.build()
 		);
 		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());

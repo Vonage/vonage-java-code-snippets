@@ -28,13 +28,6 @@ import java.util.*;
 
 public class SendWhatsappOTP {
     public static void main(String[] args) throws Exception {
-		
-		String VONAGE_APPLICATION_ID = VONAGE_APPLICATION_ID;
-		String VONAGE_PRIVATE_KEY_PATH = VONAGE_PRIVATE_KEY_PATH;
-		String VONAGE_WHATSAPP_NUMBER = VONAGE_WHATSAPP_NUMBER;
-		String TO_NUMBER = TO_NUMBER;
-		String WHATSAPP_TEMPLATE_NAME = WHATSAPP_TEMPLATE_NAME;
-
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
@@ -68,7 +61,7 @@ public class SendWhatsappOTP {
 		custom.put("components", components);
 
 		WhatsappCustomRequest message = WhatsappCustomRequest.builder()
-				.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
+				.from(WHATSAPP_SENDER_ID).to(MESSAGES_TO_NUMBER)
 				.custom(custom).build();
 
 		client.getMessagesClient().sendMessage(message);

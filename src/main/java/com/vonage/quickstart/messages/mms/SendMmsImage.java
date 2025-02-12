@@ -34,8 +34,8 @@ public class SendMmsImage {
 
 		var response = client.getMessagesClient().sendMessage(
 				MmsImageRequest.builder()
-					.from(FROM_NUMBER).to(TO_NUMBER)
-					.url(IMAGE_URL)
+					.from(MMS_SENDER_ID).to(MESSAGES_TO_NUMBER)
+					.url(MESSAGES_IMAGE_URL)
 					.build()
 		);
 		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());

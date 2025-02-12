@@ -32,6 +32,6 @@ public class RevokeMessage {
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
-		client.getMessagesClient().revokeOutboundMessage(MESSAGE_UUID, ApiRegion.API_EU);
+		client.getMessagesClient().revokeOutboundMessage(MESSAGES_MESSAGE_ID, MESSAGES_GEOSPECIFIC_API_HOST);
 	}
 }

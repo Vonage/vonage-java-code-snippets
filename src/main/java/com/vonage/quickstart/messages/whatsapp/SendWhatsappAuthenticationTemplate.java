@@ -37,7 +37,7 @@ public class SendWhatsappAuthenticationTemplate {
 
 		var response = client.getMessagesClient().sendMessage(
 			WhatsappCustomRequest.builder()
-				.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
+				.from(WHATSAPP_SENDER_ID).to(MESSAGES_TO_NUMBER)
 				.custom(Map.of(
 						"type", MessageType.TEMPLATE,
 						"template", Map.of(
@@ -52,7 +52,7 @@ public class SendWhatsappAuthenticationTemplate {
 									"parameters", List.of(
 										Map.of(
 											"type", MessageType.TEXT,
-											"text", OTP
+											"text", WHATSAPP_OTP
 										)
 									)
 								),
@@ -63,7 +63,7 @@ public class SendWhatsappAuthenticationTemplate {
 									"parameters", List.of(
 										Map.of(
 											"type", MessageType.TEXT,
-											"text", OTP
+											"text", WHATSAPP_OTP
 										)
 									)
 								)

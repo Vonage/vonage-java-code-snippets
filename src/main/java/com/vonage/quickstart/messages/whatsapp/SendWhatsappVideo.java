@@ -34,8 +34,8 @@ public class SendWhatsappVideo {
 
 		var response = client.getMessagesClient().sendMessage(
 				WhatsappVideoRequest.builder()
-					.to(TO_NUMBER).from(VONAGE_WHATSAPP_NUMBER)
-					.url(VIDEO_URL).caption(VIDEO_CAPTION)
+					.to(MESSAGES_TO_NUMBER).from(WHATSAPP_SENDER_ID)
+					.url(MESSAGES_VIDEO_URL).caption(MESSAGES_CAPTION)
 					.build()
 		);
 		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());

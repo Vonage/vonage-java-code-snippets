@@ -34,9 +34,9 @@ public class SendMessengerFile {
 
 		var response = client.getMessagesClient().sendMessage(
 				MessengerFileRequest.builder()
-					.from(VONAGE_FB_SENDER_ID)
-					.to(FB_RECIPIENT_ID)
-					.url(FILE_URL)
+					.from(MESSENGER_SENDER_ID)
+					.to(MESSENGER_RECIPIENT_ID)
+					.url(MESSAGES_FILE_URL)
 					.build()
 		);
 		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());

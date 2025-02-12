@@ -37,7 +37,7 @@ public class SendWhatsappSticker {
 				.sendMessage(WhatsappStickerRequest.builder()
 					.from(MESSAGES_SANDBOX_WHATSAPP_NUMBER)
 					.to(MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER)
-					.url("https://file-examples.com/storage/fe0b804ac5640668798b8d0/2020/03/file_example_WEBP_250kB.webp")
+					.url(WHATSAPP_STICKER_URL)
 					.build()
 				).getMessageUuid()
 		);

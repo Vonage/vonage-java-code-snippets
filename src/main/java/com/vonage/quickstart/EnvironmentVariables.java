@@ -30,6 +30,7 @@ import com.vonage.client.verify.Psd2Request;
 import com.vonage.client.verify.VerifyRequest;
 import com.vonage.client.voice.TextToSpeechLanguage;
 import io.github.cdimascio.dotenv.Dotenv;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.UUID;
 import java.util.logging.ConsoleHandler;
@@ -137,10 +138,6 @@ public final class EnvironmentVariables {
        USER_DISPLAY_NAME = envVar("USER_DISPLAY_NAME"),
        USER_NEW_NAME = envVar("USER_NEW_NAME"),
        USER_NEW_DISPLAY_NAME = envVar("USER_NEW_DISPLAY_NAME"),
-       WEBSOCKET_URI = envVar("WEBSOCKET_URI"),
-       SIP_SECURE_URI = envVar("SIP_SECURE_URI"),
-       SIP_USERNAME = envVar("SIP_USERNAME"),
-       SIP_PASSWORD = envVar("SIP_PASSWORD"),
        VERIFY_NUMBER = envVar("VERIFY_NUMBER"),
        VERIFY_BRAND_NAME = envVar("VERIFY_BRAND_NAME"),
        VERIFY_PAYEE_NAME = envVar("VERIFY_PAYEE_NAME"),
@@ -180,8 +177,8 @@ public final class EnvironmentVariables {
            VERIFY_TEMPLATE_ID = UUID.fromString(envVar("VERIFY_TEMPLATE_ID")),
            VERIFY_TEMPLATE_FRAGMENT_ID = UUID.fromString(envVar("VERIFY_TEMPLATE_FRAGMENT_ID"));
 
-   public static final java.time.Instant
-       SUBACCOUNT_START_DATE = java.time.Instant.parse(envVar("SUBACCOUNT_START_DATE"));
+   public static final Instant
+       SUBACCOUNT_START_DATE = Instant.parse(envVar("SUBACCOUNT_START_DATE"));
 
    public static final Type
        NUMBER_TYPE = Type.fromString(envVar("NUMBER_TYPE"));

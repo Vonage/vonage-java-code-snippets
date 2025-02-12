@@ -34,9 +34,9 @@ public class SendMessengerVideo {
 
 		var response = client.getMessagesClient().sendMessage(
 				MessengerVideoRequest.builder()
-					.from(VONAGE_FB_SENDER_ID)
-					.to(FB_RECIPIENT_ID)
-					.url(VIDEO_URL)
+					.from(MESSENGER_SENDER_ID)
+					.to(MESSENGER_RECIPIENT_ID)
+					.url(MESSAGES_VIDEO_URL)
 					.build()
 		);
 		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());

@@ -36,7 +36,7 @@ public class SendWhatsappUnreaction {
 				.sendMessage(WhatsappReactionRequest.builder()
 					.from(MESSAGES_SANDBOX_WHATSAPP_NUMBER)
 					.to(MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER)
-					.contextMessageId(MESSAGE_UUID)
+					.contextMessageId(MESSAGES_MESSAGE_ID)
 					.unreact().build()
 				).getMessageUuid()
 		);

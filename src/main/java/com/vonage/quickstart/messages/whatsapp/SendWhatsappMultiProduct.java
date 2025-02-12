@@ -35,7 +35,7 @@ public class SendWhatsappMultiProduct {
 
 		var response = client.getMessagesClient().sendMessage(
 				WhatsappMultiProductRequest.builder()
-					.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
+					.from(WHATSAPP_SENDER_ID).to(MESSAGES_TO_NUMBER)
 					.catalogId("1166260820787549")
 					.headerText("Our top products")
 					.bodyText("Check out these great products")

@@ -34,7 +34,7 @@ public class SendRcsText {
 
 		var response = client.getMessagesClient().sendMessage(
 				RcsTextRequest.builder()
-					.from(RCS_SENDER_ID).to(TO_NUMBER)
+					.from(RCS_SENDER_ID).to(MESSAGES_TO_NUMBER)
 					.text("This is an RCS message sent via the Vonage Messages API")
 					.build()
 		);

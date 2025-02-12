@@ -34,7 +34,7 @@ public class SendWhatsappText {
 
 		var response = client.getMessagesClient().sendMessage(
 				WhatsappTextRequest.builder()
-					.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
+					.from(WHATSAPP_SENDER_ID).to(MESSAGES_TO_NUMBER)
 					.text("This is a WhatsApp Message text message sent using the Messages API")
 					.build()
 		);

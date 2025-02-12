@@ -34,7 +34,7 @@ public class SendMessengerText {
 
 		var response = client.getMessagesClient().sendMessage(
 				MessengerTextRequest.builder()
-					.from(VONAGE_FB_SENDER_ID).to(FB_RECIPIENT_ID)
+					.from(MESSENGER_SENDER_ID).to(MESSENGER_RECIPIENT_ID)
 					.text("This is a Facebook Messenger Message sent from the Messages API")
 					.build()
 		);

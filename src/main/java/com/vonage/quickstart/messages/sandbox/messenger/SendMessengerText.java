@@ -36,7 +36,7 @@ public class SendMessengerText {
 				.useSandboxEndpoint()
 				.sendMessage(MessengerTextRequest.builder()
 						.from(MESSAGES_SANDBOX_FB_ID)
-						.to(MESSAGES_SANDBOX_ALLOW_LISTED_FB_RECIPIENT_ID)
+						.to(MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER)
 						.text("Don't miss out on our latest offers!")
 						.build()
 				).getMessageUuid()

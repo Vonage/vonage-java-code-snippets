@@ -34,9 +34,9 @@ public class SendMessengerAudio {
 
 		var response = client.getMessagesClient().sendMessage(
 				MessengerAudioRequest.builder()
-						.from(VONAGE_FB_SENDER_ID)
-						.to(FB_RECIPIENT_ID)
-						.url(AUDIO_URL)
+						.from(MESSENGER_SENDER_ID)
+						.to(MESSENGER_RECIPIENT_ID)
+						.url(MESSAGES_AUDIO_URL)
 						.build()
 		);
 		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());

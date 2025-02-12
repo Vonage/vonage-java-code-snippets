@@ -36,7 +36,7 @@ public class SendRcsSuggestedMultipleActions {
 
 		var response = client.getMessagesClient().sendMessage(
 			RcsCustomRequest.builder()
-				.from(RCS_SENDER_ID).to(TO_NUMBER)
+				.from(RCS_SENDER_ID).to(MESSAGES_TO_NUMBER)
 				.custom(Map.of("contentMessage", Map.of(
 						"text", "Need some help? Call us now or visit our website for more information.",
 						"suggestions", List.of(

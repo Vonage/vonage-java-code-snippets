@@ -34,9 +34,9 @@ public class SendMessengerImage {
 
 		var response = client.getMessagesClient().sendMessage(
 				MessengerImageRequest.builder()
-					.from(VONAGE_FB_SENDER_ID)
-					.to(FB_RECIPIENT_ID)
-					.url(IMAGE_URL)
+					.from(MESSENGER_SENDER_ID)
+					.to(MESSENGER_RECIPIENT_ID)
+					.url(MESSAGES_IMAGE_URL)
 					.build()
 		);
 		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());

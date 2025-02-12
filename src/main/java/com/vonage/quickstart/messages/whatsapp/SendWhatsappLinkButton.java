@@ -38,7 +38,7 @@ public class SendWhatsappLinkButton {
 
 		var response = client.getMessagesClient().sendMessage(
 			WhatsappCustomRequest.builder()
-				.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
+				.from(WHATSAPP_SENDER_ID).to(MESSAGES_TO_NUMBER)
 				.custom(Map.of(
 					"type", "template",
 					"template", Map.of(
@@ -55,7 +55,7 @@ public class SendWhatsappLinkButton {
 									Map.of(
 										"type", "image",
 										"image", Map.of(
-											"link", HEADER_IMAGE_URL
+											"link", WHATSAPP_HEADER_IMAGE_URL
 										)
 									)
 								)

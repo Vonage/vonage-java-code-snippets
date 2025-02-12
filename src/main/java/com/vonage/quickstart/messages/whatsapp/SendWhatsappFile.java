@@ -34,8 +34,8 @@ public class SendWhatsappFile {
 
 		var response = client.getMessagesClient().sendMessage(
 				WhatsappFileRequest.builder()
-					.to(TO_NUMBER).from(VONAGE_WHATSAPP_NUMBER)
-					.url(FILE_URL).caption(FILE_CAPTION)
+					.to(MESSAGES_TO_NUMBER).from(WHATSAPP_SENDER_ID)
+					.url(MESSAGES_FILE_URL).caption(MESSAGES_CAPTION)
 					.build()
 		);
 		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
