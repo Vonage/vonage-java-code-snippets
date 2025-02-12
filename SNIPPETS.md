@@ -56,7 +56,7 @@ VonageClient client = VonageClient.builder()
 ### Create Secret
 
 ```java
-SecretResponse response = client.getAccountClient().createSecret(VONAGE_API_KEY, ACCOUNT_SECRET);
+SecretResponse response = client.getAccountClient().createSecret(ACCOUNT_ID, ACCOUNT_SECRET);
 System.out.println(response.getId() + " created at " + response.getCreated());
 ```
 ### Configure Account
@@ -68,7 +68,7 @@ System.out.println("SMS Callback URL is now " + response.getIncomingSmsUrl());
 ### Revoke Secret
 
 ```java
-client.getAccountClient().revokeSecret(VONAGE_API_KEY, ACCOUNT_SECRET_ID);
+client.getAccountClient().revokeSecret(ACCOUNT_ID, ACCOUNT_SECRET_ID);
 ```
 ### Get Balance
 
@@ -80,13 +80,13 @@ System.out.printf("Auto-reload Enabled: %s\n", response.isAutoReload());
 ### Get Secret
 
 ```java
-SecretResponse response = client.getAccountClient().getSecret(VONAGE_API_KEY, ACCOUNT_SECRET_ID);
+SecretResponse response = client.getAccountClient().getSecret(ACCOUNT_ID, ACCOUNT_SECRET_ID);
 System.out.println(response.getId() + " created at " + response.getCreated());
 ```
 ### List Secrets
 
 ```java
-ListSecretsResponse response = client.getAccountClient().listSecrets(VONAGE_API_KEY);
+ListSecretsResponse response = client.getAccountClient().listSecrets(ACCOUNT_ID);
 
 for (SecretResponse secret : response.getSecrets()) {
     System.out.println(secret.getId() + " created at " + secret.getCreated());
