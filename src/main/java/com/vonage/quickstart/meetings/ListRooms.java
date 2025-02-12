@@ -27,11 +27,7 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.util.List;
 
 public class ListRooms {
-    public static void main(String[] args) throws Exception {
-		
-		String VONAGE_APPLICATION_ID = VONAGE_APPLICATION_ID;
-		String VONAGE_PRIVATE_KEY_PATH = VONAGE_PRIVATE_KEY_PATH;
-
+	public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)

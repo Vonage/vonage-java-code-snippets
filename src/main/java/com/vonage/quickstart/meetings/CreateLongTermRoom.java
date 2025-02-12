@@ -28,12 +28,9 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.time.Instant;
 
 public class CreateLongTermRoom {
-    public static void main(String[] args) throws Exception {
-		
-		String VONAGE_APPLICATION_ID = VONAGE_APPLICATION_ID;
-		String VONAGE_PRIVATE_KEY_PATH = VONAGE_PRIVATE_KEY_PATH;
-		String DISPLAY_NAME = DISPLAY_NAME;
-		Instant EXPIRATION_DATE = Instant.parse(EXPIRATION_DATE);
+	public static void main(String[] args) throws Exception {
+		String DISPLAY_NAME = envVar("DISPLAY_NAME");
+		Instant EXPIRATION_DATE = Instant.parse(envVar("EXPIRATION_DATE"));
 
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)

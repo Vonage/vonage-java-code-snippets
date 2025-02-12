@@ -26,11 +26,8 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.util.UUID;
 
 public class DeleteRecording {
-    public static void main(String[] args) throws Exception {
-		
-		String VONAGE_APPLICATION_ID = VONAGE_APPLICATION_ID;
-		String VONAGE_PRIVATE_KEY_PATH = VONAGE_PRIVATE_KEY_PATH;
-		UUID RECORDING_ID = UUID.fromString(RECORDING_ID);
+	public static void main(String[] args) throws Exception {
+		UUID RECORDING_ID = UUID.fromString(envVar("RECORDING_ID"));
 
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
