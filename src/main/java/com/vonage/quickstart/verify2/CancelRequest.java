@@ -32,6 +32,6 @@ public class CancelRequest {
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
-		client.getVerify2Client().cancelVerification(REQUEST_ID);
+		client.getVerify2Client().cancelVerification(VERIFY_REQUEST_ID);
 	}
 }

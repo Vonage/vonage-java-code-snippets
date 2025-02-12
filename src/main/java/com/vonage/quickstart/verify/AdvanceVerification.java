@@ -32,7 +32,7 @@ public class AdvanceVerification {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        ControlResponse response = client.getVerifyClient().advanceVerification(REQUEST_ID);
+        ControlResponse response = client.getVerifyClient().advanceVerification(VERIFY_REQUEST_ID);
 
         String errorText = response.getErrorText();
         if (errorText != null) {

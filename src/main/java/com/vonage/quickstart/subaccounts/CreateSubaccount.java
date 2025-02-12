@@ -36,8 +36,8 @@ public class CreateSubaccount {
 
 		Account subaccount = client.getSubaccountsClient().createSubaccount(
 				CreateSubaccountRequest.builder()
-					.name(NEW_SUBACCOUNT_NAME)
-					.secret(NEW_SUBACCOUNT_SECRET)
+					.name(SUBACCOUNT_NAME)
+					.secret(SUBACCOUNT_SECRET)
 					.build()
 		);
 	}

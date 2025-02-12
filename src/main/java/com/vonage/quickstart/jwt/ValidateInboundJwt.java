@@ -29,12 +29,10 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
 public class ValidateInboundJwt {
     public static void main(String[] args) throws Exception {
 
-        final String signatureSecret = VONAGE_SIGNATURE_SECRET;
-
         Route validateJwt = (req, res) -> {
             String token = req.headers("Authorization").substring(7);
 
-            if (Jwt.verifySignature(token, signatureSecret)) {
+            if (Jwt.verifySignature(token, VONAGE_SIGNATURE_SECRET)) {
                 res.status(204);
             }
             else {

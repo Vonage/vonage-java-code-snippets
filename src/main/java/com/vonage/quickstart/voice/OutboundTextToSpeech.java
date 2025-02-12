@@ -27,19 +27,11 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class OutboundTextToSpeech {
     public static void main(String[] args) throws Exception {
-        
-        final String VONAGE_APPLICATION_ID = VONAGE_APPLICATION_ID;
-        final String VONAGE_PRIVATE_KEY_PATH = VONAGE_PRIVATE_KEY_PATH;
-
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
-        final String VONAGE_NUMBER = VONAGE_NUMBER;
-        final String TO_NUMBER = TO_NUMBER;
-        final String ANSWER_URL = "https://nexmo-community.github.io/ncco-examples/talk.json";
-
-        client.getVoiceClient().createCall(new Call(TO_NUMBER, VONAGE_NUMBER, ANSWER_URL));
+        client.getVoiceClient().createCall(new Call(VOICE_TO_NUMBER, VONAGE_VIRTUAL_NUMBER, VOICE_ANSWER_URL));
     }
 }

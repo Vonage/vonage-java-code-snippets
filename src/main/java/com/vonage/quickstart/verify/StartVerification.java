@@ -33,7 +33,7 @@ public class StartVerification {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        VerifyResponse response = client.getVerifyClient().verify(RECIPIENT_NUMBER, BRAND_NAME);
+        VerifyResponse response = client.getVerifyClient().verify(VERIFY_NUMBER, VERIFY_BRAND_NAME);
 
         if (response.getStatus() == VerifyStatus.OK) {
             System.out.printf("RequestID: %s", response.getRequestId());

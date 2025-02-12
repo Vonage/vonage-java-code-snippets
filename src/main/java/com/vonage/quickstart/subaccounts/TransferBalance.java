@@ -36,7 +36,7 @@ public class TransferBalance {
 		MoneyTransfer receipt = client.getSubaccountsClient().transferBalance(
 				MoneyTransfer.builder()
 					.from(VONAGE_API_KEY).to(SUBACCOUNT_KEY)
-					.amount(AMOUNT).build()
+					.amount(SUBACCOUNT_BALANCE_AMOUNT).build()
 		);
 		System.out.println("Transfer successful: "+receipt.getId());
 	}

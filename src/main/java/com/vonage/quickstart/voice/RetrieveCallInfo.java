@@ -27,17 +27,12 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class RetrieveCallInfo {
     public static void main(String... args) throws Exception {
-        
-        final String VONAGE_APPLICATION_ID = VONAGE_APPLICATION_ID;
-        final String VONAGE_PRIVATE_KEY_PATH = VONAGE_PRIVATE_KEY_PATH;
-        final String CALL_UUID = CALL_UUID;
-
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
-        CallInfo details = client.getVoiceClient().getCallDetails(CALL_UUID);
+        CallInfo details = client.getVoiceClient().getCallDetails(VOICE_CALL_ID);
         System.out.println(details);
     }
 }

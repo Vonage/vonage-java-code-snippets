@@ -27,16 +27,11 @@ import java.time.Instant;
 
 public class RetrieveSimSwapDate {
     public static void main(String[] args) throws Exception {
-        
-        String VONAGE_APPLICATION_ID = VONAGE_APPLICATION_ID;
-        String VONAGE_PRIVATE_KEY_PATH = VONAGE_PRIVATE_KEY_PATH;
-        String TO_NUMBER = TO_NUMBER;
-
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH).build();
 
-        Instant lastSwapDate = client.getSimSwapClient().retrieveSimSwapDate(TO_NUMBER);
+        Instant lastSwapDate = client.getSimSwapClient().retrieveSimSwapDate(SIMSWAP_MSISDN);
         System.out.println(lastSwapDate);
     }
 }

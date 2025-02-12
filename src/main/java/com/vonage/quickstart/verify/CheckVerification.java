@@ -33,7 +33,7 @@ public class CheckVerification {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        CheckResponse response = client.getVerifyClient().check(REQUEST_ID, CODE);
+        CheckResponse response = client.getVerifyClient().check(VERIFY_REQUEST_ID, VERIFY_CODE);
 
         if (response.getStatus() == VerifyStatus.OK) {
             System.out.println("Verification Successful");

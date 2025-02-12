@@ -33,7 +33,7 @@ public class StartPsd2VerificationWithWorkflow {
                 .build();
 
         VerifyResponse response = client.getVerifyClient().psd2Verify(
-                RECIPIENT_NUMBER, AMOUNT, PAYEE_NAME, Psd2Request.Workflow.SMS_SMS
+                VERIFY_NUMBER, VERIFY_AMOUNT, VERIFY_PAYEE_NAME, VERIFY_PSD2_WORKFLOW_ID
         );
 
         if (response.getStatus() == VerifyStatus.OK) {

@@ -27,16 +27,11 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class EndCall {
     public static void main(String[] args) throws Exception {
-        
-        final String VONAGE_APPLICATION_ID = VONAGE_APPLICATION_ID;
-        final String VONAGE_PRIVATE_KEY_PATH = VONAGE_PRIVATE_KEY_PATH;
-        final String CALL_UUID = CALL_UUID;
-
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
-        client.getVoiceClient().terminateCall(CALL_UUID);
+        client.getVoiceClient().terminateCall(VOICE_CALL_ID);
     }
 }

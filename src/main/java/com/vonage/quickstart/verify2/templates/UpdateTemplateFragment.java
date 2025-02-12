@@ -19,27 +19,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.verify2;
+package com.vonage.quickstart.verify2.templates;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.verify2.FragmentChannel;
-import com.vonage.client.verify2.TemplateFragment;
 import static com.vonage.quickstart.EnvironmentVariables.*;
-import java.util.UUID;
 
-public class CreateTemplateFragment {
+public class UpdateTemplateFragment {
     public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
-		var fragment = client.getVerify2Client().createTemplateFragment(
-				TEMPLATE_ID, new TemplateFragment(
-						FragmentChannel.SMS, "en-us",
-						"The authentication code for your ${brand} is: ${code}"
-				)
+		var updated = client.getVerify2Client().updateTemplateFragment(
+				VERIFY_TEMPLATE_ID, VERIFY_TEMPLATE_FRAGMENT_ID,
+				"The authentication code for your ${brand} is: ${code}"
 		);
-		System.out.println(fragment);
+		System.out.println(updated);
 	}
 }

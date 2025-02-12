@@ -31,6 +31,7 @@ import com.vonage.client.verify.VerifyRequest;
 import com.vonage.client.voice.TextToSpeechLanguage;
 import io.github.cdimascio.dotenv.Dotenv;
 import java.util.Arrays;
+import java.util.UUID;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
@@ -61,7 +62,7 @@ public final class EnvironmentVariables {
      * @param key the name of the environment variable
      * @return the value
      */
-    private static String envVar(String key) {
+    static String envVar(String key) {
         String value = dotenv.get(key);
         if (value == null) {
             throw new IllegalArgumentException("You must provide the " + key + " environment variable!");
@@ -149,8 +150,6 @@ public final class EnvironmentVariables {
        VERIFY_FROM_EMAIL = envVar("VERIFY_FROM_EMAIL"),
        VERIFY_WHATSAPP_NUMBER = envVar("VERIFY_WHATSAPP_NUMBER"),
        VERIFY_TEMPLATE_NAME = envVar("VERIFY_TEMPLATE_NAME"),
-       VERIFY_TEMPLATE_ID = envVar("VERIFY_TEMPLATE_ID"),
-       VERIFY_TEMPLATE_FRAGMENT_ID = envVar("VERIFY_TEMPLATE_FRAGMENT_ID"),
        VOICE_CALL_ID = envVar("VOICE_CALL_ID"),
        VOICE_TO_NUMBER = envVar("VOICE_TO_NUMBER"),
        VOICE_TEXT = envVar("VOICE_TEXT"),
@@ -158,8 +157,12 @@ public final class EnvironmentVariables {
        VOICE_CONFERENCE_NAME = envVar("VOICE_CONFERENCE_NAME"),
        VOICE_NCCO_URL = envVar("VOICE_NCCO_URL"),
        VOICE_ANSWER_URL = envVar("VOICE_ANSWER_URL"),
+       VOICE_EVENT_URL = envVar("VOICE_EVENT_URL"),
        VOICE_STREAM_URL = envVar("VOICE_STREAM_URL"),
        VOICE_RECORDING_URL = envVar("VOICE_RECORDING_URL");
+
+    public static final byte[]
+        VONAGE_PRIVATE_KEY_CONTENTS = envVar("VONAGE_PRIVATE_KEY_CONTENTS").getBytes();
 
    public static final int
        VIBER_VIDEO_DURATION = Integer.parseInt(envVar("VIBER_VIDEO_DURATION")),
@@ -167,6 +170,18 @@ public final class EnvironmentVariables {
        VIBER_VIDEO_TTL = Integer.parseInt(envVar("VIBER_VIDEO_TTL")),
        SIMSWAP_MAX_AGE = Integer.parseInt(envVar("SIMSWAP_MAX_AGE")),
        VBC_EXTENSION = Integer.parseInt(envVar("VBC_EXTENSION"));
+
+   public static final double
+       SUBACCOUNT_BALANCE_AMOUNT = Double.parseDouble(envVar("SUBACCOUNT_BALANCE_AMOUNT")),
+       SUBACCOUNT_CREDIT_AMOUNT = Double.parseDouble(envVar("SUBACCOUNT_CREDIT_AMOUNT")),
+       VERIFY_AMOUNT = Double.parseDouble(envVar("VERIFY_AMOUNT"));
+
+   public static final UUID
+           VERIFY_TEMPLATE_ID = UUID.fromString(envVar("VERIFY_TEMPLATE_ID")),
+           VERIFY_TEMPLATE_FRAGMENT_ID = UUID.fromString(envVar("VERIFY_TEMPLATE_FRAGMENT_ID"));
+
+   public static final java.time.Instant
+       SUBACCOUNT_START_DATE = java.time.Instant.parse(envVar("SUBACCOUNT_START_DATE"));
 
    public static final Type
        NUMBER_TYPE = Type.fromString(envVar("NUMBER_TYPE"));

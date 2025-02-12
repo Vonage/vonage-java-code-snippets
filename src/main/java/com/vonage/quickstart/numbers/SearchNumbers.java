@@ -24,7 +24,6 @@ package com.vonage.quickstart.numbers;
 import com.vonage.client.VonageClient;
 import com.vonage.client.numbers.*;
 import static com.vonage.quickstart.EnvironmentVariables.*;
-import java.util.Arrays;
 
 public class SearchNumbers {
     public static void main(String[] args) {
@@ -35,9 +34,9 @@ public class SearchNumbers {
 
         SearchNumbersResponse response = client.getNumbersClient().searchNumbers(
                 SearchNumbersFilter.builder()
-                    .country(COUNTRY_CODE)
-                    .type(VONAGE_NUMBER_TYPE)
-                    .features(VONAGE_NUMBER_FEATURES)
+                    .country(NUMBER_COUNTRY_CODE)
+                    .type(NUMBER_TYPE)
+                    .features(NUMBER_FEATURES)
                     .pattern(NUMBER_SEARCH_PATTERN, NUMBER_SEARCH_CRITERIA)
                     .build()
         );

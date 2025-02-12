@@ -34,8 +34,8 @@ public class SendRequestWhatsappInteractive {
 
 		VerificationResponse response = client.getVerify2Client().sendVerification(
 				VerificationRequest.builder()
-					.addWorkflow(new WhatsappCodelessWorkflow(TO_NUMBER, WHATSAPP_BUSINESS_NUMBER))
-					.brand(BRAND_NAME).build()
+					.addWorkflow(new WhatsappCodelessWorkflow(VERIFY_NUMBER, VERIFY_WHATSAPP_NUMBER))
+					.brand(VERIFY_BRAND_NAME).build()
 		);
 		System.out.println("Verification sent: " + response.getRequestId());
 	}

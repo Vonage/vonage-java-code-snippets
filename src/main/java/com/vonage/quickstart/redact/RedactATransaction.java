@@ -32,6 +32,6 @@ public class RedactATransaction {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        client.getRedactClient().redactTransaction(VONAGE_REDACT_ID, VONAGE_REDACT_PRODUCT);
+        client.getRedactClient().redactTransaction(VONAGE_REDACT_ID, RedactRequest.Product.SMS);
     }
 }

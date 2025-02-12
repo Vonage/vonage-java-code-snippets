@@ -25,14 +25,10 @@ import com.vonage.client.voice.EventWebhook;
 import com.vonage.client.voice.ncco.*;
 import spark.Route;
 import spark.Spark;
-
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class RecordCallSplitAudio {
     public static void main(String[] args) {
-        final String TO_NUMBER = TO_NUMBER;
-        final String VONAGE_NUMBER = VONAGE_NUMBER;
-
         /*
          * Route to answer and connect incoming calls with recording.
          */
@@ -45,9 +41,8 @@ public class RecordCallSplitAudio {
                     .split(SplitRecording.CONVERSATION)
                     .build();
 
-            ConnectAction connect = ConnectAction.builder(PhoneEndpoint.builder(TO_NUMBER).build())
-                    .from(VONAGE_NUMBER)
-                    .build();
+            ConnectAction connect = ConnectAction.builder(PhoneEndpoint.builder(VOICE_TO_NUMBER).build())
+                    .from(VONAGE_VIRTUAL_NUMBER).build();
 
             res.type("application/json");
 

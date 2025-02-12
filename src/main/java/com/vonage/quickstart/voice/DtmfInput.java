@@ -29,8 +29,6 @@ import com.vonage.client.voice.ncco.TalkAction;
 import spark.Route;
 import spark.Spark;
 
-import java.util.Collections;
-
 public class DtmfInput {
     public static void main(String[] args) {
         /*
@@ -41,13 +39,9 @@ public class DtmfInput {
                     .builder("Hello. Please press any key to continue.")
                     .build();
 
-            DtmfSettings dtmfSettings = new DtmfSettings();
-            dtmfSettings.setMaxDigits(1);
-
             InputAction input = InputAction.builder()
-                    .type(Collections.singletonList("dtmf"))
                     .eventUrl(String.format("%s://%s/webhooks/dtmf", req.scheme(), req.host()))
-                    .dtmf(dtmfSettings)
+                    .dtmf(DtmfSettings.builder().maxDigits(1).build())
                     .build();
 
 

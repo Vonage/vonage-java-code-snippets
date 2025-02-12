@@ -27,11 +27,6 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class FraudScore {
     public static void main(String[] args) throws Exception {
-		
-		String VONAGE_API_KEY = VONAGE_API_KEY;
-		String VONAGE_API_SECRET = VONAGE_API_SECRET;
-		String INSIGHT_NUMBER = INSIGHT_NUMBER;
-
 		VonageClient client = VonageClient.builder().apiKey(VONAGE_API_KEY).apiSecret(VONAGE_API_SECRET).build();
 
 		var response = client.getNumberInsight2Client().fraudCheck(INSIGHT_NUMBER, Insight.FRAUD_SCORE);

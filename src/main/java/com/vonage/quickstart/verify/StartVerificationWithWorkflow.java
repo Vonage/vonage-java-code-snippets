@@ -33,7 +33,7 @@ public class StartVerificationWithWorkflow {
                 .build();
 
         VerifyResponse response = client.getVerifyClient().verify(
-                RECIPIENT_NUMBER,BRAND_NAME, VerifyRequest.Workflow.TTS_TTS
+                VERIFY_NUMBER, VERIFY_BRAND_NAME, VERIFY_WORKFLOW_ID
         );
 
         if (response.getStatus() == VerifyStatus.OK) {

@@ -26,18 +26,13 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SimSwapped {
     public static void main(String[] args) throws Exception {
-        
-        String VONAGE_APPLICATION_ID = VONAGE_APPLICATION_ID;
-        String VONAGE_PRIVATE_KEY_PATH = VONAGE_PRIVATE_KEY_PATH;
-        String TO_NUMBER = TO_NUMBER;
-
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH).build();
 
-        boolean swapped = client.getSimSwapClient().checkSimSwap(TO_NUMBER, 960);
-        System.out.println("SIM for "+TO_NUMBER +
-                " has "+(swapped ? "" : "not ") + "been swapped in the past 960 hours."
+        boolean swapped = client.getSimSwapClient().checkSimSwap(SIMSWAP_MSISDN, SIMSWAP_MAX_AGE);
+        System.out.println("SIM for "+SIMSWAP_MSISDN + " has " +
+                (swapped ? "" : "not ") + "been swapped in the past "+SIMSWAP_MAX_AGE+" hours."
         );
     }
 }

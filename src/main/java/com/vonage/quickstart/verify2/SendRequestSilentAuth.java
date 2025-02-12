@@ -34,8 +34,8 @@ public class SendRequestSilentAuth {
 
 		VerificationResponse response = client.getVerify2Client().sendVerification(
 				VerificationRequest.builder()
-					.addWorkflow(new SilentAuthWorkflow(TO_NUMBER))
-					.brand(BRAND_NAME).build()
+					.addWorkflow(new SilentAuthWorkflow(VERIFY_NUMBER))
+					.brand(VERIFY_BRAND_NAME).build()
 		);
 		System.out.println("Verification sent: " + response.getRequestId());
 	}

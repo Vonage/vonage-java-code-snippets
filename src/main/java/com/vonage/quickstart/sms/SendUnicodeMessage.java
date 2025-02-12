@@ -25,20 +25,14 @@ import com.vonage.client.VonageClient;
 import com.vonage.client.sms.SmsSubmissionResponse;
 import com.vonage.client.sms.SmsSubmissionResponseMessage;
 import com.vonage.client.sms.messages.TextMessage;
-
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendUnicodeMessage {
     public static void main(String[] args) throws Exception {
-        
-        String VONAGE_API_KEY = VONAGE_API_KEY;
-        String VONAGE_API_SECRET = VONAGE_API_SECRET;
-        String TO_NUMBER = TO_NUMBER;
-        String VONAGE_BRAND_NAME = VONAGE_BRAND_NAME;
 
         VonageClient client = VonageClient.builder().apiKey(VONAGE_API_KEY).apiSecret(VONAGE_API_SECRET).build();
 
-        TextMessage message = new TextMessage(VONAGE_BRAND_NAME, TO_NUMBER, "Blue Öyster Cult \uD83E\uDD18", true);
+        TextMessage message = new TextMessage(SMS_SENDER_ID, SMS_TO_NUMBER, "Blue Öyster Cult \uD83E\uDD18", true);
 
         SmsSubmissionResponse responses = client.getSmsClient().submitMessage(message);
 

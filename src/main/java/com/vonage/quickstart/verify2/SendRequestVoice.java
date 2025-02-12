@@ -34,8 +34,8 @@ public class SendRequestVoice {
 
         VerificationResponse response = client.getVerify2Client().sendVerification(
                 VerificationRequest.builder()
-                        .addWorkflow(new VoiceWorkflow(TO_NUMBER))
-                        .brand(BRAND_NAME).build()
+                        .addWorkflow(new VoiceWorkflow(VERIFY_NUMBER))
+                        .brand(VERIFY_BRAND_NAME).build()
         );
         System.out.println("Verification sent: " + response.getRequestId());
     }

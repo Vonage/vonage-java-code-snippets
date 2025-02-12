@@ -34,7 +34,7 @@ public class AdvancedInsightAsync {
 
         client.getInsightClient().getAdvancedNumberInsight(
                 AdvancedInsightRequest.builder(INSIGHT_NUMBER)
-                    .async(true).callback(CALLBACK_URL).build()
+                    .async(true).callback(INSIGHT_CALLBACK_URL).build()
         );
     }
 }

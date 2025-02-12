@@ -33,7 +33,9 @@ public class StartPsd2Verification {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        VerifyResponse response = client.getVerifyClient().psd2Verify(RECIPIENT_NUMBER, AMOUNT, PAYEE_NAME);
+        VerifyResponse response = client.getVerifyClient().psd2Verify(
+                VERIFY_NUMBER, VERIFY_AMOUNT, VERIFY_PAYEE_NAME
+        );
 
         if (response.getStatus() == VerifyStatus.OK) {
             System.out.printf("Request ID: %s", response.getRequestId());

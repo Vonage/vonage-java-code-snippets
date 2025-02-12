@@ -30,16 +30,13 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class ConnectInboundCall {
     public static void main(String[] args) {
-        final String YOUR_SECOND_NUMBER = YOUR_SECOND_NUMBER;
-        final String VONAGE_NUMBER = VONAGE_NUMBER;
-
         /*
          * Route to answer incoming calls with an NCCO response.
          */
         Route answerRoute = (req, res) -> {
             ConnectAction connect = ConnectAction.builder()
-                    .endpoint(PhoneEndpoint.builder(YOUR_SECOND_NUMBER).build())
-                    .from(VONAGE_NUMBER)
+                    .endpoint(PhoneEndpoint.builder(VOICE_TO_NUMBER).build())
+                    .from(VONAGE_VIRTUAL_NUMBER)
                     .build();
 
             res.type("application/json");

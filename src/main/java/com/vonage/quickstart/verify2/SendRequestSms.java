@@ -34,8 +34,8 @@ public class SendRequestSms {
 
 		VerificationResponse response = client.getVerify2Client().sendVerification(
 				VerificationRequest.builder()
-					.addWorkflow(new SmsWorkflow(TO_NUMBER))
-					.brand(BRAND_NAME).build()
+					.addWorkflow(new SmsWorkflow(VERIFY_NUMBER))
+					.brand(VERIFY_BRAND_NAME).build()
 		);
 		System.out.println("Verification sent: " + response.getRequestId());
 	}

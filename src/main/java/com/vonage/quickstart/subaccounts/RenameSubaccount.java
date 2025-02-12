@@ -36,7 +36,7 @@ public class RenameSubaccount {
 
 		Account subaccount = client.getSubaccountsClient().updateSubaccount(
 				UpdateSubaccountRequest.builder(SUBACCOUNT_KEY)
-						.name(NEW_SUBACCOUNT_NAME).build()
+						.name(SUBACCOUNT_NAME).build()
 		);
 	}
 }

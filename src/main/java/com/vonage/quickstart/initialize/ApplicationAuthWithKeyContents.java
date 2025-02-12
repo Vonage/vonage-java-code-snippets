@@ -22,7 +22,6 @@
 package com.vonage.quickstart.initialize;
 
 import com.vonage.client.VonageClient;
-
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 /**
@@ -31,12 +30,9 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
 public class ApplicationAuthWithKeyContents {
     public static void main(String[] argv) throws Exception {
 
-        String VONAGE_APPLICATION_ID = VONAGE_APPLICATION_ID;
-        String VONAGE_APPLICATION_PRIVATE_KEY= VONAGE_PRIVATE_KEY;
-
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)
-                .privateKeyContents(VONAGE_APPLICATION_PRIVATE_KEY)
+                .privateKeyContents(VONAGE_PRIVATE_KEY_CONTENTS)
                 .build();
     }
 }

@@ -33,10 +33,10 @@ public class UpdateNumber {
                 .build();
 
         client.getNumbersClient().updateNumber(
-                UpdateNumberRequest.builder(VONAGE_NUMBER, COUNTRY_CODE)
-                    .moHttpUrl(SMS_CALLBACK_URL)
-                    .voiceCallback(VOICE_CALLBACK_TYPE, VOICE_CALLBACK_VALUE)
-                    .voiceStatusCallback(VOICE_STATUS_URL)
+                UpdateNumberRequest.builder(NUMBER_MSISDN, NUMBER_COUNTRY_CODE)
+                    .moHttpUrl(NUMBER_SMS_CALLBACK_URL)
+                    .voiceCallback(NUMBER_VOICE_CALLBACK_TYPE, NUMBER_VOICE_CALLBACK_URL)
+                    .voiceStatusCallback(NUMBER_VOICE_STATUS_CALLBACK_URL)
                     .build()
         );
     }

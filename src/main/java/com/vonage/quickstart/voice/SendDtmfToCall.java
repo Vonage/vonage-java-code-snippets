@@ -27,17 +27,12 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendDtmfToCall {
     public static void main(String[] args) throws Exception {
-        
-        final String VONAGE_APPLICATION_ID = VONAGE_APPLICATION_ID;
-        final String VONAGE_PRIVATE_KEY_PATH = VONAGE_PRIVATE_KEY_PATH;
-        final String CALL_UUID = CALL_UUID;
-
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
-        var response = client.getVoiceClient().sendDtmf(CALL_UUID, "332393");
+        var response = client.getVoiceClient().sendDtmf(VOICE_CALL_ID, VOICE_DTMF_DIGITS);
         System.out.println(response);
     }
 }

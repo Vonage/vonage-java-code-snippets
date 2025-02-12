@@ -35,15 +35,15 @@ public class SendRequestAllChannels {
 
 		var request = VerificationRequest.builder()
 				.workflows(List.of(
-						new SilentAuthWorkflow(TO_NUMBER),
-						new WhatsappCodelessWorkflow(TO_NUMBER, WHATSAPP_BUSINESS_NUMBER),
-						new EmailWorkflow(TO_EMAIL),
-						new WhatsappWorkflow(TO_NUMBER, WHATSAPP_BUSINESS_NUMBER),
-						new SmsWorkflow(TO_NUMBER),
-						new VoiceWorkflow(TO_NUMBER)
+						new SilentAuthWorkflow(VERIFY_NUMBER),
+						new WhatsappCodelessWorkflow(VERIFY_NUMBER, VERIFY_WHATSAPP_NUMBER),
+						new EmailWorkflow(VERIFY_TO_EMAIL, VERIFY_FROM_EMAIL),
+						new WhatsappWorkflow(VERIFY_NUMBER, VERIFY_WHATSAPP_NUMBER),
+						new SmsWorkflow(VERIFY_NUMBER),
+						new VoiceWorkflow(VERIFY_NUMBER)
 				))
 				.codeLength(7)
-				.brand(BRAND_NAME)
+				.brand(VERIFY_BRAND_NAME)
 				.locale("en-gb")
 				.channelTimeout(120)
 				.build();

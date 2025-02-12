@@ -19,19 +19,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.verify2;
+package com.vonage.quickstart.verify2.templates;
 
 import com.vonage.client.VonageClient;
 import static com.vonage.quickstart.EnvironmentVariables.*;
-import java.util.UUID;
 
-public class DeleteTemplateFragment {
+public class GetTemplateFragment {
     public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
-		client.getVerify2Client().deleteTemplateFragment(TEMPLATE_ID, TEMPLATE_FRAGMENT_ID);
+		var fragment = client.getVerify2Client().getTemplateFragment(VERIFY_TEMPLATE_ID, VERIFY_TEMPLATE_FRAGMENT_ID);
+		System.out.println(fragment);
 	}
 }

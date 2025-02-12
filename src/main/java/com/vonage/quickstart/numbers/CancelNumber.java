@@ -31,6 +31,6 @@ public class CancelNumber {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        client.getNumbersClient().cancelNumber(COUNTRY_CODE, VONAGE_NUMBER);
+        client.getNumbersClient().cancelNumber(NUMBER_COUNTRY_CODE, NUMBER_MSISDN);
     }
 }

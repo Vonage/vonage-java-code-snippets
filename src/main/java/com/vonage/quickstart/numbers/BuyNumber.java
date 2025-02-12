@@ -31,6 +31,6 @@ public class BuyNumber {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        client.getNumbersClient().buyNumber(COUNTRY_CODE, VONAGE_NUMBER);
+        client.getNumbersClient().buyNumber(NUMBER_COUNTRY_CODE, NUMBER_MSISDN);
     }
 }

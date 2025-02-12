@@ -34,8 +34,8 @@ public class SendRequestEmail {
 
 		VerificationResponse response = client.getVerify2Client().sendVerification(
 				VerificationRequest.builder()
-					.addWorkflow(new EmailWorkflow(TO_EMAIL))
-					.brand(BRAND_NAME).build()
+					.addWorkflow(new EmailWorkflow(VERIFY_TO_EMAIL))
+					.brand(VERIFY_BRAND_NAME).build()
 		);
 		System.out.println("Verification sent: " + response.getRequestId());
 	}

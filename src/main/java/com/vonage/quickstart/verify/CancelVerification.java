@@ -32,7 +32,7 @@ public class CancelVerification {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        ControlResponse response = client.getVerifyClient().cancelVerification(REQUEST_ID);
+        ControlResponse response = client.getVerifyClient().cancelVerification(VERIFY_REQUEST_ID);
 
         String errorText = response.getErrorText();
         if (errorText != null) {

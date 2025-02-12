@@ -26,18 +26,11 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class TransferCall {
     public static void main(String... args) throws Exception {
-        
-        final String VONAGE_APPLICATION_ID = VONAGE_APPLICATION_ID;
-        final String VONAGE_PRIVATE_KEY_PATH = VONAGE_PRIVATE_KEY_PATH;
-        final String CALL_UUID = CALL_UUID;
-
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
-        final String NCCO_URL = "https://nexmo-community.github.io/ncco-examples/talk.json";
-
-        client.getVoiceClient().transferCall(CALL_UUID, NCCO_URL);
+        client.getVoiceClient().transferCall(VOICE_CALL_ID, VOICE_NCCO_URL);
     }
 }

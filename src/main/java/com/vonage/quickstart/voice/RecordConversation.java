@@ -27,18 +27,17 @@ import com.vonage.client.voice.ncco.EventMethod;
 import com.vonage.client.voice.ncco.Ncco;
 import spark.Route;
 import spark.Spark;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class RecordConversation {
     public static void main(String[] args) {
-        final String CONF_NAME = "conf-name";
-
         /*
          * Route to answer and connect incoming calls with recording.
          */
         Route answerRoute = (req, res) -> {
             String recordingUrl = String.format("%s://%s/webhooks/recordings", req.scheme(), req.host());
 
-            ConversationAction conversation = ConversationAction.builder(CONF_NAME)
+            ConversationAction conversation = ConversationAction.builder(VOICE_CONFERENCE_NAME)
                     .record(true)
                     .eventMethod(EventMethod.POST)
                     .eventUrl(recordingUrl)

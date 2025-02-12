@@ -33,7 +33,7 @@ public class SearchVerification {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        SearchVerifyResponse response = client.getVerifyClient().search(REQUEST_ID);
+        SearchVerifyResponse response = client.getVerifyClient().search(VERIFY_REQUEST_ID);
         if (response.getStatus() == VerifyStatus.OK) {
             response.getVerificationRequests().forEach(it -> {
                 System.out.println(it.getRequestId() + " " + it.getStatus());

@@ -23,23 +23,16 @@ package com.vonage.quickstart.voice;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.voice.TalkPayload;
-import com.vonage.client.voice.TextToSpeechLanguage;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendTalkToCall {
     public static void main(String[] args) throws Exception {
-        
-        final String VONAGE_APPLICATION_ID = VONAGE_APPLICATION_ID;
-        final String VONAGE_PRIVATE_KEY_PATH = VONAGE_PRIVATE_KEY_PATH;
-        final String CALL_UUID = CALL_UUID;
-
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
-        final String TEXT = "Hello World! Would you like to know more? I bet you would.";
-        var payload = TalkPayload.builder(TEXT).language(TextToSpeechLanguage.AMERICAN_ENGLISH).build();
-        client.getVoiceClient().startTalk(CALL_UUID, payload);
+        var payload = TalkPayload.builder(VOICE_TEXT).language(VOICE_LANGUAGE).build();
+        client.getVoiceClient().startTalk(VOICE_CALL_ID, payload);
     }
 }

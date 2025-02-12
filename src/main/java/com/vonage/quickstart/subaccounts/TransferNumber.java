@@ -35,7 +35,8 @@ public class TransferNumber {
 
 		NumberTransfer transfer = NumberTransfer.builder()
 				.from(VONAGE_API_KEY).to(SUBACCOUNT_KEY)
-				.number(NUMBER).build();
+				.number(NUMBER_MSISDN).country(NUMBER_COUNTRY_CODE)
+				.build();
 
 		client.getSubaccountsClient().transferNumber(transfer);
 	}

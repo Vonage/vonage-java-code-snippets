@@ -25,21 +25,15 @@ import com.vonage.client.VonageClient;
 import com.vonage.client.sms.MessageStatus;
 import com.vonage.client.sms.SmsSubmissionResponse;
 import com.vonage.client.sms.messages.TextMessage;
-
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendMessage {
     public static void main(String[] args) throws Exception {
-        
-        String VONAGE_API_KEY = VONAGE_API_KEY;
-        String VONAGE_API_SECRET = VONAGE_API_SECRET;
-        String TO_NUMBER = TO_NUMBER;
-        String VONAGE_BRAND_NAME = VONAGE_BRAND_NAME;
 
         VonageClient client = VonageClient.builder().apiKey(VONAGE_API_KEY).apiSecret(VONAGE_API_SECRET).build();
 
-        TextMessage message = new TextMessage(VONAGE_BRAND_NAME,
-                TO_NUMBER,
+        TextMessage message = new TextMessage(
+                SMS_SENDER_ID, SMS_TO_NUMBER,
                 "A text message sent using the Vonage SMS API"
         );
 
