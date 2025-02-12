@@ -36,7 +36,7 @@ public class SendMessengerVideo {
 				.useSandboxEndpoint()
 				.sendMessage(MessengerVideoRequest.builder()
 						.from(MESSAGES_SANDBOX_FB_ID)
-						.to(MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER)
+						.to(MESSAGES_SANDBOX_ALLOW_LISTED_FB_RECIPIENT_ID)
 						.url(MESSAGES_VIDEO_URL)
 						.build()
 				).getMessageUuid()

@@ -34,9 +34,9 @@ public class SendMmsAudio {
 
 		var response = client.getMessagesClient().sendMessage(
 				MmsAudioRequest.builder()
-						.from(MMS_SENDER_ID).to(MESSAGES_TO_NUMBER)
-						.url(MESSAGES_AUDIO_URL)
-						.build()
+					.from(MMS_SENDER_ID).to(MESSAGES_TO_NUMBER)
+					.url(MESSAGES_AUDIO_URL)
+					.build()
 		);
 		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
 	}

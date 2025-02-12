@@ -810,9 +810,9 @@ System.out.println("Message sent successfully. ID: " + response.getMessageUuid()
 ```java
 var response = client.getMessagesClient().sendMessage(
         MmsVideoRequest.builder()
-                .from(MMS_SENDER_ID).to(MESSAGES_TO_NUMBER)
-                .url(MESSAGES_VIDEO_URL)
-                .build()
+            .from(MMS_SENDER_ID).to(MESSAGES_TO_NUMBER)
+            .url(MESSAGES_VIDEO_URL)
+            .build()
 );
 System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
 ```
@@ -843,9 +843,9 @@ System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
 ```java
 var response = client.getMessagesClient().sendMessage(
         MmsAudioRequest.builder()
-                .from(MMS_SENDER_ID).to(MESSAGES_TO_NUMBER)
-                .url(MESSAGES_AUDIO_URL)
-                .build()
+            .from(MMS_SENDER_ID).to(MESSAGES_TO_NUMBER)
+            .url(MESSAGES_AUDIO_URL)
+            .build()
 );
 System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
 ```
@@ -855,7 +855,8 @@ System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
 ```java
 var response = client.getMessagesClient().sendMessage(
         MessengerTextRequest.builder()
-            .from(MESSENGER_SENDER_ID).to(MESSENGER_RECIPIENT_ID)
+            .from(MESSENGER_SENDER_ID)
+            .to(MESSENGER_RECIPIENT_ID)
             .text("This is a Facebook Messenger Message sent from the Messages API")
             .build()
 );
@@ -995,7 +996,7 @@ System.out.println(VonageClient.builder()
         .useSandboxEndpoint()
         .sendMessage(MessengerTextRequest.builder()
                 .from(MESSAGES_SANDBOX_FB_ID)
-                .to(MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER)
+                .to(MESSAGES_SANDBOX_ALLOW_LISTED_FB_RECIPIENT_ID)
                 .text("Don't miss out on our latest offers!")
                 .build()
         ).getMessageUuid()
@@ -1013,7 +1014,7 @@ System.out.println(VonageClient.builder()
         .useSandboxEndpoint()
         .sendMessage(MessengerVideoRequest.builder()
                 .from(MESSAGES_SANDBOX_FB_ID)
-                .to(MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER)
+                .to(MESSAGES_SANDBOX_ALLOW_LISTED_FB_RECIPIENT_ID)
                 .url(MESSAGES_VIDEO_URL)
                 .build()
         ).getMessageUuid()
