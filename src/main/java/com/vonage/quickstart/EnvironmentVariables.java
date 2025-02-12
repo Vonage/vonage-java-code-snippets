@@ -174,6 +174,7 @@ public final class EnvironmentVariables {
        VERIFY_AMOUNT = Double.parseDouble(envVar("VERIFY_AMOUNT"));
 
    public static final UUID
+           VERIFY_REQUEST_UUID = UUID.fromString(VERIFY_REQUEST_ID),    // TODO temp workaround
            VERIFY_TEMPLATE_ID = UUID.fromString(envVar("VERIFY_TEMPLATE_ID")),
            VERIFY_TEMPLATE_FRAGMENT_ID = UUID.fromString(envVar("VERIFY_TEMPLATE_FRAGMENT_ID"));
 

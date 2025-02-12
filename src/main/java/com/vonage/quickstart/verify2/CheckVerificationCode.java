@@ -34,7 +34,7 @@ public class CheckVerificationCode {
 				.build();
 
 		try {
-			client.getVerify2Client().checkVerificationCode(VERIFY_REQUEST_ID, VERIFY_CODE);
+			client.getVerify2Client().checkVerificationCode(VERIFY_REQUEST_UUID, VERIFY_CODE);
 			System.out.println("SUCCESS - code matches!");
 		}
 		catch (VerifyResponseException ex) {
