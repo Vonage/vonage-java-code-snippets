@@ -32,7 +32,7 @@ public class CreateSecret {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        SecretResponse response = client.getAccountClient().createSecret(VONAGE_API_KEY, ACCOUNT_SECRET);
+        SecretResponse response = client.getAccountClient().createSecret(ACCOUNT_ID, ACCOUNT_SECRET);
         System.out.println(response.getId() + " created at " + response.getCreated());
     }
 }

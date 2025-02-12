@@ -31,6 +31,6 @@ public class RevokeSecret {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        client.getAccountClient().revokeSecret(VONAGE_API_KEY, ACCOUNT_SECRET_ID);
+        client.getAccountClient().revokeSecret(ACCOUNT_ID, ACCOUNT_SECRET_ID);
     }
 }

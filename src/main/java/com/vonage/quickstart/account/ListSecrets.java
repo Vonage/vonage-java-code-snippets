@@ -33,7 +33,7 @@ public class ListSecrets {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        ListSecretsResponse response = client.getAccountClient().listSecrets(VONAGE_API_KEY);
+        ListSecretsResponse response = client.getAccountClient().listSecrets(ACCOUNT_ID);
 
         for (SecretResponse secret : response.getSecrets()) {
             System.out.println(secret.getId() + " created at " + secret.getCreated());
