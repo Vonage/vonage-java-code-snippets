@@ -78,7 +78,6 @@ public final class EnvironmentVariables {
        VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID"),
        VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH"),
        VONAGE_VIRTUAL_NUMBER = envVar("VONAGE_VIRTUAL_NUMBER"),
-       ACCOUNT_ID = envVar("ACCOUNT_ID"),
        ACCOUNT_SECRET = envVar("ACCOUNT_SECRET"),
        ACCOUNT_SECRET_ID = envVar("ACCOUNT_SECRET_ID"),
        ACCOUNT_SMS_CALLBACK_URL = envVar("ACCOUNT_SMS_CALLBACK_URL"),
@@ -126,8 +125,6 @@ public final class EnvironmentVariables {
        NUMBER_SMS_CALLBACK_URL = envVar("NUMBER_SMS_CALLBACK_URL"),
        NUMBER_VOICE_CALLBACK_URL = envVar("NUMBER_VOICE_CALLBACK_URL"),
        NUMBER_VOICE_STATUS_CALLBACK_URL = envVar("NUMBER_VOICE_STATUS_CALLBACK_URL"),
-       PRICING_COUNTRY_CODE = envVar("PRICING_COUNTRY_CODE"),
-       PRICING_DIAL_PREFIX = envVar("PRICING_DIAL_PREFIX"),
        VONAGE_REDACT_ID = envVar("VONAGE_REDACT_ID"),
        SMS_TO_NUMBER = envVar("SMS_TO_NUMBER"),
        SUBACCOUNT_KEY = envVar("SUBACCOUNT_KEY"),
@@ -155,8 +152,7 @@ public final class EnvironmentVariables {
        VOICE_NCCO_URL = envVar("VOICE_NCCO_URL"),
        VOICE_ANSWER_URL = envVar("VOICE_ANSWER_URL"),
        VOICE_EVENT_URL = envVar("VOICE_EVENT_URL"),
-       VOICE_STREAM_URL = envVar("VOICE_STREAM_URL"),
-       VOICE_RECORDING_URL = envVar("VOICE_RECORDING_URL");
+       VOICE_STREAM_URL = envVar("VOICE_STREAM_URL");
 
     public static final byte[]
         VONAGE_PRIVATE_KEY_CONTENTS = envVar("VONAGE_PRIVATE_KEY_CONTENTS").getBytes();
@@ -165,8 +161,7 @@ public final class EnvironmentVariables {
        VIBER_VIDEO_DURATION = Integer.parseInt(envVar("VIBER_VIDEO_DURATION")),
        VIBER_VIDEO_FILE_SIZE = Integer.parseInt(envVar("VIBER_VIDEO_FILE_SIZE")),
        VIBER_VIDEO_TTL = Integer.parseInt(envVar("VIBER_VIDEO_TTL")),
-       SIMSWAP_MAX_AGE = Integer.parseInt(envVar("SIMSWAP_MAX_AGE")),
-       VBC_EXTENSION = Integer.parseInt(envVar("VBC_EXTENSION"));
+       SIMSWAP_MAX_AGE = Integer.parseInt(envVar("SIMSWAP_MAX_AGE"));
 
    public static final double
        SUBACCOUNT_BALANCE_AMOUNT = Double.parseDouble(envVar("SUBACCOUNT_BALANCE_AMOUNT")),
