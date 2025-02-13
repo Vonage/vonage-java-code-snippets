@@ -23,15 +23,10 @@ package com.vonage.quickstart.messages.messenger;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.messenger.MessengerTextRequest;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendMessengerText {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-	private static final String VONAGE_FB_SENDER_ID = envVar("VONAGE_FB_SENDER_ID");
-	private static final String FB_RECIPIENT_ID = envVar("FB_RECIPIENT_ID");
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
@@ -39,7 +34,8 @@ public class SendMessengerText {
 
 		var response = client.getMessagesClient().sendMessage(
 				MessengerTextRequest.builder()
-					.from(VONAGE_FB_SENDER_ID).to(FB_RECIPIENT_ID)
+					.from(MESSENGER_SENDER_ID)
+					.to(MESSENGER_RECIPIENT_ID)
 					.text("This is a Facebook Messenger Message sent from the Messages API")
 					.build()
 		);

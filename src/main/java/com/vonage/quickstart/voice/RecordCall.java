@@ -28,14 +28,10 @@ import com.vonage.client.voice.ncco.PhoneEndpoint;
 import com.vonage.client.voice.ncco.RecordAction;
 import spark.Route;
 import spark.Spark;
-
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class RecordCall {
     public static void main(String[] args) {
-        final String TO_NUMBER = envVar("TO_NUMBER");
-        final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
-
         /*
          * Route to answer and connect incoming calls with recording.
          */
@@ -44,9 +40,8 @@ public class RecordCall {
 
             RecordAction record = RecordAction.builder().eventUrl(recordingUrl).build();
 
-            ConnectAction connect = ConnectAction.builder(PhoneEndpoint.builder(TO_NUMBER).build())
-                    .from(VONAGE_NUMBER)
-                    .build();
+            ConnectAction connect = ConnectAction.builder(PhoneEndpoint.builder(VOICE_TO_NUMBER).build())
+                    .from(VONAGE_VIRTUAL_NUMBER).build();
 
             res.type("application/json");
 

@@ -19,28 +19,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.verify2;
+package com.vonage.quickstart.verify2.templates;
 
 import com.vonage.client.VonageClient;
-import static com.vonage.quickstart.Util.envVar;
-import java.util.UUID;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
-public class UpdateTemplateFragment {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-	private static final UUID TEMPLATE_ID = UUID.fromString(envVar("TEMPLATE_ID"));
-	private static final UUID TEMPLATE_FRAGMENT_ID = UUID.fromString(envVar("TEMPLATE_FRAGMENT_ID"));
-
-	public static void main(String[] args) throws Exception {
+public class CreateTemplate {
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
-		var updated = client.getVerify2Client().updateTemplateFragment(
-				TEMPLATE_ID, TEMPLATE_FRAGMENT_ID,
-				"The authentication code for your ${brand} is: ${code}"
-		);
-		System.out.println(updated);
+		var template = client.getVerify2Client().createTemplate(VERIFY_TEMPLATE_NAME);
+		System.out.println(template.getId());
 	}
 }

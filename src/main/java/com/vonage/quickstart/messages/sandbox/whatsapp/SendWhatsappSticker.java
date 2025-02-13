@@ -23,24 +23,21 @@ package com.vonage.quickstart.messages.sandbox.whatsapp;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.whatsapp.WhatsappStickerRequest;
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendWhatsappSticker {
-
-	public static void main(String[] args) throws Exception {
-		configureLogging();
-
+    public static void main(String[] args) throws Exception {
+		
 		System.out.println(VonageClient.builder()
-				.applicationId(envVar("VONAGE_APPLICATION_ID"))
-				.privateKeyPath(envVar("VONAGE_PRIVATE_KEY_PATH"))
+				.applicationId(VONAGE_APPLICATION_ID)
+				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build()
 				.getMessagesClient()
 				.useSandboxEndpoint()
 				.sendMessage(WhatsappStickerRequest.builder()
-					.from(envVar("MESSAGES_SANDBOX_WHATSAPP_NUMBER"))
-					.to(envVar("MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER"))
-					.url("https://file-examples.com/storage/fe0b804ac5640668798b8d0/2020/03/file_example_WEBP_250kB.webp")
+					.from(MESSAGES_SANDBOX_WHATSAPP_NUMBER)
+					.to(MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER)
+					.url(WHATSAPP_STICKER_URL)
 					.build()
 				).getMessageUuid()
 		);

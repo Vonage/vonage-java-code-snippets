@@ -23,15 +23,10 @@ package com.vonage.quickstart.messages.viber;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.viber.*;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendViberText {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-	private static final String FROM_ID = envVar("FROM_ID");
-	private static final String TO_NUMBER = envVar("TO_NUMBER");
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
@@ -39,7 +34,7 @@ public class SendViberText {
 
 		var response = client.getMessagesClient().sendMessage(
 				ViberTextRequest.builder()
-					.from(FROM_ID).to(TO_NUMBER)
+					.from(VIBER_SENDER_ID).to(MESSAGES_TO_NUMBER)
 					.text("Don't miss out on our latest offers!")
 					.category(Category.PROMOTION)
 					.build()

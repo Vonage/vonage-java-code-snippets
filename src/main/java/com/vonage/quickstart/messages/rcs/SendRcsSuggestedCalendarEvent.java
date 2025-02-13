@@ -23,18 +23,13 @@ package com.vonage.quickstart.messages.rcs;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.rcs.RcsCustomRequest;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 
 public class SendRcsSuggestedCalendarEvent {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-	private static final String RCS_SENDER_ID = envVar("RCS_SENDER_ID");
-	private static final String TO_NUMBER = envVar("TO_NUMBER");
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
@@ -42,7 +37,7 @@ public class SendRcsSuggestedCalendarEvent {
 
 		var response = client.getMessagesClient().sendMessage(
 			RcsCustomRequest.builder()
-				.from(RCS_SENDER_ID).to(TO_NUMBER)
+				.from(RCS_SENDER_ID).to(MESSAGES_TO_NUMBER)
 				.custom(Map.of("contentMessage", Map.of(
 						"text", "Product Launch: Save the date!",
 						"suggestions", List.of(

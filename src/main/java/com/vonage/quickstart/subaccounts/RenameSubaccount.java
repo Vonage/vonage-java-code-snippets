@@ -24,18 +24,11 @@ package com.vonage.quickstart.subaccounts;
 import com.vonage.client.VonageClient;
 import com.vonage.client.subaccounts.Account;
 import com.vonage.client.subaccounts.UpdateSubaccountRequest;
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class RenameSubaccount {
-	static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-	static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-	static final String SUBACCOUNT_KEY = envVar("SUBACCOUNT_KEY");
-	static final String NEW_SUBACCOUNT_NAME = envVar("NEW_SUBACCOUNT_NAME");
-
-	public static void main(String[] args) throws Exception {
-		configureLogging();
-
+    public static void main(String[] args) throws Exception {
+		
 		VonageClient client = VonageClient.builder()
 				.apiKey(VONAGE_API_KEY)
 				.apiSecret(VONAGE_API_SECRET)
@@ -43,7 +36,7 @@ public class RenameSubaccount {
 
 		Account subaccount = client.getSubaccountsClient().updateSubaccount(
 				UpdateSubaccountRequest.builder(SUBACCOUNT_KEY)
-						.name(NEW_SUBACCOUNT_NAME).build()
+						.name(SUBACCOUNT_NAME).build()
 		);
 	}
 }

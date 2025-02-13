@@ -23,17 +23,10 @@ package com.vonage.quickstart.messages.whatsapp;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.whatsapp.WhatsappFileRequest;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendWhatsappFile {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-	private static final String VONAGE_WHATSAPP_NUMBER = envVar("VONAGE_WHATSAPP_NUMBER");
-	private static final String TO_NUMBER = envVar("TO_NUMBER");
-	private static final String FILE_URL = envVar("FILE_URL");
-	private static final String FILE_CAPTION = envVar("FILE_CAPTION");
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
@@ -41,8 +34,8 @@ public class SendWhatsappFile {
 
 		var response = client.getMessagesClient().sendMessage(
 				WhatsappFileRequest.builder()
-					.to(TO_NUMBER).from(VONAGE_WHATSAPP_NUMBER)
-					.url(FILE_URL).caption(FILE_CAPTION)
+					.to(MESSAGES_TO_NUMBER).from(WHATSAPP_SENDER_ID)
+					.url(MESSAGES_FILE_URL).caption(MESSAGES_CAPTION)
 					.build()
 		);
 		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());

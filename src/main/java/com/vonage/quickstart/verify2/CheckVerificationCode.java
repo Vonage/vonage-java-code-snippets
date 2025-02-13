@@ -23,23 +23,18 @@ package com.vonage.quickstart.verify2;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.verify2.*;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.util.UUID;
 
 public class CheckVerificationCode {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-	private static final String CODE = envVar("CODE");
-	private static final UUID REQUEST_ID = UUID.fromString(envVar("REQUEST_ID"));
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
 		try {
-			client.getVerify2Client().checkVerificationCode(REQUEST_ID, CODE);
+			client.getVerify2Client().checkVerificationCode(VERIFY_REQUEST_UUID, VERIFY_CODE);
 			System.out.println("SUCCESS - code matches!");
 		}
 		catch (VerifyResponseException ex) {

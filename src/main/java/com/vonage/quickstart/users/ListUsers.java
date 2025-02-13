@@ -23,13 +23,10 @@ package com.vonage.quickstart.users;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.users.BaseUser;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.util.List;
 
 public class ListUsers {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-
     public static void main(String... args) {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)

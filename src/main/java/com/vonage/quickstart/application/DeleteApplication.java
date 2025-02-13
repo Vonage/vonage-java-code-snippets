@@ -22,15 +22,10 @@
 package com.vonage.quickstart.application;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.application.ApplicationClient;
 
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class DeleteApplication {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-
     public static void main(String... args) {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)

@@ -23,16 +23,10 @@ package com.vonage.quickstart.messages.viber;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.viber.ViberFileRequest;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendViberFile {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-	private static final String VIBER_SERVICE_MESSAGE_ID = envVar("VIBER_SERVICE_MESSAGE_ID");
-	private static final String TO_NUMBER = envVar("TO_NUMBER");
-	private static final String FILE_URL = envVar("FILE_URL");
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
@@ -40,9 +34,9 @@ public class SendViberFile {
 
 		var response = client.getMessagesClient().sendMessage(
 				ViberFileRequest.builder()
-					.from(VIBER_SERVICE_MESSAGE_ID)
-					.to(TO_NUMBER)
-					.url(FILE_URL)
+					.from(VIBER_SENDER_ID)
+					.to(MESSAGES_TO_NUMBER)
+					.url(MESSAGES_FILE_URL)
 					.build()
 		);
 		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());

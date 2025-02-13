@@ -23,16 +23,10 @@ package com.vonage.quickstart.messages.whatsapp;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.whatsapp.WhatsappStickerRequest;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendWhatsappStickerUrl {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-	private static final String VONAGE_WHATSAPP_NUMBER = envVar("VONAGE_WHATSAPP_NUMBER");
-	private static final String TO_NUMBER = envVar("TO_NUMBER");
-	private static final String STICKER_URL = envVar("STICKER_URL");
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
@@ -40,8 +34,8 @@ public class SendWhatsappStickerUrl {
 
 		var response = client.getMessagesClient().sendMessage(
 				WhatsappStickerRequest.builder()
-					.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
-					.url(STICKER_URL)
+					.from(WHATSAPP_SENDER_ID).to(MESSAGES_TO_NUMBER)
+					.url(WHATSAPP_STICKER_URL)
 					.build()
 		);
 		System.out.println("Message sent successfully. ID: "+response.getMessageUuid());

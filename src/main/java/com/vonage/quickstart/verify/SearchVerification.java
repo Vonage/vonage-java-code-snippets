@@ -23,22 +23,17 @@ package com.vonage.quickstart.verify;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.verify.SearchVerifyResponse;
-import com.vonage.client.verify.VerifyClient;
 import com.vonage.client.verify.VerifyStatus;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SearchVerification {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String REQUEST_ID = envVar("REQUEST_ID");
-
     public static void main(String... args) throws Exception {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        SearchVerifyResponse response = client.getVerifyClient().search(REQUEST_ID);
+        SearchVerifyResponse response = client.getVerifyClient().search(VERIFY_REQUEST_ID);
         if (response.getStatus() == VerifyStatus.OK) {
             response.getVerificationRequests().forEach(it -> {
                 System.out.println(it.getRequestId() + " " + it.getStatus());

@@ -32,7 +32,6 @@ import spark.Spark;
 import java.util.Collections;
 
 public class AsrInput {
-
     public static void main(String[] args) {
         /*
          * Route to answer incoming calls.
@@ -46,7 +45,6 @@ public class AsrInput {
                     .language(SpeechSettings.Language.ENGLISH_UNITED_STATES).build();
 
             InputAction input = InputAction.builder()
-                    .type(Collections.singletonList("speech"))
                     .eventUrl(String.format("%s://%s/webhooks/asr", req.scheme(), req.host()))
                     .speech(speechSettings)
                     .build();

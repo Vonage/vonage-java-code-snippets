@@ -23,20 +23,16 @@ package com.vonage.quickstart.account;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.account.SettingsResponse;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class ConfigureAccount {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String SMS_CALLBACK_URL = envVar("SMS_CALLBACK_URL");
-
     public static void main(String[] args) throws Exception {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        SettingsResponse response = client.getAccountClient().updateSmsIncomingUrl(SMS_CALLBACK_URL);
+        SettingsResponse response = client.getAccountClient().updateSmsIncomingUrl(ACCOUNT_SMS_CALLBACK_URL);
         System.out.println("SMS Callback URL is now " + response.getIncomingSmsUrl());
     }
 }

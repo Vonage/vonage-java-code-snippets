@@ -23,15 +23,9 @@ package com.vonage.quickstart.verify;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.verify.*;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class StartPsd2VerificationWithWorkflow {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String RECIPIENT_NUMBER = envVar("RECIPIENT_NUMBER");
-    private static final String PAYEE_NAME = envVar("PAYEE_NAME");
-    private static final Double AMOUNT = Double.valueOf(envVar("AMOUNT"));
-
     public static void main(String[] args) {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)
@@ -39,7 +33,7 @@ public class StartPsd2VerificationWithWorkflow {
                 .build();
 
         VerifyResponse response = client.getVerifyClient().psd2Verify(
-                RECIPIENT_NUMBER, AMOUNT, PAYEE_NAME, Psd2Request.Workflow.SMS_SMS
+                VERIFY_NUMBER, VERIFY_AMOUNT, VERIFY_PAYEE_NAME, VERIFY_PSD2_WORKFLOW_ID
         );
 
         if (response.getStatus() == VerifyStatus.OK) {

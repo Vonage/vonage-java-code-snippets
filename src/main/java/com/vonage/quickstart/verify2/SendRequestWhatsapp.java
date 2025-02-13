@@ -23,16 +23,10 @@ package com.vonage.quickstart.verify2;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.verify2.*;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendRequestWhatsapp {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-	private static final String BRAND_NAME = envVar("BRAND_NAME");
-	private static final String TO_NUMBER = envVar("TO_NUMBER");
-	private static final String WHATSAPP_BUSINESS_NUMBER = envVar("WHATSAPP_BUSINESS_NUMBER");
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
@@ -40,8 +34,8 @@ public class SendRequestWhatsapp {
 
 		VerificationResponse response = client.getVerify2Client().sendVerification(
 				VerificationRequest.builder()
-					.addWorkflow(new WhatsappWorkflow(TO_NUMBER, WHATSAPP_BUSINESS_NUMBER))
-					.brand(BRAND_NAME).build()
+					.addWorkflow(new WhatsappWorkflow(VERIFY_NUMBER, VERIFY_WHATSAPP_NUMBER))
+					.brand(VERIFY_BRAND_NAME).build()
 		);
 		System.out.println("Verification sent: " + response.getRequestId());
 	}

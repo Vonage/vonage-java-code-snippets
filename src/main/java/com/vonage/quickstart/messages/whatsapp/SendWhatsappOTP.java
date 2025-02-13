@@ -23,21 +23,11 @@ package com.vonage.quickstart.messages.whatsapp;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.whatsapp.*;
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.util.*;
 
 public class SendWhatsappOTP {
-
-	public static void main(String[] args) throws Exception {
-		configureLogging();
-
-		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-		String VONAGE_WHATSAPP_NUMBER = envVar("VONAGE_WHATSAPP_NUMBER");
-		String TO_NUMBER = envVar("TO_NUMBER");
-		String WHATSAPP_TEMPLATE_NAME = envVar("WHATSAPP_TEMPLATE_NAME");
-
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
@@ -71,7 +61,7 @@ public class SendWhatsappOTP {
 		custom.put("components", components);
 
 		WhatsappCustomRequest message = WhatsappCustomRequest.builder()
-				.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
+				.from(WHATSAPP_SENDER_ID).to(MESSAGES_TO_NUMBER)
 				.custom(custom).build();
 
 		client.getMessagesClient().sendMessage(message);

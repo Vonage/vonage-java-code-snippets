@@ -22,26 +22,17 @@
 package com.vonage.quickstart.simswap;
 
 import com.vonage.client.VonageClient;
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
-import java.time.Instant;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SimSwapped {
-
     public static void main(String[] args) throws Exception {
-        configureLogging();
-
-        String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-        String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-        String TO_NUMBER = envVar("TO_NUMBER");
-
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH).build();
 
-        boolean swapped = client.getSimSwapClient().checkSimSwap(TO_NUMBER, 960);
-        System.out.println("SIM for "+TO_NUMBER +
-                " has "+(swapped ? "" : "not ") + "been swapped in the past 960 hours."
+        boolean swapped = client.getSimSwapClient().checkSimSwap(SIMSWAP_MSISDN, SIMSWAP_MAX_AGE);
+        System.out.println("SIM for "+SIMSWAP_MSISDN + " has " +
+                (swapped ? "" : "not ") + "been swapped in the past "+SIMSWAP_MAX_AGE+" hours."
         );
     }
 }

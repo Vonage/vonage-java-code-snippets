@@ -23,17 +23,11 @@ package com.vonage.quickstart.meetings;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.meetings.MeetingRoom;
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.util.UUID;
 
 public class GetRoom {
-
 	public static void main(String[] args) throws Exception {
-		configureLogging();
-
-		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
 		UUID ROOM_ID = UUID.fromString(envVar("ROOM_ID"));
 
 		VonageClient client = VonageClient.builder()

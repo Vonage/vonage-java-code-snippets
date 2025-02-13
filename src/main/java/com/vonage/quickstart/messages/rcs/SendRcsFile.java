@@ -23,16 +23,10 @@ package com.vonage.quickstart.messages.rcs;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.rcs.RcsFileRequest;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendRcsFile {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-	private static final String RCS_SENDER_ID = envVar("RCS_SENDER_ID");
-	private static final String TO_NUMBER = envVar("TO_NUMBER");
-	private static final String FILE_URL = envVar("FILE_URL");
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
@@ -40,8 +34,8 @@ public class SendRcsFile {
 
 		var response = client.getMessagesClient().sendMessage(
 			RcsFileRequest.builder()
-				.from(RCS_SENDER_ID).to(TO_NUMBER)
-				.url(FILE_URL)
+				.from(RCS_SENDER_ID).to(MESSAGES_TO_NUMBER)
+				.url(MESSAGES_FILE_URL)
 				.build()
 		);
 		System.out.println("Message sent successfully. ID: " + response.getMessageUuid());

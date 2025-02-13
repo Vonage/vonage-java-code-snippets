@@ -23,19 +23,9 @@ package com.vonage.quickstart.numbers;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.numbers.UpdateNumberRequest;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class UpdateNumber {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String COUNTRY_CODE = envVar("COUNTRY_CODE");
-    private static final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
-    private static final String SMS_CALLBACK_URL = envVar("SMS_CALLBACK_URL");
-    private static final UpdateNumberRequest.CallbackType VOICE_CALLBACK_TYPE =
-            UpdateNumberRequest.CallbackType.valueOf(envVar("VOICE_CALLBACK_TYPE"));
-    private static final String VOICE_CALLBACK_VALUE = envVar("VOICE_CALLBACK_VALUE");
-    private static final String VOICE_STATUS_URL = envVar("VOICE_STATUS_URL");
-
     public static void main(String[] args) {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)
@@ -43,10 +33,10 @@ public class UpdateNumber {
                 .build();
 
         client.getNumbersClient().updateNumber(
-                UpdateNumberRequest.builder(VONAGE_NUMBER, COUNTRY_CODE)
-                    .moHttpUrl(SMS_CALLBACK_URL)
-                    .voiceCallback(VOICE_CALLBACK_TYPE, VOICE_CALLBACK_VALUE)
-                    .voiceStatusCallback(VOICE_STATUS_URL)
+                UpdateNumberRequest.builder(NUMBER_MSISDN, NUMBER_COUNTRY_CODE)
+                    .moHttpUrl(NUMBER_SMS_CALLBACK_URL)
+                    .voiceCallback(NUMBER_VOICE_CALLBACK_TYPE, NUMBER_VOICE_CALLBACK_URL)
+                    .voiceStatusCallback(NUMBER_VOICE_STATUS_CALLBACK_URL)
                     .build()
         );
     }

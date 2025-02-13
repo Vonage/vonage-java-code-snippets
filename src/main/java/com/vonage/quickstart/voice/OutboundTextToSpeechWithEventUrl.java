@@ -24,28 +24,18 @@ package com.vonage.quickstart.voice;
 import com.vonage.client.VonageClient;
 import com.vonage.client.voice.Call;
 import com.vonage.client.voice.PhoneEndpoint;
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class OutboundTextToSpeechWithEventUrl {
     public static void main(String[] args) throws Exception {
-        configureLogging();
-
-        final String VONAGE_NUMBER = envVar("VONAGE_NUMBER");
-        final String TO_NUMBER = envVar("TO_NUMBER");
-        final String EVENT_URL = envVar("EVENT_URL");
-        final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-        final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-        final String ANSWER_URL = "https://nexmo-community.github.io/ncco-examples/talk.json";
-
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
         Call call = Call.builder()
-                .from(VONAGE_NUMBER).to(new PhoneEndpoint(TO_NUMBER))
-                .answerUrl(ANSWER_URL).eventUrl(EVENT_URL).build();
+                .from(VONAGE_VIRTUAL_NUMBER).to(new PhoneEndpoint(VOICE_TO_NUMBER))
+                .answerUrl(VOICE_ANSWER_URL).eventUrl(VOICE_EVENT_URL).build();
 
         var response = client.getVoiceClient().createCall(call);
         System.out.println(response);

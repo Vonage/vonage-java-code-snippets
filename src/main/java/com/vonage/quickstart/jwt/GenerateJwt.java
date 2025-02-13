@@ -26,13 +26,13 @@ import java.nio.file.Paths;
 import java.time.ZonedDateTime;
 import java.util.Map;
 
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class GenerateJwt {
-	public static void main(String[] args) throws Throwable {
+    public static void main(String[] args) throws Throwable {
 		String token = Jwt.builder()
 			.applicationId("aaaaaaaa-bbbb-cccc-dddd-0123456789ab")
-			.privateKeyPath(Paths.get(envVar("VONAGE_PRIVATE_KEY_PATH")))
+			.privateKeyPath(Paths.get(VONAGE_PRIVATE_KEY_PATH))
 			.subject("alice")
 			.issuedAt(ZonedDateTime.now())
 			.expiresAt(ZonedDateTime.now().plusMinutes(20))

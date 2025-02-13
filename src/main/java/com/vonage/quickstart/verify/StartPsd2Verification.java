@@ -24,22 +24,18 @@ package com.vonage.quickstart.verify;
 import com.vonage.client.VonageClient;
 import com.vonage.client.verify.VerifyResponse;
 import com.vonage.client.verify.VerifyStatus;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class StartPsd2Verification {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String RECIPIENT_NUMBER = envVar("RECIPIENT_NUMBER");
-    private static final String PAYEE_NAME = envVar("PAYEE_NAME");
-    private static final Double AMOUNT = Double.valueOf(envVar("AMOUNT"));
-
     public static void main(String[] args) {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        VerifyResponse response = client.getVerifyClient().psd2Verify(RECIPIENT_NUMBER, AMOUNT, PAYEE_NAME);
+        VerifyResponse response = client.getVerifyClient().psd2Verify(
+                VERIFY_NUMBER, VERIFY_AMOUNT, VERIFY_PAYEE_NAME
+        );
 
         if (response.getStatus() == VerifyStatus.OK) {
             System.out.printf("Request ID: %s", response.getRequestId());

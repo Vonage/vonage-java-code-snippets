@@ -23,19 +23,15 @@ package com.vonage.quickstart.messages.whatsapp;
 
 import com.vonage.client.ApiRegion;
 import com.vonage.client.VonageClient;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class MarkAsRead {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-	private static final String MESSAGE_UUID = envVar("MESSAGE_UUID");
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
-		client.getMessagesClient().ackInboundMessage(MESSAGE_UUID, ApiRegion.API_EU);
+		client.getMessagesClient().ackInboundMessage(MESSAGES_MESSAGE_ID, ApiRegion.API_EU);
 	}
 }

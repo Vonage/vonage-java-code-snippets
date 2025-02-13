@@ -23,17 +23,10 @@ package com.vonage.quickstart.messages.whatsapp;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.whatsapp.WhatsappSingleProductRequest;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendWhatsappSingleProduct {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-	private static final String VONAGE_WHATSAPP_NUMBER = envVar("VONAGE_WHATSAPP_NUMBER");
-	private static final String TO_NUMBER = envVar("TO_NUMBER");
-	private static final String CATALOG_ID = envVar("CATALOG_ID");
-	private static final String PRODUCT_ID = envVar("PRODUCT_ID");
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
@@ -41,9 +34,9 @@ public class SendWhatsappSingleProduct {
 
 		var response = client.getMessagesClient().sendMessage(
 				WhatsappSingleProductRequest.builder()
-					.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
-					.catalogId(CATALOG_ID)
-					.productRetailerId(PRODUCT_ID)
+					.from(WHATSAPP_SENDER_ID).to(MESSAGES_TO_NUMBER)
+					.catalogId(WHATSAPP_CATALOG_ID)
+					.productRetailerId(WHATSAPP_PRODUCT_ID)
 					.bodyText("Check out this cool product")
 					.footerText("Sale now on!")
 					.build()

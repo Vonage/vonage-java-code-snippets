@@ -19,39 +19,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.sms;
+package com.vonage.quickstart.verify2.templates;
 
-import com.vonage.quickstart.Util;
+import com.vonage.client.VonageClient;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
-import static spark.Spark.*;
-
-public class ReceiveDLR {
-
+public class GetTemplate {
     public static void main(String[] args) throws Exception {
-        Util.configureLogging();
+		VonageClient client = VonageClient.builder()
+				.applicationId(VONAGE_APPLICATION_ID)
+				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
+				.build();
 
-        port(3000);
-
-        get("/webhooks/delivery-receipt", (req, res) -> {
-            for (String param : req.queryParams()) {
-                System.out.printf("%s: %s\n", param, req.queryParams(param));
-            }
-            res.status(204);
-            return "";
-        });
-
-        post("/webhooks/delivery-receipt", (req, res) -> {
-            // The body will be form-encoded or a JSON object:
-            if (req.contentType().startsWith("application/x-www-form-urlencoded")) {
-                for (String param : req.queryParams()) {
-                    System.out.printf("%s: %s\n", param, req.queryParams(param));
-                }
-            } else {
-                System.out.println(req.body());
-            }
-
-            res.status(204);
-            return "";
-        });
-    }
+		var template = client.getVerify2Client().getTemplate(VERIFY_TEMPLATE_ID);
+		System.out.println(template);
+	}
 }

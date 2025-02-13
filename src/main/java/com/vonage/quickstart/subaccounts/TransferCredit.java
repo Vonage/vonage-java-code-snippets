@@ -23,18 +23,11 @@ package com.vonage.quickstart.subaccounts;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.subaccounts.MoneyTransfer;
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class TransferCredit {
-	static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-	static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-	static final String SUBACCOUNT_KEY = envVar("SUBACCOUNT_KEY");
-	static final double AMOUNT = Double.parseDouble(envVar("AMOUNT"));
-
-	public static void main(String[] args) throws Exception {
-		configureLogging();
-
+    public static void main(String[] args) throws Exception {
+		
 		VonageClient client = VonageClient.builder()
 				.apiKey(VONAGE_API_KEY)
 				.apiSecret(VONAGE_API_SECRET)
@@ -43,7 +36,7 @@ public class TransferCredit {
 		MoneyTransfer receipt = client.getSubaccountsClient().transferCredit(
 				MoneyTransfer.builder()
 					.from(VONAGE_API_KEY).to(SUBACCOUNT_KEY)
-					.amount(AMOUNT).build()
+					.amount(SUBACCOUNT_CREDIT_AMOUNT).build()
 		);
 		System.out.println("Transfer successful: "+receipt.getId());
 	}

@@ -23,13 +23,9 @@ package com.vonage.quickstart.users;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.users.User;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class GetUser {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String USER_ID = envVar("USER_ID");
-
     public static void main(String... args) {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)

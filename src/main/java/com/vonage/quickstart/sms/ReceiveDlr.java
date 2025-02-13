@@ -19,22 +19,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.verify2;
+package com.vonage.quickstart.sms;
 
-import com.vonage.client.VonageClient;
-import static com.vonage.quickstart.Util.envVar;
+import static spark.Spark.*;
 
-public class CreateTemplate {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
+public class ReceiveDlr {
+    public static void main(String[] args) throws Exception {
+        port(3000);
 
-	public static void main(String[] args) throws Exception {
-		VonageClient client = VonageClient.builder()
-				.applicationId(VONAGE_APPLICATION_ID)
-				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
-				.build();
+        get("/webhooks/delivery-receipt", (req, res) -> {
+            for (String param : req.queryParams()) {
+                System.out.printf("%s: %s\n", param, req.queryParams(param));
+            }
+            res.status(204);
+            return "";
+        });
 
-		var template = client.getVerify2Client().createTemplate("My_template");
-		System.out.println(template.getId());
-	}
+        post("/webhooks/delivery-receipt", (req, res) -> {
+            // The body will be form-encoded or a JSON object:
+            if (req.contentType().startsWith("application/x-www-form-urlencoded")) {
+                for (String param : req.queryParams()) {
+                    System.out.printf("%s: %s\n", param, req.queryParams(param));
+                }
+            } else {
+                System.out.println(req.body());
+            }
+
+            res.status(204);
+            return "";
+        });
+    }
 }

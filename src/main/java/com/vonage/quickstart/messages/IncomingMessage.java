@@ -22,15 +22,12 @@
 package com.vonage.quickstart.messages;
 
 import com.vonage.client.messages.InboundMessage;
-import static com.vonage.quickstart.Util.configureLogging;
 import spark.Route;
 import spark.Spark;
 
 public class IncomingMessage {
-
-	public static void main(String[] args) {
-		configureLogging();
-
+    public static void main(String[] args) {
+		
 		Route inboundRoute = (request, response) -> {
 			InboundMessage messageDetails = InboundMessage.fromJson(request.body());
 			System.out.println(

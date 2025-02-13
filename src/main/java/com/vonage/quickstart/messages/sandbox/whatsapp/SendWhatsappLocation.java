@@ -23,19 +23,18 @@ package com.vonage.quickstart.messages.sandbox.whatsapp;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.whatsapp.WhatsappLocationRequest;
-import static com.vonage.quickstart.Util.*;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendWhatsappLocation {
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		System.out.println(VonageClient.builder()
-				.apiKey(envVar("VONAGE_API_KEY"))
-				.apiSecret(envVar("VONAGE_API_SECRET"))
+				.apiKey(VONAGE_API_KEY)
+				.apiSecret(VONAGE_API_SECRET)
 				.build()
 				.getMessagesClient()
 				.sendMessage(WhatsappLocationRequest.builder()
-						.from(envVar("MESSAGES_SANDBOX_WHATSAPP_NUMBER"))
-						.to(envVar("MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER"))
+						.from(MESSAGES_SANDBOX_WHATSAPP_NUMBER)
+						.to(MESSAGES_SANDBOX_ALLOW_LISTED_TO_NUMBER)
 						.longitude(-122.1503115)
 						.latitude(37.4843538)
 						.name("Facebook HQ")

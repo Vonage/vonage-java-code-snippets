@@ -23,17 +23,11 @@ package com.vonage.quickstart.insight;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.insight.BasicInsightResponse;
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class BasicInsight {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String INSIGHT_NUMBER = envVar("INSIGHT_NUMBER");
-
     public static void main(String[] args) throws Exception {
-        configureLogging();
-
+        
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)
                 .apiSecret(VONAGE_API_SECRET)

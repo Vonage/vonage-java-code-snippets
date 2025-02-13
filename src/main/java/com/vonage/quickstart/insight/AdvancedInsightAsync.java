@@ -23,14 +23,9 @@ package com.vonage.quickstart.insight;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.insight.AdvancedInsightRequest;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class AdvancedInsightAsync {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String INSIGHT_NUMBER = envVar("INSIGHT_NUMBER");
-    private static final String CALLBACK_URL = envVar("CALLBACK_URL");
-
     public static void main(String... args) {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)
@@ -39,7 +34,7 @@ public class AdvancedInsightAsync {
 
         client.getInsightClient().getAdvancedNumberInsight(
                 AdvancedInsightRequest.builder(INSIGHT_NUMBER)
-                    .async(true).callback(CALLBACK_URL).build()
+                    .async(true).callback(INSIGHT_CALLBACK_URL).build()
         );
     }
 }

@@ -23,18 +23,10 @@ package com.vonage.quickstart.numberinsight2;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.numberinsight2.Insight;
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class FraudScore {
-
-	public static void main(String[] args) throws Exception {
-		configureLogging();
-
-		String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-		String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-		String INSIGHT_NUMBER = envVar("INSIGHT_NUMBER");
-
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder().apiKey(VONAGE_API_KEY).apiSecret(VONAGE_API_SECRET).build();
 
 		var response = client.getNumberInsight2Client().fraudCheck(INSIGHT_NUMBER, Insight.FRAUD_SCORE);

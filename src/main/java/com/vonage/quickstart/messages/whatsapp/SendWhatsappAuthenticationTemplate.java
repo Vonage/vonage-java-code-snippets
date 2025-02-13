@@ -24,19 +24,12 @@ package com.vonage.quickstart.messages.whatsapp;
 import com.vonage.client.VonageClient;
 import com.vonage.client.messages.MessageType;
 import com.vonage.client.messages.whatsapp.*;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.util.List;
 import java.util.Map;
 
 public class SendWhatsappAuthenticationTemplate {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-	private static final String VONAGE_WHATSAPP_NUMBER = envVar("VONAGE_WHATSAPP_NUMBER");
-	private static final String TO_NUMBER = envVar("TO_NUMBER");
-	private static final String WHATSAPP_AUTH_TEMPLATE_NAME = envVar("WHATSAPP_AUTH_TEMPLATE_NAME");
-	private static final String OTP = envVar("OTP");
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
@@ -44,7 +37,7 @@ public class SendWhatsappAuthenticationTemplate {
 
 		var response = client.getMessagesClient().sendMessage(
 			WhatsappCustomRequest.builder()
-				.from(VONAGE_WHATSAPP_NUMBER).to(TO_NUMBER)
+				.from(WHATSAPP_SENDER_ID).to(MESSAGES_TO_NUMBER)
 				.custom(Map.of(
 						"type", MessageType.TEMPLATE,
 						"template", Map.of(
@@ -59,7 +52,7 @@ public class SendWhatsappAuthenticationTemplate {
 									"parameters", List.of(
 										Map.of(
 											"type", MessageType.TEXT,
-											"text", OTP
+											"text", WHATSAPP_OTP
 										)
 									)
 								),
@@ -70,7 +63,7 @@ public class SendWhatsappAuthenticationTemplate {
 									"parameters", List.of(
 										Map.of(
 											"type", MessageType.TEXT,
-											"text", OTP
+											"text", WHATSAPP_OTP
 										)
 									)
 								)

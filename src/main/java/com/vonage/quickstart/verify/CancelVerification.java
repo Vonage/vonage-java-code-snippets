@@ -23,20 +23,16 @@ package com.vonage.quickstart.verify;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.verify.ControlResponse;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class CancelVerification {
-    private static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-    private static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-    private static final String REQUEST_ID = envVar("REQUEST_ID");
-
     public static void main(String[] args) throws Exception {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        ControlResponse response = client.getVerifyClient().cancelVerification(REQUEST_ID);
+        ControlResponse response = client.getVerifyClient().cancelVerification(VERIFY_REQUEST_ID);
 
         String errorText = response.getErrorText();
         if (errorText != null) {

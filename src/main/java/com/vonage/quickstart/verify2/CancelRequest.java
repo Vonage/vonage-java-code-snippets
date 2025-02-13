@@ -22,20 +22,16 @@
 package com.vonage.quickstart.verify2;
 
 import com.vonage.client.VonageClient;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.util.UUID;
 
 public class CancelRequest {
-	private static final String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-	private static final String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
-	private static final UUID REQUEST_ID = UUID.fromString(envVar("REQUEST_ID"));
-
-	public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 		VonageClient client = VonageClient.builder()
 				.applicationId(VONAGE_APPLICATION_ID)
 				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
 				.build();
 
-		client.getVerify2Client().cancelVerification(REQUEST_ID);
+		client.getVerify2Client().cancelVerification(VERIFY_REQUEST_UUID);
 	}
 }

@@ -24,17 +24,15 @@ package com.vonage.quickstart.jwt;
 import com.vonage.jwt.Jwt;
 import spark.Route;
 import spark.Spark;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class ValidateInboundJwt {
     public static void main(String[] args) throws Exception {
 
-        final String signatureSecret = envVar("VONAGE_SIGNATURE_SECRET");
-
         Route validateJwt = (req, res) -> {
             String token = req.headers("Authorization").substring(7);
 
-            if (Jwt.verifySignature(token, signatureSecret)) {
+            if (Jwt.verifySignature(token, VONAGE_SIGNATURE_SECRET)) {
                 res.status(204);
             }
             else {

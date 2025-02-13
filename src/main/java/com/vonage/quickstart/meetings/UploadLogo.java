@@ -23,19 +23,13 @@ package com.vonage.quickstart.meetings;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.meetings.LogoType;
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
 public class UploadLogo {
-
 	public static void main(String[] args) throws Exception {
-		configureLogging();
-
-		String VONAGE_APPLICATION_ID = envVar("VONAGE_APPLICATION_ID");
-		String VONAGE_PRIVATE_KEY_PATH = envVar("VONAGE_PRIVATE_KEY_PATH");
 		UUID THEME_ID = UUID.fromString(envVar("THEME_ID"));
 		LogoType LOGO_TYPE = LogoType.fromString(envVar("LOGO_TYPE"));
 		Path LOGO_FILEPATH = Paths.get(envVar("LOGO_FILEPATH"));

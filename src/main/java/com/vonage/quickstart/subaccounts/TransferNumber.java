@@ -23,18 +23,11 @@ package com.vonage.quickstart.subaccounts;
 
 import com.vonage.client.VonageClient;
 import com.vonage.client.subaccounts.NumberTransfer;
-import static com.vonage.quickstart.Util.configureLogging;
-import static com.vonage.quickstart.Util.envVar;
+import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class TransferNumber {
-	static final String VONAGE_API_KEY = envVar("VONAGE_API_KEY");
-	static final String VONAGE_API_SECRET = envVar("VONAGE_API_SECRET");
-	static final String SUBACCOUNT_KEY = envVar("SUBACCOUNT_KEY");
-	static final String NUMBER = envVar("NUMBER");
-
-	public static void main(String[] args) throws Exception {
-		configureLogging();
-
+    public static void main(String[] args) throws Exception {
+		
 		VonageClient client = VonageClient.builder()
 				.apiKey(VONAGE_API_KEY)
 				.apiSecret(VONAGE_API_SECRET)
@@ -42,7 +35,8 @@ public class TransferNumber {
 
 		NumberTransfer transfer = NumberTransfer.builder()
 				.from(VONAGE_API_KEY).to(SUBACCOUNT_KEY)
-				.number(NUMBER).build();
+				.number(NUMBER_MSISDN).country(NUMBER_COUNTRY_CODE)
+				.build();
 
 		client.getSubaccountsClient().transferNumber(transfer);
 	}
