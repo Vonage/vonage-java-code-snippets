@@ -141,10 +141,10 @@ public final class AggregateSnippets {
             sb.append("\n```java\n").append(nugget).append("\n```\n");
 
             snippetFiles.add(new CodeSnippetFile(path.toPath(),
-                    lineNumberFromIndex(fileContent, startIndex),
+                    lineNumberFromIndex(fileContent, startIndex) + 1,
                     lineNumberFromIndex(fileContent, endIndex),
-                    lineNumberFromIndex(fileContent, clientInitStartIndex) + 1,
-                    lineNumberFromIndex(fileContent, clientInitEndIndex)
+                    clientInitEndIndex < 12 ? -1 : lineNumberFromIndex(fileContent, clientInitStartIndex) + 1,
+                    clientInitEndIndex < 12 ? -1 : lineNumberFromIndex(fileContent, clientInitEndIndex)
             ));
         }
     }
