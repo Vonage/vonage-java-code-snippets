@@ -29,17 +29,20 @@ import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 public final class AggregateSnippets {
-    public static void main(String[] args) throws Throwable {
+
+    public static void main(String... args) throws Throwable {
         final var repoRoot = Paths.get("").toAbsolutePath();
         final var snippetsSrcRoot = repoRoot.resolve("src/main/java/com/vonage/quickstart");
         final var aggregator = new AggregateSnippets(snippetsSrcRoot);
         aggregator.computeContents();
         aggregator.saveContentsToFile(repoRoot.resolve("SNIPPETS.md"));
-        aggregator.saveLineNumbersToCsv(repoRoot.resolve("snippets_line_numbers.csv"));
+        if (args.length > 0) {
+            aggregator.saveLineNumbersToCsv(Paths.get(args[0]));
+        }
     }
 
 
-    public record CodeSnippetFile(
+    public record CodeSnippetFileInfo(
             Path file,
             int mainStartIndex, int mainEndIndex,
             int clientStartIndex, int clientEndIndex
@@ -47,7 +50,7 @@ public final class AggregateSnippets {
 
     private StringBuilder sb;
     private final Path snippetsSrcRoot;
-    private Collection<CodeSnippetFile> snippetFiles;
+    private Collection<CodeSnippetFileInfo> snippetFiles;
 
     public AggregateSnippets(Path snippetsSrcRoot) {
         this.snippetsSrcRoot = Objects.requireNonNull(snippetsSrcRoot);
@@ -59,7 +62,7 @@ public final class AggregateSnippets {
         }
     }
 
-    public Collection<CodeSnippetFile> getLineNumbers() {
+    public Collection<CodeSnippetFileInfo> getLineNumbers() {
         checkComputed();
         return snippetFiles;
     }
@@ -77,13 +80,13 @@ public final class AggregateSnippets {
         checkComputed();
         try (var writer = Files.newBufferedWriter(destPath, StandardOpenOption.CREATE)) {
             writer.write("File,MainStart,MainEnd,ClientStart,ClientEnd\n");
-            for (var file : snippetFiles) {
+            for (var metadata : snippetFiles) {
                 writer.write(
-                        file.file.getFileName() + "," +
-                        file.mainStartIndex + "," +
-                        file.mainEndIndex + "," +
-                        file.clientStartIndex + "," +
-                        file.clientEndIndex + "\n"
+                        metadata.file.getFileName() + "," +
+                        metadata.mainStartIndex + "," +
+                        metadata.mainEndIndex + "," +
+                        metadata.clientStartIndex + "," +
+                        metadata.clientEndIndex + "\n"
                 );
             }
         }
@@ -163,7 +166,7 @@ public final class AggregateSnippets {
             sb.append("\n```java\n").append(nugget).append("\n```\n");
 
             boolean standalone = clientInitEndIndex < 12;
-            snippetFiles.add(new CodeSnippetFile(path.toPath(),
+            snippetFiles.add(new CodeSnippetFileInfo(path.toPath(),
                     lineNumberFromIndex(fileContent, startIndex) + 1,
                     lineNumberFromIndex(fileContent, endIndex),
                     standalone ? -1 : lineNumberFromIndex(fileContent, clientInitStartIndex) + 1,
