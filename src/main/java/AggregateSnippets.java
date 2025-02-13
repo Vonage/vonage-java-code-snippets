@@ -7,13 +7,21 @@ import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 public final class AggregateSnippets {
+    public static void main(String[] args) throws Throwable {
+        final var repoRoot = Paths.get("").toAbsolutePath();
+        final var snippetsSrcRoot = repoRoot.resolve("src/main/java/com/vonage/quickstart");
+        final var aggregator = new AggregateSnippets(snippetsSrcRoot);
+        aggregator.computeContents();
+        var destPath = repoRoot.resolve("SNIPPETS.md");
+        aggregator.saveToFile(destPath);
+    }
+
+
     public record CodeSnippetFile(
             Path file,
             int mainStartIndex, int mainEndIndex,
             int clientStartIndex, int clientEndIndex
-    ) {
-
-    }
+    ) { }
 
     private StringBuilder sb;
     private final Path snippetsSrcRoot;
@@ -149,14 +157,5 @@ public final class AggregateSnippets {
             result = "Number Insight";
         }
         return result;
-    }
-
-    public static void main(String[] args) throws Throwable {
-        final var repoRoot = Paths.get("").toAbsolutePath();
-        final var snippetsSrcRoot = repoRoot.resolve("src/main/java/com/vonage/quickstart");
-        final var aggregator = new AggregateSnippets(snippetsSrcRoot);
-        aggregator.computeContents();
-        var destPath = repoRoot.resolve("SNIPPETS.md");
-        aggregator.saveToFile(destPath);
     }
 }
