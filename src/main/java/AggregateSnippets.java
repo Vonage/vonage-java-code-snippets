@@ -36,21 +36,10 @@ public final class AggregateSnippets {
         final var aggregator = new AggregateSnippets(snippetsSrcRoot);
         aggregator.computeContents();
         aggregator.saveContentsToFile(repoRoot.resolve("SNIPPETS.md"));
-        if (args.length > 0) {
-            aggregator.saveLineNumbersToCsv(Paths.get(args[0]));
-        }
     }
-
-
-    public record CodeSnippetFileInfo(
-            Path file,
-            int mainStartIndex, int mainEndIndex,
-            int clientStartIndex, int clientEndIndex
-    ) { }
 
     private StringBuilder sb;
     private final Path snippetsSrcRoot;
-    private Collection<CodeSnippetFileInfo> snippetFiles;
 
     public AggregateSnippets(Path snippetsSrcRoot) {
         this.snippetsSrcRoot = Objects.requireNonNull(snippetsSrcRoot);
@@ -62,11 +51,6 @@ public final class AggregateSnippets {
         }
     }
 
-    public Collection<CodeSnippetFileInfo> getLineNumbers() {
-        checkComputed();
-        return snippetFiles;
-    }
-
     public String getContents() {
         checkComputed();
         return sb.toString();
@@ -76,24 +60,7 @@ public final class AggregateSnippets {
         Files.writeString(destPath, getContents(), StandardOpenOption.CREATE);
     }
 
-    public void saveLineNumbersToCsv(Path destPath) throws IOException {
-        checkComputed();
-        try (var writer = Files.newBufferedWriter(destPath, StandardOpenOption.CREATE)) {
-            writer.write("File,MainStart,MainEnd,ClientStart,ClientEnd\n");
-            for (var metadata : snippetFiles) {
-                writer.write(
-                        metadata.file.getFileName() + "," +
-                        metadata.mainStartIndex + "," +
-                        metadata.mainEndIndex + "," +
-                        metadata.clientStartIndex + "," +
-                        metadata.clientEndIndex + "\n"
-                );
-            }
-        }
-    }
-
     public void computeContents() throws IOException {
-        snippetFiles = new ArrayList<>(256);
         final String classFileName = getClass().getSimpleName() + ".java";
         sb = new StringBuilder(1 << 17)
                 .append("# Vonage Java SDK Code Snippets\n")
@@ -164,20 +131,7 @@ public final class AggregateSnippets {
                     .stripTrailing().stripIndent().replace("\t", "    ");
 
             sb.append("\n```java\n").append(nugget).append("\n```\n");
-
-            boolean standalone = clientInitEndIndex < 12;
-            snippetFiles.add(new CodeSnippetFileInfo(path.toPath(),
-                    lineNumberFromIndex(fileContent, startIndex) + 1,
-                    lineNumberFromIndex(fileContent, endIndex),
-                    standalone ? -1 : lineNumberFromIndex(fileContent, clientInitStartIndex) + 1,
-                    standalone ? -1 : lineNumberFromIndex(fileContent, clientInitEndIndex)
-            ));
         }
-    }
-
-    private static int lineNumberFromIndex(String content, int index) {
-        if (index < 0) return -1;
-        return content.substring(0, index).split("\n").length;
     }
 
     private static boolean isInitialize(File file) {
