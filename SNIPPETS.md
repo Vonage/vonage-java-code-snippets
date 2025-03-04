@@ -806,6 +806,17 @@ var response = client.getMessagesClient().sendMessage(
 System.out.println("Message sent successfully. ID: " + response.getMessageUuid());
 ```
 ### MMS
+#### Send MMS Text
+
+```java
+var response = client.getMessagesClient().sendMessage(
+        MmsTextRequest.builder()
+            .from(MMS_SENDER_ID).to(MESSAGES_TO_NUMBER)
+            .text("This is an MMS message with text")
+            .build()
+);
+System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
+```
 #### Send MMS Video
 
 ```java
@@ -824,6 +835,32 @@ var response = client.getMessagesClient().sendMessage(
         MmsVcardRequest.builder()
             .from(MMS_SENDER_ID).to(MESSAGES_TO_NUMBER)
             .url(MESSAGES_VCARD_URL)
+            .build()
+);
+System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
+```
+#### Send MMS Content
+
+```java
+var response = client.getMessagesClient().sendMessage(
+        MmsContentRequest.builder()
+            .from(MMS_SENDER_ID).to(MESSAGES_TO_NUMBER)
+            .addAudio(MESSAGES_AUDIO_URL)
+            .addImage(MESSAGES_IMAGE_URL)
+            .addVideo(MESSAGES_VIDEO_URL)
+            .addFile(MESSAGES_FILE_URL)
+            .addVcard(MESSAGES_VCARD_URL)
+            .build()
+);
+System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
+```
+#### Send MMS File
+
+```java
+var response = client.getMessagesClient().sendMessage(
+        MmsFileRequest.builder()
+            .from(MMS_SENDER_ID).to(MESSAGES_TO_NUMBER)
+            .url(MESSAGES_FILE_URL)
             .build()
 );
 System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
