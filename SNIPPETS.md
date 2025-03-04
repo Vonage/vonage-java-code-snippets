@@ -828,7 +828,7 @@ var response = client.getMessagesClient().sendMessage(
 );
 System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
 ```
-#### Send MMS Vcard
+#### Send MMS vCard
 
 ```java
 var response = client.getMessagesClient().sendMessage(
