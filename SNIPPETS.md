@@ -335,7 +335,6 @@ String token = Jwt.builder()
             "/*/devices/**", Map.of(),
             "/*/image/**", Map.of(),
             "/*/media/**", Map.of(),
-            "/*/applications/**", Map.of(),
             "/*/push/**", Map.of(),
             "/*/knocking/**", Map.of(),
             "/*/legs/**", Map.of()
@@ -3010,6 +3009,8 @@ Spark.post("/webhooks/asr", speechInputRoute);
 Ncco ncco = new Ncco(TalkAction.builder("This is a text to speech call from Vonage").build());
 
 client.getVoiceClient().createCall(new Call(VOICE_TO_NUMBER, VONAGE_VIRTUAL_NUMBER, ncco.getActions()));
+```
+GE_VIRTUAL_NUMBER, ncco.getActions()));
 ```
 age").build());
 

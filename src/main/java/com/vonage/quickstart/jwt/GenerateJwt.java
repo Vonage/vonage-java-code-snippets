@@ -44,7 +44,6 @@ public class GenerateJwt {
 					"/*/devices/**", Map.of(),
 					"/*/image/**", Map.of(),
 					"/*/media/**", Map.of(),
-					"/*/applications/**", Map.of(),
 					"/*/push/**", Map.of(),
 					"/*/knocking/**", Map.of(),
 					"/*/legs/**", Map.of()
