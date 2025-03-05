@@ -147,6 +147,7 @@ public final class AggregateSnippets {
         var result = (title.substring(0, 1).toUpperCase() + title.substring(1))
                 .replace("NCCO", "ncco")    // To avoid adding spaces in the next regex
                 .replaceAll("(?<!^)([A-Z])(?![A-Z])", " $1")
+                .replace("Vcard", "vCard")
                 .replace("Numberinsight2", "Fraud Detection")
                 .replace("Numberinsight", "Number Insight")
                 .replace("Verify\n", "Verify (Legacy)\n")

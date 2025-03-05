@@ -806,6 +806,17 @@ var response = client.getMessagesClient().sendMessage(
 System.out.println("Message sent successfully. ID: " + response.getMessageUuid());
 ```
 ### MMS
+#### Send MMS Text
+
+```java
+var response = client.getMessagesClient().sendMessage(
+        MmsTextRequest.builder()
+            .from(MMS_SENDER_ID).to(MESSAGES_TO_NUMBER)
+            .text("This is an MMS message with text")
+            .build()
+);
+System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
+```
 #### Send MMS Video
 
 ```java
@@ -817,13 +828,36 @@ var response = client.getMessagesClient().sendMessage(
 );
 System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
 ```
-#### Send MMS Vcard
+#### Send MMS vCard
 
 ```java
 var response = client.getMessagesClient().sendMessage(
         MmsVcardRequest.builder()
             .from(MMS_SENDER_ID).to(MESSAGES_TO_NUMBER)
             .url(MESSAGES_VCARD_URL)
+            .build()
+);
+System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
+```
+#### Send MMS Content
+
+```java
+var response = client.getMessagesClient().sendMessage(
+        MmsContentRequest.builder()
+            .from(MMS_SENDER_ID).to(MESSAGES_TO_NUMBER)
+            .addImage(MESSAGES_IMAGE_URL)
+            .addFile(MESSAGES_FILE_URL)
+            .build()
+);
+System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
+```
+#### Send MMS File
+
+```java
+var response = client.getMessagesClient().sendMessage(
+        MmsFileRequest.builder()
+            .from(MMS_SENDER_ID).to(MESSAGES_TO_NUMBER)
+            .url(MESSAGES_FILE_URL)
             .build()
 );
 System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
@@ -2974,6 +3008,10 @@ Spark.post("/webhooks/asr", speechInputRoute);
 
 ```java
 Ncco ncco = new Ncco(TalkAction.builder("This is a text to speech call from Vonage").build());
+
+client.getVoiceClient().createCall(new Call(VOICE_TO_NUMBER, VONAGE_VIRTUAL_NUMBER, ncco.getActions()));
+```
+age").build());
 
 client.getVoiceClient().createCall(new Call(VOICE_TO_NUMBER, VONAGE_VIRTUAL_NUMBER, ncco.getActions()));
 ```
