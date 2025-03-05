@@ -845,11 +845,8 @@ System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
 var response = client.getMessagesClient().sendMessage(
         MmsContentRequest.builder()
             .from(MMS_SENDER_ID).to(MESSAGES_TO_NUMBER)
-            .addAudio(MESSAGES_AUDIO_URL)
             .addImage(MESSAGES_IMAGE_URL)
-            .addVideo(MESSAGES_VIDEO_URL)
             .addFile(MESSAGES_FILE_URL)
-            .addVcard(MESSAGES_VCARD_URL)
             .build()
 );
 System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
@@ -3011,6 +3008,10 @@ Spark.post("/webhooks/asr", speechInputRoute);
 
 ```java
 Ncco ncco = new Ncco(TalkAction.builder("This is a text to speech call from Vonage").build());
+
+client.getVoiceClient().createCall(new Call(VOICE_TO_NUMBER, VONAGE_VIRTUAL_NUMBER, ncco.getActions()));
+```
+age").build());
 
 client.getVoiceClient().createCall(new Call(VOICE_TO_NUMBER, VONAGE_VIRTUAL_NUMBER, ncco.getActions()));
 ```
