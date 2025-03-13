@@ -28,8 +28,7 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
  * Example of configuring a VonageClient with Application (JWT) authentication credentials.
  */
 public class ApplicationAuthWithKeyContents {
-    public static void main(String[] argv) throws Exception {
-
+    public static void main(String[] args) throws Exception {
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)
                 .privateKeyContents(VONAGE_PRIVATE_KEY_CONTENTS)

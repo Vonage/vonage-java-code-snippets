@@ -19,16 +19,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.initialize;
+package com.vonage.quickstart.voice;
 
 import com.vonage.client.VonageClient;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
-/**
- * Example of configuring a VonageClient with an API secret.
- */
-public class BasicAuth {
-    public static void main(String[] args) throws Exception {
-        VonageClient client = VonageClient.builder().apiKey(VONAGE_API_KEY).apiSecret(VONAGE_API_SECRET).build();
+public class UnsubscribeFromDtmfEvents {
+    public static void main(String... args) throws Exception {
+        VonageClient client = VonageClient.builder()
+                .applicationId(VONAGE_APPLICATION_ID)
+                .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
+                .build();
+
+        client.getVoiceClient().removeDtmfListener(VOICE_CALL_ID);
     }
 }

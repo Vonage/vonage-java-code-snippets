@@ -22,6 +22,7 @@
 package com.vonage.quickstart;
 
 import com.vonage.client.ApiRegion;
+import com.vonage.client.conversations.MemberState;
 import com.vonage.client.numbers.Feature;
 import com.vonage.client.numbers.SearchPattern;
 import com.vonage.client.numbers.Type;
@@ -83,6 +84,12 @@ public final class EnvironmentVariables {
        ACCOUNT_SECRET_ID = envVar("ACCOUNT_SECRET_ID"),
        ACCOUNT_SMS_CALLBACK_URL = envVar("ACCOUNT_SMS_CALLBACK_URL"),
        APPLICATION_NAME = envVar("APPLICATION_NAME"),
+       CONV_DISPLAY_NAME = envVar("CONV_DISPLAY_NAME"),
+       CONV_ID = envVar("CONV_ID"),
+       CONV_MEMBER_ID = envVar("CONV_MEMBER_ID"),
+       CONV_NAME = envVar("CONV_NAME"),
+       CONV_NEW_NAME = envVar("CONV_NEW_NAME"),
+       CONV_NEW_DISPLAY_NAME = envVar("CONV_NEW_DISPLAY_NAME"),
        MESSAGES_TO_NUMBER = envVar("MESSAGES_TO_NUMBER"),
        MESSAGES_MESSAGE_ID = envVar("MESSAGES_MESSAGE_ID"),
        MESSAGES_IMAGE_URL = envVar("MESSAGES_IMAGE_URL"),
@@ -159,6 +166,7 @@ public final class EnvironmentVariables {
         VONAGE_PRIVATE_KEY_CONTENTS = envVar("VONAGE_PRIVATE_KEY_CONTENTS").getBytes();
 
    public static final int
+       CONV_EVENT_ID = Integer.parseInt(envVar("CONV_EVENT_ID")),
        VIBER_VIDEO_DURATION = Integer.parseInt(envVar("VIBER_VIDEO_DURATION")),
        VIBER_VIDEO_FILE_SIZE = Integer.parseInt(envVar("VIBER_VIDEO_FILE_SIZE")),
        VIBER_VIDEO_TTL = Integer.parseInt(envVar("VIBER_VIDEO_TTL")),
@@ -176,6 +184,9 @@ public final class EnvironmentVariables {
 
    public static final Instant
        SUBACCOUNT_START_DATE = Instant.parse(envVar("SUBACCOUNT_START_DATE"));
+
+   public static final MemberState
+       CONV_MEMBER_STATE = MemberState.fromString(envVar("CONV_MEMBER_STATE"));
 
    public static final Type
        NUMBER_TYPE = Type.fromString(envVar("NUMBER_TYPE"));
