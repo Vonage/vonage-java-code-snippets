@@ -29,7 +29,7 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
  * both API secret and Application (JWT) authentication credentials.
  */
 public class FullAuth {
-    public static void main(String[] argv) throws Exception {
+    public static void main(String[] args) throws Exception {
         VonageClient client = VonageClient.builder()
                 .apiKey(VONAGE_API_KEY)
                 .apiSecret(VONAGE_API_SECRET)

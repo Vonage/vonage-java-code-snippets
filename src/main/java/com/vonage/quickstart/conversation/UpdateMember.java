@@ -19,16 +19,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.vonage.quickstart.initialize;
+package com.vonage.quickstart.conversation;
 
 import com.vonage.client.VonageClient;
+import com.vonage.client.conversations.UpdateMemberRequest;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
-/**
- * Example of configuring a VonageClient with an API secret.
- */
-public class BasicAuth {
+public class UpdateMember {
     public static void main(String[] args) throws Exception {
-        VonageClient client = VonageClient.builder().apiKey(VONAGE_API_KEY).apiSecret(VONAGE_API_SECRET).build();
+        VonageClient client = VonageClient.builder()
+                .applicationId(VONAGE_APPLICATION_ID)
+                .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
+                .build();
+
+        var updated = client.getConversationsClient().updateMember(
+                UpdateMemberRequest.builder()
+                        .conversationId(CONV_ID)
+                        .memberId(CONV_MEMBER_ID)
+                        .state(CONV_MEMBER_STATE)
+                        .build()
+        );
+        System.out.println(updated);
     }
 }
