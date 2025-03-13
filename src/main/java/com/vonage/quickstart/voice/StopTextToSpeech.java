@@ -24,13 +24,13 @@ package com.vonage.quickstart.voice;
 import com.vonage.client.VonageClient;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
-public class SubscribeDtmf {
+public class StopTextToSpeech {
     public static void main(String... args) throws Exception {
         VonageClient client = VonageClient.builder()
                 .applicationId(VONAGE_APPLICATION_ID)
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
-        client.getVoiceClient().addDtmfListener(VOICE_CALL_ID, VOICE_EVENT_URL);
+        var response = client.getVoiceClient().stopTalk(VOICE_CALL_ID);
     }
 }

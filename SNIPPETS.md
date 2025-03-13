@@ -2784,6 +2784,11 @@ post("/webhooks/notification", (req, res) -> {
 ```java
 var response = client.getVoiceClient().stopStream(VOICE_CALL_ID);
 ```
+### Unsubscribe From DTMF Events
+
+```java
+client.getVoiceClient().removeDtmfListener(VOICE_CALL_ID);
+```
 ### Transfer Call NCCO
 
 ```java
@@ -2888,6 +2893,11 @@ Spark.port(3000);
 Spark.get("/webhooks/answer", answerRoute);
 Spark.post("/webhooks/answer", answerRoute);
 ```
+### Stop Text To Speech
+
+```java
+var response = client.getVoiceClient().stopTalk(VOICE_CALL_ID);
+```
 ### Record Call
 
 ```java
@@ -2920,6 +2930,11 @@ Route recordingRoute = (req, res) -> {
 Spark.port(3000);
 Spark.get("/webhooks/answer", answerRoute);
 Spark.post("/webhooks/recordings", recordingRoute);
+```
+### Subscribe To DTMF Events
+
+```java
+client.getVoiceClient().addDtmfListener(VOICE_CALL_ID, VOICE_EVENT_URL);
 ```
 ### Stream Audio To Call
 
@@ -3049,16 +3064,6 @@ Spark.port(3000);
 Spark.get("/webhooks/answer", answerRoute);
 Spark.post("/webhooks/dtmf", inputRoute);
 ```
-### Subscribe DTMF
-
-```java
-client.getVoiceClient().addDtmfListener(VOICE_CALL_ID, VOICE_EVENT_URL);
-```
-### Stop Speech
-
-```java
-var response = client.getVoiceClient().stopTalk(VOICE_CALL_ID);
-```
 ### Send DTMF To Call
 
 ```java
@@ -3096,11 +3101,6 @@ client.getVoiceClient().startTalk(VOICE_CALL_ID, payload);
 
 ```java
 client.getVoiceClient().createCall(new Call(VOICE_TO_NUMBER, VONAGE_VIRTUAL_NUMBER, VOICE_ANSWER_URL));
-```
-### Unsubscribe DTMF
-
-```java
-client.getVoiceClient().removeDtmfListener(VOICE_CALL_ID);
 ```
 ### ASR Input
 
