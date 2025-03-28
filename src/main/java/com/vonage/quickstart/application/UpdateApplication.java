@@ -26,7 +26,6 @@ import com.vonage.client.application.Application;
 import com.vonage.client.application.ApplicationClient;
 import com.vonage.client.application.capabilities.*;
 import com.vonage.client.common.HttpMethod;
-import com.vonage.client.common.Webhook;
 
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
@@ -41,22 +40,37 @@ public class UpdateApplication {
         Application existingApplication = applicationClient.getApplication(VONAGE_APPLICATION_ID);
 
         Capability messages = Messages.builder()
-                .addWebhook(Webhook.Type.INBOUND,
-                        new Webhook("https://example.com/webhooks/inbound", HttpMethod.POST))
-                .addWebhook(Webhook.Type.STATUS,
-                        new Webhook("https://example.com/webhooks/status", HttpMethod.POST))
+                .inbound(Webhook.builder()
+                        .address("https://example.com/webhooks/inbound")
+                        .method(HttpMethod.POST)
+                        .build()
+                )
+                .status(Webhook.builder()
+                        .address("https://example.com/webhooks/status")
+                        .method(HttpMethod.POST)
+                        .build()
+                )
                 .build();
 
         Capability voice = Voice.builder()
-                .addWebhook(Webhook.Type.ANSWER,
-                        new Webhook("https://example.com/webhooks/answer", HttpMethod.POST))
-                .addWebhook(Webhook.Type.EVENT,
-                        new Webhook("https://example.com/webhooks/event", HttpMethod.POST))
+                .answer(Webhook.builder()
+                        .address("https://example.com/webhooks/answer")
+                        .method(HttpMethod.POST)
+                        .build()
+                )
+                .event(Webhook.builder()
+                        .address("https://example.com/webhooks/event")
+                        .method(HttpMethod.POST)
+                        .build()
+                )
                 .build();
 
         Capability rtc = Rtc.builder()
-                .addWebhook(Webhook.Type.EVENT,
-                        new Webhook("https://example.com/webhooks/event", HttpMethod.POST))
+                .event(Webhook.builder()
+                        .address("https://example.com/webhooks/event")
+                        .method(HttpMethod.POST)
+                        .build()
+                )
                 .build();
 
         Capability vbc = Vbc.builder().build();

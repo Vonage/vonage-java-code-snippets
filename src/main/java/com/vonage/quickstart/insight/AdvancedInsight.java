@@ -24,6 +24,7 @@ package com.vonage.quickstart.insight;
 import com.vonage.client.VonageClient;
 import com.vonage.client.insight.AdvancedInsightResponse;
 import com.vonage.client.insight.RoamingDetails;
+import com.vonage.client.insight.RoamingStatus;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class AdvancedInsight {
@@ -59,7 +60,7 @@ public class AdvancedInsight {
         }
         else {
             System.out.println("Roaming status: " + roaming.getStatus());
-            if (response.getRoaming().getStatus() == RoamingDetails.RoamingStatus.ROAMING) {
+            if (response.getRoaming().getStatus() == RoamingStatus.ROAMING) {
                 System.out.print("    Currently roaming in: " + roaming.getRoamingCountryCode());
                 System.out.println(" on the network " + roaming.getRoamingNetworkName());
             }

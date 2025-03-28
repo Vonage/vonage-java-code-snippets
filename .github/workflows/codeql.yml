@@ -1,4 +1,4 @@
-name: "CodeQL"
+name: CodeQL
 on:
   push:
     branches: [ "main" ]
@@ -27,13 +27,13 @@ jobs:
           build-mode: autobuild
     steps:
     - name: Checkout repository
-      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      uses: actions/checkout@85e6279cec87321a52edac9c87bce653a07cf6c2
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@1bb15d06a6fbb5d9d9ffd228746bf8ee208caec8
+      uses: github/codeql-action/init@486ab5a2922b634015408a83e10f6867efb5922c
       with:
         languages: ${{ matrix.language }}
         build-mode: ${{ matrix.build-mode }}
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@1bb15d06a6fbb5d9d9ffd228746bf8ee208caec8
+      uses: github/codeql-action/analyze@486ab5a2922b634015408a83e10f6867efb5922c
       with:
         category: "/language:${{matrix.language}}"

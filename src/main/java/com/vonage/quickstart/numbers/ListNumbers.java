@@ -24,6 +24,7 @@ package com.vonage.quickstart.numbers;
 import com.vonage.client.VonageClient;
 import com.vonage.client.numbers.*;
 import static com.vonage.quickstart.EnvironmentVariables.*;
+import java.util.List;
 
 public class ListNumbers {
     public static void main(String[] args) {
@@ -32,13 +33,13 @@ public class ListNumbers {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        ListNumbersResponse response = client.getNumbersClient().listNumbers(
+        List<OwnedNumber> response = client.getNumbersClient().listNumbers(
                 ListNumbersFilter.builder()
                         .pattern(NUMBER_SEARCH_PATTERN, NUMBER_SEARCH_CRITERIA)
                         .build()
         );
 
-        for (OwnedNumber number : response.getNumbers()) {
+        for (OwnedNumber number : response) {
             System.out.println("Tel: " + number.getMsisdn());
             System.out.println("Type: " + number.getType());
             System.out.println("Country: " + number.getCountry());

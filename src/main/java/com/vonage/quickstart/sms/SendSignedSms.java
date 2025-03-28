@@ -22,6 +22,7 @@
 package com.vonage.quickstart.sms;
 
 import com.vonage.client.VonageClient;
+import com.vonage.client.auth.hashutils.HashType;
 import com.vonage.client.sms.MessageStatus;
 import com.vonage.client.sms.SmsSubmissionResponse;
 import com.vonage.client.sms.messages.TextMessage;
@@ -34,7 +35,7 @@ public class SendSignedSms {
         VonageClient client = VonageClient.builder()
             .apiKey(VONAGE_API_KEY)
             .signatureSecret(VONAGE_SIGNATURE_SECRET)
-            .hashType(HashUtil.HashType.MD5).build();
+            .hashType(HashType.MD5).build();
         
         TextMessage message = new TextMessage(
                 SMS_SENDER_ID, SMS_TO_NUMBER,

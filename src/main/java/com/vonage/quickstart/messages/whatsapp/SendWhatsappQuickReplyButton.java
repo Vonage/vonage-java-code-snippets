@@ -22,7 +22,7 @@
 package com.vonage.quickstart.messages.whatsapp;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.messages.MessageType;
+import com.vonage.client.common.MessageType;
 import com.vonage.client.messages.whatsapp.Locale;
 import com.vonage.client.messages.whatsapp.Policy;
 import com.vonage.client.messages.whatsapp.WhatsappCustomRequest;

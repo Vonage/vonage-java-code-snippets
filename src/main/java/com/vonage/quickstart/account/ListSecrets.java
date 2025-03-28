@@ -22,9 +22,9 @@
 package com.vonage.quickstart.account;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.account.ListSecretsResponse;
 import com.vonage.client.account.SecretResponse;
 import static com.vonage.quickstart.EnvironmentVariables.*;
+import java.util.List;
 
 public class ListSecrets {
     public static void main(String[] args) {
@@ -33,9 +33,9 @@ public class ListSecrets {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        ListSecretsResponse response = client.getAccountClient().listSecrets(ACCOUNT_ID);
+        List<SecretResponse> response = client.getAccountClient().listSecrets(ACCOUNT_ID);
 
-        for (SecretResponse secret : response.getSecrets()) {
+        for (SecretResponse secret : response) {
             System.out.println(secret.getId() + " created at " + secret.getCreated());
         }
     }
