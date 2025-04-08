@@ -34,7 +34,7 @@ public class CreateCustomEvent {
                 .build();
 
         var event = client.getConversationsClient().createEvent(
-                CONV_ID, CustomEvent.builder()
+                CONV_ID, CustomEvent.builder("my_custom_event_name")
                         .from(CONV_MEMBER_ID)
                         .body(Map.of("your", "data"))
                         .build()

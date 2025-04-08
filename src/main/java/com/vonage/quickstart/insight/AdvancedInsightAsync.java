@@ -22,6 +22,7 @@
 package com.vonage.quickstart.insight;
 
 import com.vonage.client.VonageClient;
+import com.vonage.client.insight.AdvancedInsightAsyncRequest;
 import com.vonage.client.insight.AdvancedInsightRequest;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
@@ -32,9 +33,11 @@ public class AdvancedInsightAsync {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        client.getInsightClient().getAdvancedNumberInsight(
-                AdvancedInsightRequest.builder(INSIGHT_NUMBER)
-                    .async(true).callback(INSIGHT_CALLBACK_URL).build()
+        var response = client.getInsightClient().getAdvancedAsyncNumberInsight(
+                AdvancedInsightAsyncRequest.builder()
+                    .number(INSIGHT_NUMBER)
+                    .callback(INSIGHT_CALLBACK_URL)
+                    .build()
         );
     }
 }

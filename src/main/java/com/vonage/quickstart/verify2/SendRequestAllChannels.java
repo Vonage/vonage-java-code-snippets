@@ -36,7 +36,6 @@ public class SendRequestAllChannels {
 		var request = VerificationRequest.builder()
 				.workflows(List.of(
 						new SilentAuthWorkflow(VERIFY_NUMBER),
-						new WhatsappCodelessWorkflow(VERIFY_NUMBER, VERIFY_WHATSAPP_NUMBER),
 						new EmailWorkflow(VERIFY_TO_EMAIL, VERIFY_FROM_EMAIL),
 						new WhatsappWorkflow(VERIFY_NUMBER, VERIFY_WHATSAPP_NUMBER),
 						new SmsWorkflow(VERIFY_NUMBER),

@@ -38,7 +38,6 @@ public class RecordCallSplitAudio {
             RecordAction record = RecordAction.builder()
                     .eventUrl(recordingUrl)
                     .channels(2)
-                    .split(SplitRecording.CONVERSATION)
                     .build();
 
             ConnectAction connect = ConnectAction.builder(PhoneEndpoint.builder(VOICE_TO_NUMBER).build())

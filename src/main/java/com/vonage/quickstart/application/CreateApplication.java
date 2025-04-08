@@ -24,8 +24,8 @@ package com.vonage.quickstart.application;
 import com.vonage.client.VonageClient;
 import com.vonage.client.application.Application;
 import com.vonage.client.application.capabilities.Messages;
+import com.vonage.client.application.capabilities.Webhook;
 import com.vonage.client.common.HttpMethod;
-import com.vonage.client.common.Webhook;
 
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
@@ -40,10 +40,16 @@ public class CreateApplication {
             Application.builder()
                 .name(APPLICATION_NAME)
                 .addCapability(Messages.builder()
-                        .addWebhook(Webhook.Type.INBOUND,
-                                new Webhook("https://example.com/webhooks/inbound", HttpMethod.POST))
-                        .addWebhook(Webhook.Type.STATUS,
-                                new Webhook("https://example.com/webhooks/status", HttpMethod.POST))
+                        .inbound(Webhook.builder()
+                                .address("https://example.com/webhooks/inbound")
+                                .method(HttpMethod.POST)
+                                .build()
+                        )
+                        .status(Webhook.builder()
+                                .address("https://example.com/webhooks/status")
+                                .method(HttpMethod.POST)
+                                .build()
+                        )
                         .build()
                 )
                 .build()

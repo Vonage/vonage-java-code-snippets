@@ -148,7 +148,6 @@ public final class AggregateSnippets {
                 .replace("NCCO", "ncco")    // To avoid adding spaces in the next regex
                 .replaceAll("(?<!^)([A-Z])(?![A-Z])", " $1")
                 .replace("Vcard", "vCard")
-                .replace("Numberinsight2", "Fraud Detection")
                 .replace("Numberinsight", "Number Insight")
                 .replace("Verify\n", "Verify (Legacy)\n")
                 .replace("Verify2", "Verify v2")

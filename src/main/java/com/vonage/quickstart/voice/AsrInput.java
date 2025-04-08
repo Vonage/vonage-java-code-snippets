@@ -22,10 +22,7 @@
 package com.vonage.quickstart.voice;
 
 import com.vonage.client.voice.EventWebhook;
-import com.vonage.client.voice.ncco.InputAction;
-import com.vonage.client.voice.ncco.Ncco;
-import com.vonage.client.voice.ncco.SpeechSettings;
-import com.vonage.client.voice.ncco.TalkAction;
+import com.vonage.client.voice.ncco.*;
 import spark.Route;
 import spark.Spark;
 
@@ -42,7 +39,7 @@ public class AsrInput {
                     .build();
 
             SpeechSettings speechSettings = SpeechSettings.builder()
-                    .language(SpeechSettings.Language.ENGLISH_UNITED_STATES).build();
+                    .language(Language.ENGLISH_UNITED_STATES).build();
 
             InputAction input = InputAction.builder()
                     .eventUrl(String.format("%s://%s/webhooks/asr", req.scheme(), req.host()))

@@ -21,7 +21,7 @@
  */
 package com.vonage.quickstart.sms;
 
-import com.vonage.client.incoming.MessageEvent;
+import com.vonage.client.sms.MessageEvent;
 import spark.Route;
 import spark.Spark;
 

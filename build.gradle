@@ -14,7 +14,7 @@ java {
 
 dependencies {
     implementation 'io.github.cdimascio:dotenv-java:3.+'
-    implementation 'com.vonage:server-sdk:8.+'
+    implementation 'com.vonage:server-sdk:9.+'
     implementation 'com.vonage:jwt:2.+'
     implementation 'com.sparkjava:spark-core:2.+'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.+'

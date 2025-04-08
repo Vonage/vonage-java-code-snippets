@@ -23,12 +23,10 @@ package com.vonage.quickstart;
 
 import com.vonage.client.ApiRegion;
 import com.vonage.client.conversations.MemberState;
-import com.vonage.client.numbers.Feature;
-import com.vonage.client.numbers.SearchPattern;
-import com.vonage.client.numbers.Type;
-import com.vonage.client.numbers.UpdateNumberRequest;
+import com.vonage.client.numbers.*;
 import com.vonage.client.verify.Psd2Request;
 import com.vonage.client.verify.VerifyRequest;
+import com.vonage.client.verify.Workflow;
 import com.vonage.client.voice.TextToSpeechLanguage;
 import io.github.cdimascio.dotenv.Dotenv;
 import java.time.Instant;
@@ -199,14 +197,12 @@ public final class EnvironmentVariables {
    public static final SearchPattern
        NUMBER_SEARCH_PATTERN = SearchPattern.values()[Integer.parseInt(envVar("NUMBER_SEARCH_PATTERN"))];
 
-   public static final UpdateNumberRequest.CallbackType
-       NUMBER_VOICE_CALLBACK_TYPE = UpdateNumberRequest.CallbackType.fromString(envVar("NUMBER_VOICE_CALLBACK_TYPE"));
+   public static final CallbackType
+       NUMBER_VOICE_CALLBACK_TYPE = CallbackType.fromString(envVar("NUMBER_VOICE_CALLBACK_TYPE"));
 
-   public static final VerifyRequest.Workflow
-       VERIFY_WORKFLOW_ID = VerifyRequest.Workflow.values()[Integer.parseInt(envVar("VERIFY_WORKFLOW_ID")) + 1];
-
-   public static final Psd2Request.Workflow
-       VERIFY_PSD2_WORKFLOW_ID = Psd2Request.Workflow.values()[Integer.parseInt(envVar("VERIFY_WORKFLOW_ID")) + 1];
+   public static final Workflow
+       VERIFY_WORKFLOW_ID = Workflow.values()[Integer.parseInt(envVar("VERIFY_WORKFLOW_ID")) + 1],
+       VERIFY_PSD2_WORKFLOW_ID = Workflow.values()[Integer.parseInt(envVar("VERIFY_WORKFLOW_ID")) + 1];
 
    public static final TextToSpeechLanguage
        VOICE_LANGUAGE = TextToSpeechLanguage.valueOf(envVar("VOICE_LANGUAGE"));

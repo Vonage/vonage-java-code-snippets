@@ -36,15 +36,14 @@ public class RetrieveInfoForAllCalls {
                 .privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
                 .build();
 
-        Date yesterday = new Date(Instant.now().minus(Duration.ofDays(1)).toEpochMilli());
-        Date now = new Date();
+        Instant now = Instant.now(), yesterday = now.minus(Duration.ofDays(1));
 
         CallsFilter filter = CallsFilter.builder()
-                .dateStart(yesterday)
-                .dateEnd(now)
+                .startDate(yesterday)
+                .endDate(now)
                 .build();
 
         CallInfoPage calls = client.getVoiceClient().listCalls(filter);
-        System.out.println(calls.toJson());
+        calls.forEach(System.out::println);
     }
 }

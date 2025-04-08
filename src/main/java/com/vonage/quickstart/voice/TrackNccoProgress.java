@@ -44,7 +44,8 @@ public class TrackNccoProgress {
             Map<String, String> payload = new HashMap<>();
             payload.put("foo", "bar");
 
-            NotifyAction notify = NotifyAction.builder(payload)
+            NotifyAction notify = NotifyAction.builder()
+                    .payload(payload)
                     .eventUrl(notifyUrl)
                     .build();
 

@@ -21,6 +21,7 @@
  */
 package com.vonage.quickstart.insight;
 
+import com.vonage.client.Jsonable;
 import com.vonage.client.insight.AdvancedInsightResponse;
 import spark.Spark;
 
@@ -30,7 +31,7 @@ public class AsyncInsightTrigger {
     public static void main(String... args) {
         port(3000);
         Spark.post("/webhooks/insight", (req, res) -> {
-            AdvancedInsightResponse response = AdvancedInsightResponse.fromJson(req.body());
+            AdvancedInsightResponse response = Jsonable.fromJson(req.body());
             System.out.println("Country: " + response.getCountryName());
 
             res.status(204);

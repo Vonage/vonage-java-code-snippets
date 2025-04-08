@@ -22,7 +22,7 @@
 package com.vonage.quickstart.redact;
 
 import com.vonage.client.VonageClient;
-import com.vonage.client.redact.RedactRequest;
+import com.vonage.client.redact.Product;
 import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class RedactATransaction {
@@ -32,6 +32,6 @@ public class RedactATransaction {
                 .apiSecret(VONAGE_API_SECRET)
                 .build();
 
-        client.getRedactClient().redactTransaction(VONAGE_REDACT_ID, RedactRequest.Product.SMS);
+        client.getRedactClient().redactTransaction(VONAGE_REDACT_ID, Product.SMS);
     }
 }
