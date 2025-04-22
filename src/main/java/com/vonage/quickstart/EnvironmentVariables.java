@@ -158,7 +158,13 @@ public final class EnvironmentVariables {
        VOICE_NCCO_URL = envVar("VOICE_NCCO_URL"),
        VOICE_ANSWER_URL = envVar("VOICE_ANSWER_URL"),
        VOICE_EVENT_URL = envVar("VOICE_EVENT_URL"),
-       VOICE_STREAM_URL = envVar("VOICE_STREAM_URL");
+       VOICE_STREAM_URL = envVar("VOICE_STREAM_URL"),
+       VIDEO_SESSION_ID = envVar("VIDEO_SESSION_ID"),
+       VIDEO_TOKEN = envVar("VIDEO_TOKEN"),
+       VIDEO_CONNECTION_ID = envVar("VIDEO_CONNECTION_ID"),
+       VIDEO_STREAM_ID = envVar("VIDEO_STREAM_ID"),
+       VIDEO_ARCHIVE_ID = envVar("VIDEO_ARCHIVE_ID"),
+       VIDEO_BROADCAST_ID = envVar("VIDEO_BROADCAST_ID");
 
     public static final byte[]
         VONAGE_PRIVATE_KEY_CONTENTS = envVar("VONAGE_PRIVATE_KEY_CONTENTS").getBytes();
@@ -189,10 +195,10 @@ public final class EnvironmentVariables {
    public static final Type
        NUMBER_TYPE = Type.fromString(envVar("NUMBER_TYPE"));
 
-   public static final Feature[]
+   public static final com.vonage.client.numbers.Feature[]
        NUMBER_FEATURES = Arrays.stream(envVar("NUMBER_FEATURES").split(","))
-           .map(Feature::fromString)
-           .toArray(Feature[]::new);
+           .map(com.vonage.client.numbers.Feature::fromString)
+           .toArray(com.vonage.client.numbers.Feature[]::new);
 
    public static final SearchPattern
        NUMBER_SEARCH_PATTERN = SearchPattern.values()[Integer.parseInt(envVar("NUMBER_SEARCH_PATTERN"))];
