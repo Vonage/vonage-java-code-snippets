@@ -18,7 +18,6 @@ package com.vonage.quickstart.video;
 import com.vonage.client.VonageClient;
 import com.vonage.client.video.*;
 import static com.vonage.quickstart.EnvironmentVariables.*;
-import com.vonage.quickstart.util.JsonPrinter;
 import java.time.Duration;
 
 public class CreateBroadcast {
