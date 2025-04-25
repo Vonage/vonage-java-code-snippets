@@ -18,7 +18,6 @@ package com.vonage.quickstart.video;
 import com.vonage.client.VonageClient;
 import com.vonage.client.video.*;
 import static com.vonage.quickstart.EnvironmentVariables.*;
-import com.vonage.quickstart.util.JsonPrinter;
 
 public class CreateArchive {
     public static void main(String[] args) throws Exception {
@@ -38,6 +37,6 @@ public class CreateArchive {
                         .build()
         );
 
-        System.out.println("Started archive: " + archive);
+        System.out.println("Started archive: " + archive.toJson());
     }
 }
