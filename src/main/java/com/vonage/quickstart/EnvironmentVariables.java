@@ -150,6 +150,12 @@ public final class EnvironmentVariables {
        VERIFY_FROM_EMAIL = envVar("VERIFY_FROM_EMAIL"),
        VERIFY_WHATSAPP_NUMBER = envVar("VERIFY_WHATSAPP_NUMBER"),
        VERIFY_TEMPLATE_NAME = envVar("VERIFY_TEMPLATE_NAME"),
+       VIDEO_SESSION_ID = envVar("VIDEO_SESSION_ID"),
+       VIDEO_TOKEN = envVar("VIDEO_TOKEN"),
+       VIDEO_CONNECTION_ID = envVar("VIDEO_CONNECTION_ID"),
+       VIDEO_STREAM_ID = envVar("VIDEO_STREAM_ID"),
+       VIDEO_ARCHIVE_ID = envVar("VIDEO_ARCHIVE_ID"),
+       VIDEO_BROADCAST_ID = envVar("VIDEO_BROADCAST_ID");
        VOICE_CALL_ID = envVar("VOICE_CALL_ID"),
        VOICE_TO_NUMBER = envVar("VOICE_TO_NUMBER"),
        VOICE_TEXT = envVar("VOICE_TEXT"),
@@ -159,12 +165,6 @@ public final class EnvironmentVariables {
        VOICE_ANSWER_URL = envVar("VOICE_ANSWER_URL"),
        VOICE_EVENT_URL = envVar("VOICE_EVENT_URL"),
        VOICE_STREAM_URL = envVar("VOICE_STREAM_URL"),
-       VIDEO_SESSION_ID = envVar("VIDEO_SESSION_ID"),
-       VIDEO_TOKEN = envVar("VIDEO_TOKEN"),
-       VIDEO_CONNECTION_ID = envVar("VIDEO_CONNECTION_ID"),
-       VIDEO_STREAM_ID = envVar("VIDEO_STREAM_ID"),
-       VIDEO_ARCHIVE_ID = envVar("VIDEO_ARCHIVE_ID"),
-       VIDEO_BROADCAST_ID = envVar("VIDEO_BROADCAST_ID");
 
     public static final byte[]
         VONAGE_PRIVATE_KEY_CONTENTS = envVar("VONAGE_PRIVATE_KEY_CONTENTS").getBytes();
