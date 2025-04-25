@@ -152,6 +152,7 @@ public final class AggregateSnippets {
                 .replace("Verify\n", "Verify (Legacy)\n")
                 .replace("Verify2", "Verify v2")
                 .replace("Whatsapp", "WhatsApp")
+                .replace("Json", "JSON")
                 .replace("Simswap", "SIM Swap")
                 .replace("Callncco", "Call NCCO");
         for (var ac : acronyms) {
