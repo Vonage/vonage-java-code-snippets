@@ -336,7 +336,7 @@ System.out.println(response.length);
 Map<String, ?> response = client.getCustomClient().get("https://rest.nexmo.com/account/get-balance");
 System.out.println("€" + response.get("value"));
 ```
-### Get Request JSONable
+### Get Request Jsonable
 
 ```java
 BalanceResponse response = client.getCustomClient().get("https://rest.nexmo.com/account/get-balance");
@@ -2737,7 +2737,7 @@ List<Broadcast> broadcasts = videoClient.listBroadcasts();
 
 System.out.println("Retrieved list of broadcasts: " + broadcasts);
 ```
-### Sip Dial
+### SIP Dial
 
 ```java
 

@@ -140,9 +140,9 @@ public final class AggregateSnippets {
 
     private static String toHeadingTitle(String title) {
         var acronyms = new String[]{
-                "jwt", "id", "uuid", "url", "sim",
+                "jwt", "id", "uuid", "url", "sim", "sip",
                 "sms", "rcs", "mms", "psd2", "dlr", "cnam",
-                "dtmf", "asr", "tts", "ncco", "rtc"
+                "dtmf", "asr", "tts", "ncco", "rtc", "json"
         };
         var result = (title.substring(0, 1).toUpperCase() + title.substring(1))
                 .replace("NCCO", "ncco")    // To avoid adding spaces in the next regex
@@ -152,7 +152,6 @@ public final class AggregateSnippets {
                 .replace("Verify\n", "Verify (Legacy)\n")
                 .replace("Verify2", "Verify v2")
                 .replace("Whatsapp", "WhatsApp")
-                .replace("Json", "JSON")
                 .replace("Simswap", "SIM Swap")
                 .replace("Callncco", "Call NCCO");
         for (var ac : acronyms) {
