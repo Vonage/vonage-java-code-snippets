@@ -31,6 +31,6 @@ public class ListStreams {
 
         List<GetStreamResponse> streams = videoClient.listStreams(VIDEO_SESSION_ID);
 
-        System.out.println("Retrieved list of archives: " + streams);
+        System.out.println("Retrieved list of streams: " + streams);
     }
 }
