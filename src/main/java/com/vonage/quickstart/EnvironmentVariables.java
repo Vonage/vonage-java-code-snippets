@@ -150,6 +150,12 @@ public final class EnvironmentVariables {
        VERIFY_FROM_EMAIL = envVar("VERIFY_FROM_EMAIL"),
        VERIFY_WHATSAPP_NUMBER = envVar("VERIFY_WHATSAPP_NUMBER"),
        VERIFY_TEMPLATE_NAME = envVar("VERIFY_TEMPLATE_NAME"),
+       VIDEO_STREAM_ID = envVar("VIDEO_STREAM_ID"),
+       VIDEO_ARCHIVE_ID = envVar("VIDEO_ARCHIVE_ID"),
+       VIDEO_BROADCAST_ID = envVar("VIDEO_BROADCAST_ID"),
+       VIDEO_CONNECTION_ID = envVar("VIDEO_CONNECTION_ID"),
+       VIDEO_SESSION_ID = envVar("VIDEO_SESSION_ID"),
+       VIDEO_TOKEN = envVar("VIDEO_TOKEN"),
        VOICE_CALL_ID = envVar("VOICE_CALL_ID"),
        VOICE_TO_NUMBER = envVar("VOICE_TO_NUMBER"),
        VOICE_TEXT = envVar("VOICE_TEXT"),
@@ -189,10 +195,10 @@ public final class EnvironmentVariables {
    public static final Type
        NUMBER_TYPE = Type.fromString(envVar("NUMBER_TYPE"));
 
-   public static final Feature[]
+   public static final com.vonage.client.numbers.Feature[]
        NUMBER_FEATURES = Arrays.stream(envVar("NUMBER_FEATURES").split(","))
-           .map(Feature::fromString)
-           .toArray(Feature[]::new);
+           .map(com.vonage.client.numbers.Feature::fromString)
+           .toArray(com.vonage.client.numbers.Feature[]::new);
 
    public static final SearchPattern
        NUMBER_SEARCH_PATTERN = SearchPattern.values()[Integer.parseInt(envVar("NUMBER_SEARCH_PATTERN"))];
