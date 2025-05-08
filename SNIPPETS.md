@@ -954,6 +954,22 @@ var response = client.getMessagesClient().sendMessage(
 );
 System.out.println("Message sent successfully. ID: "+response.getMessageUuid());
 ```
+### Send Message With Failover
+
+```java
+var response = client.getMessagesClient().sendMessage(
+        RcsTextRequest.builder()
+            .from(RCS_SENDER_ID).to(MESSAGES_TO_NUMBER)
+            .text("This is an RCS message sent via the Vonage Messages API")
+            .failover(SmsTextRequest.builder()
+                    .from(SMS_SENDER_ID).to(MESSAGES_TO_NUMBER)
+                    .text("This is an SMS sent using the Vonage Messages API.")
+                    .build()
+            )
+            .build()
+);
+System.out.println(response);
+```
 ### Messenger
 #### Send Messenger Text
 
