@@ -35,7 +35,8 @@ public class SendRequestWithFallback {
 		VerificationResponse response = client.getVerify2Client().sendVerification(
 				VerificationRequest.builder()
 					.addWorkflow(new SilentAuthWorkflow(VERIFY_NUMBER))
-					.addWorkflow(new EmailWorkflow(VERIFY_TO_EMAIL))
+					.addWorkflow(new SmsWorkflow(VERIFY_NUMBER))
+					.addWorkflow(new VoiceWorkflow(VERIFY_NUMBER))
 					.brand(VERIFY_BRAND_NAME).build()
 		);
 		System.out.println("Verification sent: " + response.getRequestId());
