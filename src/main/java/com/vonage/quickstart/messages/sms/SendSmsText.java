@@ -27,17 +27,17 @@ import static com.vonage.quickstart.EnvironmentVariables.*;
 
 public class SendSmsText {
     public static void main(String[] args) throws Exception {
-		VonageClient client = VonageClient.builder()
-				.applicationId(VONAGE_APPLICATION_ID)
-				.privateKeyPath(VONAGE_PRIVATE_KEY_PATH)
-				.build();
+        VonageClient client = VonageClient.builder()
+                .apiKey(VONAGE_API_KEY)
+                .apiSecret(VONAGE_API_SECRET)
+                .build();
 
-		var response = client.getMessagesClient().sendMessage(
-				SmsTextRequest.builder()
-					.from(SMS_SENDER_ID).to(MESSAGES_TO_NUMBER)
-					.text("This is an SMS text message sent using the Messages API")
-					.build()
-		);
-		System.out.println("Message sent successfully. ID: " + response.getMessageUuid());
-	}
+        var response = client.getMessagesClient().sendMessage(
+                SmsTextRequest.builder()
+                    .from(SMS_SENDER_ID).to(MESSAGES_TO_NUMBER)
+                    .text("This is an SMS sent using the Vonage Messages API.")
+                    .build()
+        );
+        System.out.println("Message sent successfully. ID: " + response.getMessageUuid());
+    }
 }
